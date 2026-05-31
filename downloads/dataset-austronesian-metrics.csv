@@ -1,0 +1,10 @@
+id,label,family,branch,n_tokens,VMML,BC,CBMI_bits,zone_score,source
+tagalog_noli_me_tangere,Tagalog: Noli Me Tangere (Rizal),Austronesian,Philippine / Tagalog,173885,5.7345,0.1984,0.7945,0,Paper 8 (Silva 2026) — DOI 10.5281/zenodo.20467972
+tagalog_filibusterismo,Tagalog: El Filibusterismo (Rizal),Austronesian,Philippine / Tagalog,114777,5.671,0.2132,0.5919,0,Paper 8 (Silva 2026) — DOI 10.5281/zenodo.20467972
+cebuano_wikipedia,"Cebuano (Wikipedia, n=52k) [NOTE: bot-generated stubs]",Austronesian,Philippine / Cebuano,49671,6.3147,0.3144,0.612,0,Paper 8 (Silva 2026) — DOI 10.5281/zenodo.20467972
+indonesian_wikipedia,"Indonesian / Bahasa Indonesia (Wikipedia, n=52k)",Austronesian,Malayo-Polynesian,50350,4.838,0.2715,0.651,1,Paper 8 (Silva 2026) — DOI 10.5281/zenodo.20467972
+malay_wikipedia,"Malay / Bahasa Melayu (Wikipedia, n=37k)",Austronesian,Malayo-Polynesian,49742,5.2933,0.2604,0.8227,0,Paper 8 (Silva 2026) — DOI 10.5281/zenodo.20467972
+ilocano_wikipedia,"Ilocano (Wikipedia, n=13k)",Austronesian,Philippine / Ilocano,12807,5.7854,0.2478,0.7808,1,Paper 8 (Silva 2026) — DOI 10.5281/zenodo.20467972
+basque_wikipedia,"Basque / Euskara (Wikipedia natural text, n=50k) ★ VERIFIED",Language isolate,Basque,48621,4.4751,0.3092,0.4363,0,Paper 8 (Silva 2026) — DOI 10.5281/zenodo.20467972
+cebuano_nllb,"Cebuano (OPUS NLLB v1 monolingual, n=60k)",Austronesian,Philippine / Cebuano,60000,5.609,0.2942,0.9073,0,Paper 8 (Silva 2026) — DOI 10.5281/zenodo.20467972
+voynich_paper7_reference,Voynich MS (Paper 7 canonical reference) ★★,Unknown,Unknown,33803,5.918,0.361,0.71,3,Paper 8 (Silva 2026) — DOI 10.5281/zenodo.20467972

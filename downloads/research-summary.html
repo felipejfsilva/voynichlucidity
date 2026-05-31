@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voynich Lucidity — Research Summary</title>
+  <style>
+    @media print {
+      body { margin: 0; }
+      .no-print { display: none; }
+      @page { margin: 2cm; size: A4; }
+    }
+    body { font-family: 'Georgia', serif; max-width: 800px; margin: 2rem auto; padding: 2rem; color: #1a1a1a; line-height: 1.6; }
+    h1 { font-size: 1.6rem; font-weight: 400; border-bottom: 2px solid #c9a84c; padding-bottom: 0.5rem; margin-bottom: 0.3rem; }
+    .meta { font-size: 0.8rem; color: #666; margin-bottom: 2rem; }
+    h2 { font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.4rem; color: #333; text-transform: uppercase; letter-spacing: 0.05em; }
+    p { font-size: 0.92rem; margin-bottom: 0.8rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 1rem 0; }
+    th { background: #1a1a1a; color: #fff; padding: 0.4rem 0.6rem; text-align: left; font-weight: 500; }
+    td { border-bottom: 1px solid #eee; padding: 0.35rem 0.6rem; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .highlight { background: #fff8e6 !important; font-weight: 500; }
+    .gold { color: #c9a84c; }
+    .footer-note { font-size: 0.75rem; color: #999; margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem; }
+    .btn-print { display: inline-block; margin-bottom: 1.5rem; padding: 0.5rem 1.2rem; background: #1a1a1a; color: #fff; border: none; cursor: pointer; font-size: 0.8rem; font-family: inherit; }
+  </style>
+</head>
+<body>
+  <button class="btn-print no-print" onclick="window.print()">⬇ Save as PDF (Ctrl+P)</button>
+
+  <h1>Voynich Lucidity — Research Summary</h1>
+  <p class="meta">Computational Typology of the Voynich Manuscript · voynichlucidity.com · 2026</p>
+
+  <h2>What We Did</h2>
+  <p>We applied BPE VMML (Byte-Pair Encoding Mean Vocabulary Morpheme Length) — a metric measuring the average structural complexity of word-internal segmentation — to 63+ corpora from 35+ language families. The goal: determine where the Voynich Manuscript sits in the typological space of known writing systems.</p>
+
+  <h2>Key Metric: BPE VMML</h2>
+  <p>BPE VMML measures the mean length of morpheme-like segments produced by unsupervised Byte-Pair Encoding. Higher values indicate denser morpheme structure. An "alphabetic ceiling" of 5.748 was derived empirically (Nietzsche, <em>Also sprach Zarathustra</em>, n=82,802 tokens, Paper 7 v2.1). The Voynich Manuscript: <strong class="gold">VMML = 5.918</strong>, Boundary Concentration (BC) = 0.361.</p>
+
+  <h2>Selected Results — Austronesian Expansion</h2>
+  <table>
+    <tr><th>Corpus</th><th>Family / Branch</th><th>n tokens</th><th>VMML</th><th>BC</th><th>Above ceiling?</th></tr>
+    <tr class="highlight"><td>Voynich MS (Paper 7 canonical)</td><td>Unknown</td><td>33,803</td><td>5.918</td><td>0.361</td><td>✓ Reference</td></tr>
+    <tr><td>Tagalog: Noli Me Tangere (full)</td><td>Philippine</td><td>173,885</td><td>5.914</td><td>0.202</td><td>✓ Yes</td></tr>
+    <tr><td>Tagalog: El filibusterismo (full)</td><td>Philippine</td><td>114,777</td><td>5.578</td><td>0.213</td><td>✗ No</td></tr>
+    <tr><td>Ilocano (Wikipedia, n=12.8k)</td><td>Philippine</td><td>12,807</td><td>5.785</td><td>0.248</td><td>⚠ Provisional</td></tr>
+    <tr><td>Cebuano NLLB (n=60k)</td><td>Philippine</td><td>60,000</td><td>5.609</td><td>0.294</td><td>✗ No</td></tr>
+    <tr><td>Malay (Wikipedia)</td><td>Malayo-Polynesian</td><td>49,742</td><td>5.293</td><td>0.260</td><td>✗ No</td></tr>
+    <tr><td>Indonesian (Wikipedia)</td><td>Malayo-Polynesian</td><td>50,350</td><td>4.838</td><td>0.272</td><td>✗ No</td></tr>
+    <tr><td>Basque (Wikipedia natural text)</td><td>Isolate (control)</td><td>48,621</td><td>4.475</td><td>0.309</td><td>✗ No</td></tr>
+  </table>
+
+  <h2>Key Finding — Paper 8</h2>
+  <p><strong>Tagalog cross-text instability:</strong> Full-corpus computation of <em>El filibusterismo</em> (n=114,777, identical protocol) yields VMML = 5.578 — below the alphabetic ceiling. Cross-text Δ = 0.336 units (Noli 5.914 − Filibusterismo 5.578), larger than the Voynich discriminant zone width (0.28 units). Supra-ceiling Tagalog VMML is text-specific, not a language property.</p>
+  <p><strong>Character permutation test:</strong> Corpus-size matched character shuffle (n=50 iterations, all corpora at n=19,968) shows Voynich drops 22.0% (CI95: [5.07, 5.82]) vs Tagalog 12–14% (CI95: [4.77, 5.04]). CI95 ranges do not overlap. Despite similar VMML, Voynich and Tagalog reach it through structurally different mechanisms.</p>
+
+  <h2>What It Isn't (summary)</h2>
+  <p>No tested corpus from any of 35+ language families simultaneously occupies the Voynich discriminant zone (VMML, BC, CBMI). Tagalog is the closest match on VMML — but fails BC decisively and shows cross-text VMML instability. No known natural language replicates the Voynich structural profile.</p>
+
+  <h2>Published Preprints</h2>
+  <p>Paper 7 (typological validation, 55+ corpora): <span class="gold">doi.org/10.5281/zenodo.20386119</span></p>
+  <p>Paper 8 (Tagalog cross-text instability + Austronesian expansion): <span class="gold">doi.org/10.5281/zenodo.20467972</span></p>
+
+  <p class="footer-note">
+    Research by L. · Voynich Lucidity · voynichlucidity.com · contact@voynichlucidity.com<br>
+    All findings published under CC BY 4.0. Data available upon request for qualified collaborators.
+  </p>
+</body>
+</html>
