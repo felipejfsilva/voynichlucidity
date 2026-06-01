@@ -175,6 +175,12 @@
       border: 1px solid #2a2a28;
     }
 
+    .lb-useful {
+      background: rgba(100, 80, 140, 0.15);
+      color: #a080c8;
+      border: 1px solid rgba(100, 80, 140, 0.3);
+    }
+
     /* ── MAIN CONTENT ── */
     .content {
       max-width: 960px;
@@ -353,6 +359,7 @@
     <div class="legend-item"><span class="legend-badge lb-foundational">Foundational</span> Essential reference, historical significance</div>
     <div class="legend-item"><span class="legend-badge lb-speculative">Speculative</span> Interesting but not peer-verified</div>
     <div class="legend-item"><span class="legend-badge lb-accessible">Accessible</span> Popular audience, non-technical</div>
+    <div class="legend-item"><span class="legend-badge lb-useful">Useful</span> Practical tool or active resource</div>
     <div class="legend-item"><span class="legend-badge lb-retracted">Retracted</span> Withdrawn from publication</div>
   </div>
 </div>
@@ -363,7 +370,7 @@
   <div class="bib-section">
     <div class="bib-section-header">
       <h2>Computational Linguistics &amp; Statistics</h2>
-      <span class="bib-count">6 entries</span>
+      <span class="bib-count">9 entries</span>
     </div>
 
     <div class="bib-entry">
@@ -378,11 +385,29 @@
     <div class="bib-entry">
       <div class="bib-ref">
         <strong>Montemurro, M. A., &amp; Zanette, D. H.</strong> <span class="bib-year">(2013).</span> Keywords and Co-Occurrence Patterns in the Voynich Manuscript: An Information-Theoretic Analysis.
-        <em class="bib-journal">PLOS ONE.</em>
+        <em class="bib-journal">PLOS ONE, 8(6), e66344.</em>
         <a href="https://doi.org/10.1371/journal.pone.0066344" class="bib-doi" target="_blank" rel="noopener">DOI: 10.1371/journal.pone.0066344 ↗</a>
-        <span class="bib-note">Demonstrates that Voynichese shows information-theoretic properties inconsistent with random text and consistent with natural language structure — including section-specific keyword usage suggestive of semantic organisation.</span>
+        <span class="bib-note">Demonstrates that Voynichese shows information-theoretic properties inconsistent with random text and consistent with natural language structure — including section-specific keyword usage suggestive of semantic organisation. Confirms non-random semantic clustering; one of the most technically rigorous results in the field.</span>
       </div>
       <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Rugg, G.</strong> <span class="bib-year">(2004).</span> An Elegant Hoax? A possible solution to the Voynich Manuscript.
+        <em class="bib-journal">Scientific American, 291(1), 104–109.</em>
+        <span class="bib-note">Demonstrates that a Cardan grille grid device could generate text with Voynich-like surface statistics. Methodologically sound as a proof-of-concept — but only shows such a device <em>could</em> produce similar output, not that it did. Subsequent computational work found the full VMML, Zipf, and semantic-clustering profile not fully replicable by Rugg's mechanism. Essential reading for understanding the hoax debate.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Bax, S.</strong> <span class="bib-year">(2014).</span> A proposed partial decipherment of the Voynich script.
+        <em class="bib-journal">Working paper, University of Bedfordshire.</em>
+        <span class="bib-note">Proposes 14 word identifications by matching Voynich illustrations to labeled images in other medieval manuscripts — including a proposed reading of the word for Taurus. The comparative-iconography method is legitimate in principle (it worked for Linear B), but depends on the unverified assumption that Voynich labels name their illustrations. Not independently replicated; not definitively refuted. Archived at stephenbax.net.</span>
+      </div>
+      <span class="bib-badge lb-speculative">Speculative</span>
     </div>
 
     <div class="bib-entry">
@@ -551,9 +576,56 @@
 
   </div>
 
+  <!-- SECTION 6: Software & Digital Tools -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Software &amp; Digital Tools</h2>
+      <span class="bib-count">4 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Zandbergen, R., &amp; Landini, G.</strong> <span class="bib-year">(1998).</span> EVA (European Voynich Alphabet). Transcription standard enabling computational analysis.
+        <em class="bib-journal">Available at voynich.nu.</em>
+        <span class="bib-note">The standard ASCII-compatible notation system for Voynich glyphs — the precondition for all computational research. Before EVA, each research group used incompatible transcription conventions, making cross-team comparison nearly impossible. EVA assigns short alphabetic codes to each glyph, enabling shared datasets, statistical analysis, and reproducible results. Still the dominant system for computational Voynich research more than 25 years after publication.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Takahashi, T.</strong> <span class="bib-year">(1998).</span> IVTFF (Interlinear Voynich Transliteration File Format). Standard for aligned multi-hand transcriptions.
+        <em class="bib-journal">Transcription format specification.</em>
+        <span class="bib-note">The file format that allows multiple independent transcriptions of the same Voynich folio to be stored in alignment — enabling inter-transcriber agreement statistics and multi-hand comparison. Essential infrastructure for any serious corpus work; IVTFF files are the primary data format used by the Voynich.nu community and most published computational studies.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>DG97EEB.</strong> <span class="bib-year">(2026).</span> Voynich Whispers Archive Search Engine.
+        <em class="bib-journal">voynich-whispers-archive.lovable.app</em>
+        <a href="https://voynich-whispers-archive.lovable.app" class="bib-doi" target="_blank" rel="noopener">voynich-whispers-archive.lovable.app ↗</a>
+        <span class="bib-note">Searchable database of Voynich Mailing List and forum discussions spanning decades of community research. Useful for tracing the provenance of specific claims, finding prior art for proposed hypotheses, and recovering discussions that predate modern indexing. An underused research tool — many "new" claims have been raised and addressed before.</span>
+      </div>
+      <span class="bib-badge lb-useful">Useful</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Pelling, N.</strong> Cipher Mysteries blog.
+        <em class="bib-journal">ciphermysteries.com</em>
+        <a href="https://ciphermysteries.com" class="bib-doi" target="_blank" rel="noopener">ciphermysteries.com ↗</a>
+        <span class="bib-note">Active research blog maintained by Nick Pelling, author of <em>The Curse of the Voynich</em> (2006). Tracks current decipherment claims, media coverage, and new papers with critical commentary. One of the longest-running independent Voynich blogs; useful for monitoring what claims are circulating and what the community response has been. Pelling is skeptical and methodologically careful by blog standards.</span>
+      </div>
+      <span class="bib-badge lb-useful">Useful</span>
+    </div>
+
+  </div>
+
   <!-- NOTE -->
   <div class="note-box">
-    <strong>On critical assessments.</strong> The labels Rigorous, Foundational, Speculative, Accessible, and Retracted are editorial judgments by the Voynich Lucidity team, based on peer-review status, methodological transparency, reproducibility, and community reception. They are not verdicts — they are reading guides. We encourage all readers to consult primary sources and form independent judgments. If you believe an assessment is incorrect, write to us: <a href="mailto:contact@voynichlucidity.com" style="color:var(--gold);">contact@voynichlucidity.com</a>.
+    <strong>On critical assessments.</strong> The labels Rigorous, Foundational, Speculative, Accessible, Useful, and Retracted are editorial judgments by the Voynich Lucidity team, based on peer-review status, methodological transparency, reproducibility, and community reception. They are not verdicts — they are reading guides. We encourage all readers to consult primary sources and form independent judgments. If you believe an assessment is incorrect, write to us: <a href="mailto:contact@voynichlucidity.com" style="color:var(--gold);">contact@voynichlucidity.com</a>.
   </div>
 
 </main>
