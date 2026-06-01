@@ -423,7 +423,11 @@
   <h2>Get in Touch</h2>
   <p class="contact-desc">Use this form to introduce yourself and describe the nature of your potential contribution. We read all correspondence and respond to those that match our current research needs within one week.</p>
 
-  <form action="mailto:contact@voynichlucidity.com" method="post" enctype="text/plain">
+  <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+    <input type="hidden" name="access_key" value="d65278ba-94b3-4f4f-891a-fe8e9a508966">
+    <input type="hidden" name="subject" value="Voynich Lucidity — Collaboration Inquiry">
+    <input type="hidden" name="from_name" value="Voynich Lucidity Contact Form">
+    <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
     <div class="form-row">
       <label for="name">Name</label>
       <input type="text" id="name" name="name" placeholder="Your full name" />
@@ -448,7 +452,7 @@
       <textarea id="message" name="message" placeholder="Describe your relevant expertise, what you can contribute, and what you're looking to do with this research..."></textarea>
     </div>
     <button type="submit" class="form-submit">Send Inquiry</button>
-    <p class="form-note">This form sends via your default mail client. Alternatively, write directly to <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a>.</p>
+    <p class="form-note" id="formNote">All inquiries are confidential. We respond to technical correspondence within one week.</p>
   </form>
 </div>
 
@@ -459,5 +463,34 @@
   <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
 </footer>
 
+
+<script>
+  document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector("button[type=submit]");
+    const note = document.getElementById("formNote");
+    btn.textContent = "Sending...";
+    btn.disabled = true;
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: new FormData(this)
+      });
+      const data = await res.json();
+      if (data.success) {
+        note.textContent = "✓ Message received. We will respond within one week.";
+        note.style.color = "#4a9";
+        this.reset();
+      } else {
+        throw new Error(data.message);
+      }
+    } catch(err) {
+      note.textContent = "Error sending. Please write directly to contact@voynichlucidity.com";
+      note.style.color = "#c55";
+    }
+    btn.textContent = "Send Inquiry";
+    btn.disabled = false;
+  });
+</script>
 </body>
 </html>
