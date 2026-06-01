@@ -17,6 +17,26 @@
   <link rel="canonical" href="https://voynichlucidity.com/">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <title>Voynich Lucidity — The manuscript no one has read</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Voynich Lucidity",
+    "url": "https://voynichlucidity.com",
+    "description": "The most comprehensive resource on the Voynich Manuscript. History, research, bibliography, and original typological analysis.",
+    "inLanguage": ["en", "pt", "es"],
+    "about": {
+      "@type": "Thing",
+      "name": "Voynich Manuscript",
+      "sameAs": "https://en.wikipedia.org/wiki/Voynich_manuscript"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://voynichlucidity.com/library/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
   <style>
     :root {
       --black: #080806;
@@ -425,14 +445,19 @@
   </div>
 </div>
 
-<!-- OUR RESEARCH — SMALL, HUMBLE -->
+<!-- OUR RESEARCH — HUMBLE BUT INTRIGUING -->
 <div class="research-blurb">
-  <span class="section-label">One perspective among many</span>
+  <span class="section-label">A computational perspective</span>
   <blockquote>
-    "We tested 63 language corpora from 35 language families. Not one simultaneously matches the Voynich structural profile. The discriminant zone remains empty."
+    "63 language corpora. 35 language families. Not one simultaneously matches the Voynich structural profile on all three metrics. The discriminant zone remains empty."
   </blockquote>
-  <p>This site hosts original typological research — a systematic computational comparison of the Voynich against known writing systems. It is one approach among many, reported with full transparency about its limitations.</p>
-  <a href="/findings">Read the research →</a>
+  <p>This site hosts original typological research by L. — a systematic comparison of the Voynich against known writing systems using BPE morpheme-length analysis. Among the findings: Tagalog is the closest natural-language match on one metric, but fails decisively on two others, and cannot maintain its elevated value across different texts.</p>
+  <p>The research is one perspective among many. It is reported with full transparency about what it can and cannot conclude.</p>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;">
+    <a href="/findings" style="color:var(--gold);text-decoration:none;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;">Read the findings →</a>
+    <a href="/what-it-isnt" style="color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;">See what we've ruled out →</a>
+    <a href="/resources" style="color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;">Download the data →</a>
+  </div>
 </div>
 
 <!-- FOOTER -->
