@@ -387,17 +387,26 @@
   </div>
 </div>
 
+<!-- THE APPROACH -->
+<div class="philosophy-block">
+  <h2>The Approach</h2>
+
+  <div class="pull-quote">
+    <p>"Every finding goes through what we call 'hostile peer review' before publication. If a finding has a fatal flaw, it stays in the draft folder. The bar for going public is not confidence — it is surviving the strongest objection we can construct."</p>
+  </div>
+
+  <p>Adversarial self-criticism is not a quality-control step appended at the end of the process. It is the process. For each major finding, L. formulates the most rigorous, methodologically competent rebuttal possible before the finding is considered publishable. Not the most convenient rebuttal — the strongest one. The one that, if valid, would invalidate the result entirely.</p>
+  <p>This means findings take longer to appear here than they would in a less disciplined workflow. It also means that what does appear has been tested against its own failure modes. Draft folders accumulate. Publication lists move slowly. That asymmetry is intentional.</p>
+  <p>The practice emerged directly from observing how Voynich research fails. Proposals accumulate, peer circles form around them, and the proposals eventually collapse — not because the underlying ideas were necessarily wrong, but because they were not stress-tested before being invested in. L. runs the stress test first.</p>
+</div>
+
 <!-- PHILOSOPHY -->
 <div class="philosophy-block">
   <h2>Research Philosophy</h2>
 
-  <div class="pull-quote">
-    <p>"Every claim on this site has gone through what we call 'hostile peer review' — an adversarial self-assessment designed to find fatal flaws before publication. If a finding survives that process, it goes on Zenodo. If it doesn't, it stays in the draft folder."</p>
-  </div>
-
-  <p>The hostile peer review process is not a formality. For each major finding, L. drafts the strongest possible rebuttal — the most competent, adversarial, methodologically rigorous objection to the claim — before considering it publishable. Claims that cannot survive their own best counterargument do not get published.</p>
-  <p>This approach emerged from observing the pattern of Voynich decipherment history: confident proposals, inadequate self-scrutiny, peer acceptance within a small circle, and eventual collapse under external review. The cycle repeats. The corrective is not better hypotheses — it is better self-criticism.</p>
-  <p>The typological approach used here is deliberately modest in its claims. Identifying a family-level structural signature is not the same as identifying a language. Identifying a language is not the same as reading the text. These distinctions are maintained carefully and explicitly throughout the research.</p>
+  <p>The typological approach used here is deliberately modest in its scope. Identifying a family-level structural signature is not the same as identifying a language. Identifying a language is not the same as reading the text. Identifying a statistical similarity is not the same as proving a causal relationship. These distinctions are maintained explicitly throughout the research and are not treated as rhetorical caveats — they are load-bearing methodological constraints.</p>
+  <p>The methodology is designed for falsifiability. Every metric has a defined threshold. Every threshold has an operational definition. Every claim maps to a specific dataset that can be downloaded, re-run, and challenged. If the methodology is wrong, it should be possible for another researcher to demonstrate that with the same tools. That kind of exposure is not a risk to be minimised — it is the condition of doing science rather than speculation.</p>
+  <p>L. would rather be refuted by good methodology than affirmed by credulous acceptance.</p>
 </div>
 
 <!-- ANONYMITY -->
@@ -418,11 +427,10 @@
     <div class="paper-card">
       <div class="paper-num">Paper 7 · Typological Analysis</div>
       <h3>Structural Fingerprinting of the Voynich Manuscript: A BPE-Based Typological Comparison Across 29 Language Families</h3>
-      <p>The core methodological paper. Applies byte-pair encoding segmentation to 29 language family corpora and computes structural similarity scores against the Voynich text. Identifies a Philippine-branch morphological profile with explicit uncertainty quantification and adversarial counterarguments embedded in the paper.</p>
+      <p>The core methodological paper. Applies byte-pair encoding segmentation to 55 corpora across 29 language families and computes VMML, Boundary Concentration, and CBMI scores against the Voynich text. Identifies a Philippine-branch morphological profile — the only zone in typological space partially overlapping with the Voynich Discriminant Zone. Explicit uncertainty quantification and adversarial counterarguments are embedded in the paper body.</p>
       <div class="paper-meta">
         <span>2026</span>
-        <a href="https://arxiv.org">arXiv preprint</a>
-        <a href="https://zenodo.org">Zenodo dataset</a>
+        <a href="https://doi.org/10.5281/zenodo.20386119" target="_blank" rel="noopener">Zenodo · Paper 7</a>
         <a href="/research">Details</a>
       </div>
     </div>
@@ -430,13 +438,46 @@
     <div class="paper-card">
       <div class="paper-num">Paper 8 · Austronesian Validation</div>
       <h3>Austronesian Focus-Morphology and the Voynich Morpheme Boundary: A Corpus-Based Assessment</h3>
-      <p>Extension paper testing the Paper 7 hypothesis against a broader Austronesian corpus, with particular attention to the morphological density gradient that distinguishes Philippine-branch languages from other Austronesian subfamilies. Includes independent replication protocol for external researchers.</p>
+      <p>Extension paper testing the Paper 7 hypothesis against a broader Austronesian corpus, with particular attention to the morphological density gradient distinguishing Philippine-branch languages from other Austronesian subfamilies. Introduces the cross-text VMML instability finding (Tagalog: Δ = 0.336 across Rizal novels). Includes an independent replication protocol for external researchers and a permutation test establishing that Voynich structural signatures are not an artifact of corpus size.</p>
       <div class="paper-meta">
         <span>2026</span>
-        <a href="https://arxiv.org">arXiv preprint</a>
-        <a href="https://zenodo.org">Zenodo dataset</a>
+        <a href="https://doi.org/10.5281/zenodo.20467972" target="_blank" rel="noopener">Zenodo · Paper 8</a>
         <a href="/research">Details</a>
       </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CURRENTLY TESTING -->
+<div class="papers-section" style="padding-top:0;">
+  <h2>Currently Testing</h2>
+  <p class="papers-desc">Corpus acquisition and validation in progress. Results will be added to the What It Isn't tracker as they meet the evidence threshold.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:#1e1d1a;">
+
+    <div style="background:#0e0e0b;padding:1.4rem 1.5rem;">
+      <div style="font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#5a5852;margin-bottom:0.6rem;">In progress</div>
+      <div style="font-family:Georgia,serif;font-size:0.93rem;color:#f0ede6;margin-bottom:0.5rem;">Formal literary Cebuano</div>
+      <div style="font-size:0.8rem;color:#5a5852;line-height:1.6;">Acquiring corpus equivalent to the Rizal novels used for Tagalog. Register bias in NLLB corpus identified; literary register test pending.</div>
+    </div>
+
+    <div style="background:#0e0e0b;padding:1.4rem 1.5rem;">
+      <div style="font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#5a5852;margin-bottom:0.6rem;">In progress</div>
+      <div style="font-family:Georgia,serif;font-size:0.93rem;color:#f0ede6;margin-bottom:0.5rem;">Kapampangan</div>
+      <div style="font-size:0.8rem;color:#5a5852;line-height:1.6;">High priority. Philippine-branch language with complex focus-morphology architecture. Corpus sourcing underway.</div>
+    </div>
+
+    <div style="background:#0e0e0b;padding:1.4rem 1.5rem;">
+      <div style="font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#5a5852;margin-bottom:0.6rem;">In progress</div>
+      <div style="font-family:Georgia,serif;font-size:0.93rem;color:#f0ede6;margin-bottom:0.5rem;">Hiligaynon</div>
+      <div style="font-size:0.8rem;color:#5a5852;line-height:1.6;">~9.3M speakers. Philippine voice system, distinct morphology. Would test the VMML gradient hypothesis against a third Philippine-branch data point.</div>
+    </div>
+
+    <div style="background:#0e0e0b;padding:1.4rem 1.5rem;">
+      <div style="font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:#5a5852;margin-bottom:0.6rem;">In progress</div>
+      <div style="font-family:Georgia,serif;font-size:0.93rem;color:#f0ede6;margin-bottom:0.5rem;">Malagasy</div>
+      <div style="font-size:0.8rem;color:#5a5852;line-height:1.6;">Austronesian isolate (Madagascar). VOS word order, morphologically distinct from Philippine-branch. Geographic outlier test for whether high-VMML is a Philippine-specific or broader Austronesian property.</div>
     </div>
 
   </div>
