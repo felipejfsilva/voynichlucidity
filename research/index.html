@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The methodology behind Voynich Lucidity — BPE VMML analysis, 63 corpora, typological fingerprinting across writing systems.">
+  <title>Research · Voynich Lucidity</title>
+  <style>
+    :root {
+      --black: #080806;
+      --white: #f0ede6;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.15);
+      --muted: #7a7670;
+      --border: #1e1d1a;
+      --card-bg: #0f0f0d;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(8,8,6,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .lang-switcher a {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.2rem 0.45rem;
+      border: 1px solid transparent;
+      transition: all 0.25s;
+    }
+    .lang-switcher a.active,
+    .lang-switcher a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 9rem 2rem 5rem;
+      max-width: 860px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .content-section {
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .content-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .content-section h2 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .content-section p {
+      color: #b8b4ad;
+      margin-bottom: 1.2rem;
+      font-size: 0.97rem;
+    }
+
+    .content-section p:last-child { margin-bottom: 0; }
+
+    /* ── METRIC ROW ── */
+    .metric-row {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .metric-card {
+      flex: 1;
+      min-width: 180px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+    }
+
+    .metric-value {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── ANALOGY BOX ── */
+    .analogy-box {
+      background: var(--gold-dim);
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #d4cfc7;
+      line-height: 1.65;
+    }
+
+    /* ── NOTE BOX ── */
+    .note-box {
+      background: #0c0c0a;
+      border: 1px solid #2a2925;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .note-box strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ── CEILING VIZ ── */
+    .ceiling-viz {
+      margin: 2rem 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+
+    .ceiling-bar-wrap {
+      margin: 1rem 0;
+    }
+
+    .ceiling-bar-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .ceiling-bar-track {
+      height: 8px;
+      background: #1a1a18;
+      border-radius: 0;
+      overflow: visible;
+      position: relative;
+    }
+
+    .ceiling-bar-fill {
+      height: 100%;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+    .ceiling-bar-fill.voynich { background: #e8c060; opacity: 1; }
+    .ceiling-line {
+      position: absolute;
+      top: -4px;
+      height: 16px;
+      width: 2px;
+      background: #c0392b;
+    }
+
+    /* ── LIMITATIONS LIST ── */
+    .limits-list {
+      list-style: none;
+      margin-top: 1.2rem;
+    }
+
+    .limits-list li {
+      display: flex;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+      color: #b8b4ad;
+    }
+
+    .limits-list li:last-child { border-bottom: none; }
+
+    .limit-num {
+      font-family: var(--font-serif);
+      color: var(--gold);
+      font-size: 0.85rem;
+      min-width: 1.8rem;
+      padding-top: 0.05rem;
+    }
+
+    /* ── PARAMS TABLE ── */
+    .params-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.88rem;
+    }
+
+    .params-table th {
+      text-align: left;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .params-table td {
+      padding: 0.7rem 1rem;
+      color: #b8b4ad;
+      border-bottom: 1px solid #141412;
+      font-family: 'Courier New', monospace;
+    }
+
+    .params-table td:first-child {
+      color: var(--gold);
+      font-family: var(--font-sans);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .footer-logo span { color: var(--gold); }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 8rem 1.2rem 3rem; }
+      .content { padding: 3rem 1.2rem 4rem; }
+      .metric-row { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/the-manuscript">The Manuscript</a></li>
+    <li><a href="/research" class="active">Research</a></li>
+    <li><a href="/library">Library</a></li>
+    <li><a href="/what-it-isnt">What It Isn't</a></li>
+    <li><a href="/findings">Findings</a></li>
+    <li><a href="/curiosities">Curiosities</a></li>
+    <li><a href="/media">Media</a></li>
+    <li><a href="/collaborate">Collaborate</a></li>
+    <li><a href="/resources">Resources</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <a href="#" class="active">EN</a>
+    <a href="#">PT</a>
+    <a href="#">ES</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <span class="page-label">How We Work</span>
+  <h1>The Methodology</h1>
+</div>
+
+<main class="content">
+
+  <!-- WHAT IS BPE VMML -->
+  <div class="content-section">
+    <h2>What is BPE VMML?</h2>
+    <p>BPE — Byte-Pair Encoding — is an unsupervised algorithm originally developed for text compression. When applied to a language corpus, it learns to merge the most frequent adjacent character pairs into single tokens, iteratively building up a vocabulary of morpheme-like units from raw character sequences.</p>
+    <p>VMML (Vocabulary Morpheme Mean Length) measures the average length of the tokens BPE learns from a corpus. A higher VMML indicates that the algorithm is merging characters into longer, more complex units — a signature of richer internal word structure. A lower VMML suggests simpler, shorter morphological patterns.</p>
+    <p>Crucially, BPE is trained on each corpus independently. It learns the structure that exists in the data without any prior linguistic knowledge — no dictionaries, no grammars, no labeled morpheme boundaries.</p>
+
+    <table class="params-table">
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Value</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>max_merges</td><td>200</td><td>Vocabulary ceiling; caps BPE learning depth</td></tr>
+        <tr><td>min_freq</td><td>3</td><td>Suppresses hapax noise; requires pattern recurrence</td></tr>
+        <tr><td>Token cap</td><td>80,000</td><td>Computational parity across corpora</td></tr>
+        <tr><td>Transcription</td><td>EVA</td><td>Standard Voynich character encoding</td></tr>
+      </tbody>
+    </table>
+
+    <div class="analogy-box">
+      "Think of BPE as teaching a child to read by finding recurring patterns in words. The 'morpheme length' measures how complex those patterns are across an entire language — not just one word, but tens of thousands at once."
+    </div>
+  </div>
+
+  <!-- ALPHABETIC CEILING -->
+  <div class="content-section">
+    <h2>The Alphabetic Ceiling</h2>
+    <p>One of our most robust empirical findings is what we call the Alphabetic Ceiling: an upper bound on BPE VMML observed across all tested alphabetic natural languages. No alphabetic natural language we have tested exceeds this value under our standard parameters.</p>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <span class="metric-value">5.748</span>
+        <span class="metric-label">Ceiling (Nietzsche, n=82,802)</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">5.918</span>
+        <span class="metric-label">Voynich Manuscript VMML</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">+0.170</span>
+        <span class="metric-label">Voynich exceeds ceiling by</span>
+      </div>
+    </div>
+
+    <p>The ceiling was empirically derived from Also sprach Zarathustra (Nietzsche), the highest-scoring alphabetic text identified in our initial 35-corpus scan. German was selected as the ceiling anchor because its compound-heavy morphology naturally produces high VMML — and still it falls below Voynich.</p>
+    <p>The ceiling is not a theoretical threshold. It is a descriptive upper bound observed across tested corpora. Its stability across additional corpora and language families is itself a result — not an assumption.</p>
+  </div>
+
+  <!-- WHY 63 CORPORA -->
+  <div class="content-section">
+    <h2>Why 63 Corpora?</h2>
+    <p>To draw any meaningful conclusion about where the Voynich Manuscript sits typologically, we needed a baseline that spans the known diversity of human language structure — not just a handful of European languages.</p>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <span class="metric-value">35+</span>
+        <span class="metric-label">Language families</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">30+</span>
+        <span class="metric-label">Languages tested</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">63</span>
+        <span class="metric-label">Total corpora (incl. multi-text)</span>
+      </div>
+    </div>
+
+    <p>The corpus set was designed to cover all major morphological types:</p>
+    <p><strong style="color:var(--white)">Agglutinative</strong> — Finnish, Basque, Tagalog, Ilocano, Turkish. These languages add discrete, separable morphemes to roots and were expected to produce higher VMML.</p>
+    <p><strong style="color:var(--white)">Analytic</strong> — English, Mandarin Chinese, Vietnamese. These languages rely on word order rather than morphology and were expected to produce lower VMML.</p>
+    <p><strong style="color:var(--white)">Fusional</strong> — Latin, Ancient Greek, Russian. Morphemes fuse and alter each other; intermediate VMML expected.</p>
+    <p><strong style="color:var(--white)">Isolating</strong> — Cantonese, Thai. Minimal inflection; low VMML expected.</p>
+    <p><strong style="color:var(--white)">Unknown scripts</strong> — Voynich Manuscript (EVA), Rohonc Codex. The subjects of comparison.</p>
+  </div>
+
+  <!-- BOUNDARY CONCENTRATION -->
+  <div class="content-section">
+    <h2>Boundary Concentration (BC)</h2>
+    <p>VMML alone is insufficient to characterise morphological structure — two languages can share similar VMML while reaching it through entirely different mechanisms. Boundary Concentration was introduced to resolve this ambiguity.</p>
+    <p>BC measures what fraction of BPE morpheme boundaries fall at edge positions — the first or last 20% of the token. A high BC indicates that most morphological work happens at word edges: prefixes and suffixes. A low BC indicates that morphological boundaries are distributed internally — a signature of infix-heavy systems like Philippine focus languages.</p>
+
+    <div class="metric-row">
+      <div class="metric-card">
+        <span class="metric-value">0.361</span>
+        <span class="metric-label">Voynich BC (edge-concentrated)</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-value">~0.20</span>
+        <span class="metric-label">Tagalog BC (infix-dominated)</span>
+      </div>
+    </div>
+
+    <p>This metric was the decisive discriminator in Paper 8. Tagalog's VMML can, under certain corpus conditions, approach or enter the Voynich zone. But Tagalog's BC of approximately 0.20 is irreconcilable with Voynich's 0.361 — a gap of 0.16 units that reflects fundamentally different morphological architectures.</p>
+    <p>High BC in Voynich is consistent with prefix/suffix-dominant morphology. Low BC in Tagalog reflects its focus-morphology system, which encodes grammatical functions via infixes and circumfixes distributed through the interior of words.</p>
+  </div>
+
+  <!-- HONEST LIMITATIONS -->
+  <div class="content-section">
+    <h2>Honest Limitations</h2>
+    <p>We hold ourselves to the standard we apply to others. Every methodological limitation is disclosed in our preprints. Here are the most significant ones.</p>
+
+    <ul class="limits-list">
+      <li>
+        <span class="limit-num">01</span>
+        <span>BC and CBMI edge windows (20%) are operationally defined, not statistically optimised thresholds. Different window choices would yield different absolute values; relative ordering across languages may still hold.</span>
+      </li>
+      <li>
+        <span class="limit-num">02</span>
+        <span>The 80,000-token cap introduces a negative VMML bias relative to full-corpus computation. Nietzsche was run at full corpus (n=82,802) to set the ceiling — all other corpora were capped. This could artificially inflate Voynich's relative position if Voynich is a small text.</span>
+      </li>
+      <li>
+        <span class="limit-num">03</span>
+        <span>Cross-text stability requires multiple texts per language to establish that a given VMML value is a property of the language, not the specific text. Paper 8 demonstrated this risk concretely: Tagalog VMML varies by 0.336 units across two Rizal novels.</span>
+      </li>
+      <li>
+        <span class="limit-num">04</span>
+        <span>All Voynich analysis depends on the EVA (European Voynich Alphabet) transcription. EVA encoding choices directly affect BPE learning. Results are valid under EVA; other transcription schemes would need independent testing.</span>
+      </li>
+      <li>
+        <span class="limit-num">05</span>
+        <span>Correlation is not causation. Similar VMML values do not imply linguistic relationship, shared origin, or any semantic claim about what the Voynich Manuscript means. VMML characterises structural fingerprint, not content.</span>
+      </li>
+    </ul>
+
+    <div class="note-box">
+      <strong>Peer review standard.</strong> Every result published on this site has been through multiple rounds of adversarial review — including deliberate attempts to falsify our own claims — before publication. We report limitations explicitly because partial disclosure is a form of deception.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p class="footer-logo">Voynich <span>Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
+</footer>
+
+</body>
+</html>

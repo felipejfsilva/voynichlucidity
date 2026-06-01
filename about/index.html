@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About L. · Voynich Lucidity</title>
+  <meta name="description" content="About L. — the independent researcher behind Voynich Lucidity. Research philosophy, methodology, and published work." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080806;
+      color: #c8c4bc;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    a { color: #c9a84c; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page-header {
+      padding: 7rem 2.5rem 3.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .page-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      border: 1px solid #c9a84c;
+      padding: 0.2rem 0.55rem;
+      margin-bottom: 1.2rem;
+    }
+    .page-header h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: normal;
+      color: #f0ede6;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .page-header p.intro {
+      font-size: 1rem;
+      color: #9a9690;
+      max-width: 680px;
+      line-height: 1.8;
+    }
+
+    .divider {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 2.5rem;
+      border-top: 1px solid #1e1d1a;
+    }
+
+    /* MAIN CONTENT */
+    .content-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2.5rem 3.5rem;
+    }
+    .content-section h2 {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: normal;
+      color: #f0ede6;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #1e1d1a;
+    }
+    .content-section p {
+      font-size: 0.93rem;
+      color: #9a9690;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+    .content-section p:last-child { margin-bottom: 0; }
+
+    /* TWO-COL WHAT L DOES */
+    .does-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2.5rem 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .does-grid { grid-template-columns: 1fr; }
+    }
+    .does-card {
+      background: #0e0e0b;
+      border: 1px solid #1e1d1a;
+      padding: 1.5rem;
+    }
+    .does-card .does-label {
+      font-size: 0.63rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .does-label.does { color: #4caf7d; }
+    .does-label.doesnt { color: #c94c4c; }
+    .does-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .does-card li {
+      font-size: 0.85rem;
+      color: #9a9690;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #111110;
+      line-height: 1.5;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+    .does-card li:last-child { border-bottom: none; }
+    .li-dot {
+      color: #3a3a38;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .li-dot.green { color: #4caf7d; }
+    .li-dot.red { color: #c94c4c; }
+
+    /* PHILOSOPHY BLOCK */
+    .philosophy-block {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2.5rem 3.5rem;
+    }
+    .philosophy-block h2 {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: normal;
+      color: #f0ede6;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #1e1d1a;
+    }
+    .pull-quote {
+      margin: 1.8rem 0;
+      padding: 1.4rem 1.8rem;
+      border-left: 3px solid #c9a84c;
+      background: #0e0e0b;
+    }
+    .pull-quote p {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      color: #f0ede6;
+      line-height: 1.65;
+      font-style: italic;
+    }
+    .philosophy-block p {
+      font-size: 0.93rem;
+      color: #9a9690;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ANONYMITY */
+    .anon-block {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2.5rem 3.5rem;
+    }
+    .anon-block h2 {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: normal;
+      color: #f0ede6;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #1e1d1a;
+    }
+    .anon-block p {
+      font-size: 0.93rem;
+      color: #9a9690;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    /* PAPERS */
+    .papers-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2.5rem 4rem;
+    }
+    .papers-section h2 {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: normal;
+      color: #f0ede6;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid #1e1d1a;
+    }
+    .papers-desc {
+      font-size: 0.83rem;
+      color: #5a5852;
+      margin-bottom: 1.8rem;
+    }
+    .papers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 1.2rem;
+    }
+    .paper-card {
+      background: #0e0e0b;
+      border: 1px solid #1e1d1a;
+      padding: 1.6rem;
+      transition: border-color 0.25s;
+    }
+    .paper-card:hover {
+      border-color: #3a3630;
+    }
+    .paper-num {
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      margin-bottom: 0.5rem;
+    }
+    .paper-card h3 {
+      font-family: Georgia, serif;
+      font-size: 0.98rem;
+      font-weight: normal;
+      color: #f0ede6;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+    .paper-card p {
+      font-size: 0.83rem;
+      color: #7a7670;
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+    .paper-meta {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      font-size: 0.7rem;
+      color: #3a3a38;
+      letter-spacing: 0.06em;
+    }
+    .paper-meta a {
+      color: #5a5852;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid #2a2a26;
+      padding: 0.15rem 0.4rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .paper-meta a:hover {
+      color: #c9a84c;
+      border-color: #c9a84c;
+    }
+
+    /* CONTACT FINAL */
+    .contact-final {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2.5rem 5rem;
+    }
+    .contact-final-box {
+      background: #0e0e0b;
+      border: 1px solid #1e1d1a;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .contact-final-box .contact-text h3 {
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      font-weight: normal;
+      color: #f0ede6;
+      margin-bottom: 0.4rem;
+    }
+    .contact-final-box .contact-text p {
+      font-size: 0.83rem;
+      color: #7a7670;
+      line-height: 1.6;
+    }
+    .contact-final-cta {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #080806;
+      background: #c9a84c;
+      padding: 0.65rem 1.6rem;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .contact-final-cta:hover {
+      background: #e0bc6a;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,6,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1e1d1a;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;">
+  <a href="/" style="font-family:Georgia,serif;font-size:1rem;letter-spacing:0.08em;color:#f0ede6;text-decoration:none;">Voynich <span style="color:#c9a84c;">Lucidity</span></a>
+  <ul style="display:flex;gap:1.8rem;list-style:none;">
+    <li><a href="/the-manuscript" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">The Manuscript</a></li>
+    <li><a href="/research" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Research</a></li>
+    <li><a href="/library" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Library</a></li>
+    <li><a href="/what-it-isnt" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">What It Isn't</a></li>
+    <li><a href="/findings" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Findings</a></li>
+    <li><a href="/curiosities" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Curiosities</a></li>
+    <li><a href="/media" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Media</a></li>
+    <li><a href="/collaborate" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Collaborate</a></li>
+    <li><a href="/resources" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Resources</a></li>
+  </ul>
+  <div style="display:flex;gap:0.5rem;">
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#c9a84c;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid #c9a84c;">EN</a>
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a7670;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid transparent;">PT</a>
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a7670;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid transparent;">ES</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <span class="page-label">The Researcher</span>
+  <h1>About L.</h1>
+  <p class="intro">L. is an independent researcher focused on computational typology of historical manuscripts. The methodology developed here — BPE-based structural comparison across language families — emerged from a simple question: where does the Voynich Manuscript sit in the typological space of known writing systems?</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- OPENING -->
+<div class="content-section">
+  <h2>The Work</h2>
+  <p>The answer required building a comparison framework first. That framework — which segments corpora into byte-pair encoded tokens and computes morphological density, hapax ratio, token-type distribution, and affix boundary behavior across 29 language families — became the research itself.</p>
+  <p>The Voynich Manuscript is the test case that motivated the tool. The tool has outlasted any particular hypothesis about the manuscript, and can now be applied to other undeciphered scripts. The current focus is on validating the typological fingerprint methodology against known scripts before drawing firm conclusions about unknown ones.</p>
+  <p>Every dataset used in this research is available on Zenodo. Every claim on this site has gone through adversarial internal review before publication. The research is explicitly designed for replication — and L. would rather be refuted by good methodology than affirmed by credulous acceptance.</p>
+</div>
+
+<!-- WHAT L DOES / DOESN'T -->
+<div class="does-grid">
+  <div class="does-card">
+    <div class="does-label does">What L. does</div>
+    <ul>
+      <li><span class="li-dot green">+</span> Systematic BPE corpus comparison across language families</li>
+      <li><span class="li-dot green">+</span> Adversarial self-criticism before any publication</li>
+      <li><span class="li-dot green">+</span> Open data for all formal collaborators</li>
+      <li><span class="li-dot green">+</span> Explicit uncertainty quantification in all claims</li>
+      <li><span class="li-dot green">+</span> Zenodo archival of all datasets and pipeline versions</li>
+      <li><span class="li-dot green">+</span> Respond to methodological criticism within one week</li>
+    </ul>
+  </div>
+  <div class="does-card">
+    <div class="does-label doesnt">What L. doesn't do</div>
+    <ul>
+      <li><span class="li-dot red">−</span> Propose decipherments or translations</li>
+      <li><span class="li-dot red">−</span> Accept findings without adversarial testing</li>
+      <li><span class="li-dot red">−</span> Publish without some form of peer review process</li>
+      <li><span class="li-dot red">−</span> Make claims beyond what the data supports</li>
+      <li><span class="li-dot red">−</span> Respond to "I think it says X" correspondence</li>
+      <li><span class="li-dot red">−</span> Treat statistical association as causal proof</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<div class="philosophy-block">
+  <h2>Research Philosophy</h2>
+
+  <div class="pull-quote">
+    <p>"Every claim on this site has gone through what we call 'hostile peer review' — an adversarial self-assessment designed to find fatal flaws before publication. If a finding survives that process, it goes on Zenodo. If it doesn't, it stays in the draft folder."</p>
+  </div>
+
+  <p>The hostile peer review process is not a formality. For each major finding, L. drafts the strongest possible rebuttal — the most competent, adversarial, methodologically rigorous objection to the claim — before considering it publishable. Claims that cannot survive their own best counterargument do not get published.</p>
+  <p>This approach emerged from observing the pattern of Voynich decipherment history: confident proposals, inadequate self-scrutiny, peer acceptance within a small circle, and eventual collapse under external review. The cycle repeats. The corrective is not better hypotheses — it is better self-criticism.</p>
+  <p>The typological approach used here is deliberately modest in its claims. Identifying a family-level structural signature is not the same as identifying a language. Identifying a language is not the same as reading the text. These distinctions are maintained carefully and explicitly throughout the research.</p>
+</div>
+
+<!-- ANONYMITY -->
+<div class="anon-block">
+  <h2>On Anonymity</h2>
+  <p>The research should stand on its methodology and data, not on the credentials of the researcher. In a field where authority is frequently invoked as a substitute for evidence, anonymity is a small corrective — it forces engagement with the work itself.</p>
+  <p>L. is not anonymous for dramatic effect. The pseudonym reflects a genuine methodological commitment: conclusions should be evaluated on their internal logic, their data quality, and their testability — not on whether the person producing them has a professorship, a PhD, or a name that appears in other publications.</p>
+  <p>L. accepts correspondence from researchers who engage with the work on its merits. Requests to reveal identity are not entertained. Requests to discuss methodology are welcomed.</p>
+</div>
+
+<!-- PAPERS -->
+<div class="papers-section">
+  <h2>Published Work</h2>
+  <p class="papers-desc">All papers are deposited on Zenodo with full datasets. arXiv preprints available where indicated.</p>
+
+  <div class="papers-grid">
+
+    <div class="paper-card">
+      <div class="paper-num">Paper 7 · Typological Analysis</div>
+      <h3>Structural Fingerprinting of the Voynich Manuscript: A BPE-Based Typological Comparison Across 29 Language Families</h3>
+      <p>The core methodological paper. Applies byte-pair encoding segmentation to 29 language family corpora and computes structural similarity scores against the Voynich text. Identifies a Philippine-branch morphological profile with explicit uncertainty quantification and adversarial counterarguments embedded in the paper.</p>
+      <div class="paper-meta">
+        <span>2026</span>
+        <a href="https://arxiv.org">arXiv preprint</a>
+        <a href="https://zenodo.org">Zenodo dataset</a>
+        <a href="/research">Details</a>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-num">Paper 8 · Austronesian Validation</div>
+      <h3>Austronesian Focus-Morphology and the Voynich Morpheme Boundary: A Corpus-Based Assessment</h3>
+      <p>Extension paper testing the Paper 7 hypothesis against a broader Austronesian corpus, with particular attention to the morphological density gradient that distinguishes Philippine-branch languages from other Austronesian subfamilies. Includes independent replication protocol for external researchers.</p>
+      <div class="paper-meta">
+        <span>2026</span>
+        <a href="https://arxiv.org">arXiv preprint</a>
+        <a href="https://zenodo.org">Zenodo dataset</a>
+        <a href="/research">Details</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACT FINAL -->
+<div class="contact-final">
+  <div class="contact-final-box">
+    <div class="contact-text">
+      <h3>Technical Correspondence</h3>
+      <p>L. responds to technical correspondence within one week. Methodological questions, replication inquiries, and corpus contribution offers are welcome. Decipherment proposals and requests for identity disclosure are not.</p>
+    </div>
+    <a href="mailto:contact@voynichlucidity.com" class="contact-final-cta">Write to L.</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #1e1d1a;padding:3rem 2rem;text-align:center;color:#7a7670;font-size:0.8rem;">
+  <p style="font-family:Georgia,serif;font-size:1rem;color:#f0ede6;margin-bottom:0.6rem;">Voynich <span style="color:#c9a84c;">Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com" style="color:#c9a84c;text-decoration:none;">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
+</footer>
+
+</body>
+</html>

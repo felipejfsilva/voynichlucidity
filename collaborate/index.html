@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collaborate · Voynich Lucidity</title>
+  <meta name="description" content="Join the Voynich Lucidity research initiative. We are looking for corpus contributors, linguistic experts, computational researchers, and institutional partners." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080806;
+      color: #c8c4bc;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    a { color: #c9a84c; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page-header {
+      padding: 7rem 2.5rem 3.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .page-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      border: 1px solid #c9a84c;
+      padding: 0.2rem 0.55rem;
+      margin-bottom: 1.2rem;
+    }
+    .page-header h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: normal;
+      color: #f0ede6;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .page-header p.intro {
+      font-size: 1rem;
+      color: #9a9690;
+      max-width: 680px;
+      line-height: 1.8;
+    }
+
+    .divider {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 2.5rem;
+      border-top: 1px solid #1e1d1a;
+    }
+
+    /* COLLAB CARDS */
+    .collab-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem 4rem;
+    }
+    .collab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .collab-card {
+      background: #0e0e0b;
+      border: 1px solid #1e1d1a;
+      padding: 2rem;
+      transition: border-color 0.25s;
+    }
+    .collab-card:hover {
+      border-color: #3a3630;
+    }
+    .collab-card-num {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: #3a3a38;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .collab-card h2 {
+      font-family: Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: normal;
+      color: #c9a84c;
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+    .collab-card p {
+      font-size: 0.88rem;
+      color: #9a9690;
+      line-height: 1.75;
+      margin-bottom: 0.8rem;
+    }
+    .collab-card .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+    .collab-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5a5852;
+      border: 1px solid #2a2a26;
+      padding: 0.15rem 0.45rem;
+    }
+    .collab-cta {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      border: 1px solid #c9a84c;
+      padding: 0.3rem 0.7rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .collab-cta:hover {
+      background: #c9a84c;
+      color: #080806;
+      text-decoration: none;
+    }
+
+    /* WHAT WE OFFER */
+    .offer-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2.5rem 4rem;
+    }
+    .offer-section h2 {
+      font-family: Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: #f0ede6;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #1e1d1a;
+    }
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .offer-item {
+      background: #0e0e0b;
+      border: 1px solid #1e1d1a;
+      padding: 1.2rem;
+    }
+    .offer-item .offer-icon {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      margin-bottom: 0.5rem;
+    }
+    .offer-item h3 {
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #f0ede6;
+      margin-bottom: 0.4rem;
+    }
+    .offer-item p {
+      font-size: 0.8rem;
+      color: #7a7670;
+      line-height: 1.6;
+    }
+
+    /* CONTACT FORM */
+    .contact-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 2.5rem 5rem;
+    }
+    .contact-section h2 {
+      font-family: Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: #f0ede6;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #1e1d1a;
+    }
+    .contact-section p.contact-desc {
+      font-size: 0.88rem;
+      color: #7a7670;
+      margin: 1rem 0 1.8rem;
+      line-height: 1.75;
+    }
+    .form-row {
+      margin-bottom: 1.2rem;
+    }
+    .form-row label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5a5852;
+      margin-bottom: 0.4rem;
+    }
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      width: 100%;
+      background: #0e0e0b;
+      border: 1px solid #2a2a26;
+      color: #f0ede6;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.88rem;
+      padding: 0.6rem 0.8rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+      border-color: #c9a84c;
+    }
+    .form-row textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+    .form-row select option {
+      background: #0e0e0b;
+    }
+    .form-submit {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #080806;
+      background: #c9a84c;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      cursor: pointer;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      transition: background 0.2s;
+    }
+    .form-submit:hover {
+      background: #e0bc6a;
+    }
+    .form-note {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: #3a3a38;
+      font-style: italic;
+    }
+
+    /* WARNING BOX */
+    .warning-box {
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      padding: 0 2.5rem;
+    }
+    .warning-box-inner {
+      background: #0e0e0b;
+      border: 1px solid #1e1d1a;
+      border-left: 3px solid #5a5852;
+      padding: 1rem 1.4rem;
+      font-size: 0.83rem;
+      color: #7a7670;
+      line-height: 1.75;
+    }
+    .warning-box-inner strong {
+      color: #f0ede6;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,6,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1e1d1a;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;">
+  <a href="/" style="font-family:Georgia,serif;font-size:1rem;letter-spacing:0.08em;color:#f0ede6;text-decoration:none;">Voynich <span style="color:#c9a84c;">Lucidity</span></a>
+  <ul style="display:flex;gap:1.8rem;list-style:none;">
+    <li><a href="/the-manuscript" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">The Manuscript</a></li>
+    <li><a href="/research" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Research</a></li>
+    <li><a href="/library" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Library</a></li>
+    <li><a href="/what-it-isnt" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">What It Isn't</a></li>
+    <li><a href="/findings" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Findings</a></li>
+    <li><a href="/curiosities" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Curiosities</a></li>
+    <li><a href="/media" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Media</a></li>
+    <li><a href="/collaborate" style="color:#c9a84c;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Collaborate</a></li>
+    <li><a href="/resources" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Resources</a></li>
+  </ul>
+  <div style="display:flex;gap:0.5rem;">
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#c9a84c;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid #c9a84c;">EN</a>
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a7670;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid transparent;">PT</a>
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a7670;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid transparent;">ES</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <span class="page-label">Join the Research</span>
+  <h1>Collaborate</h1>
+  <p class="intro">We are an independent research initiative working on the typological analysis of the Voynich Manuscript. We are actively looking for collaborators across several dimensions — methodological, linguistic, computational, and institutional.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- COLLAB CARDS -->
+<div class="collab-section">
+  <div class="collab-grid">
+
+    <div class="collab-card">
+      <div class="collab-card-num">01 · Corpus Contributors</div>
+      <h2>Corpus Contributors</h2>
+      <p>Do you have access to natural language corpora we haven't tested? We are particularly seeking formal literary text in Philippine-branch and Austronesian languages with sufficient token density for typological analysis.</p>
+      <p>Languages currently prioritized: formal literary Cebuano, Kapampangan, Hiligaynon, Malagasy, Ilocano, Waray. Minimum threshold: n ≥ 30,000 tokens. Corpus should be pre-modern or formal register where possible.</p>
+      <div class="tag-list">
+        <span class="collab-tag">Cebuano</span>
+        <span class="collab-tag">Kapampangan</span>
+        <span class="collab-tag">Hiligaynon</span>
+        <span class="collab-tag">Malagasy</span>
+        <span class="collab-tag">n ≥ 30k tokens</span>
+      </div>
+      <a href="mailto:contact@voynichlucidity.com?subject=Corpus%20Contribution" class="collab-cta">Contact us</a>
+    </div>
+
+    <div class="collab-card">
+      <div class="collab-card-num">02 · Linguistic Experts</div>
+      <h2>Linguistic Experts</h2>
+      <p>We need expert assessment of our morphological density gradient hypothesis — specifically the claim that the Voynich text's morpheme boundary behavior is consistent with Philippine focus-morphology rather than agglutinative or isolating typologies.</p>
+      <p>Specialists sought: Philippine focus-morphology, Austronesian typology, historical linguistics of insular Southeast Asia, morphological complexity metrics. We can provide the full dataset and pipeline for independent review.</p>
+      <div class="tag-list">
+        <span class="collab-tag">Austronesian typology</span>
+        <span class="collab-tag">Focus morphology</span>
+        <span class="collab-tag">Historical linguistics</span>
+        <span class="collab-tag">Peer assessment</span>
+      </div>
+      <a href="mailto:contact@voynichlucidity.com?subject=Linguistic%20Expert%20Collaboration" class="collab-cta">Contact us</a>
+    </div>
+
+    <div class="collab-card">
+      <div class="collab-card-num">03 · Computational Researchers</div>
+      <h2>Computational Researchers</h2>
+      <p>Researchers with experience in BPE tokenization, unsupervised morpheme segmentation, or corpus linguistics who want to replicate or extend the analysis. Replication is explicitly encouraged — we would rather be refuted by good methodology than confirmed by bad faith agreement.</p>
+      <p>Full data access provided: raw corpus, tokenization pipeline, segmentation outputs, comparison matrices. Code is available on request pending formal collaboration agreement. No institutional affiliation required.</p>
+      <div class="tag-list">
+        <span class="collab-tag">BPE tokenization</span>
+        <span class="collab-tag">Corpus linguistics</span>
+        <span class="collab-tag">Replication</span>
+        <span class="collab-tag">Full data access</span>
+      </div>
+      <a href="mailto:contact@voynichlucidity.com?subject=Computational%20Collaboration" class="collab-cta">Contact us</a>
+    </div>
+
+    <div class="collab-card">
+      <div class="collab-card-num">04 · Institutional Partners</div>
+      <h2>Institutional Partners</h2>
+      <p>Academic institutions or libraries interested in formal collaboration. The typological fingerprinting methodology developed for the Voynich Manuscript is generalizable — it can be applied to any sufficiently large undeciphered script corpus.</p>
+      <p>We can provide the complete analysis pipeline for manuscript collections, run typological analysis on institutional corpora, and co-author publications under appropriate academic frameworks. We welcome inquiries from linguistics departments, digital humanities centers, and rare manuscript libraries.</p>
+      <div class="tag-list">
+        <span class="collab-tag">Academic institutions</span>
+        <span class="collab-tag">Libraries</span>
+        <span class="collab-tag">Digital humanities</span>
+        <span class="collab-tag">Co-authorship</span>
+      </div>
+      <a href="mailto:contact@voynichlucidity.com?subject=Institutional%20Partnership" class="collab-cta">Contact us</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- WHAT WE OFFER -->
+<div class="offer-section">
+  <h2>What We Offer Collaborators</h2>
+  <div class="offer-grid">
+    <div class="offer-item">
+      <div class="offer-icon">Authorship</div>
+      <h3>Co-authorship</h3>
+      <p>Substantive contributions to methodology or corpus are credited as co-authorship on relevant publications.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-icon">Data</div>
+      <h3>Full data access</h3>
+      <p>All raw corpora, segmentation outputs, comparison matrices, and intermediate analysis files available to formal collaborators.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-icon">Documentation</div>
+      <h3>Methodology docs</h3>
+      <p>Complete technical documentation of the BPE pipeline, structural fingerprinting algorithm, and typological comparison framework.</p>
+    </div>
+    <div class="offer-item">
+      <div class="offer-icon">Attribution</div>
+      <h3>Attribution</h3>
+      <p>All contributions acknowledged publicly in paper acknowledgments, Zenodo dataset records, and this site.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WARNING BOX -->
+<div class="warning-box">
+  <div class="warning-box-inner">
+    <strong>What we do not accept:</strong> We do not accept decipherment proposals, linguistic guesses, or "I believe it says X" correspondence. We are looking for methodological collaboration, not solutions. If you have a proposed reading of the text, voynich.ninja is the appropriate forum — not this initiative. Our work is typological, not translational.
+  </div>
+</div>
+
+<!-- CONTACT FORM -->
+<div class="contact-section">
+  <h2>Get in Touch</h2>
+  <p class="contact-desc">Use this form to introduce yourself and describe the nature of your potential contribution. We read all correspondence and respond to those that match our current research needs within one week.</p>
+
+  <form action="mailto:contact@voynichlucidity.com" method="post" enctype="text/plain">
+    <div class="form-row">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" />
+    </div>
+    <div class="form-row">
+      <label for="institution">Institution (optional)</label>
+      <input type="text" id="institution" name="institution" placeholder="University, research group, or independent" />
+    </div>
+    <div class="form-row">
+      <label for="area">Area of interest</label>
+      <select id="area" name="area">
+        <option value="">Select one</option>
+        <option value="corpus">Corpus Contribution</option>
+        <option value="linguistic">Linguistic Expert Assessment</option>
+        <option value="computational">Computational / Replication</option>
+        <option value="institutional">Institutional Partnership</option>
+        <option value="other">Other (specify below)</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label for="message">Brief description of what you can contribute</label>
+      <textarea id="message" name="message" placeholder="Describe your relevant expertise, what you can contribute, and what you're looking to do with this research..."></textarea>
+    </div>
+    <button type="submit" class="form-submit">Send Inquiry</button>
+    <p class="form-note">This form sends via your default mail client. Alternatively, write directly to <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a>.</p>
+  </form>
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #1e1d1a;padding:3rem 2rem;text-align:center;color:#7a7670;font-size:0.8rem;">
+  <p style="font-family:Georgia,serif;font-size:1rem;color:#f0ede6;margin-bottom:0.6rem;">Voynich <span style="color:#c9a84c;">Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com" style="color:#c9a84c;text-decoration:none;">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
+</footer>
+
+</body>
+</html>

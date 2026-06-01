@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media · Voynich Lucidity</title>
+  <meta name="description" content="Curated and critically rated media coverage of the Voynich Manuscript — from peer-reviewed papers to YouTube rabbit holes." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080806;
+      color: #c8c4bc;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    a { color: #c9a84c; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page-header {
+      padding: 7rem 2.5rem 3.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .page-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      border: 1px solid #c9a84c;
+      padding: 0.2rem 0.55rem;
+      margin-bottom: 1.2rem;
+    }
+    .page-header h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: normal;
+      color: #f0ede6;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .page-header p.intro {
+      font-size: 1rem;
+      color: #9a9690;
+      max-width: 680px;
+      line-height: 1.8;
+    }
+
+    .rating-note {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 2.5rem;
+    }
+    .rating-note-box {
+      background: #0e0e0b;
+      border: 1px solid #1e1d1a;
+      border-left: 3px solid #c9a84c;
+      padding: 1.2rem 1.5rem;
+      font-size: 0.85rem;
+      color: #9a9690;
+      line-height: 1.75;
+    }
+
+    /* RATING BADGES */
+    .badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0;
+      font-weight: 600;
+    }
+    .badge-rigorous {
+      background: #0d2b1a;
+      color: #4caf7d;
+      border: 1px solid #2a5a3a;
+    }
+    .badge-balanced {
+      background: #1a1a0d;
+      color: #c9a84c;
+      border: 1px solid #4a3a1a;
+    }
+    .badge-sensationalist {
+      background: #2b0d0d;
+      color: #c94c4c;
+      border: 1px solid #5a2a2a;
+    }
+
+    /* SECTION */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2.5rem 4rem;
+    }
+    .section-title {
+      font-family: Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: #f0ede6;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #1e1d1a;
+    }
+    .section-desc {
+      font-size: 0.8rem;
+      color: #5a5852;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ENTRY */
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: start;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #111110;
+    }
+    .entry:last-child { border-bottom: none; }
+    .entry-main {}
+    .entry-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .entry-outlet {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5a5852;
+    }
+    .entry-year {
+      font-size: 0.72rem;
+      color: #3a3a38;
+    }
+    .entry h3 {
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: normal;
+      color: #f0ede6;
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+    .entry p {
+      font-size: 0.83rem;
+      color: #7a7670;
+      line-height: 1.7;
+    }
+    .entry-badge-col {
+      padding-top: 0.2rem;
+    }
+
+    /* FLAG */
+    .flag-note {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: #c94c4c;
+      font-style: italic;
+    }
+
+    /* DIVIDER */
+    .section-spacer {
+      max-width: 900px;
+      margin: 0 auto 1rem;
+      padding: 0 2.5rem;
+      border-top: 1px solid #1e1d1a;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,6,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1e1d1a;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;">
+  <a href="/" style="font-family:Georgia,serif;font-size:1rem;letter-spacing:0.08em;color:#f0ede6;text-decoration:none;">Voynich <span style="color:#c9a84c;">Lucidity</span></a>
+  <ul style="display:flex;gap:1.8rem;list-style:none;">
+    <li><a href="/the-manuscript" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">The Manuscript</a></li>
+    <li><a href="/research" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Research</a></li>
+    <li><a href="/library" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Library</a></li>
+    <li><a href="/what-it-isnt" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">What It Isn't</a></li>
+    <li><a href="/findings" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Findings</a></li>
+    <li><a href="/curiosities" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Curiosities</a></li>
+    <li><a href="/media" style="color:#c9a84c;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Media</a></li>
+    <li><a href="/collaborate" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Collaborate</a></li>
+    <li><a href="/resources" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Resources</a></li>
+  </ul>
+  <div style="display:flex;gap:0.5rem;">
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#c9a84c;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid #c9a84c;">EN</a>
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a7670;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid transparent;">PT</a>
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a7670;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid transparent;">ES</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <span class="page-label">Curated Coverage</span>
+  <h1>Media</h1>
+  <p class="intro">A critically annotated guide to how the Voynich Manuscript has been covered — from rigorous scholarship to breathless YouTube thumbnails. We rate methodology, not conclusions.</p>
+</div>
+
+<!-- RATING NOTE -->
+<div class="rating-note">
+  <div class="rating-note-box">
+    <strong style="color:#f0ede6;">How we rate:</strong> We rate media coverage for methodological transparency, not for conclusions. A paper can be wrong and still be rigorous. A news article can reach accurate conclusions while being sensationalist in its framing. Our ratings reflect how clearly the source distinguishes what is known from what is speculated — and whether uncertainty is communicated honestly.
+    <span style="display:inline-flex;gap:0.6rem;margin-top:0.8rem;flex-wrap:wrap;align-items:center;">
+      <span class="badge badge-rigorous">Rigorous</span>
+      <span style="font-size:0.78rem;color:#7a7670;">Clear methods, honest uncertainty</span>
+      <span class="badge badge-balanced" style="margin-left:1rem;">Balanced</span>
+      <span style="font-size:0.78rem;color:#7a7670;">Generally fair, minor overreach</span>
+      <span class="badge badge-sensationalist" style="margin-left:1rem;">Sensationalist</span>
+      <span style="font-size:0.78rem;color:#7a7670;">Claims exceed evidence</span>
+    </span>
+  </div>
+</div>
+
+<!-- SECTION 1: ACADEMIC -->
+<div class="section">
+  <h2 class="section-title">Academic &amp; Scholarly</h2>
+  <p class="section-desc">Peer-reviewed or formally published work. Rigorous by definition does not mean correct.</p>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">Radiocarbon Dating</span>
+        <span class="entry-year">· 2009</span>
+      </div>
+      <h3>Carbon Dating Establishes 15th-Century Origin</h3>
+      <p>The University of Arizona's radiocarbon dating study, commissioned by the Beinecke Library, placed the vellum's creation between 1404 and 1438 with 95% confidence. This is the most important empirical finding in Voynich scholarship. It eliminated most forgery theories and established the earliest reliable date bracket for the manuscript's production.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-rigorous">Rigorous</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">Plos One</span>
+        <span class="entry-year">· 2013</span>
+      </div>
+      <h3>Statistical Analysis of Voynich Text Structure (Montemurro &amp; Zanette)</h3>
+      <p>Marcelo Montemurro and Damian Zanette applied network-based statistical analysis to the Voynich text and found word-usage patterns consistent with meaningful language rather than random generation. Their finding that Voynich follows Zipf's law and shows long-range word correlations remains one of the stronger arguments for genuine linguistic structure.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-rigorous">Rigorous</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">arXiv · Computational Linguistics</span>
+        <span class="entry-year">· 2026</span>
+      </div>
+      <h3>Parisel: BPE-Based Typological Fingerprinting of the Voynich Script</h3>
+      <p>The most recent computational analysis at time of writing, proposing a Philippine-branch morphological profile based on BPE token segmentation across 29 language families. Unusual for explicitly quantifying uncertainty and providing adversarial counterarguments within the paper itself. Full dataset available on Zenodo. Media coverage of this work varied significantly in quality — see our Research section for the primary source.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-rigorous">Rigorous</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">Beinecke Library</span>
+        <span class="entry-year">· 2004</span>
+      </div>
+      <h3>Full Digital Facsimile Published Online</h3>
+      <p>Yale's Beinecke Rare Book and Manuscript Library made all 240 folios available in high resolution digital format at no cost. This single act opened the manuscript to computational researchers worldwide and democratized access that had previously required institutional affiliation and physical travel to New Haven.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-rigorous">Rigorous</span></div>
+  </div>
+</div>
+
+<div class="section-spacer"></div>
+
+<!-- SECTION 2: DOCUMENTARY -->
+<div class="section">
+  <h2 class="section-title">Documentary &amp; Film</h2>
+  <p class="section-desc">Video productions range from careful to credulous. Check for expert consultation and explicit uncertainty framing.</p>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">BBC Horizon</span>
+        <span class="entry-year">· 2004</span>
+      </div>
+      <h3>The Voynich Manuscript (BBC Horizon)</h3>
+      <p>One of the more careful television treatments of the manuscript. The BBC Horizon team consulted paleographers, cryptographers, and historians. The documentary accurately represents the state of knowledge as of 2004 — pre-carbon dating — but avoids promoting any particular solution and gives appropriate weight to competing interpretations.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-balanced">Balanced</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">History Channel</span>
+        <span class="entry-year">· Various</span>
+      </div>
+      <h3>History Channel Coverage — Multiple Episodes</h3>
+      <p>The History Channel has covered the Voynich Manuscript in several programs, often in the context of "ancient mysteries" programming. The framing typically emphasizes unsolved mystery over methodology. Individual episodes vary; some include credible expert commentary, others treat fringe theories as legitimate alternatives without epistemic differentiation.</p>
+      <div class="flag-note">Caveat: the "ancient mysteries" genre incentivizes false balance between serious and fringe positions. Evaluate individual episodes critically.</div>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-sensationalist">Sensationalist</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">Independent Documentary</span>
+        <span class="entry-year">· 2019</span>
+      </div>
+      <h3>The Voynich Code (Recommended)</h3>
+      <p>A more measured independent production that focuses on the manuscript's physical history, provenance, and the genuine difficulty of analysis. Interviews cryptographers and manuscript scholars without privileging any proposed solution. Recommended as an introduction for general audiences who want context without premature conclusions.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-balanced">Balanced</span></div>
+  </div>
+</div>
+
+<div class="section-spacer"></div>
+
+<!-- SECTION 3: JOURNALISM -->
+<div class="section">
+  <h2 class="section-title">Journalism</h2>
+  <p class="section-desc">Newspaper and magazine coverage. Excellent explainers exist; sensationalist treatments are more common.</p>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">The New York Times</span>
+        <span class="entry-year">· 2009</span>
+      </div>
+      <h3>Carbon Dating Narrows Age of Mysterious Voynich Manuscript</h3>
+      <p>The Times' coverage of the 2009 carbon dating results was measured and accurate. The article correctly explained the difference between dating the vellum and dating the writing, a distinction that much subsequent journalism failed to maintain. A useful example of quality science journalism on this topic.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-balanced">Balanced</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">Various Mainstream Outlets</span>
+        <span class="entry-year">· Recurring</span>
+      </div>
+      <h3>"The Voynich Manuscript Has Been Solved" — Multiple Iterations</h3>
+      <p>Approximately every two to four years, a major news outlet publishes a version of "researcher claims to have cracked the Voynich Manuscript." These articles reliably generate significant traffic. They rarely include independent expert evaluation at time of publication, do not distinguish "claims to have solved" from "has solved," and the accompanying academic papers typically do not survive peer scrutiny. The pattern is consistent enough to be its own phenomenon.</p>
+      <div class="flag-note">Treat any headline declaring the manuscript "solved" as sensationalist by default until independent corroboration exists. None has arrived as of 2026.</div>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-sensationalist">Sensationalist</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">The Atlantic</span>
+        <span class="entry-year">· 2016</span>
+      </div>
+      <h3>The Voynich Manuscript's Stubborn Mysteries</h3>
+      <p>A long-form piece that avoided the "solved" trap and instead focused on why the manuscript resists resolution. Consulted multiple scholars, accurately represented disagreement, and was honest about how little is known. One of the better general-audience treatments of the manuscript's genuine epistemic difficulty.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-balanced">Balanced</span></div>
+  </div>
+</div>
+
+<div class="section-spacer"></div>
+
+<!-- SECTION 4: ONLINE & COMMUNITY -->
+<div class="section">
+  <h2 class="section-title">Online &amp; Community</h2>
+  <p class="section-desc">The internet hosts serious scholarship and enthusiastic noise in roughly equal measure. Knowing which is which matters.</p>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">voynich.ninja</span>
+        <span class="entry-year">· Active</span>
+      </div>
+      <h3>Voynich.ninja — The Serious Forum</h3>
+      <p>The most substantive online community for Voynich research. Members include published scholars, computational linguists, and serious amateurs who hold each other to evidential standards. Decipherment proposals require methodology. Moderation actively discourages unfounded speculation. If you want to understand the current state of community research, this is the primary resource.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-rigorous">Rigorous</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">Reddit · r/voynich</span>
+        <span class="entry-year">· Active</span>
+      </div>
+      <h3>r/voynich — Mixed Quality</h3>
+      <p>The Reddit community ranges from thoughtful discussion of published papers to amateur decipherment proposals and pattern-finding exercises that mistake coincidence for evidence. Useful for following news and finding references to primary sources. Not a reliable filter for claim quality — upvotes do not correlate with methodological soundness.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-balanced">Balanced</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">YouTube</span>
+        <span class="entry-year">· Varies widely</span>
+      </div>
+      <h3>YouTube — Caveat Emptor</h3>
+      <p>YouTube hosts several excellent explainer videos on the Voynich Manuscript — and a much larger number of "I SOLVED IT" videos with thumbnail designs featuring glowing text over manuscript pages. The format incentivizes confident claims. Channels associated with academic institutions or that explicitly cite primary sources and acknowledge uncertainty are worth watching. Treat "solved" thumbnails as a filter for exactly the content to avoid.</p>
+      <div class="flag-note">Verified flag: any video titled with "SOLVED," "DECODED," "FINALLY EXPLAINED," or "THE TRUTH ABOUT" should be approached with maximal skepticism. None of these claims have survived independent review.</div>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-sensationalist">Sensationalist</span></div>
+  </div>
+</div>
+
+<div class="section-spacer"></div>
+
+<!-- SECTION 5: RECENT -->
+<div class="section">
+  <h2 class="section-title">Recent Coverage (2024–2026)</h2>
+  <p class="section-desc">Coverage of the most recent wave of proposals and the emerging typological approach.</p>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">arXiv Media Coverage</span>
+        <span class="entry-year">· 2026</span>
+      </div>
+      <h3>Coverage of the Parisel / BPE Typological Analysis</h3>
+      <p>Coverage of the 2026 arXiv typological fingerprinting paper varied considerably. Tech-adjacent outlets that typically cover computational linguistics reported the findings with appropriate caveats, noting the paper explicitly avoids claiming decipherment and instead proposes a family-level typological classification. General-interest outlets tended to headline the Philippine connection while underreporting the extensive uncertainty quantification in the paper itself.</p>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-balanced">Balanced</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="entry-main">
+      <div class="entry-meta">
+        <span class="entry-outlet">Various Outlets</span>
+        <span class="entry-year">· 2024–2025</span>
+      </div>
+      <h3>Naibbe Corpus Claims — Proposal and Retraction Cycle</h3>
+      <p>A proposed decipherment circulated in 2024–2025 claiming Voynich was written in an abbreviated form of a specific natural language. Initial media coverage was enthusiastic. Independent researchers at voynich.ninja and several computational linguists posted detailed rebuttals within weeks. The claim did not survive scrutiny; it had not been submitted for formal peer review. The media retraction cycle was slower and quieter than the initial coverage — a pattern typical of this field.</p>
+      <div class="flag-note">The asymmetry between claim coverage and retraction coverage is a structural problem in science journalism, not specific to Voynich research.</div>
+    </div>
+    <div class="entry-badge-col"><span class="badge badge-sensationalist">Sensationalist</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #1e1d1a;padding:3rem 2rem;text-align:center;color:#7a7670;font-size:0.8rem;">
+  <p style="font-family:Georgia,serif;font-size:1rem;color:#f0ede6;margin-bottom:0.6rem;">Voynich <span style="color:#c9a84c;">Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com" style="color:#c9a84c;text-decoration:none;">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
+</footer>
+
+</body>
+</html>

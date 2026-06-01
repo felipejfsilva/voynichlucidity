@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Systematic elimination of Voynich Manuscript hypotheses — what the data rules out, and what remains open. Updated as new research is published.">
+  <title>What It Isn't · Voynich Lucidity</title>
+  <style>
+    :root {
+      --black: #080806;
+      --white: #f0ede6;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.15);
+      --muted: #7a7670;
+      --border: #1e1d1a;
+      --card-bg: #0f0f0d;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(8,8,6,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .lang-switcher a {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.2rem 0.45rem;
+      border: 1px solid transparent;
+      transition: all 0.25s;
+    }
+    .lang-switcher a.active,
+    .lang-switcher a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 9rem 2rem 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.8rem;
+    }
+
+    .page-intro {
+      font-size: 1.05rem;
+      color: #b8b4ad;
+      max-width: 720px;
+      line-height: 1.75;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── ELIMINATION GRID ── */
+    .elim-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .elim-card {
+      background: var(--card-bg);
+      padding: 1.8rem;
+      position: relative;
+    }
+
+    .elim-card:hover {
+      background: #111110;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge.eliminated {
+      background: rgba(180, 40, 30, 0.15);
+      color: #c0392b;
+      border: 1px solid rgba(180, 40, 30, 0.35);
+    }
+
+    .badge.preliminary {
+      background: rgba(201, 168, 76, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+    }
+
+    .badge.pending {
+      background: rgba(80, 80, 80, 0.2);
+      color: #6a6a68;
+      border: 1px solid #2a2a28;
+    }
+
+    .elim-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .elim-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .elim-card .evidence-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #404040;
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label span {
+      color: var(--gold);
+      margin-right: 0.5rem;
+    }
+
+    /* ── NOTE ── */
+    .note-box {
+      background: #0c0c0a;
+      border: 1px solid #2a2925;
+      padding: 1.5rem 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .note-box::before {
+      content: '↻';
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .footer-logo span { color: var(--gold); }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 8rem 1.2rem 3rem; }
+      .content { padding: 3rem 1.2rem 4rem; }
+      .elim-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/the-manuscript">The Manuscript</a></li>
+    <li><a href="/research">Research</a></li>
+    <li><a href="/library">Library</a></li>
+    <li><a href="/what-it-isnt" class="active">What It Isn't</a></li>
+    <li><a href="/findings">Findings</a></li>
+    <li><a href="/curiosities">Curiosities</a></li>
+    <li><a href="/media">Media</a></li>
+    <li><a href="/collaborate">Collaborate</a></li>
+    <li><a href="/resources">Resources</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <a href="#" class="active">EN</a>
+    <a href="#">PT</a>
+    <a href="#">ES</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <span class="page-label">Systematic Elimination</span>
+  <h1>What It Isn't</h1>
+  <p class="page-intro">The fastest path to understanding the Voynich Manuscript is not finding what it is — it is eliminating what it cannot be. Every ruled-out hypothesis narrows the search space. This page is our growing map of eliminations — built from empirical data, updated as new research is published.</p>
+</div>
+
+<main class="content">
+
+  <p class="section-label"><span>●</span> Confirmed Eliminations &amp; Open Questions · 12 entries · Last updated May 2026</p>
+
+  <div class="elim-grid">
+
+    <div class="elim-card">
+      <span class="badge eliminated">Eliminated</span>
+      <h3>Random or Gibberish Text</h3>
+      <p>BPE structure survives character perturbation testing. When characters are randomly shuffled (n=50 trials, corpus-size matched), Voynich VMML drops 22% — a structured decay signature. Truly random text collapses by more than 60% under identical perturbation. The internal structure is real.</p>
+      <span class="evidence-tag">Paper 8 · permutation test · n=50</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Eliminated</span>
+      <h3>Tagalog as base language</h3>
+      <p>Critical three-metric mismatch. While Tagalog (Noli Me Tangere, full corpus) enters the Voynich 95% CI for VMML, Boundary Concentration decisively diverges: Tagalog BC ≈ 0.20 (infix-dominated) vs Voynich 0.361 (edge-concentrated). The structural mechanisms are incompatible.</p>
+      <span class="evidence-tag">Papers 7 &amp; 8 · BC divergence = 0.161</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Eliminated</span>
+      <h3>Tagalog VMML as a stable language property</h3>
+      <p>El filibusterismo (full corpus, same author as Noli) yields VMML = 5.578 — below the Alphabetic Ceiling. Cross-text variation Δ = 0.336 units. Supra-ceiling VMML in Tagalog is text-specific, not a property of the language. The Noli result does not generalise.</p>
+      <span class="evidence-tag">Paper 8 · Rizal cross-text instability</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Eliminated</span>
+      <h3>Philippine languages broadly</h3>
+      <p>Cebuano (NLLB corpus): VMML = 5.609, below the Alphabetic Ceiling. No Philippine language tested simultaneously matches Voynich on VMML + BC + CBMI. VMML elevation, where it appears, is language- and text-specific, not a family-level pattern.</p>
+      <span class="evidence-tag">Paper 8 · multi-language Austronesian analysis</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Eliminated</span>
+      <h3>Indonesian and Malay</h3>
+      <p>VMML values are well below the Alphabetic Ceiling: Indonesian 4.838, Malay 5.293. Both languages sit comfortably in the mid-range of natural language distribution. Neither approaches the Voynich zone on any of the three metrics.</p>
+      <span class="evidence-tag">Paper 7 · 55-corpus baseline</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Eliminated</span>
+      <h3>Basque as high-VMML reference</h3>
+      <p>Basque (Euskara) is a canonical agglutinative language used as a control. VMML = 4.475 on natural text corpus — significantly below the Alphabetic Ceiling. Confirms that agglutination alone does not produce high VMML; morphological architecture matters more than typological label.</p>
+      <span class="evidence-tag">Paper 7 · agglutinative control</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Eliminated</span>
+      <h3>Schinner's stochastic hoax model (2007)</h3>
+      <p>Schinner proposed the Voynich Manuscript was generated by a stochastic process simulating language without encoding real content. Random EVA generation under Schinner's model fails to replicate the full 3-metric profile — particularly the BC + CBMI combination that accompanies Voynich's VMML.</p>
+      <span class="evidence-tag">Paper 7 · structural profile falsification</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Eliminated</span>
+      <h3>Timm's self-citation mechanism (2020)</h3>
+      <p>Timm and Schindler proposed a word-stress positional model involving self-citation of previous tokens. The EBNF/MI trade-off irreconcilable with observed BPE structure: self-citation would produce distinct boundary concentration patterns inconsistent with Voynich's measured BC = 0.361.</p>
+      <span class="evidence-tag">Paper 7 · mechanism incompatibility</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Eliminated</span>
+      <h3>Any of 63 tested natural language profiles</h3>
+      <p>The Voynich Discriminant Zone — defined by VMML + BC + CBMI simultaneously — is occupied by no natural language corpus from any of the 35+ families tested. Not because we stopped looking: we tested 63 corpora and none qualifies. The zone is empirically empty.</p>
+      <span class="evidence-tag">Papers 7 &amp; 8 · full 63-corpus baseline</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge preliminary">Preliminary</span>
+      <h3>Ilocano as candidate language</h3>
+      <p>Ilocano VMML = 5.785 provisionally exceeds the Alphabetic Ceiling, making it the only language besides Tagalog (Noli) to do so. However, BC = 0.248 — infix-dominated, incompatible with Voynich's 0.361. Additionally, n = 12,807 tokens sits near the stability threshold; result requires larger corpus confirmation.</p>
+      <span class="evidence-tag">Paper 8 · provisional · n near stability limit</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge pending">Pending</span>
+      <h3>Cebuano (formal literary register)</h3>
+      <p>The NLLB Cebuano corpus contains substantial code-switching with English and Filipino, artificially suppressing VMML. Formal literary Cebuano — comparable to Rizal's novels for Tagalog — has not yet been tested. Result could move in either direction.</p>
+      <span class="evidence-tag">Corpus gap · register bias identified</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge pending">Pending</span>
+      <h3>Kapampangan, Hiligaynon, Malagasy</h3>
+      <p>Untested Philippine-branch languages with complex focus-morphology (Kapampangan, Hiligaynon) and a remotely-derived Austronesian outlier (Malagasy). These would either confirm or refute the emerging hypothesis that VMML elevation tracks focus-morphology density rather than phylogenetic membership.</p>
+      <span class="evidence-tag">Untested · next phase</span>
+    </div>
+
+  </div>
+
+  <div class="note-box">
+    This list grows with every paper published. Elimination requires meeting our evidence threshold: published preprint + adversarial review. Preliminary results are flagged and not counted as eliminations until confirmed. Last updated: May 2026.
+  </div>
+
+</main>
+
+<footer>
+  <p class="footer-logo">Voynich <span>Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
+</footer>
+
+</body>
+</html>
