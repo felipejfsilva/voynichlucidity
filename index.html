@@ -6,8 +6,17 @@
   <meta name="description" content="The manuscript no one has read. 600 years. Still waiting. The most comprehensive resource on the Voynich Manuscript.">
   <meta property="og:title" content="Voynich Lucidity">
   <meta property="og:description" content="The manuscript no one has read. 600 years. Still waiting.">
-  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Voynich_Manuscript_%2878r%29.jpg/800px-Voynich_Manuscript_%2878r%29.jpg">
-  <title>Voynich Lucidity</title>
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voynichlucidity.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Voynich Lucidity">
+  <meta name="twitter:description" content="The manuscript no one has read. 600 years. Still waiting.">
+  <meta name="twitter:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta name="keywords" content="Voynich Manuscript, Voynich, undeciphered manuscript, Beinecke MS 408, computational linguistics, medieval manuscript, cryptography">
+  <link rel="canonical" href="https://voynichlucidity.com/">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <title>Voynich Lucidity — The manuscript no one has read</title>
   <style>
     :root {
       --black: #080806;
@@ -195,8 +204,20 @@
     .footer-logo span { color:var(--gold); }
     footer a { color:var(--gold); text-decoration:none; }
 
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+    .hamburger span { width:22px; height:1px; background:var(--white); transition:all 0.3s; display:block; }
+    .mobile-menu { display:none; position:fixed; top:58px; left:0; right:0; background:rgba(8,8,6,0.98); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:1.5rem 2.5rem; z-index:99; flex-direction:column; gap:1.2rem; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { color:var(--muted); text-decoration:none; font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+    .mobile-menu a:hover { color:var(--gold); }
     @media(max-width:900px) { .folios{grid-template-columns:repeat(2,1fr);} }
-    @media(max-width:600px) { .nav-links{display:none;} .folios{grid-template-columns:1fr;} }
+    @media(max-width:700px) {
+      .nav-links{display:none;}
+      .hamburger{display:flex;}
+      .folios{grid-template-columns:1fr;}
+      .hero h1{font-size:2.4rem;}
+      .nav-cards{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
@@ -214,12 +235,27 @@
     <li><a href="/collaborate">Collaborate</a></li>
     <li><a href="/resources">Resources</a></li>
   </ul>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
   <div class="lang-switcher">
     <a href="/" class="active">EN</a>
     <a href="/pt">PT</a>
     <a href="/es">ES</a>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/the-manuscript" onclick="toggleMenu()">The Manuscript</a>
+  <a href="/library" onclick="toggleMenu()">Library</a>
+  <a href="/what-it-isnt" onclick="toggleMenu()">What It Isn't</a>
+  <a href="/findings" onclick="toggleMenu()">Our Research</a>
+  <a href="/curiosities" onclick="toggleMenu()">Curiosities</a>
+  <a href="/media" onclick="toggleMenu()">Media</a>
+  <a href="/collaborate" onclick="toggleMenu()">Collaborate</a>
+  <a href="/resources" onclick="toggleMenu()">Resources</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -452,6 +488,10 @@
     });
     document.querySelector('.btn-vote').style.display = 'none';
     resultDiv.style.display = 'block';
+  }
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
   }
 
   // Intersection observer for scroll animations
