@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The methodology behind Voynich Lucidity — BPE VMML analysis, 63 corpora, typological fingerprinting across writing systems.">
-  <meta property="og:title" content="Research · Voynich Lucidity">
-  <title>Research · Voynich Lucidity</title>
+  <meta name="description" content="State of Research — a systematic overview of what has been established, contested, and remains open about the Voynich Manuscript.">
+  <meta property="og:title" content="State of Research · Voynich Lucidity">
+  <title>State of Research · Voynich Lucidity</title>
   <style>
     :root {
       --black: #080806;
@@ -17,6 +17,14 @@
       --card-bg: #0f0f0d;
       --font-serif: 'Georgia', 'Times New Roman', serif;
       --font-sans: 'Helvetica Neue', Arial, sans-serif;
+
+      --green: #4caf7d;
+      --green-dim: rgba(76,175,125,0.12);
+      --amber: #d4a03a;
+      --amber-dim: rgba(212,160,58,0.12);
+      --grey-dim: rgba(120,116,112,0.12);
+      --blue: #5b9bd4;
+      --blue-dim: rgba(91,155,212,0.12);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -111,6 +119,14 @@
       font-weight: 400;
       line-height: 1.15;
       color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+
+    .page-header .subtitle {
+      font-size: 0.97rem;
+      color: var(--muted);
+      max-width: 620px;
+      line-height: 1.65;
     }
 
     /* ── MAIN CONTENT ── */
@@ -130,12 +146,18 @@
       margin-bottom: 0;
     }
 
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
     .content-section h2 {
       font-family: var(--font-serif);
       font-size: 1.5rem;
       font-weight: 400;
       color: var(--white);
-      margin-bottom: 1.5rem;
     }
 
     .content-section p {
@@ -146,164 +168,109 @@
 
     .content-section p:last-child { margin-bottom: 0; }
 
-    /* ── METRIC ROW ── */
-    .metric-row {
-      display: flex;
-      gap: 2rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-
-    .metric-card {
-      flex: 1;
-      min-width: 180px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-    }
-
-    .metric-value {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      color: var(--gold);
-      display: block;
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-
-    .metric-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
+    /* ── BADGE ── */
+    .badge {
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--muted);
+      padding: 0.18rem 0.6rem;
+      border-radius: 2px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge-green  { background: var(--green-dim);  color: var(--green);  border: 1px solid rgba(76,175,125,0.3); }
+    .badge-amber  { background: var(--amber-dim);  color: var(--amber);  border: 1px solid rgba(212,160,58,0.3); }
+    .badge-grey   { background: var(--grey-dim);   color: var(--muted);  border: 1px solid rgba(120,116,112,0.3); }
+    .badge-blue   { background: var(--blue-dim);   color: var(--blue);   border: 1px solid rgba(91,155,212,0.3); }
+
+    /* ── FACT CARDS ── */
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
 
-    /* ── ANALOGY BOX ── */
-    .analogy-box {
-      background: var(--gold-dim);
-      border-left: 3px solid var(--gold);
-      padding: 1.5rem 2rem;
-      margin: 2rem 0;
+    .fact-card {
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1.6rem 1fr;
+      gap: 0 1.4rem;
+      align-items: start;
+    }
+    .fact-card:last-child { border-bottom: none; }
+
+    .fact-num {
       font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 1.05rem;
-      color: #d4cfc7;
-      line-height: 1.65;
-    }
-
-    /* ── NOTE BOX ── */
-    .note-box {
-      background: #0c0c0a;
-      border: 1px solid #2a2925;
-      padding: 1.5rem 2rem;
-      margin: 2rem 0;
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       color: var(--muted);
+      padding-top: 0.18rem;
       line-height: 1.6;
     }
 
-    .note-box strong {
-      color: var(--white);
+    .fact-body {}
+
+    .fact-title {
+      font-size: 0.93rem;
       font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.45rem;
+      line-height: 1.4;
     }
 
-    /* ── CEILING VIZ ── */
-    .ceiling-viz {
-      margin: 2rem 0;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 2rem;
+    .fact-text {
+      font-size: 0.9rem;
+      color: #a8a49d;
+      line-height: 1.65;
     }
 
-    .ceiling-bar-wrap {
-      margin: 1rem 0;
+    .fact-text a {
+      color: var(--gold);
+      text-decoration: none;
     }
+    .fact-text a:hover { text-decoration: underline; }
 
-    .ceiling-bar-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
+    /* ── RECENT PUBS ── */
+    .pub-list {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 0;
     }
 
-    .ceiling-bar-track {
-      height: 8px;
-      background: #1a1a18;
-      border-radius: 0;
-      overflow: visible;
-      position: relative;
-    }
-
-    .ceiling-bar-fill {
-      height: 100%;
-      background: var(--gold);
-      opacity: 0.6;
-    }
-
-    .ceiling-bar-fill.voynich { background: #e8c060; opacity: 1; }
-    .ceiling-line {
-      position: absolute;
-      top: -4px;
-      height: 16px;
-      width: 2px;
-      background: #c0392b;
-    }
-
-    /* ── LIMITATIONS LIST ── */
-    .limits-list {
-      list-style: none;
-      margin-top: 1.2rem;
-    }
-
-    .limits-list li {
-      display: flex;
-      gap: 1rem;
-      padding: 0.9rem 0;
+    .pub-entry {
+      padding: 1.5rem 0;
       border-bottom: 1px solid var(--border);
-      font-size: 0.92rem;
-      color: #b8b4ad;
+    }
+    .pub-entry:last-child { border-bottom: none; }
+
+    .pub-authors {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
     }
 
-    .limits-list li:last-child { border-bottom: none; }
-
-    .limit-num {
+    .pub-title {
+      font-size: 0.97rem;
+      color: var(--white);
       font-family: var(--font-serif);
+      font-style: italic;
+      margin-bottom: 0.45rem;
+      line-height: 1.45;
+    }
+
+    .pub-meta {
+      font-size: 0.82rem;
+      color: #a8a49d;
+      line-height: 1.55;
+    }
+
+    .pub-meta a {
       color: var(--gold);
-      font-size: 0.85rem;
-      min-width: 1.8rem;
-      padding-top: 0.05rem;
+      text-decoration: none;
     }
-
-    /* ── PARAMS TABLE ── */
-    .params-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-      font-size: 0.88rem;
-    }
-
-    .params-table th {
-      text-align: left;
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 0.6rem 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .params-table td {
-      padding: 0.7rem 1rem;
-      color: #b8b4ad;
-      border-bottom: 1px solid #141412;
-      font-family: 'Courier New', monospace;
-    }
-
-    .params-table td:first-child {
-      color: var(--gold);
-      font-family: var(--font-sans);
-    }
+    .pub-meta a:hover { text-decoration: underline; }
 
     /* ── FOOTER ── */
     footer {
@@ -335,7 +302,8 @@
       .nav-links { display: none; }
       .page-header { padding: 8rem 1.2rem 3rem; }
       .content { padding: 3rem 1.2rem 4rem; }
-      .metric-row { gap: 1rem; }
+      .fact-card { grid-template-columns: 1fr; gap: 0.4rem; }
+      .fact-num { display: none; }
     }
   </style>
   <meta property="og:type" content="website">
@@ -375,143 +343,194 @@
 </nav>
 
 <div class="page-header">
-  <span class="page-label">How We Work</span>
-  <h1>The Methodology</h1>
+  <span class="page-label">What We Know So Far</span>
+  <h1>State of Research</h1>
+  <p class="subtitle">A systematic overview of what has been established, what is contested, and what remains entirely open. Updated as new results are published.</p>
 </div>
 
 <main class="content">
 
-  <!-- WHAT IS BPE VMML -->
+  <!-- SECTION 1: ESTABLISHED -->
   <div class="content-section">
-    <h2>What is BPE VMML?</h2>
-    <p>BPE — Byte-Pair Encoding — is an unsupervised algorithm originally developed for text compression. When applied to a language corpus, it learns to merge the most frequent adjacent character pairs into single tokens, iteratively building up a vocabulary of morpheme-like units from raw character sequences.</p>
-    <p>VMML (Vocabulary Morpheme Mean Length) measures the average length of the tokens BPE learns from a corpus. A higher VMML indicates that the algorithm is merging characters into longer, more complex units — a signature of richer internal word structure. A lower VMML suggests simpler, shorter morphological patterns.</p>
-    <p>Crucially, BPE is trained on each corpus independently. It learns the structure that exists in the data without any prior linguistic knowledge — no dictionaries, no grammars, no labeled morpheme boundaries.</p>
+    <div class="section-header">
+      <h2>What Is Established</h2>
+      <span class="badge badge-green">Confirmed</span>
+    </div>
 
-    <table class="params-table">
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Value</th>
-          <th>Purpose</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>max_merges</td><td>200</td><td>Vocabulary ceiling; caps BPE learning depth</td></tr>
-        <tr><td>min_freq</td><td>3</td><td>Suppresses hapax noise; requires pattern recurrence</td></tr>
-        <tr><td>Token cap</td><td>80,000</td><td>Computational parity across corpora</td></tr>
-        <tr><td>Transcription</td><td>EVA</td><td>Standard Voynich character encoding</td></tr>
-      </tbody>
-    </table>
+    <div class="card-list">
 
-    <div class="analogy-box">
-      "Think of BPE as teaching a child to read by finding recurring patterns in words. The 'morpheme length' measures how complex those patterns are across an entire language — not just one word, but tens of thousands at once."
+      <div class="fact-card">
+        <span class="fact-num">1</span>
+        <div class="fact-body">
+          <div class="fact-title">The vellum dates to 1404–1438.</div>
+          <div class="fact-text">Carbon-14 dating (University of Arizona, 2009) of four vellum samples confirms a pre-Renaissance origin with 95% confidence. This result has not been seriously contested and places the manuscript firmly in early fifteenth-century Europe.</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-num">2</span>
+        <div class="fact-body">
+          <div class="fact-title">The text is not random.</div>
+          <div class="fact-text">Montemurro &amp; Zanette (2013, <em>PLOS ONE</em>) showed that word distribution follows patterns consistent with meaningful semantic structure — words cluster in ways that are statistically inconsistent with random generation. The text behaves as if it carries content.</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-num">3</span>
+        <div class="fact-body">
+          <div class="fact-title">The Currier A/B distinction is real.</div>
+          <div class="fact-text">Parisel (2026, <a href="https://arxiv.org/abs/2604.25979" target="_blank" rel="noopener">arXiv:2604.25979</a>) confirmed with 89.2% predictive accuracy that two statistically distinct "languages" exist in the manuscript. This is not a codicological artifact — the distinction persists within individual quires, ruling out simple scribal hand differences.</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-num">4</span>
+        <div class="fact-body">
+          <div class="fact-title">The script has consistent grammar-like structure.</div>
+          <div class="fact-text">Zipf distribution, type-token ratio, and entropy measures all fall within the range of natural language. The text behaves statistically like language across multiple independent metrics — not like a simple substitution cipher or random noise.</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-num">5</span>
+        <div class="fact-body">
+          <div class="fact-title">No known natural language simultaneously matches the full structural profile.</div>
+          <div class="fact-text">63+ corpora from 35+ language families have been tested against the manuscript's typological fingerprint. None replicate the combination of VMML, Boundary Concentration, and CBMI simultaneously (Silva 2026, <a href="https://doi.org/10.5281/zenodo.20386119" target="_blank" rel="noopener">Zenodo</a>). The manuscript occupies a structurally anomalous position relative to all known alphabetic scripts.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- ALPHABETIC CEILING -->
+  <!-- SECTION 2: CONTESTED -->
   <div class="content-section">
-    <h2>The Alphabetic Ceiling</h2>
-    <p>One of our most robust empirical findings is what we call the Alphabetic Ceiling: an upper bound on BPE VMML observed across all tested alphabetic natural languages. No alphabetic natural language we have tested exceeds this value under our standard parameters.</p>
-
-    <div class="metric-row">
-      <div class="metric-card">
-        <span class="metric-value">5.748</span>
-        <span class="metric-label">Ceiling (Nietzsche, n=82,802)</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-value">5.918</span>
-        <span class="metric-label">Voynich Manuscript VMML</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-value">+0.170</span>
-        <span class="metric-label">Voynich exceeds ceiling by</span>
-      </div>
+    <div class="section-header">
+      <h2>What Is Contested</h2>
+      <span class="badge badge-amber">Debated</span>
     </div>
 
-    <p>The ceiling was empirically derived from Also sprach Zarathustra (Nietzsche), the highest-scoring alphabetic text identified in our initial 35-corpus scan. German was selected as the ceiling anchor because its compound-heavy morphology naturally produces high VMML — and still it falls below Voynich.</p>
-    <p>The ceiling is not a theoretical threshold. It is a descriptive upper bound observed across tested corpora. Its stability across additional corpora and language families is itself a result — not an assumption.</p>
+    <div class="card-list">
+
+      <div class="fact-card">
+        <span class="fact-num">1</span>
+        <div class="fact-body">
+          <div class="fact-title">Whether Tagalog (or any Philippine language) is structurally relevant.</div>
+          <div class="fact-text">One text (<em>Noli Me Tangere</em> by Rizal) enters the discriminant zone on VMML; a second Rizal novel does not. The pattern may be text-specific rather than a property of the language as a whole, which severely limits any claim about Tagalog's relationship to the manuscript (Silva 2026).</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-num">2</span>
+        <div class="fact-body">
+          <div class="fact-title">Whether the A/B distinction is binary or the surface of a more complex system.</div>
+          <div class="fact-text">Parisel (2026) identifies three structural layers within the manuscript; the traditional A/B label may be a projection of a higher-dimensional generative system. The binary framing may be too coarse to capture what is actually present.</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-num">3</span>
+        <div class="fact-body">
+          <div class="fact-title">Whether Bax (2014)'s identification of 14 proposed words is valid.</div>
+          <div class="fact-text">Bax applied comparative illustration analysis — matching visual context (plants, stars) to proposed words — and identified 14 candidate readings. The methodology is sound in principle. However, no independent replication has been published and the results remain disputed within the research community.</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-num">4</span>
+        <div class="fact-body">
+          <div class="fact-title">Whether the text encodes a natural language, an artificial language, or a complex cipher.</div>
+          <div class="fact-text">Current statistical evidence is consistent with all three hypotheses. The language-like statistics do not rule out a constructed language or a sophisticated cipher designed to mimic natural language patterns. No discriminating test has yet been definitive.</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <!-- WHY 63 CORPORA -->
+  <!-- SECTION 3: UNKNOWN -->
   <div class="content-section">
-    <h2>Why 63 Corpora?</h2>
-    <p>To draw any meaningful conclusion about where the Voynich Manuscript sits typologically, we needed a baseline that spans the known diversity of human language structure — not just a handful of European languages.</p>
-
-    <div class="metric-row">
-      <div class="metric-card">
-        <span class="metric-value">35+</span>
-        <span class="metric-label">Language families</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-value">30+</span>
-        <span class="metric-label">Languages tested</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-value">63</span>
-        <span class="metric-label">Total corpora (incl. multi-text)</span>
-      </div>
+    <div class="section-header">
+      <h2>What Remains Unknown</h2>
+      <span class="badge badge-grey">Open</span>
     </div>
 
-    <p>The corpus set was designed to cover all major morphological types:</p>
-    <p><strong style="color:var(--white)">Agglutinative</strong> — Finnish, Basque, Tagalog, Ilocano, Turkish. These languages add discrete, separable morphemes to roots and were expected to produce higher VMML.</p>
-    <p><strong style="color:var(--white)">Analytic</strong> — English, Mandarin Chinese, Vietnamese. These languages rely on word order rather than morphology and were expected to produce lower VMML.</p>
-    <p><strong style="color:var(--white)">Fusional</strong> — Latin, Ancient Greek, Russian. Morphemes fuse and alter each other; intermediate VMML expected.</p>
-    <p><strong style="color:var(--white)">Isolating</strong> — Cantonese, Thai. Minimal inflection; low VMML expected.</p>
-    <p><strong style="color:var(--white)">Unknown scripts</strong> — Voynich Manuscript (EVA), Rohonc Codex. The subjects of comparison.</p>
+    <div class="card-list">
+
+      <div class="fact-card">
+        <span class="fact-num">1</span>
+        <div class="fact-body">
+          <div class="fact-title">Who wrote it, and why.</div>
+          <div class="fact-text">No author has been identified with any confidence. The manuscript's purpose — whether medical, alchemical, devotional, fictional, or something else entirely — remains unknown. Proposed attributions (Roger Bacon, Voynich himself, others) have all been discredited or remain unsubstantiated.</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-num">2</span>
+        <div class="fact-body">
+          <div class="fact-title">Whether the illustrations correspond to real or imagined subjects.</div>
+          <div class="fact-text">The plants depicted do not match any known species. The astronomical diagrams do not clearly correspond to known constellation systems. Whether the illustrations encode real-world knowledge or are deliberate obfuscations — or illustrations of an imagined world — is unresolved.</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-num">3</span>
+        <div class="fact-body">
+          <div class="fact-title">Whether Currier A and B represent two scribes, two linguistic registers, or something else entirely.</div>
+          <div class="fact-text">The A/B distinction is statistically robust. Its cause is not. The difference could reflect two authors, two languages, two modes of encoding within a single language, or two phases of composition. No hypothesis has been confirmed.</div>
+        </div>
+      </div>
+
+      <div class="fact-card">
+        <span class="fact-num">4</span>
+        <div class="fact-body">
+          <div class="fact-title">What language family, if any, the script represents.</div>
+          <div class="fact-text">No confirmed linguistic affiliation has been established. The script's structural properties are consistent with certain typological families but rule out others. Definitive identification remains one of the central open problems in the field.</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <!-- BOUNDARY CONCENTRATION -->
+  <!-- SECTION 4: RECENT PUBLICATIONS -->
   <div class="content-section">
-    <h2>Boundary Concentration (BC)</h2>
-    <p>VMML alone is insufficient to characterise morphological structure — two languages can share similar VMML while reaching it through entirely different mechanisms. Boundary Concentration was introduced to resolve this ambiguity.</p>
-    <p>BC measures what fraction of BPE morpheme boundaries fall at edge positions — the first or last 20% of the token. A high BC indicates that most morphological work happens at word edges: prefixes and suffixes. A low BC indicates that morphological boundaries are distributed internally — a signature of infix-heavy systems like Philippine focus languages.</p>
-
-    <div class="metric-row">
-      <div class="metric-card">
-        <span class="metric-value">0.361</span>
-        <span class="metric-label">Voynich BC (edge-concentrated)</span>
-      </div>
-      <div class="metric-card">
-        <span class="metric-value">~0.20</span>
-        <span class="metric-label">Tagalog BC (infix-dominated)</span>
-      </div>
+    <div class="section-header">
+      <h2>Recent Publications</h2>
+      <span class="badge badge-blue">2024–2026</span>
     </div>
 
-    <p>This metric was the decisive discriminator in Paper 8. Tagalog's VMML can, under certain corpus conditions, approach or enter the Voynich zone. But Tagalog's BC of approximately 0.20 is irreconcilable with Voynich's 0.361 — a gap of 0.16 units that reflects fundamentally different morphological architectures.</p>
-    <p>High BC in Voynich is consistent with prefix/suffix-dominant morphology. Low BC in Tagalog reflects its focus-morphology system, which encodes grammatical functions via infixes and circumfixes distributed through the interior of words.</p>
-  </div>
+    <div class="pub-list">
 
-  <!-- HONEST LIMITATIONS -->
-  <div class="content-section">
-    <h2>Honest Limitations</h2>
-    <p>We hold ourselves to the standard we apply to others. Every methodological limitation is disclosed in our preprints. Here are the most significant ones.</p>
+      <div class="pub-entry">
+        <div class="pub-authors">Parisel (2026)</div>
+        <div class="pub-title">A Quantitative Confirmation of the Currier Language Distinction</div>
+        <div class="pub-meta">
+          <a href="https://arxiv.org/abs/2604.25979" target="_blank" rel="noopener">arXiv:2604.25979</a> — Beta-Binomial mixture model. 89.2% predictive accuracy confirming two statistically distinct structural layers within the manuscript. The most rigorous quantitative treatment of the A/B distinction to date.
+        </div>
+      </div>
 
-    <ul class="limits-list">
-      <li>
-        <span class="limit-num">01</span>
-        <span>BC and CBMI edge windows (20%) are operationally defined, not statistically optimised thresholds. Different window choices would yield different absolute values; relative ordering across languages may still hold.</span>
-      </li>
-      <li>
-        <span class="limit-num">02</span>
-        <span>The 80,000-token cap introduces a negative VMML bias relative to full-corpus computation. Nietzsche was run at full corpus (n=82,802) to set the ceiling — all other corpora were capped. This could artificially inflate Voynich's relative position if Voynich is a small text.</span>
-      </li>
-      <li>
-        <span class="limit-num">03</span>
-        <span>Cross-text stability requires multiple texts per language to establish that a given VMML value is a property of the language, not the specific text. Paper 8 demonstrated this risk concretely: Tagalog VMML varies by 0.336 units across two Rizal novels.</span>
-      </li>
-      <li>
-        <span class="limit-num">04</span>
-        <span>All Voynich analysis depends on the EVA (European Voynich Alphabet) transcription. EVA encoding choices directly affect BPE learning. Results are valid under EVA; other transcription schemes would need independent testing.</span>
-      </li>
-      <li>
-        <span class="limit-num">05</span>
-        <span>Correlation is not causation. Similar VMML values do not imply linguistic relationship, shared origin, or any semantic claim about what the Voynich Manuscript means. VMML characterises structural fingerprint, not content.</span>
-      </li>
-    </ul>
+      <div class="pub-entry">
+        <div class="pub-authors">Silva (2026)</div>
+        <div class="pub-title">BPE Morpheme-Length Clustering Across 55+ Writing System Corpora</div>
+        <div class="pub-meta">
+          <a href="https://doi.org/10.5281/zenodo.20386119" target="_blank" rel="noopener">DOI: 10.5281/zenodo.20386119</a> — Systematic typological fingerprinting using BPE VMML, Boundary Concentration, and CBMI across 63 corpora from 35+ language families. Establishes the Voynich Manuscript's anomalous structural position relative to all tested alphabetic natural languages.
+        </div>
+      </div>
 
-    <div class="note-box">
-      <strong>Peer review standard.</strong> Every result published on this site has been through multiple rounds of adversarial review — including deliberate attempts to falsify our own claims — before publication. We report limitations explicitly because partial disclosure is a form of deception.
+      <div class="pub-entry">
+        <div class="pub-authors">Silva (2026)</div>
+        <div class="pub-title">BPE VMML Cross-Text Instability in Tagalog</div>
+        <div class="pub-meta">
+          <a href="https://doi.org/10.5281/zenodo.20467972" target="_blank" rel="noopener">DOI: 10.5281/zenodo.20467972</a> — Demonstrates that Tagalog VMML varies by 0.336 units across two Rizal novels, undermining claims of language-level correspondence. Introduces cross-text stability as a methodological requirement for any structural comparison.
+        </div>
+      </div>
+
+      <div class="pub-entry">
+        <div class="pub-authors">Zandbergen (ongoing)</div>
+        <div class="pub-title">Voynich.nu — Reference Site</div>
+        <div class="pub-meta">
+          <a href="https://www.voynich.nu" target="_blank" rel="noopener">voynich.nu</a> — The most comprehensive maintained reference on the manuscript. Covers codicology, transcription systems, statistical analyses, and the history of research. Essential starting point for anyone entering the field.
+        </div>
+      </div>
+
     </div>
   </div>
 
