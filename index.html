@@ -145,13 +145,7 @@
     .folios { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); }
     .folio { position:relative; aspect-ratio:3/4; overflow:hidden; cursor:pointer; }
     .folio img { width:100%; height:100%; object-fit:cover; filter:sepia(0.1) brightness(0.9); transition:transform 0.7s ease, filter 0.4s; }
-    .folio-bio img { filter:sepia(0.6) brightness(0.75); }
-    .folio-astro img { filter:sepia(0.9) hue-rotate(200deg) brightness(0.7) saturate(1.5); }
-    .folio-bot img { filter:sepia(0.2) brightness(0.9) saturate(1.2); }
-    .folio-cosmo img { filter:sepia(0.8) hue-rotate(250deg) brightness(0.65) saturate(1.8); }
-    .folio-zodiac img { filter:sepia(0.7) hue-rotate(300deg) brightness(0.8) saturate(1.4); }
-    .folio-pharma img { filter:sepia(0.5) hue-rotate(80deg) brightness(0.85) saturate(1.3); }
-    .folio:hover img { transform:scale(1.05); filter:sepia(0) brightness(1) !important; }
+    .folio:hover img { transform:scale(1.05); filter:sepia(0) brightness(1.05); }
     .folio:hover img { transform:scale(1.05); filter:sepia(0) brightness(1); }
     .folio-info {
       position:absolute; bottom:0; left:0; right:0;
@@ -324,7 +318,7 @@
 
   <div class="folios">
     <div class="folio folio-bio">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Voynich_Manuscript_%2878r%29.jpg/800px-Voynich_Manuscript_%2878r%29.jpg" alt="Biological section - Bathing women" loading="lazy" onerror="this.src='/assets/images/hero-bg.jpg';this.onerror=null" loading="lazy">
+      <img src="/assets/images/folio-f1r.jpg" alt="Biological section - Bathing women" loading="lazy" loading="lazy">
       <div class="folio-info">
         <p class="folio-section">Biological</p>
         <h3 class="folio-title">The Bathing Women</h3>
@@ -332,7 +326,7 @@
       </div>
     </div>
     <div class="folio folio-astro">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Voynich_Manuscript_%2867r%29.jpg/800px-Voynich_Manuscript_%2867r%29.jpg" alt="Astronomical section - Celestial wheels" loading="lazy" onerror="this.src='/assets/images/botanical-32.jpg';this.onerror=null" loading="lazy">
+      <img src="/assets/images/folio-f20r.jpg" alt="Astronomical section - Celestial wheels" loading="lazy" loading="lazy">
       <div class="folio-info">
         <p class="folio-section">Astronomical</p>
         <h3 class="folio-title">The Celestial Wheels</h3>
@@ -340,7 +334,7 @@
       </div>
     </div>
     <div class="folio folio-bot">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Voynich_Manuscript_%2832%29.jpg/800px-Voynich_Manuscript_%2832%29.jpg" alt="Botanical section - Unknown plants" loading="lazy" onerror="this.src='/assets/images/botanical-32.jpg';this.onerror=null" loading="lazy">
+      <img src="/assets/images/botanical-32.jpg" alt="Botanical section - Unknown plants" loading="lazy" loading="lazy">
       <div class="folio-info">
         <p class="folio-section">Botanical</p>
         <h3 class="folio-title">The Unknown Plants</h3>
@@ -348,7 +342,7 @@
       </div>
     </div>
     <div class="folio folio-cosmo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Voynich_Manuscript_%2886v%29.jpg/800px-Voynich_Manuscript_%2886v%29.jpg" alt="Cosmological section - The great map" loading="lazy" onerror="this.src='/assets/images/hero-bg.jpg';this.onerror=null" loading="lazy">
+      <img src="/assets/images/folio-f33r.jpg" alt="Cosmological section - The great map" loading="lazy" loading="lazy">
       <div class="folio-info">
         <p class="folio-section">Cosmological</p>
         <h3 class="folio-title">The Great Map</h3>
@@ -356,7 +350,7 @@
       </div>
     </div>
     <div class="folio folio-zodiac">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Voynich_Manuscript_%2870v%29.jpg/800px-Voynich_Manuscript_%2870v%29.jpg" alt="Zodiac section - Star women" loading="lazy" onerror="this.src='/assets/images/botanical-32.jpg';this.onerror=null" loading="lazy">
+      <img src="/assets/images/folio-f41r.jpg" alt="Zodiac section - Star women" loading="lazy" loading="lazy">
       <div class="folio-info">
         <p class="folio-section">Zodiac</p>
         <h3 class="folio-title">The Star Women</h3>
@@ -364,7 +358,7 @@
       </div>
     </div>
     <div class="folio folio-pharma">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Voynich_Manuscript_%2888r%29.jpg/800px-Voynich_Manuscript_%2888r%29.jpg" alt="Pharmaceutical section - The vessels" loading="lazy" onerror="this.src='/assets/images/hero-bg.jpg';this.onerror=null" loading="lazy">
+      <img src="/assets/images/folio-f50r.jpg" alt="Pharmaceutical section - The vessels" loading="lazy" loading="lazy">
       <div class="folio-info">
         <p class="folio-section">Pharmaceutical</p>
         <h3 class="folio-title">The Vessels</h3>
