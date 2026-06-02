@@ -71,8 +71,8 @@
     }
     .nav-logo { font-family:var(--font-serif); font-size:1rem; letter-spacing:0.08em; color:var(--white); text-decoration:none; }
     .nav-logo span { color:var(--gold); }
-    .nav-links { display:flex; gap:1.6rem; list-style:none; }
-    .nav-links a { color:var(--muted); text-decoration:none; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s; }
+    .nav-links { display:flex; gap:1.2rem; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:0.76rem; letter-spacing:0.07em; text-transform:uppercase; transition:color 0.3s; }
     .nav-links a:hover { color:var(--gold); }
     .lang-switcher { display:flex; gap:0.5rem; }
     .lang-switcher a { font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding:0.2rem 0.45rem; border:1px solid transparent; transition:all 0.25s; }
@@ -262,7 +262,7 @@
     <li><a href="/findings">Findings</a></li>
     <li><a href="/curiosities">Curiosities</a></li>
     <li><a href="/media">Media</a></li>
-    <li><a href="/research">State of Research</a></li>
+    <li><a href="/research">Research</a></li>
     <li><a href="/collaborate">Collaborate</a></li>
     <li><a href="/resources">Resources</a></li>
     <li><a href="/about">About L.</a></li>
@@ -344,7 +344,7 @@
       </div>
     </div>
     <div class="folio folio-cosmo">
-      <img src="/assets/images/folio-f69r-astronomical.jpg" alt="Cosmological section - The great map" loading="lazy" loading="lazy">
+      <img src="/assets/images/folio-f73r-zodiac.jpg" alt="Cosmological section - The great map" loading="lazy" loading="lazy">
       <div class="folio-info">
         <p class="folio-section">Cosmological</p>
         <h3 class="folio-title">The Great Map</h3>
@@ -460,6 +460,10 @@
 <!-- OUR RESEARCH — HUMBLE BUT INTRIGUING -->
 <div class="research-blurb">
   <span class="section-label">A computational perspective</span>
+  <div style="display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+    <a href="https://doi.org/10.5281/zenodo.20386119" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.45rem 1rem;border:1px solid rgba(201,168,76,0.4);color:var(--gold);text-decoration:none;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">📄 Paper 7 — Zenodo DOI</a>
+    <a href="https://doi.org/10.5281/zenodo.20467972" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.45rem 1rem;border:1px solid rgba(201,168,76,0.4);color:var(--gold);text-decoration:none;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">📄 Paper 8 — Zenodo DOI</a>
+  </div>
   <blockquote>
     "63 language corpora. 35 language families. Not one simultaneously matches the Voynich structural profile on all three metrics. The discriminant zone remains empty."
   </blockquote>
@@ -472,6 +476,9 @@
   </div>
 </div>
 
+<div style="text-align:center;padding:2rem;border-top:1px solid var(--border);">
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:var(--muted);text-decoration:none;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;">↑ Back to top</a>
+</div>
 <!-- FOOTER -->
 <footer>
   <p class="footer-logo">Voynich <span>Lucidity</span></p>
