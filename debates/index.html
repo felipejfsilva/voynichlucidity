@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The open questions where serious Voynich researchers genuinely disagree. Currier A/B, VMML, the hoax hypothesis, scribal hands. No false consensus.">
+  <meta property="og:title" content="Open Debates · Voynich Lucidity">
+  <meta property="og:description" content="The questions where serious researchers genuinely disagree. No false consensus.">
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://voynichlucidity.com/debates/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open Debates · Voynich Lucidity">
+  <meta name="twitter:description" content="The questions where serious researchers genuinely disagree. No false consensus.">
+  <meta name="twitter:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta name="keywords" content="Voynich Manuscript, Currier A/B, Voynich debates, VMML, hoax hypothesis, scribal hands, Voynich research">
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BZWDDNCDP2');
+  </script>
+  <link rel="canonical" href="https://voynichlucidity.com/debates/">
+  <title>Open Debates · Voynich Lucidity</title>
+  <style>
+    :root {
+      --black: #080806;
+      --white: #f0ede6;
+      --gold: #c9a84c;
+      --muted: #7a7670;
+      --border: #1e1d1a;
+      --card-bg: #0f0f0d;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--black); color:var(--white); font-family:var(--font-sans); font-size:16px; line-height:1.7; overflow-x:hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      background:rgba(8,8,6,0.88); backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      padding:0 2.5rem; display:flex; align-items:center;
+      justify-content:space-between; height:58px;
+    }
+    .nav-logo { font-family:var(--font-serif); font-size:1rem; letter-spacing:0.08em; color:var(--white); text-decoration:none; }
+    .nav-logo span { color:var(--gold); }
+    .nav-links { display:flex; gap:1.2rem; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:0.76rem; letter-spacing:0.07em; text-transform:uppercase; transition:color 0.3s; }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-links a.active { color:var(--gold); }
+    .lang-switcher { display:flex; gap:0.5rem; }
+    .lang-switcher a { font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding:0.2rem 0.45rem; border:1px solid transparent; transition:all 0.25s; }
+    .lang-switcher a.active, .lang-switcher a:hover { color:var(--gold); border-color:var(--gold); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+    .hamburger span { width:22px; height:1px; background:var(--white); transition:all 0.3s; display:block; }
+    .mobile-menu { display:none; position:fixed; top:58px; left:0; right:0; background:rgba(8,8,6,0.98); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:1.5rem 2.5rem; z-index:99; flex-direction:column; gap:1.2rem; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { color:var(--muted); text-decoration:none; font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+    .mobile-menu a:hover { color:var(--gold); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding-top:58px;
+      border-bottom:1px solid var(--border);
+      background: linear-gradient(to bottom, #0d0c0a 0%, var(--black) 100%);
+    }
+    .page-hero-inner {
+      max-width:860px; margin:0 auto; padding:5rem 2rem 4.5rem;
+    }
+    .page-label {
+      display:inline-block; font-size:0.68rem; letter-spacing:0.24em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem;
+    }
+    .page-hero h1 {
+      font-family:var(--font-serif); font-size:clamp(2.2rem,5vw,3.8rem);
+      font-weight:400; line-height:1.1; margin-bottom:1.2rem;
+    }
+    .page-hero-sub {
+      font-family:var(--font-serif); font-size:1.15rem; font-style:italic;
+      color:rgba(240,237,230,0.5); max-width:600px; line-height:1.75;
+    }
+    .gold-rule {
+      width:48px; height:1px; background:var(--gold); margin:2rem 0;
+    }
+
+    /* ── CONTENT ── */
+    .content-wrap {
+      max-width:860px; margin:0 auto; padding:4rem 2rem 6rem;
+    }
+
+    /* ── DEBATE BLOCK ── */
+    .debate {
+      border-top:1px solid var(--border);
+      padding:3rem 0;
+    }
+    .debate:last-of-type {
+      border-bottom:1px solid var(--border);
+    }
+    .debate-num {
+      font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:0.7rem; display:block;
+    }
+    .debate h2 {
+      font-family:var(--font-serif); font-weight:400;
+      font-size:clamp(1.25rem,2.5vw,1.7rem); line-height:1.25;
+      margin-bottom:1.5rem; color:var(--white);
+    }
+    .debate p {
+      color:rgba(240,237,230,0.72); font-size:0.95rem; line-height:1.85;
+      margin-bottom:1.1rem;
+    }
+    .debate p:last-child { margin-bottom:0; }
+
+    /* ── POSITIONS BOX ── */
+    .positions {
+      margin-top:1.5rem;
+      border-left:2px solid rgba(201,168,76,0.35);
+      padding:1rem 1.5rem;
+      background:rgba(201,168,76,0.03);
+    }
+    .positions-label {
+      font-size:0.64rem; letter-spacing:0.2em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:0.6rem; display:block;
+    }
+    .positions p {
+      font-size:0.88rem; color:var(--muted); margin-bottom:0;
+    }
+
+    /* ── STATUS CHIP ── */
+    .status-chip {
+      display:inline-flex; align-items:center; gap:0.4rem;
+      font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase;
+      color:var(--muted); border:1px solid var(--border);
+      padding:0.25rem 0.8rem; margin-top:1.2rem;
+    }
+    .status-dot {
+      width:5px; height:5px; border-radius:50%; background:var(--gold);
+    }
+
+    /* ── COMMUNITY LINK ── */
+    .community-note {
+      margin-top:5rem; padding:2.5rem; border:1px solid var(--border);
+      background:var(--card-bg); text-align:center;
+    }
+    .community-note p {
+      font-family:var(--font-serif); font-style:italic;
+      color:var(--muted); font-size:1rem; line-height:1.75; margin-bottom:1.2rem;
+    }
+    .community-note a {
+      display:inline-flex; align-items:center; gap:0.4rem;
+      color:var(--gold); text-decoration:none; font-size:0.78rem;
+      letter-spacing:0.12em; text-transform:uppercase;
+      border-bottom:1px solid rgba(201,168,76,0.3); padding-bottom:2px;
+      transition:border-color 0.25s;
+    }
+    .community-note a:hover { border-color:var(--gold); }
+
+    /* ── FOOTER ── */
+    footer { border-top:1px solid var(--border); padding:3rem 2rem; text-align:center; color:var(--muted); font-size:0.8rem; }
+    .footer-logo { font-family:var(--font-serif); font-size:1rem; color:var(--white); margin-bottom:0.5rem; }
+    .footer-logo span { color:var(--gold); }
+    footer a { color:var(--gold); text-decoration:none; }
+
+    @media(max-width:700px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .lang-switcher { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/start-here">★ Start Here</a></li>
+    <li><a href="/the-manuscript">The Manuscript</a></li>
+    <li><a href="/library">Library</a></li>
+    <li><a href="/what-it-isnt">What It Isn't</a></li>
+    <li><a href="/debates">Debates</a></li>
+    <li><a href="/findings">Findings</a></li>
+    <li><a href="/curiosities">Curiosities</a></li>
+    <li><a href="/media">Media</a></li>
+    <li><a href="/research">Research</a></li>
+    <li><a href="/methodology">Methodology</a></li>
+    <li><a href="/press">Press</a></li>
+    <li><a href="/collaborate">Collaborate</a></li>
+    <li><a href="/resources">Resources</a></li>
+    <li><a href="/about">About L.</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="lang-switcher">
+    <a href="/debates/" class="active">EN</a>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/start-here" onclick="toggleMenu()">★ Start Here</a>
+  <a href="/the-manuscript" onclick="toggleMenu()">The Manuscript</a>
+  <a href="/library" onclick="toggleMenu()">Library</a>
+  <a href="/what-it-isnt" onclick="toggleMenu()">What It Isn't</a>
+  <a href="/findings" onclick="toggleMenu()">Findings</a>
+  <a href="/curiosities" onclick="toggleMenu()">Curiosities</a>
+  <a href="/methodology" onclick="toggleMenu()">Methodology</a>
+  <a href="/press" onclick="toggleMenu()">Press</a>
+  <a href="/collaborate" onclick="toggleMenu()">Collaborate</a>
+  <a href="/resources" onclick="toggleMenu()">Resources</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-label">What the community disagrees about</span>
+    <h1>Open Debates</h1>
+    <div class="gold-rule"></div>
+    <p class="page-hero-sub">The questions where serious researchers genuinely disagree. No false consensus.</p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- DEBATE 1 -->
+  <div class="debate">
+    <span class="debate-num">Debate 01</span>
+    <h2>Is Currier A/B binary or multi-dimensional?</h2>
+    <p>The traditional view: two distinct languages, or dialects, corresponding to distinct sections of the manuscript. The A/B distinction has anchored Voynich linguistics since Currier first articulated it in the 1970s, and it remains one of the few structural facts the community accepts without serious contest.</p>
+    <p>Parisel (2026) challenges the framing: A/B is described as a "low-resolution projection of a three-layer generative structure" — a boolean folio switch combined with a template system plus a gradient <em>d</em>/<em>l</em> dimension. On this model, calling it two languages mistakes a projection of a richer structure for the structure itself.</p>
+    <p>What we don't know: do more dimensions exist beyond these three? Are the "layers" linguistically meaningful — reflecting dialect, register, topic — or purely statistical artifacts of a generative procedure with no semantic correlate? And if the boolean switch is a scribal choice, does it reveal something about how the manuscript was produced or simply about who produced it?</p>
+    <div class="positions">
+      <span class="positions-label">Current positions</span>
+      <p>Parisel (2026): three layers confirmed computationally. Community: broadly accepts A/B as real; split on whether the multi-dimensional reframing adds explanatory power or complexity without resolution.</p>
+    </div>
+    <span class="status-chip"><span class="status-dot"></span>Genuinely open</span>
+  </div>
+
+  <!-- DEBATE 2 -->
+  <div class="debate">
+    <span class="debate-num">Debate 02</span>
+    <h2>Does the VMML signal reflect morphological structure or statistical artifact?</h2>
+    <p>Our finding: Voynich BPE Mean Morpheme Length (VMML) of 5.918 exceeds the alphabetic ceiling established across 63 language corpora. Among tested natural languages, no alphabetic script reaches this value. The signal appears structurally significant.</p>
+    <p>The counter-argument is worth taking seriously: BPE VMML could be inflated by consistent character <em>n</em>-gram patterns that aren't morphological — for example, a cipher with fixed-length blocks, or a script with systematic digraph conventions, could produce elevated VMML without any underlying morphological structure. The metric measures compression efficiency, not meaning.</p>
+    <p>Our response: the character shuffle test shows a 22% VMML drop for Voynich versus 13–14% for Tagalog under positional randomization. This asymmetry suggests genuine positional structure — something is concentrated at specific positions in the token stream. But it doesn't definitively resolve whether that structure is morphological (prefixes, suffixes, roots) or ciphered (block boundaries, padding conventions).</p>
+    <div class="positions">
+      <span class="positions-label">Open question</span>
+      <p>Is VMML discriminating between natural language and cipher, or between high-entropy and low-entropy systems more broadly? The shuffle test narrows this but doesn't close it.</p>
+    </div>
+    <span class="status-chip"><span class="status-dot"></span>Partially constrained, not resolved</span>
+  </div>
+
+  <!-- DEBATE 3 -->
+  <div class="debate">
+    <span class="debate-num">Debate 03</span>
+    <h2>The Rugg hoax question — still open?</h2>
+    <p>Rugg (2004) demonstrated that a Cardan grille — a simple mechanical device using a perforated card slid over a table of syllables — could generate text with Voynich-like statistical properties. The paper was widely cited as evidence that the manuscript might be an elaborate, content-free hoax.</p>
+    <p>Montemurro and Zanette (2013) showed that the Voynich exhibits semantic clustering — high-information words distributed non-randomly across sections in a way inconsistent with random hoax generation. Their method, borrowed from natural language processing, suggests the text carries semantic structure even if we can't read it.</p>
+    <p>The question remains: could a skilled hoaxer deliberately engineer semantic-like clustering? Bax (2014)'s word identifications — tentative but specific — suggest particular tokens carry meanings consistent with illustrations, which is also difficult to explain as coincidence in a hoax. Current state: the hoax hypothesis is statistically disfavored by multiple independent analyses, but has not been formally ruled out. No mathematical proof of impossibility exists.</p>
+    <div class="positions">
+      <span class="positions-label">Current state</span>
+      <p>Statistically disfavored. Not ruled out. The community leans toward genuine script but acknowledges the hoax cannot be definitively eliminated without decipherment.</p>
+    </div>
+    <span class="status-chip"><span class="status-dot"></span>Disfavored but not closed</span>
+  </div>
+
+  <!-- DEBATE 4 -->
+  <div class="debate">
+    <span class="debate-num">Debate 04</span>
+    <h2>What does the Tagalog result actually mean?</h2>
+    <p>Among natural languages tested, Tagalog produced the closest VMML match to the Voynich on one metric — an elevated value consistent with agglutinative morphology. This result attracted attention as the first natural-language near-match on that dimension.</p>
+    <p>The alternative interpretation cuts directly: both Tagalog texts tested were authored by José Rizal. This tests intra-author stability within a single writer's style, not cross-author language stability. Before concluding anything about Tagalog as a language, more texts from different authors, periods, and registers are needed.</p>
+    <p>We agree this is a genuine limitation. The finding stands as "Tagalog VMML is elevated in the tested Rizal corpus" — not as "Tagalog structurally resembles the Voynich." The two statements are very different claims with very different implications. We have been explicit about this in our reporting and intend to extend testing when suitable corpora are available.</p>
+    <div class="positions">
+      <span class="positions-label">Status</span>
+      <p>We acknowledge the limitation. The Tagalog finding is preliminary and author-specific. It is reported honestly, not as a strong claim about the language.</p>
+    </div>
+    <span class="status-chip"><span class="status-dot"></span>Self-acknowledged limitation</span>
+  </div>
+
+  <!-- DEBATE 5 -->
+  <div class="debate">
+    <span class="debate-num">Debate 05</span>
+    <h2>Multiple scribes — what do they imply for the structure?</h2>
+    <p>Davis (2020) identifies at least five distinct scribal hands in the manuscript, correlated imperfectly with the Currier A/B sections but not reducible to them. The relationship between scribal identity and statistical signature is not one-to-one.</p>
+    <p>If two scribes produce two statistical profiles, the most natural interpretation is two dialects, registers, or language variants — consistent with a living language used across a community. If five scribes produce only two statistical profiles, that requires explanation: why do three additional hands leave no statistical trace?</p>
+    <p>Parisel's boolean switch could reflect scribal convention, topic, register, or something else entirely. The possibility that a single scribe could switch statistical regimes deliberately — as a cipher operator selecting between two encoding modes — is also not excluded. The scribal hand evidence is real; its interpretation for the linguistic hypothesis is contested.</p>
+    <div class="positions">
+      <span class="positions-label">Open question</span>
+      <p>Does scribal hand correlate with language/dialect, encoding mode, or neither? Davis's identification of five hands with two statistical profiles needs a satisfying explanation from any serious hypothesis.</p>
+    </div>
+    <span class="status-chip"><span class="status-dot"></span>Genuinely open</span>
+  </div>
+
+  <!-- COMMUNITY NOTE -->
+  <div class="community-note">
+    <p>"These debates are active in the research community. The most sustained public discussion of Voynich linguistics, codicology, and hypothesis testing happens at voynich.ninja — the serious end of online Voynich scholarship."</p>
+    <a href="https://www.voynich.ninja/forum-41.html" target="_blank" rel="noopener">Follow the discussion at voynich.ninja →</a>
+  </div>
+
+</div>
+
+<div style="text-align:center;padding:2rem;border-top:1px solid var(--border);">
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:var(--muted);text-decoration:none;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;">↑ Back to top</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Voynich <span>Lucidity</span></p>
+  <p>The most comprehensive resource on the Voynich Manuscript · <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

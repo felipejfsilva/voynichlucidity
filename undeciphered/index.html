@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Voynich Manuscript in comparative context. Structural analysis alongside Linear A, the Indus Valley script, Rongorongo, and Proto-Elamite. For manuscript specialists and codicologists.">
+  <meta property="og:title" content="Undeciphered Scripts · Voynich Lucidity">
+  <meta property="og:description" content="How the Voynich Manuscript compares structurally to other undeciphered and poorly understood writing systems.">
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://voynichlucidity.com/undeciphered/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Undeciphered Scripts · Voynich Lucidity">
+  <meta name="twitter:description" content="How the Voynich Manuscript compares structurally to other undeciphered and poorly understood writing systems.">
+  <meta name="twitter:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta name="keywords" content="Voynich Manuscript, undeciphered scripts, Linear A, Indus Valley script, Rongorongo, Proto-Elamite, codicology, paleography, VMML, comparative analysis">
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BZWDDNCDP2');
+  </script>
+  <link rel="canonical" href="https://voynichlucidity.com/undeciphered/">
+  <title>Undeciphered Scripts · Voynich Lucidity</title>
+  <style>
+    :root {
+      --black: #080806;
+      --white: #f0ede6;
+      --gold: #c9a84c;
+      --muted: #7a7670;
+      --border: #1e1d1a;
+      --card-bg: #0f0f0d;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--black); color:var(--white); font-family:var(--font-sans); font-size:16px; line-height:1.7; overflow-x:hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      background:rgba(8,8,6,0.88); backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      padding:0 2.5rem; display:flex; align-items:center;
+      justify-content:space-between; height:58px;
+    }
+    .nav-logo { font-family:var(--font-serif); font-size:1rem; letter-spacing:0.08em; color:var(--white); text-decoration:none; }
+    .nav-logo span { color:var(--gold); }
+    .nav-links { display:flex; gap:1.2rem; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:0.76rem; letter-spacing:0.07em; text-transform:uppercase; transition:color 0.3s; }
+    .nav-links a:hover { color:var(--gold); }
+    .lang-switcher { display:flex; gap:0.5rem; }
+    .lang-switcher a { font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding:0.2rem 0.45rem; border:1px solid transparent; transition:all 0.25s; }
+    .lang-switcher a.active, .lang-switcher a:hover { color:var(--gold); border-color:var(--gold); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+    .hamburger span { width:22px; height:1px; background:var(--white); transition:all 0.3s; display:block; }
+    .mobile-menu { display:none; position:fixed; top:58px; left:0; right:0; background:rgba(8,8,6,0.98); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:1.5rem 2.5rem; z-index:99; flex-direction:column; gap:1.2rem; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { color:var(--muted); text-decoration:none; font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+    .mobile-menu a:hover { color:var(--gold); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding-top:58px;
+      border-bottom:1px solid var(--border);
+      background: linear-gradient(to bottom, #0d0c0a 0%, var(--black) 100%);
+    }
+    .page-hero-inner {
+      max-width:920px; margin:0 auto; padding:5rem 2rem 4.5rem;
+    }
+    .page-label {
+      display:inline-block; font-size:0.68rem; letter-spacing:0.24em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem;
+    }
+    .page-hero h1 {
+      font-family:var(--font-serif); font-size:clamp(2.2rem,5vw,3.8rem);
+      font-weight:400; line-height:1.1; margin-bottom:1.2rem;
+    }
+    .page-hero-sub {
+      font-family:var(--font-serif); font-size:1.15rem; font-style:italic;
+      color:rgba(240,237,230,0.5); max-width:680px; line-height:1.75;
+    }
+    .gold-rule {
+      width:48px; height:1px; background:var(--gold); margin:2rem 0;
+    }
+
+    /* ── CONTENT ── */
+    .content-wrap {
+      max-width:920px; margin:0 auto; padding:4rem 2rem 6rem;
+    }
+
+    /* ── INTRO ── */
+    .intro-para {
+      font-family:var(--font-serif); font-size:1.08rem; font-style:italic;
+      color:rgba(240,237,230,0.65); line-height:1.9; margin-bottom:4rem;
+      border-left:2px solid rgba(201,168,76,0.3); padding-left:1.6rem;
+    }
+
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      margin-bottom:2rem;
+    }
+    .section-heading .section-kicker {
+      font-size:0.64rem; letter-spacing:0.22em; text-transform:uppercase;
+      color:var(--gold); display:block; margin-bottom:0.6rem;
+    }
+    .section-heading h2 {
+      font-family:var(--font-serif); font-weight:400;
+      font-size:clamp(1.4rem,2.8vw,2rem); color:var(--white);
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .table-wrap {
+      overflow-x:auto; margin-bottom:5rem;
+      border:1px solid var(--border);
+    }
+    table {
+      width:100%; border-collapse:collapse; min-width:700px;
+    }
+    thead tr {
+      border-bottom:1px solid rgba(201,168,76,0.3);
+      background:rgba(201,168,76,0.04);
+    }
+    thead th {
+      padding:0.9rem 1rem; font-size:0.68rem; letter-spacing:0.16em;
+      text-transform:uppercase; color:var(--gold); text-align:left;
+      font-weight:400; white-space:nowrap;
+    }
+    tbody tr {
+      border-bottom:1px solid var(--border); transition:background 0.2s;
+    }
+    tbody tr:hover { background:rgba(255,255,255,0.02); }
+    tbody tr:last-child { border-bottom:none; }
+    tbody td {
+      padding:1rem; font-size:0.86rem; color:rgba(240,237,230,0.75);
+      vertical-align:top; line-height:1.55;
+    }
+    tbody td:first-child {
+      font-family:var(--font-serif); color:var(--white); font-size:0.92rem;
+      white-space:nowrap;
+    }
+    .vmml-highlight {
+      color:var(--gold); font-size:0.82rem;
+    }
+    .tag-unknown {
+      display:inline-block; font-size:0.62rem; letter-spacing:0.1em;
+      text-transform:uppercase; padding:0.15rem 0.5rem;
+      border:1px solid var(--border); color:var(--muted); margin-top:0.2rem;
+    }
+
+    /* ── STRUCTURAL SECTION ── */
+    .structural-points {
+      margin-bottom:5rem;
+    }
+    .structural-point {
+      display:grid; grid-template-columns:2.5rem 1fr;
+      gap:1.5rem; padding:2rem 0;
+      border-top:1px solid var(--border);
+    }
+    .structural-point:last-child { border-bottom:1px solid var(--border); }
+    .point-num {
+      font-family:var(--font-serif); font-size:1.4rem; color:rgba(201,168,76,0.3);
+      line-height:1; padding-top:0.2rem;
+    }
+    .point-body h3 {
+      font-family:var(--font-serif); font-weight:400; font-size:1.08rem;
+      color:var(--white); margin-bottom:0.6rem;
+    }
+    .point-body p {
+      font-size:0.9rem; color:var(--muted); line-height:1.8;
+    }
+
+    /* ── CODICOLOGICAL LIST ── */
+    .codico-section {
+      margin-bottom:5rem;
+    }
+    .codico-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:1px; background:var(--border); border:1px solid var(--border);
+      margin-top:2rem;
+    }
+    .codico-item {
+      background:var(--card-bg); padding:1.4rem 1.5rem;
+    }
+    .codico-label {
+      font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:0.4rem; display:block;
+    }
+    .codico-value {
+      font-size:0.88rem; color:rgba(240,237,230,0.72); line-height:1.6;
+    }
+    .codico-note {
+      grid-column:1 / -1; background:#0a0a08;
+      border-top:1px solid var(--border); padding:1.2rem 1.5rem;
+    }
+    .codico-note p {
+      font-size:0.82rem; color:var(--muted); line-height:1.7;
+      font-style:italic;
+    }
+
+    /* ── CIPHER COMPARISON ── */
+    .cipher-section {
+      margin-bottom:5rem;
+    }
+    .cipher-section p {
+      font-size:0.95rem; color:rgba(240,237,230,0.68); line-height:1.85;
+      margin-bottom:1rem;
+    }
+    .cipher-section p:last-child { margin-bottom:0; }
+
+    /* ── CONTACT NOTE ── */
+    .contact-note {
+      padding:2.5rem; border:1px solid var(--border);
+      background:var(--card-bg);
+    }
+    .contact-note p {
+      font-family:var(--font-serif); font-style:italic;
+      color:var(--muted); font-size:1rem; line-height:1.75; margin-bottom:1.2rem;
+    }
+    .contact-note a {
+      color:var(--gold); text-decoration:none; font-size:0.78rem;
+      letter-spacing:0.12em; text-transform:uppercase;
+      border-bottom:1px solid rgba(201,168,76,0.3); padding-bottom:2px;
+      transition:border-color 0.25s;
+    }
+    .contact-note a:hover { border-color:var(--gold); }
+
+    /* ── FOOTER ── */
+    footer { border-top:1px solid var(--border); padding:3rem 2rem; text-align:center; color:var(--muted); font-size:0.8rem; }
+    .footer-logo { font-family:var(--font-serif); font-size:1rem; color:var(--white); margin-bottom:0.5rem; }
+    .footer-logo span { color:var(--gold); }
+    footer a { color:var(--gold); text-decoration:none; }
+
+    @media(max-width:700px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .lang-switcher { display:none; }
+      .codico-grid { grid-template-columns:1fr; }
+      .structural-point { grid-template-columns:1fr; gap:0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/start-here">★ Start Here</a></li>
+    <li><a href="/the-manuscript">The Manuscript</a></li>
+    <li><a href="/library">Library</a></li>
+    <li><a href="/what-it-isnt">What It Isn't</a></li>
+    <li><a href="/debates">Debates</a></li>
+    <li><a href="/findings">Findings</a></li>
+    <li><a href="/curiosities">Curiosities</a></li>
+    <li><a href="/media">Media</a></li>
+    <li><a href="/research">Research</a></li>
+    <li><a href="/methodology">Methodology</a></li>
+    <li><a href="/press">Press</a></li>
+    <li><a href="/collaborate">Collaborate</a></li>
+    <li><a href="/resources">Resources</a></li>
+    <li><a href="/about">About L.</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="lang-switcher">
+    <a href="/undeciphered/" class="active">EN</a>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/start-here" onclick="toggleMenu()">★ Start Here</a>
+  <a href="/the-manuscript" onclick="toggleMenu()">The Manuscript</a>
+  <a href="/library" onclick="toggleMenu()">Library</a>
+  <a href="/what-it-isnt" onclick="toggleMenu()">What It Isn't</a>
+  <a href="/findings" onclick="toggleMenu()">Findings</a>
+  <a href="/curiosities" onclick="toggleMenu()">Curiosities</a>
+  <a href="/methodology" onclick="toggleMenu()">Methodology</a>
+  <a href="/press" onclick="toggleMenu()">Press</a>
+  <a href="/collaborate" onclick="toggleMenu()">Collaborate</a>
+  <a href="/resources" onclick="toggleMenu()">Resources</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-label">Comparative analysis</span>
+    <h1>The Voynich in Context</h1>
+    <div class="gold-rule"></div>
+    <p class="page-hero-sub">How the Voynich Manuscript compares structurally to other undeciphered and poorly understood writing systems.</p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- INTRO -->
+  <p class="intro-para">The Voynich Manuscript is not the only undeciphered script. Linear A, the Indus Valley script, Rongorongo, and Proto-Elamite all remain unread. Each presents different structural challenges. Placing the Voynich within this comparative framework clarifies what kind of problem it represents — and what strategies are most likely to succeed.</p>
+
+  <!-- COMPARISON TABLE -->
+  <div class="section-heading">
+    <span class="section-kicker">Comparative overview</span>
+    <h2>Five Undeciphered Systems</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Script</th>
+          <th>Est. Date</th>
+          <th>Script Type</th>
+          <th>Bilingual Text</th>
+          <th>Corpus Size</th>
+          <th>Current Status</th>
+          <th>BPE VMML</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Voynich</td>
+          <td>1404–1438<br><span style="font-size:0.75rem;color:var(--muted);">carbon dated, UA 2009</span></td>
+          <td>Unknown<br><span class="tag-unknown">Disputed</span></td>
+          <td>None</td>
+          <td>~37,000 tokens<br><span style="font-size:0.75rem;color:var(--muted);">Beinecke MS 408</span></td>
+          <td>Undeciphered. Active research. Multiple competing hypotheses.</td>
+          <td class="vmml-highlight">5.918<br><span style="font-size:0.75rem;color:var(--muted);">above alphabetic ceiling</span></td>
+        </tr>
+        <tr>
+          <td>Linear A</td>
+          <td>c. 1800–1450 BCE<br><span style="font-size:0.75rem;color:var(--muted);">Minoan Crete</span></td>
+          <td>Syllabary<br><span class="tag-unknown">Probable</span></td>
+          <td>None known<br><span style="font-size:0.75rem;color:var(--muted);">Linear B related but distinct</span></td>
+          <td>~1,500 signs<br><span style="font-size:0.75rem;color:var(--muted);">fragmentary</span></td>
+          <td>Undeciphered. Syllabic values partially inferred from Linear B. Language unknown.</td>
+          <td class="vmml-highlight">≈ 4.85<br><span style="font-size:0.75rem;color:var(--muted);">preliminary, small corpus</span></td>
+        </tr>
+        <tr>
+          <td>Indus Script</td>
+          <td>c. 2600–1900 BCE<br><span style="font-size:0.75rem;color:var(--muted);">Harappan Civilization</span></td>
+          <td>Logographic/syllabic<br><span class="tag-unknown">Debated</span></td>
+          <td>None</td>
+          <td>~4,000 inscriptions<br><span style="font-size:0.75rem;color:var(--muted);">mostly seals, very short</span></td>
+          <td>Undeciphered. Contested whether it constitutes a full writing system.</td>
+          <td style="color:var(--muted);font-size:0.82rem;">Not computed<br><span style="font-size:0.75rem;">corpus too short for reliable BPE</span></td>
+        </tr>
+        <tr>
+          <td>Rongorongo</td>
+          <td>Pre-1722 CE<br><span style="font-size:0.75rem;color:var(--muted);">Easter Island</span></td>
+          <td>Possibly logographic<br><span class="tag-unknown">Uncertain</span></td>
+          <td>None</td>
+          <td>~14,000 glyphs<br><span style="font-size:0.75rem;color:var(--muted);">25 surviving tablets</span></td>
+          <td>Undeciphered. Relationship to oral tradition debated. Corpus severely limited.</td>
+          <td class="vmml-highlight">≈ 5.09<br><span style="font-size:0.75rem;color:var(--muted);">highly uncertain, small corpus</span></td>
+        </tr>
+        <tr>
+          <td>Proto-Elamite</td>
+          <td>c. 3200–2900 BCE<br><span style="font-size:0.75rem;color:var(--muted);">SW Iran</span></td>
+          <td>Logographic<br><span class="tag-unknown">Partial</span></td>
+          <td>None<br><span style="font-size:0.75rem;color:var(--muted);">contemporary with proto-cuneiform</span></td>
+          <td>~5,000 tablets<br><span style="font-size:0.75rem;color:var(--muted);">large but mostly numeric</span></td>
+          <td>Undeciphered. Accounting function partially understood; semantic content inaccessible.</td>
+          <td style="color:var(--muted);font-size:0.82rem;">Not computed<br><span style="font-size:0.75rem;">predominantly numeric, unsuitable</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- STRUCTURALLY UNUSUAL -->
+  <div class="structural-points">
+    <div class="section-heading">
+      <span class="section-kicker">Structural analysis</span>
+      <h2>What Makes the Voynich Structurally Unusual</h2>
+    </div>
+    <p style="font-size:0.93rem;color:var(--muted);margin-bottom:2.5rem;line-height:1.8;">Among undeciphered scripts, three quantitative properties distinguish the Voynich from everything else in the comparative set.</p>
+
+    <div class="structural-point">
+      <div class="point-num">1</div>
+      <div class="point-body">
+        <h3>Very high VMML — exceeds all tested alphabetic scripts</h3>
+        <p>BPE Mean Morpheme Length of 5.918 places the Voynich above the alphabetic ceiling established across 63 language corpora spanning 35 families. Among the undeciphered scripts where VMML is computable, Linear A reaches approximately 4.85 (preliminary, small corpus) and Rongorongo approximately 5.09 (highly uncertain). The Voynich value is an outlier in both the deciphered and undeciphered comparative sets.</p>
+      </div>
+    </div>
+    <div class="structural-point">
+      <div class="point-num">2</div>
+      <div class="point-body">
+        <h3>Consistent internal grammar at exceptional coverage</h3>
+        <p>A 47-morpheme EBNF grammar covers 92% of 37,025 tokens. No other undeciphered script has been shown to exhibit this level of internal grammatical regularity at this coverage rate. The grammar is compact — 47 rules — yet achieves near-total corpus coverage. This either reflects a genuine generative grammar or an exceptionally consistent encoding procedure. Either interpretation is remarkable.</p>
+      </div>
+    </div>
+    <div class="structural-point">
+      <div class="point-num">3</div>
+      <div class="point-body">
+        <h3>Edge-concentrated morpheme boundaries — unusually high BC</h3>
+        <p>Boundary Concentration (BC) of 0.361 exceeds any tested natural language from the Philippine, Malayo-Polynesian, or Basque families. High BC indicates morpheme boundaries cluster at token edges — the signature of strong prefix/suffix morphology. For undeciphered scripts where morphological structure is unknown by definition, this measurement is particularly significant: it suggests we can detect morphological architecture without reading the script.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODICOLOGICAL -->
+  <div class="codico-section">
+    <div class="section-heading">
+      <span class="section-kicker">Physical evidence</span>
+      <h2>What Codicological Analysis Has Established</h2>
+    </div>
+
+    <div class="codico-grid">
+      <div class="codico-item">
+        <span class="codico-label">Vellum dating</span>
+        <span class="codico-value">1404–1438 CE by carbon dating (University of Arizona, 2009). The vellum predates the text or is contemporary with it.</span>
+      </div>
+      <div class="codico-item">
+        <span class="codico-label">Scribal hands</span>
+        <span class="codico-value">At least 5 distinct hands identified (Davis 2020), correlating imperfectly with Currier A/B sections.</span>
+      </div>
+      <div class="codico-item">
+        <span class="codico-label">Ink composition</span>
+        <span class="codico-value">Iron gall ink, consistent with 15th-century European manuscript production.</span>
+      </div>
+      <div class="codico-item">
+        <span class="codico-label">Binding</span>
+        <span class="codico-value">Consistent with 15th-century European bookbinding practices. No anachronistic materials detected.</span>
+      </div>
+      <div class="codico-item">
+        <span class="codico-label">Pigments</span>
+        <span class="codico-value">Illustrations use azurite, verdigris, and minium — consistent with the medieval European palette and period.</span>
+      </div>
+      <div class="codico-item">
+        <span class="codico-label">UV examination</span>
+        <span class="codico-value">No overwriting or corrections detected under ultraviolet light — unusual for a genuine working manuscript.</span>
+      </div>
+      <div class="codico-note">
+        <p>The absence of corrections is significant. Working manuscripts — medical herbals, astronomical texts, recipe compilations — typically show evidence of revision, annotation, and correction. The Voynich shows none. This is consistent with either a clean copy (suggesting an exemplar existed) or a text produced without error because its content was not semantically meaningful to the scribe.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CIPHER COMPARISON -->
+  <div class="cipher-section">
+    <div class="section-heading">
+      <span class="section-kicker">Historical context</span>
+      <h2>Comparison with Known Ciphers of the Period</h2>
+    </div>
+    <p>Medieval cipher manuscripts exist as a documentary category. Two are particularly relevant to Voynich comparison: the Rohonc Codex (Hungarian, probable 16th–19th century, long considered undeciphered) and the Copiale Cipher (German, 18th century, deciphered by Knight and Megyesi in 2011 using statistical methods).</p>
+    <p>The Rohonc Codex was recently shown to exhibit a high degree of structural regularity measurably different from natural language — its statistics behave differently from both known languages and the Voynich. The Copiale, once deciphered, revealed an ophthalmological ritual text; statistical methods succeeded because the encoding was a direct substitution on a phonetic base.</p>
+    <p>The Voynich resists both approaches. Its structure is more language-like than known cipher manuscripts on multiple metrics, yet less decodable than known languages using any currently available method. It occupies a structurally distinct position in the comparative space — neither clearly a cipher nor clearly a natural language, but exhibiting properties that would be unusual in either category.</p>
+    <p>This is, precisely, why it remains unsolved after more than a century of serious cryptographic and linguistic attention.</p>
+  </div>
+
+  <!-- CONTACT NOTE -->
+  <div class="contact-note">
+    <p>"Researchers specializing in undeciphered scripts, codicology, or medieval manuscript analysis are particularly welcome to reach out. Comparative data from other scripts — especially Linear A and Rongorongo — would significantly extend this analysis."</p>
+    <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com →</a>
+  </div>
+
+</div>
+
+<div style="text-align:center;padding:2rem;border-top:1px solid var(--border);">
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:var(--muted);text-decoration:none;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;">↑ Back to top</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Voynich <span>Lucidity</span></p>
+  <p>The most comprehensive resource on the Voynich Manuscript · <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>

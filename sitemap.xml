@@ -12,3 +12,8 @@
   <url><loc>https://voynichlucidity.com/about/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://voynichlucidity.com/research/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
+  <url><loc>https://voynichlucidity.com/start-here/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://voynichlucidity.com/methodology/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://voynichlucidity.com/press/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://voynichlucidity.com/debates/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://voynichlucidity.com/undeciphered/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
