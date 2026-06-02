@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methodology · Voynich Lucidity</title>
+  <meta name="description" content="Full technical disclosure: operational definitions, parameters, limitations, and reproducibility information for the Voynich Lucidity computational research.">
+  <meta property="og:title" content="Methodology · Voynich Lucidity">
+  <meta property="og:description" content="Complete operational definitions, parameters, limitations, and reproducibility information.">
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voynichlucidity.com/methodology/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Methodology · Voynich Lucidity">
+  <meta name="twitter:description" content="Complete operational definitions, parameters, limitations, and reproducibility information.">
+  <meta name="twitter:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <link rel="canonical" href="https://voynichlucidity.com/methodology/">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BZWDDNCDP2');
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #080806;
+      color: #c8c4bc;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    a { color: #c9a84c; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,8,6,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #1e1d1a;
+      padding: 0 2.5rem; display: flex; align-items: center;
+      justify-content: space-between; height: 58px;
+    }
+    .nav-logo { font-family: Georgia, serif; font-size: 1rem; letter-spacing: 0.08em; color: #f0ede6; text-decoration: none; }
+    .nav-logo span { color: #c9a84c; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a { color: #7a7670; text-decoration: none; font-size: 0.73rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: #c9a84c; }
+    .lang-switcher { display: flex; gap: 0.5rem; }
+    .lang-switcher a { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: #7a7670; text-decoration: none; padding: 0.2rem 0.45rem; border: 1px solid transparent; transition: all 0.2s; }
+    .lang-switcher a.active, .lang-switcher a:hover { color: #c9a84c; border-color: #c9a84c; }
+    @media (max-width: 900px) { .nav-links { display: none; } }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 7rem 2.5rem 3.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .page-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      border: 1px solid #c9a84c;
+      padding: 0.2rem 0.55rem;
+      margin-bottom: 1.2rem;
+    }
+    .page-header h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: normal;
+      color: #f0ede6;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .page-header p.intro {
+      font-size: 1rem;
+      color: #9a9690;
+      max-width: 680px;
+      line-height: 1.8;
+    }
+
+    /* DIVIDER */
+    .divider {
+      max-width: 900px;
+      margin: 0 auto 0;
+      padding: 0 2.5rem;
+      border-top: 1px solid #1e1d1a;
+    }
+
+    /* TOC */
+    .toc-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 2.5rem;
+    }
+    .toc-inner {
+      background: #0e0e0b;
+      border: 1px solid #1e1d1a;
+      padding: 1.8rem 2rem;
+    }
+    .toc-label {
+      font-size: 0.63rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #5a5852;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .toc-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem 2rem;
+    }
+    @media (max-width: 600px) { .toc-list { grid-template-columns: 1fr; } }
+    .toc-list li a {
+      font-size: 0.83rem;
+      color: #7a7670;
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .toc-list li a:hover { color: #c9a84c; text-decoration: none; }
+    .toc-list li a::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #3a3a38;
+      flex-shrink: 0;
+    }
+
+    /* MAIN SECTIONS */
+    .method-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem 0;
+    }
+    .method-section:last-of-type { padding-bottom: 4rem; }
+
+    .method-section h2 {
+      font-family: Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: normal;
+      color: #f0ede6;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid #1e1d1a;
+      scroll-margin-top: 80px;
+    }
+    .method-section p {
+      font-size: 0.92rem;
+      color: #9a9690;
+      line-height: 1.9;
+      margin-bottom: 1.1rem;
+    }
+    .method-section p strong {
+      color: #c8c4bc;
+      font-weight: 600;
+    }
+
+    /* PARAMETER BOX */
+    .param-box {
+      background: #0b0b09;
+      border: 1px solid #1e1d1a;
+      border-left: 3px solid #c9a84c;
+      padding: 1.2rem 1.5rem;
+      margin: 1.4rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: #c8c4bc;
+      line-height: 1.8;
+    }
+    .param-box .param-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5a5852;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    /* LIMITATIONS LIST */
+    .limitations-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.2rem 0;
+    }
+    .limitations-list li {
+      display: flex;
+      gap: 1rem;
+      padding: 1.1rem 1.2rem;
+      border: 1px solid #1e1d1a;
+      background: #0e0e0b;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+      color: #9a9690;
+      line-height: 1.7;
+      align-items: flex-start;
+    }
+    .lim-num {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: #c9a84c;
+      flex-shrink: 0;
+      padding-top: 0.2rem;
+      min-width: 22px;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* STAT ROW */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #1e1d1a;
+      margin: 1.5rem 0;
+    }
+    @media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
+    .stat-cell {
+      background: #0e0e0b;
+      padding: 1.2rem 1.4rem;
+    }
+    .stat-cell .stat-val {
+      font-family: Georgia, serif;
+      font-size: 1.4rem;
+      color: #c9a84c;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .stat-cell .stat-desc {
+      font-size: 0.75rem;
+      color: #5a5852;
+      line-height: 1.5;
+    }
+
+    /* CITATION BLOCK */
+    .cite-block {
+      background: #0b0b09;
+      border: 1px solid #1e1d1a;
+      padding: 1.5rem 1.8rem;
+      margin: 1.2rem 0;
+    }
+    .cite-block .cite-format {
+      font-size: 0.63rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5a5852;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .cite-block p, .cite-block pre {
+      font-size: 0.83rem;
+      color: #9a9690;
+      line-height: 1.75;
+      margin-bottom: 0.3rem;
+    }
+    .cite-block pre {
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .cite-block p em { color: #c8c4bc; font-style: italic; }
+
+    /* ZENODO LINKS */
+    .zenodo-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin: 1.4rem 0;
+    }
+    .zenodo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1.1rem;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: #c9a84c;
+      text-decoration: none;
+      font-size: 0.73rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .zenodo-link:hover {
+      border-color: #c9a84c;
+      background: rgba(201,168,76,0.06);
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #1e1d1a;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #7a7670;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/start-here">★ Start Here</a></li>
+    <li><a href="/the-manuscript">The Manuscript</a></li>
+    <li><a href="/research">Research</a></li>
+    <li><a href="/library">Library</a></li>
+    <li><a href="/what-it-isnt">What It Isn't</a></li>
+    <li><a href="/findings">Findings</a></li>
+    <li><a href="/curiosities">Curiosities</a></li>
+    <li><a href="/media">Media</a></li>
+    <li><a href="/methodology">Methodology</a></li>
+    <li><a href="/press">Press</a></li>
+    <li><a href="/collaborate">Collaborate</a></li>
+    <li><a href="/resources">Resources</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <a href="/methodology/" class="active">EN</a>
+    <a href="#">PT</a>
+    <a href="#">ES</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <span class="page-label">Full Technical Disclosure</span>
+  <h1>Methodology</h1>
+  <p class="intro">Complete operational definitions, parameters, limitations, and reproducibility information.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc-wrap">
+  <div class="toc-inner">
+    <span class="toc-label">Contents</span>
+    <ul class="toc-list">
+      <li><a href="#bpe-vmml">1. BPE VMML — Operational Definition</a></li>
+      <li><a href="#corpus-standards">2. Corpus Standards</a></li>
+      <li><a href="#boundary-concentration">3. Boundary Concentration (BC)</a></li>
+      <li><a href="#limitations">4. Honest Limitations</a></li>
+      <li><a href="#reproducibility">5. Reproducibility</a></li>
+      <li><a href="#citation">6. Citation</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 1 -->
+<div class="method-section" id="bpe-vmml">
+  <h2>1. BPE VMML — Operational Definition</h2>
+  <p>BPE (Byte-Pair Encoding) is an unsupervised subword segmentation algorithm originally developed for neural machine translation (Sennrich et al., 2016). Applied here: each corpus is tokenized by whitespace; BPE learns merge rules by iteratively combining the most frequent character pair. <strong>VMML (Vocabulary Morpheme Mean Length)</strong> is the frequency-weighted mean length of all BPE segments in the resulting vocabulary.</p>
+
+  <div class="param-box">
+    <span class="param-label">Fixed parameters — held constant across all 63+ corpora</span>
+    max_merges = 200<br>
+    min_freq    = 3<br>
+    tokenizer   = whitespace split (no language-specific normalization)<br>
+    weighting   = frequency-weighted mean over vocabulary segments
+  </div>
+
+  <p>These parameters were fixed before any corpus analysis began. They were not adjusted post-hoc to optimize results for any individual language or for the Voynich Manuscript.</p>
+
+  <p>The <strong>alphabetic ceiling (5.748)</strong> was derived from the highest-VMML alphabetic corpus in the Paper 7 comparison set: Friedrich Nietzsche, <em>Also sprach Zarathustra</em> (German), n = 82,802 tokens. This ceiling was established before the Austronesian expansion in Paper 8 and is used as a reference marker, not a threshold with independent statistical derivation.</p>
+
+  <div class="zenodo-links">
+    <a href="https://doi.org/10.5281/zenodo.20386119" target="_blank" class="zenodo-link">Paper 7 — Full code (Zenodo)</a>
+    <a href="https://doi.org/10.5281/zenodo.20467972" target="_blank" class="zenodo-link">Paper 8 — Full code (Zenodo)</a>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="method-section" id="corpus-standards">
+  <h2>2. Corpus Standards</h2>
+
+  <div class="stat-row">
+    <div class="stat-cell">
+      <span class="stat-val">10,000</span>
+      <span class="stat-desc">Minimum tokens required for inclusion</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-val">63+</span>
+      <span class="stat-desc">Corpora analyzed across both papers</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-val">35+</span>
+      <span class="stat-desc">Language families represented</span>
+    </div>
+  </div>
+
+  <p><strong>Inclusion criteria:</strong> Minimum 10,000 tokens. Natural text only — no paradigm lists, no bot-generated content. Language verified by native-speaker inspection of the first 500 words plus automated language detection.</p>
+
+  <p><strong>Excluded corpora and reasons:</strong></p>
+  <ul class="limitations-list">
+    <li>
+      <span class="lim-num">EX1</span>
+      <span>Cebuano Wikipedia — approximately 85% of articles are Lsjbot stubs. Machine-generated content structurally different from natural language; excluded to avoid systematic VMML distortion.</span>
+    </li>
+    <li>
+      <span class="lim-num">EX2</span>
+      <span>Basque morphological paradigm list — paradigm tables, not running text. Inclusion would produce artificially elevated BC values by design rather than natural morphological behavior.</span>
+    </li>
+  </ul>
+
+  <p>All corpora are documented with: source URL or ISBN, token count (n), language family, and quality flags. This documentation is included in the Zenodo deposit for each paper.</p>
+</div>
+
+<!-- SECTION 3 -->
+<div class="method-section" id="boundary-concentration">
+  <h2>3. Boundary Concentration (BC)</h2>
+  <p>BC measures the fraction of BPE morpheme boundaries located at edge positions — defined as the first or last 20% of a token's character positions. Values approaching 1 indicate prefix/suffix-dominant morphology (agglutinative or inflectional patterns visible at word edges). Values approaching 0 indicate infix-dominant or root-internal morphology.</p>
+
+  <div class="param-box">
+    <span class="param-label">BC computation</span>
+    edge_zone   = first 20% and last 20% of token length (character positions)<br>
+    BC          = boundaries_in_edge_zone / total_boundaries<br>
+    Voynich BC  = 0.361<br>
+    Tagalog BC  ≈ 0.20 (infix-dominant; CV reduplication + infix -um-, -in-)
+  </div>
+
+  <p>The Voynich BC value of 0.361 places it in a zone that is intermediate between strongly prefix/suffix-dominant alphabetic languages and strongly infix-dominant Austronesian languages. This metric is <strong>descriptive, not a statistical threshold</strong> — the observation window of ±10% around the Voynich value is defined by the Voynich value itself and has no independently derived significance boundary.</p>
+
+  <p>The divergence between Voynich VMML and Tagalog BC is one of the two failure conditions that prevent Tagalog from being a complete structural match. The other is cross-text VMML instability (see Section 4, Limitation 1).</p>
+</div>
+
+<!-- SECTION 4 -->
+<div class="method-section" id="limitations">
+  <h2>4. Honest Limitations</h2>
+  <p>These are genuine constraints on the conclusions that can be drawn from this research. They are not caveats added for rhetorical balance — they reflect real methodological boundaries.</p>
+
+  <ul class="limitations-list">
+    <li>
+      <span class="lim-num">L1</span>
+      <span><strong style="color:#c8c4bc;">Cross-text VMML stability is not confirmed for most tested languages.</strong> Only Tagalog has been tested on multiple texts under identical conditions. That test revealed instability: VMML(Noli me Tangere) vs. VMML(El Filibusterismo) shows a delta of 0.336 units — a difference large enough to shift a language between structural zones. This instability means single-text measurements for other languages may not represent stable language-level properties. Further multi-text validation is needed across the full corpus.</span>
+    </li>
+    <li>
+      <span class="lim-num">L2</span>
+      <span><strong style="color:#c8c4bc;">EVA transcription dependency.</strong> All Voynich analysis is based on the EVA (European Voynich Alphabet) transcription standard. If the Voynich script contains glyph distinctions that EVA collapses, or if different transcribers apply EVA differently, results may vary. Replication with independent transcriptions (e.g., the Landini or Frogguy systems) has not been conducted.</span>
+    </li>
+    <li>
+      <span class="lim-num">L3</span>
+      <span><strong style="color:#c8c4bc;">80k token cap in Paper 8 introduces systematic negative VMML bias.</strong> To ensure cross-study comparability, Paper 8 truncates all corpora at 80,000 tokens. Full-corpus computation in Paper 7 (no cap) produces VMML values approximately 0.180 units higher on average. This means Paper 8 values are not directly comparable to Paper 7 full-corpus values for the same language. The direction of bias is consistent and downward.</span>
+    </li>
+    <li>
+      <span class="lim-num">L4</span>
+      <span><strong style="color:#c8c4bc;">BPE is sensitive to training corpus size.</strong> Corpora with n &lt; 10,000 tokens show substantially higher VMML variance. The 10,000-token minimum was chosen to reduce this variance, but it does not eliminate it. Corpora near the minimum threshold should be interpreted with more caution than large corpora (&gt;50,000 tokens).</span>
+    </li>
+    <li>
+      <span class="lim-num">L5</span>
+      <span><strong style="color:#c8c4bc;">BC and CBMI observation windows are descriptive, not independently derived.</strong> The ±10% window around the Voynich observed values for BC and CBMI is used to frame the comparison space, not to establish statistical significance. No null distribution has been derived for these metrics under a hypothesis of random structural variation.</span>
+    </li>
+  </ul>
+</div>
+
+<!-- SECTION 5 -->
+<div class="method-section" id="reproducibility">
+  <h2>5. Reproducibility</h2>
+  <p>All data, scripts, and intermediate results are published on Zenodo under open licenses. The analysis pipeline is written in Python 3.10+ with no proprietary dependencies. All required packages are standard scientific Python (sentencepiece, numpy, pandas, matplotlib).</p>
+
+  <div class="param-box">
+    <span class="param-label">Replication environment</span>
+    Language:   Python 3.10+<br>
+    Platform:   macOS / Linux (Windows untested)<br>
+    Runtime:    2–3 hours for full replication on a standard laptop<br>
+    Memory:     ~4 GB RAM sufficient for all corpora<br>
+    License:    CC BY 4.0 (data) · MIT (code)
+  </div>
+
+  <p>The Zenodo deposits include: raw corpora (or download scripts for corpora with license restrictions), BPE tokenizer configurations, pre-computed VMML/BC/CBMI tables, and all figures from both papers in editable format.</p>
+
+  <div class="zenodo-links">
+    <a href="https://doi.org/10.5281/zenodo.20386119" target="_blank" class="zenodo-link">Paper 7 — doi.org/10.5281/zenodo.20386119</a>
+    <a href="https://doi.org/10.5281/zenodo.20467972" target="_blank" class="zenodo-link">Paper 8 — doi.org/10.5281/zenodo.20467972</a>
+  </div>
+
+  <p>Independent replication attempts are welcome. Discrepancies in results should be reported to <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a> — they will be investigated and, if confirmed, documented as errata in the Zenodo record.</p>
+</div>
+
+<!-- SECTION 6 -->
+<div class="method-section" id="citation">
+  <h2>6. Citation</h2>
+  <p>If you use this methodology or data in your own research, please cite the relevant paper. Both APA and BibTeX formats are provided below.</p>
+
+  <div class="cite-block">
+    <span class="cite-format">APA — Paper 7 (Typological Comparison)</span>
+    <p>L. (2026). <em>Structural fingerprinting of the Voynich Manuscript: A BPE-based typological comparison across 35+ language families.</em> Zenodo. https://doi.org/10.5281/zenodo.20386119</p>
+  </div>
+
+  <div class="cite-block">
+    <span class="cite-format">APA — Paper 8 (Austronesian Expansion)</span>
+    <p>L. (2026). <em>Austronesian structural comparison with the Voynich Manuscript: Tagalog cross-text instability and discriminant zone analysis.</em> Zenodo. https://doi.org/10.5281/zenodo.20467972</p>
+  </div>
+
+  <div class="cite-block">
+    <span class="cite-format">BibTeX — Paper 7</span>
+    <pre>@misc{voynich_lucidity_p7_2026,
+  author    = {L.},
+  title     = {Structural fingerprinting of the Voynich Manuscript:
+               A BPE-based typological comparison across 35+ language families},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.20386119},
+  url       = {https://doi.org/10.5281/zenodo.20386119}
+}</pre>
+  </div>
+
+  <div class="cite-block">
+    <span class="cite-format">BibTeX — Paper 8</span>
+    <pre>@misc{voynich_lucidity_p8_2026,
+  author    = {L.},
+  title     = {Austronesian structural comparison with the Voynich Manuscript:
+               Tagalog cross-text instability and discriminant zone analysis},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.20467972},
+  url       = {https://doi.org/10.5281/zenodo.20467972}
+}</pre>
+  </div>
+</div>
+
+<!-- BACK TO TOP -->
+<div style="text-align:center;padding:2rem;border-top:1px solid #1e1d1a;max-width:760px;margin:3rem auto 0;">
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:#5a5852;text-decoration:none;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;">↑ Back to top</a>
+  <span style="margin:0 1rem;color:#2a2a26;">·</span>
+  <a href="/findings" style="color:#5a5852;text-decoration:none;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;">Findings →</a>
+  <span style="margin:0 1rem;color:#2a2a26;">·</span>
+  <a href="/resources" style="color:#5a5852;text-decoration:none;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;">Download data →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family:Georgia,serif;font-size:1rem;color:#f0ede6;margin-bottom:0.6rem;">Voynich <span style="color:#c9a84c;">Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com" style="color:#c9a84c;">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
+</footer>
+
+</body>
+</html>

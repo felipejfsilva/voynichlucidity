@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="New to the Voynich Manuscript? Start here. Everything you need to know in 5 minutes — no academic background required.">
+  <meta property="og:title" content="Start Here · Voynich Lucidity">
+  <meta property="og:description" content="New to the Voynich Manuscript? Everything you need to know in 5 minutes — no academic background required.">
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://voynichlucidity.com/start-here">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Start Here · Voynich Lucidity">
+  <meta name="twitter:description" content="New to the Voynich Manuscript? Everything you need to know in 5 minutes.">
+  <meta name="twitter:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta name="keywords" content="Voynich Manuscript introduction, Voynich explained, what is the Voynich Manuscript, beginner guide Voynich">
+  <link rel="canonical" href="https://voynichlucidity.com/start-here/">
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BZWDDNCDP2');
+  </script>
+  <title>Start Here · Voynich Lucidity</title>
+  <style>
+    :root {
+      --black: #080806;
+      --white: #f0ede6;
+      --gold: #c9a84c;
+      --muted: #7a7670;
+      --border: #1e1d1a;
+      --card-bg: #0f0f0d;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--black); color:var(--white); font-family:var(--font-sans); font-size:16px; line-height:1.75; overflow-x:hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      background:rgba(8,8,6,0.88); backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      padding:0 2.5rem; display:flex; align-items:center;
+      justify-content:space-between; height:58px;
+    }
+    .nav-logo { font-family:var(--font-serif); font-size:1rem; letter-spacing:0.08em; color:var(--white); text-decoration:none; }
+    .nav-logo span { color:var(--gold); }
+    .nav-links { display:flex; gap:1.2rem; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:0.76rem; letter-spacing:0.07em; text-transform:uppercase; transition:color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--gold); }
+    .lang-switcher { display:flex; gap:0.5rem; }
+    .lang-switcher a { font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding:0.2rem 0.45rem; border:1px solid transparent; transition:all 0.25s; }
+    .lang-switcher a.active, .lang-switcher a:hover { color:var(--gold); border-color:var(--gold); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+    .hamburger span { width:22px; height:1px; background:var(--white); transition:all 0.3s; display:block; }
+    .mobile-menu { display:none; position:fixed; top:58px; left:0; right:0; background:rgba(8,8,6,0.98); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:1.5rem 2.5rem; z-index:99; flex-direction:column; gap:1.2rem; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { color:var(--muted); text-decoration:none; font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.2s; }
+    .mobile-menu a:hover { color:var(--gold); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 8rem 2rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .page-label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.12;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.4s forwards;
+    }
+    .page-header .subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-style: italic;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.6s forwards;
+    }
+    .header-divider {
+      width: 48px; height: 1px;
+      background: var(--gold);
+      margin: 2.5rem 0;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.9s forwards;
+    }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    /* ── SHARED SECTION STYLES ── */
+    .section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .section h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 400;
+      margin-bottom: 1.4rem;
+      line-height: 1.25;
+    }
+    .section p {
+      color: rgba(240,237,230,0.82);
+      margin-bottom: 1.1rem;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+    .section p:last-child { margin-bottom: 0; }
+    .section strong { color: var(--white); font-weight: 500; }
+
+    /* ── SECTION 1: 30-SECOND SUMMARY ── */
+    .thirty-seconds {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      margin-top: 1.5rem;
+    }
+    .thirty-seconds p {
+      font-family: var(--font-serif);
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: rgba(240,237,230,0.85);
+      margin-bottom: 1rem;
+    }
+    .thirty-seconds p:last-child { margin-bottom: 0; }
+    .thirty-seconds .highlight-stat {
+      display: inline-block;
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    /* ── SECTION 2: REASON CARDS ── */
+    .reason-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      margin-top: 1.5rem;
+    }
+    .reason-card {
+      background: var(--card-bg);
+      padding: 2rem 2rem 2rem 1.8rem;
+      display: flex;
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+    .reason-number {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: rgba(201,168,76,0.25);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 2rem;
+      text-align: right;
+    }
+    .reason-body {}
+    .reason-title {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .reason-text {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    /* ── SECTION 3: CONFIRMED FACTS ── */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      margin-top: 1.5rem;
+    }
+    .fact-card {
+      background: var(--card-bg);
+      padding: 2rem 1.8rem;
+    }
+    .fact-icon {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .fact-title {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .fact-text {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+    .fact-verified {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.2rem 0.55rem;
+    }
+
+    /* ── SECTION 4: THEORIES ── */
+    .theories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      margin-top: 1.5rem;
+    }
+    .theory-card {
+      background: var(--card-bg);
+      padding: 1.8rem;
+    }
+    .theory-name {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .theory-desc {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .theory-verdict {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border: 1px solid;
+      display: inline-block;
+    }
+    .verdict-possible { color: #8fb88a; border-color: rgba(143,184,138,0.35); }
+    .verdict-uncertain { color: #c9a84c; border-color: rgba(201,168,76,0.35); }
+    .verdict-open { color: var(--muted); border-color: rgba(122,118,112,0.35); }
+    .verdict-against { color: #c0886a; border-color: rgba(192,136,106,0.35); }
+
+    /* ── SECTION 5: WHERE TO GO NEXT ── */
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      margin-top: 1.5rem;
+    }
+    .path-card {
+      background: var(--card-bg);
+      padding: 1.8rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: background 0.25s;
+    }
+    .path-card:hover { background: #131310; }
+    .path-if {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .path-destination {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .path-desc {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+    .path-arrow {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: all 0.25s;
+    }
+    .path-card:hover .path-arrow { opacity: 1; transform: translateX(0); }
+
+    /* ── CLOSING PULL-QUOTE ── */
+    .closing {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .closing blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      color: rgba(240,237,230,0.6);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+    .closing-note {
+      font-size: 0.78rem;
+      color: #3a3a38;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── FOOTER ── */
+    footer { border-top:1px solid var(--border); padding:3rem 2rem; text-align:center; color:var(--muted); font-size:0.8rem; }
+    .footer-logo { font-family:var(--font-serif); font-size:1rem; color:var(--white); margin-bottom:0.5rem; }
+    .footer-logo span { color:var(--gold); }
+    footer a { color:var(--gold); text-decoration:none; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:700px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .reason-card { flex-direction:column; gap:0.8rem; }
+      .reason-number { font-size:1.4rem; }
+      .facts-grid, .theories-grid, .path-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/start-here">★ Start Here</a></li>
+    <li><a href="/the-manuscript">The Manuscript</a></li>
+    <li><a href="/library">Library</a></li>
+    <li><a href="/what-it-isnt">What It Isn't</a></li>
+    <li><a href="/findings">Findings</a></li>
+    <li><a href="/curiosities">Curiosities</a></li>
+    <li><a href="/media">Media</a></li>
+    <li><a href="/research">Research</a></li>
+    <li><a href="/methodology">Methodology</a></li>
+    <li><a href="/press">Press</a></li>
+    <li><a href="/collaborate">Collaborate</a></li>
+    <li><a href="/resources">Resources</a></li>
+    <li><a href="/about">About L.</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="lang-switcher">
+    <a href="/start-here" class="active">EN</a>
+    <a href="/pt">PT</a>
+    <a href="/es">ES</a>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/the-manuscript" onclick="toggleMenu()">The Manuscript</a>
+  <a href="/library" onclick="toggleMenu()">Library</a>
+  <a href="/what-it-isnt" onclick="toggleMenu()">What It Isn't</a>
+  <a href="/findings" onclick="toggleMenu()">Our Research</a>
+  <a href="/curiosities" onclick="toggleMenu()">Curiosities</a>
+  <a href="/media" onclick="toggleMenu()">Media</a>
+  <a href="/collaborate" onclick="toggleMenu()">Collaborate</a>
+  <a href="/resources" onclick="toggleMenu()">Resources</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <span class="page-label">New here? Start here.</span>
+  <h1>Everything you need to know in 5 minutes</h1>
+  <p class="subtitle">No academic background required.</p>
+  <div class="header-divider"></div>
+</div>
+
+<!-- SECTION 1: THE BASICS IN 30 SECONDS -->
+<div class="section">
+  <span class="section-label">Section 1 of 5</span>
+  <h2>The basics in 30 seconds</h2>
+
+  <div class="thirty-seconds">
+    <p>
+      Somewhere around the year <span class="highlight-stat">1404</span>, someone sat down and wrote a book.
+      They used an alphabet that nobody had seen before. They wrote in a language that nobody has identified.
+      The book has <span class="highlight-stat">240 pages</span> filled with illustrations of plants that don't
+      exist in nature, astronomical diagrams that don't match any known constellation, and groups of women
+      bathing in pools connected by strange tubes.
+    </p>
+    <p>
+      This book is real. It's not an internet rumor, not a modern fake. Scientists carbon-dated the parchment
+      in <strong>2009</strong>, and the results were clear: the material itself is from between
+      <strong>1404 and 1438</strong>. It has been sitting at <strong>Yale University's Beinecke Rare Book
+      Library</strong> since 1969, catalogued as MS 408.
+    </p>
+    <p>
+      It is called the Voynich Manuscript — named after the rare book dealer who bought it in 1912.
+    </p>
+    <p>
+      Here's the thing. In <span class="highlight-stat">600 years</span>, nobody has read a single word of it.
+      Not one sentence. Not one label under one plant illustration. The text has defeated every expert,
+      every machine, every method thrown at it. And the mystery is genuine — which is exactly what makes
+      it so hard to leave alone.
+    </p>
+  </div>
+</div>
+
+<!-- SECTION 2: WHY HAS NO ONE CRACKED IT -->
+<div class="section">
+  <span class="section-label">Section 2 of 5</span>
+  <h2>Why hasn't anyone cracked it?</h2>
+
+  <div class="reason-cards">
+
+    <div class="reason-card">
+      <div class="reason-number">1</div>
+      <div class="reason-body">
+        <p class="reason-title">We don't know the alphabet.</p>
+        <p class="reason-text">
+          The Voynich uses characters that appear in no other known writing system. When archaeologists
+          cracked Egyptian hieroglyphics, they had the Rosetta Stone — the same message written in
+          three languages, one of which they already understood. For the Voynich, there is no Rosetta Stone.
+          There is no bilingual text, no known key, no anchor point to start from. We don't even know
+          if the characters represent letters, syllables, sounds, or something else entirely.
+        </p>
+      </div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-number">2</div>
+      <div class="reason-body">
+        <p class="reason-title">We don't know the language.</p>
+        <p class="reason-text">
+          Even if we cracked the alphabet tomorrow, we might still be stuck. The text could be
+          a cipher of a known language — Latin, Arabic, Hebrew — written in disguise. It could
+          be an invented language that existed only in the author's mind. It could be a natural
+          language that nobody has matched to it yet. Or it could be something that doesn't fit
+          any of those categories. Researchers have tested 63 languages against the Voynich's
+          structure. None is a convincing match across the board.
+        </p>
+      </div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-number">3</div>
+      <div class="reason-body">
+        <p class="reason-title">It might not be a language at all.</p>
+        <p class="reason-text">
+          Some serious researchers have argued that the whole thing is an elaborate fake —
+          a medieval con designed to look like a mysterious secret text while meaning absolutely
+          nothing. If true, deciphering it would be impossible because there's nothing to decipher.
+          The counterargument is statistical: the text has patterns — word frequency distributions,
+          positional rules, structural regularities — that are extremely hard to fake convincingly
+          and that genuine languages share. The debate is not settled.
+        </p>
+      </div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-number">4</div>
+      <div class="reason-body">
+        <p class="reason-title">The best minds have tried. And failed.</p>
+        <p class="reason-text">
+          This is not a problem that just needs more effort. The NSA — America's signals intelligence
+          agency — studied it during and after World War II. Professional cryptographers who broke
+          Nazi codes tried. Medieval Latin scholars tried. Linguists, computer scientists, AI systems
+          with access to every known human language tried. None got further than partial, contested
+          interpretations that didn't survive peer review. The failure isn't discouraging —
+          it's the clearest measure of how genuinely hard the problem is.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 3: WHAT WE KNOW FOR CERTAIN -->
+<div class="section">
+  <span class="section-label">Section 3 of 5</span>
+  <h2>What we actually know for certain</h2>
+  <p style="color:var(--muted);margin-bottom:0;">
+    Most things about the Voynich are disputed. These three are not.
+  </p>
+
+  <div class="facts-grid">
+
+    <div class="fact-card">
+      <span class="fact-icon">&#x231B;</span>
+      <p class="fact-title">It is genuinely medieval.</p>
+      <p class="fact-text">
+        In 2009, the University of Arizona performed radiocarbon dating on four samples of the
+        parchment (made from animal skin, as was common before paper became widespread).
+        The result: 1404 to 1438. The manuscript is not a modern forgery. It's real, it's
+        old, and it was made during the same period as Joan of Arc's trial and the Ottoman
+        Empire's rise.
+      </p>
+      <span class="fact-verified">Confirmed · 2009 carbon dating</span>
+    </div>
+
+    <div class="fact-card">
+      <span class="fact-icon">&#x223E;</span>
+      <p class="fact-title">The text behaves like language.</p>
+      <p class="fact-text">
+        Random gibberish doesn't follow the same statistical patterns as real text.
+        The Voynich does. Its words follow something close to Zipf's Law — the same
+        frequency distribution found in English, Arabic, Chinese, and virtually every
+        natural language. Certain characters appear only in certain positions. Some words
+        cluster near specific illustrations. The structure suggests meaning, even if we
+        can't access it.
+      </p>
+      <span class="fact-verified">Confirmed · Multiple studies</span>
+    </div>
+
+    <div class="fact-card">
+      <span class="fact-icon">&#x270D;</span>
+      <p class="fact-title">Multiple people wrote it.</p>
+      <p class="fact-text">
+        Analysis of the handwriting identifies at least five distinct scribal hands —
+        different writers, each responsible for different sections of the book. This means
+        the Voynich was a collaborative project, not the obsessive private work of a single
+        eccentric. Someone organized it. Someone commissioned it or coordinated it.
+        That changes what it might be.
+      </p>
+      <span class="fact-verified">Confirmed · Handwriting analysis</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 4: THE BIGGEST THEORIES -->
+<div class="section">
+  <span class="section-label">Section 4 of 5</span>
+  <h2>The biggest theories</h2>
+  <p style="color:var(--muted);margin-bottom:0;">
+    Five leading explanations — with an honest verdict on each.
+  </p>
+
+  <div class="theories-grid">
+
+    <div class="theory-card">
+      <p class="theory-name">Natural language</p>
+      <p class="theory-desc">
+        The text is written in a real, spoken language — one we know or once knew —
+        using the unique Voynich alphabet to represent its sounds. Candidates have
+        included Arabic, Hebrew, Latin, Ukrainian, and dozens of others.
+      </p>
+      <span class="theory-verdict verdict-possible">Possible — but none confirmed after 63 tested</span>
+    </div>
+
+    <div class="theory-card">
+      <p class="theory-name">Invented language</p>
+      <p class="theory-desc">
+        The author constructed a language from scratch — its own grammar, its own
+        vocabulary, its own internal logic. Medieval Europe had a small tradition of
+        constructed languages, and the Voynich's consistency fits this theory well.
+      </p>
+      <span class="theory-verdict verdict-uncertain">Consistent with the data — untestable</span>
+    </div>
+
+    <div class="theory-card">
+      <p class="theory-name">Complex cipher</p>
+      <p class="theory-desc">
+        A known language is hidden inside, disguised by a cipher system — substitution,
+        transposition, abbreviation, or a combination of all three. Medieval Europe had
+        a long tradition of secret writing, especially in alchemical and medical texts.
+      </p>
+      <span class="theory-verdict verdict-possible">Possible — no key found</span>
+    </div>
+
+    <div class="theory-card">
+      <p class="theory-name">Elaborate medieval hoax</p>
+      <p class="theory-desc">
+        The whole manuscript is meaningless — designed to look profound in order to
+        sell or impress. Medieval forgeries existed. If true, the text carries no
+        information at all, which would explain why no one can decode it.
+      </p>
+      <span class="theory-verdict verdict-against">Statistical patterns argue against pure randomness</span>
+    </div>
+
+    <div class="theory-card">
+      <p class="theory-name">Something else entirely</p>
+      <p class="theory-desc">
+        A shorthand system, a glossolalia record, a memory device, a notation system
+        for something that doesn't map cleanly onto language. Some researchers argue
+        we're applying the wrong framework to begin with.
+      </p>
+      <span class="theory-verdict verdict-open">Open</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECTION 5: WHERE TO GO NEXT -->
+<div class="section">
+  <span class="section-label">Section 5 of 5</span>
+  <h2>Where to go next on this site</h2>
+  <p style="color:var(--muted);margin-bottom:0;">
+    Pick what sounds most like you.
+  </p>
+
+  <div class="path-grid">
+
+    <a href="/the-manuscript" class="path-card">
+      <p class="path-if">If you're curious about the images</p>
+      <p class="path-destination">The Manuscript</p>
+      <p class="path-desc">
+        Browse the sections of the manuscript — botanical, astronomical, balneological.
+        See what the illustrations actually look like and what researchers make of them.
+      </p>
+      <span class="path-arrow">Explore the pages &rarr;</span>
+    </a>
+
+    <a href="/what-it-isnt" class="path-card">
+      <p class="path-if">If you want to see what's been ruled out</p>
+      <p class="path-destination">What It Isn't</p>
+      <p class="path-desc">
+        A clear record of the theories that didn't survive scrutiny. Understanding what's
+        been eliminated is how you understand where the real mystery still lives.
+      </p>
+      <span class="path-arrow">See the eliminations &rarr;</span>
+    </a>
+
+    <a href="/findings" class="path-card">
+      <p class="path-if">If you're looking for the research</p>
+      <p class="path-destination">Findings</p>
+      <p class="path-desc">
+        Original typological analysis comparing the Voynich against 63 language corpora
+        across 35 language families. What the numbers actually show.
+      </p>
+      <span class="path-arrow">Read the findings &rarr;</span>
+    </a>
+
+    <a href="/library" class="path-card">
+      <p class="path-if">If you want to read everything published</p>
+      <p class="path-destination">Library</p>
+      <p class="path-desc">
+        The most complete bibliography of Voynich scholarship — academic papers,
+        books, notable forum posts, organized and searchable.
+      </p>
+      <span class="path-arrow">Browse the library &rarr;</span>
+    </a>
+
+    <a href="/collaborate" class="path-card">
+      <p class="path-if">If you have something to contribute</p>
+      <p class="path-destination">Collaborate</p>
+      <p class="path-desc">
+        If you have a background in linguistics, cryptography, medieval history,
+        or computational analysis, this is where to start. Full data access available.
+      </p>
+      <span class="path-arrow">Get in touch &rarr;</span>
+    </a>
+
+    <a href="/curiosities" class="path-card">
+      <p class="path-if">If you just want weird facts</p>
+      <p class="path-destination">Curiosities</p>
+      <p class="path-desc">
+        The strange details that don't fit anywhere else — the missing pages,
+        the repeated symbols, the one word that might be a city name.
+      </p>
+      <span class="path-arrow">See the curiosities &rarr;</span>
+    </a>
+
+  </div>
+</div>
+
+<!-- CLOSING PULL-QUOTE -->
+<div class="closing">
+  <blockquote>
+    "The manuscript has survived floods, wars, the Inquisition, and five centuries of
+    human forgetting. Whatever it says, it was meant to last."
+  </blockquote>
+  <p class="closing-note">Voynich Lucidity &nbsp;&middot;&nbsp; Clarity over certainty. Method over speculation.</p>
+</div>
+
+<!-- BACK TO TOP -->
+<div style="text-align:center;padding:1.5rem 2rem;border-top:1px solid var(--border);">
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="color:var(--muted);text-decoration:none;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;">&uarr; Back to top</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Voynich <span>Lucidity</span></p>
+  <p>The most comprehensive resource on the Voynich Manuscript &nbsp;&middot;&nbsp; <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">&copy; 2026 Voynich Lucidity &nbsp;&middot;&nbsp; Clarity over certainty. Method over speculation.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('open');
+  }
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const hamburger = document.querySelector('.hamburger');
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+</script>
+
+</body>
+</html>
