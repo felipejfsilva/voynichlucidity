@@ -164,6 +164,12 @@
       border: 1px solid rgba(180, 40, 30, 0.35);
     }
 
+    .badge.popular {
+      background: rgba(201, 168, 76, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+    }
+
     .badge.preliminary {
       background: rgba(201, 168, 76, 0.12);
       color: var(--gold);
@@ -217,6 +223,28 @@
       margin-right: 0.5rem;
     }
 
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.7rem;
+      margin-top: 3.5rem;
+      line-height: 1.25;
+    }
+
+    .section-heading:first-of-type {
+      margin-top: 0;
+    }
+
+    .section-sub {
+      font-size: 0.88rem;
+      color: #7a7670;
+      max-width: 680px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
     /* ── NOTE ── */
     .note-box {
       background: #0c0c0a;
@@ -236,6 +264,17 @@
       font-size: 1rem;
       flex-shrink: 0;
       margin-top: 0.1rem;
+    }
+
+    .page-note-box {
+      background: #0c0c0a;
+      border: 1px solid #2a2925;
+      border-left: 3px solid var(--gold);
+      padding: 1.2rem 1.8rem;
+      font-size: 0.88rem;
+      color: #9a9690;
+      line-height: 1.7;
+      margin-bottom: 3rem;
     }
 
     /* ── FOOTER ── */
@@ -315,7 +354,83 @@
 
 <main class="content">
 
-  <p class="section-label"><span>●</span> Confirmed Eliminations &amp; Open Questions · 18 entries · Last updated June 2026</p>
+  <div class="page-note-box">
+    This page documents what the evidence has ruled out — both popular speculation and scientific hypotheses. Every item here has been tested and found incompatible with what we know. The list grows as new research is published.
+  </div>
+
+  <!-- SECTION 1: POPULAR THEORIES -->
+
+  <h2 class="section-heading">What People Claim It Is</h2>
+  <p class="section-sub">These are theories seriously proposed and publicly circulated — some for decades — that have been examined and found incompatible with the physical, statistical, or historical evidence.</p>
+
+  <p class="section-label"><span>●</span> Popular Theories · 8 entries · Tested and found lacking</p>
+
+  <div class="elim-grid">
+
+    <div class="elim-card">
+      <span class="badge popular">Popular Theory</span>
+      <h3>"An Extraterrestrial Language"</h3>
+      <p>Proposed by fringe theorists since the 1960s. No evidence of non-terrestrial origin has ever been identified. The vellum, ink, and pigments are entirely consistent with 15th-century European production. Carbon dating (2009, University of Arizona) places the vellum's production firmly in 1404–1438 — a range that fits standard medieval European manuscript production with no anomalies.</p>
+      <span class="evidence-tag">Carbon dating 2009 · UArizona · vellum 1404–1438</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Popular Theory</span>
+      <h3>"A Medieval Witchcraft or Alchemy Manual"</h3>
+      <p>Popular in sensationalist media and documentary treatments. The manuscript predates most recognized witchcraft literature as a genre. No verified connection to any known esoteric tradition has been established. The illustrations — while unusual — do not match documented magical systems, grimoires, or alchemical iconography of the period when examined by specialists in those traditions.</p>
+      <span class="evidence-tag">Historical analysis · no esoteric tradition match</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Popular Theory</span>
+      <h3>"A Copy or Cipher of Another Known Book"</h3>
+      <p>Proposed repeatedly — attributed to Roger Bacon's writings, various medieval herbals, and other known texts. No source text has been identified despite more than 100 years of active search by researchers with access to major manuscript collections. Structural analysis shows the text is not a simple substitution or transformation of any known language or document.</p>
+      <span class="evidence-tag">100+ years of search · no source identified</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Popular Theory</span>
+      <h3>"Pure Random Noise (a Meaningless Hoax)"</h3>
+      <p>Schinner (2007) demonstrated that a Cardan grille mechanism could produce statistical properties similar to the Voynich text, supporting a hoax interpretation. However, Montemurro and Zanette (2013) found semantic clustering in the text — a pattern inconsistent with random generation. The statistical signature of meaning is present. Explaining how a hoaxer produced it without intending meaning remains unresolved and implausible.</p>
+      <span class="evidence-tag">Schinner 2007 · Montemurro &amp; Zanette 2013 · semantic clustering confirmed</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Popular Theory</span>
+      <h3>"A Lost Natural Language from an Obscure Region"</h3>
+      <p>Proposed for dozens of languages over the decades — Arabic, Hebrew, Latin, Welsh, Nahuatl, Cherokee, and many others. None has produced a verifiable translation confirmed by independent review. Partial pattern matches have been announced repeatedly, but none have survived systematic scrutiny or produced a decipherment that allows prediction of new text.</p>
+      <span class="evidence-tag">Dozens of candidates · zero confirmed translations</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Popular Theory</span>
+      <h3>"Glossolalia (Spiritual Babbling)"</h3>
+      <p>Proposed by those struck by the manuscript's language-like appearance combined with its apparent unreadability. This explanation doesn't account for the consistent grammatical structure found across folios, the Zipf distribution of word frequencies (characteristic of natural language), and the semantic clustering identified by computational analysis. Random spiritual babbling does not produce these statistical regularities.</p>
+      <span class="evidence-tag">Zipf distribution · grammatical consistency · semantic clustering</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Popular Theory</span>
+      <h3>"A Personal Cipher for One Person's Private Notes"</h3>
+      <p>Plausible on its face and not falsifiable without the key. However, the consistent cross-folio grammar and vocabulary distribution across sections covering what appear to be different subjects (herbal, astronomical, biological, pharmaceutical) suggests a system intended for communication — or at minimum for re-reading across time — rather than pure privacy. A personal cipher produced over years would show more drift.</p>
+      <span class="evidence-tag">Cross-folio grammar consistency · vocabulary distribution analysis</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Popular Theory</span>
+      <h3>"An Elaborate Renaissance Forgery"</h3>
+      <p>Proposed as a money-making scheme attributed to Wilfrid Voynich himself, who acquired and named the manuscript in 1912. Carbon dating (2009) places the vellum's production in 1404–1438 — roughly 500 years before Voynich found it. The forgery hypothesis is definitively ruled out by physical evidence: no forger in 1912 could have fabricated 15th-century vellum that passes radiocarbon dating.</p>
+      <span class="evidence-tag">Carbon dating 2009 · 1404–1438 · forgery hypothesis eliminated</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 2: SCIENTIFIC ELIMINATIONS -->
+
+  <h2 class="section-heading">What the Evidence Eliminates</h2>
+  <p class="section-sub">These are hypotheses that have been subjected to systematic quantitative testing. Elimination here means the hypothesis produces predictions inconsistent with the measured structural properties of the Voynich text.</p>
+
+  <p class="section-label"><span>●</span> Scientific Eliminations &amp; Open Questions · 18 entries · Last updated June 2026</p>
 
   <div class="elim-grid">
 
@@ -357,7 +472,7 @@
     <div class="elim-card">
       <span class="badge eliminated">Eliminated</span>
       <h3>Basque as high-VMML reference</h3>
-      <p>Basque (Euskara) is a canonical agglutinative language used as a control. VMML = 4.475 on natural text corpus — significantly below the Alphabetic Ceiling. Confirms that agglutination alone does not produce high VMML; morphological architecture matters more than typological label.</p>
+      <p>Basque (Euskara) is a canonical agglutinative language used as a control. VMML = 4.475 on natural text corpus — significantly below the Alphabetic Ceiling despite canonical agglutinative morphology. Confirms that agglutination alone does not produce high VMML; morphological architecture matters more than typological label.</p>
       <span class="evidence-tag">Paper 7 · agglutinative control</span>
     </div>
 
