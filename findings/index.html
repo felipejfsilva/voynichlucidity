@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Original research findings from Voynich Lucidity — six findings from two published preprints on typological analysis of the Voynich Manuscript.">
+  <meta name="description" content="Published hypotheses and research findings about the Voynich Manuscript — from multiple independent research traditions. Structural, historical, and computational findings curated with sources.">
   <meta property="og:title" content="Findings · Voynich Lucidity">
   <title>Findings · Voynich Lucidity</title>
   <style>
@@ -128,155 +128,178 @@
       padding: 5rem 2rem 6rem;
     }
 
-    /* ── FINDING BLOCK ── */
-    .finding {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 0;
+    /* ── NOTE BOX ── */
+    .note-box {
+      background: #0d0c0a;
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem 2rem;
+      margin-bottom: 4rem;
+      font-size: 0.92rem;
+      color: #c0bbb4;
+      line-height: 1.75;
+    }
+
+    .note-box.contested {
+      border-left-color: #888;
+      background: #0a0a09;
+    }
+
+    .note-box.our-research {
+      border-left-color: #555;
+      background: #0a0a09;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 5rem;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
       border-bottom: 1px solid var(--border);
-      padding: 3rem 0;
     }
 
-    .finding:first-child { padding-top: 0; }
-    .finding:last-child { border-bottom: none; }
-
-    .finding-meta {
-      padding-right: 3rem;
-      padding-top: 0.2rem;
-    }
-
-    .finding-num {
-      font-family: var(--font-serif);
-      font-size: 3rem;
-      color: #1e1d1a;
-      line-height: 1;
+    .section-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
       display: block;
       margin-bottom: 0.6rem;
     }
 
-    .finding-paper {
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-    }
-
-    .finding-body h2 {
+    .section-header h2 {
       font-family: var(--font-serif);
-      font-size: 1.35rem;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
       font-weight: 400;
       color: var(--white);
+      line-height: 1.2;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 2rem 2.2rem;
       margin-bottom: 1.2rem;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.6rem;
+      border-radius: 2px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 0.35rem;
+    }
+
+    .badge-green {
+      background: rgba(68,170,102,0.18);
+      color: #4aa866;
+      border: 1px solid rgba(68,170,102,0.35);
+    }
+
+    .badge-blue {
+      background: rgba(80,130,200,0.15);
+      color: #6aabe0;
+      border: 1px solid rgba(80,130,200,0.3);
+    }
+
+    .badge-amber {
+      background: rgba(201,168,76,0.12);
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+
+    .badge-red {
+      background: rgba(200,80,80,0.15);
+      color: #cc5555;
+      border: 1px solid rgba(200,80,80,0.3);
+    }
+
+    .badge-muted {
+      background: rgba(100,100,100,0.12);
+      color: #888;
+      border: 1px solid rgba(100,100,100,0.25);
+    }
+
+    .card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--white);
       line-height: 1.3;
     }
 
-    .finding-summary {
-      font-size: 1rem;
-      color: #d0cbc3;
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
+    .card h3.retracted {
+      text-decoration: line-through;
+      color: var(--muted);
     }
 
-    .finding-detail {
-      font-size: 0.88rem;
+    .card-finding {
+      font-size: 0.97rem;
+      color: #d0cbc3;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-source {
+      font-size: 0.8rem;
       color: var(--muted);
-      line-height: 1.7;
-      padding-top: 1.2rem;
+      margin-bottom: 0.9rem;
+      font-style: italic;
+    }
+
+    .card-source strong {
+      font-style: normal;
+      color: #9a9590;
+      font-weight: 600;
+    }
+
+    .card-establishes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding-top: 1rem;
       border-top: 1px solid #161614;
     }
 
-    /* ── METRIC INLINE ── */
-    .metric-inline {
-      display: inline-flex;
-      gap: 2rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 1rem 1.5rem;
-      margin: 1.2rem 0;
-      flex-wrap: wrap;
-    }
-
-    .mi-item {
-      text-align: center;
-    }
-
-    .mi-value {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      color: var(--gold);
-      display: block;
-      line-height: 1;
-    }
-
-    .mi-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+    .establishes-line {
+      font-size: 0.82rem;
       color: var(--muted);
-      display: block;
-      margin-top: 0.3rem;
+      line-height: 1.5;
     }
 
-    /* ── DOWNLOAD SECTION ── */
-    .download-section {
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 1px solid var(--border);
+    .establishes-line strong {
+      color: #9a9590;
+      font-weight: 600;
     }
 
-    .download-section h3 {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--white);
-      margin-bottom: 1.5rem;
+    .establishes-line.does-not strong {
+      color: #7a7670;
     }
 
-    .download-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-    }
-
-    .download-card {
-      background: var(--card-bg);
-      padding: 1.8rem;
-      text-decoration: none;
-      display: block;
-      transition: background 0.2s;
-    }
-
-    .download-card:hover { background: #111110; }
-
-    .dl-label {
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .dl-title {
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      color: var(--white);
-      display: block;
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    }
-
-    .dl-meta {
-      font-size: 0.78rem;
+    .card-status {
+      font-size: 0.82rem;
       color: var(--muted);
-    }
-
-    .dl-arrow {
-      color: var(--gold);
-      margin-left: 0.3rem;
-      font-size: 0.9rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid #161614;
+      line-height: 1.5;
     }
 
     /* ── FOOTER ── */
@@ -309,10 +332,9 @@
       .nav-links { display: none; }
       .page-header { padding: 8rem 1.2rem 3rem; }
       .content { padding: 3rem 1.2rem 4rem; }
-      .finding { grid-template-columns: 1fr; gap: 0.5rem; }
-      .finding-meta { padding-right: 0; padding-bottom: 0.5rem; }
-      .finding-num { font-size: 2rem; }
-      .download-grid { grid-template-columns: 1fr; }
+      .card { padding: 1.5rem; }
+      .card-header { flex-direction: column; gap: 0.5rem; }
+      .note-box { padding: 1.2rem 1.4rem; }
     }
   </style>
   <meta property="og:type" content="website">
@@ -352,175 +374,166 @@
 </nav>
 
 <div class="page-header">
-  <span class="page-label">Original Research</span>
-  <h1>Findings</h1>
-  <p class="page-intro">Two published preprints. Six findings. Each result is presented in two layers: an accessible summary followed by technical detail. All claims are linked to peer-reviewed preprints on Zenodo.</p>
+  <span class="page-label">Published Hypotheses &amp; Research</span>
+  <h1>What Researchers Have Found</h1>
+  <p class="page-intro">A curated overview of the strongest published findings about the Voynich Manuscript — from multiple independent research traditions. Our own computational analysis appears at the end as one perspective among several.</p>
 </div>
 
 <main class="content">
 
-  <!-- FINDING 1 -->
-  <div class="finding">
-    <div class="finding-meta">
-      <span class="finding-num">01</span>
-      <span class="finding-paper">Paper 7</span>
+  <div class="note-box">
+    This page presents findings from multiple research traditions, not a single theory. Voynich research is genuinely multi-disciplinary — paleography, cryptography, computational linguistics, and history all contribute. We present each finding with its source, its strength, and what it does and does not establish.
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">Section 1</span>
+      <h2>Structural &amp; Statistical Findings</h2>
+      <span class="section-label" style="margin-top:0.5rem;letter-spacing:0.14em;text-transform:none;font-size:0.85rem;color:#6a6660;">What the text itself reveals</span>
     </div>
-    <div class="finding-body">
-      <h2>The Voynich Discriminant Zone</h2>
-      <p class="finding-summary">Among 55+ corpora from 35+ language families, only Tagalog (Noli Me Tangere, canonical full-corpus) enters the 95% confidence interval for Voynich VMML. But the match collapses when a second metric is introduced.</p>
-      <div class="metric-inline">
-        <div class="mi-item">
-          <span class="mi-value">5.918</span>
-          <span class="mi-label">Voynich VMML</span>
-        </div>
-        <div class="mi-item">
-          <span class="mi-value">5.914</span>
-          <span class="mi-label">Tagalog (Noli) VMML</span>
-        </div>
-        <div class="mi-item">
-          <span class="mi-value">0.361</span>
-          <span class="mi-label">Voynich BC</span>
-        </div>
-        <div class="mi-item">
-          <span class="mi-value">0.202</span>
-          <span class="mi-label">Tagalog BC</span>
-        </div>
+
+    <!-- Card 1 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-green">Rigorous</span>
+        <h3>The Text Is Not Random</h3>
       </div>
-      <p class="finding-detail">The VMML proximity between Voynich and Tagalog (Noli) is the closest approach by any natural language tested. The Boundary Concentration gap — 0.161 units — represents a decisive structural mismatch. No corpus in our 55+ collection simultaneously enters the Voynich zone on VMML, BC, and CBMI. The Discriminant Zone is empirically empty.</p>
-    </div>
-  </div>
-
-  <!-- FINDING 2 -->
-  <div class="finding">
-    <div class="finding-meta">
-      <span class="finding-num">02</span>
-      <span class="finding-paper">Paper 7</span>
-    </div>
-    <div class="finding-body">
-      <h2>The Alphabetic Ceiling</h2>
-      <p class="finding-summary">Every alphabetic natural language tested falls at or below VMML = 5.748, derived from Nietzsche's Also sprach Zarathustra — the highest-scoring text in the initial 35-corpus scan. Voynich exceeds it.</p>
-      <div class="metric-inline">
-        <div class="mi-item">
-          <span class="mi-value">5.748</span>
-          <span class="mi-label">Ceiling (Nietzsche, n=82,802)</span>
-        </div>
-        <div class="mi-item">
-          <span class="mi-value">5.918</span>
-          <span class="mi-label">Voynich VMML</span>
-        </div>
-        <div class="mi-item">
-          <span class="mi-value">+0.170</span>
-          <span class="mi-label">Excess above ceiling</span>
-        </div>
+      <p class="card-finding">Information-theoretic analysis shows word co-occurrence patterns consistent with meaningful semantic structure. High-entropy words appear where they would in meaningful text — a pattern that is very difficult to replicate with random or hoax generation.</p>
+      <p class="card-source"><strong>Source:</strong> Montemurro &amp; Zanette (2013). Keywords and Co-Occurrence Patterns in the Voynich Manuscript. <em>PLOS ONE</em>, 8(6), e66344.</p>
+      <div class="card-establishes">
+        <p class="establishes-line"><strong>What it establishes:</strong> The text has semantic-like structure.</p>
+        <p class="establishes-line does-not"><strong>What it does not establish:</strong> What the structure encodes.</p>
       </div>
-      <p class="finding-detail">The ceiling is empirically derived, not theoretically imposed. German was the anchor candidate because its compound morphology places it near the top of the natural-language VMML distribution. The ceiling has been replicated across multiple language samples. The sole exception is Tagalog (Noli Me Tangere, full corpus) — which is the subject of Finding 3.</p>
     </div>
-  </div>
 
-  <!-- FINDING 3 -->
-  <div class="finding">
-    <div class="finding-meta">
-      <span class="finding-num">03</span>
-      <span class="finding-paper">Paper 8</span>
-    </div>
-    <div class="finding-body">
-      <h2>Tagalog VMML is text-specific, not a language property</h2>
-      <p class="finding-summary">The supra-ceiling VMML observed in Tagalog (Noli Me Tangere) does not generalise. The same author's second major novel yields a VMML below the ceiling — ruling out the interpretation that Tagalog as a language exceeds the alphabetic ceiling.</p>
-      <div class="metric-inline">
-        <div class="mi-item">
-          <span class="mi-value">5.914</span>
-          <span class="mi-label">Tagalog — Noli Me Tangere</span>
-        </div>
-        <div class="mi-item">
-          <span class="mi-value">5.578</span>
-          <span class="mi-label">Tagalog — El filibusterismo</span>
-        </div>
-        <div class="mi-item">
-          <span class="mi-value">Δ 0.336</span>
-          <span class="mi-label">Cross-text variation</span>
-        </div>
+    <!-- Card 2 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-green">Rigorous</span>
+        <h3>Two Distinct "Languages" Are Real (Currier A/B)</h3>
       </div>
-      <p class="finding-detail">Both texts are by José Rizal, written within four years of each other, in the same language and literary register. A cross-text VMML delta of 0.336 units — larger than the ceiling margin itself — demonstrates that Tagalog VMML is highly sensitive to text-level factors: vocabulary, topic, sentence structure. This instability disqualifies the Noli result as evidence of a language-level property.</p>
-    </div>
-  </div>
-
-  <!-- FINDING 4 -->
-  <div class="finding">
-    <div class="finding-meta">
-      <span class="finding-num">04</span>
-      <span class="finding-paper">Paper 8</span>
-    </div>
-    <div class="finding-body">
-      <h2>Structural mechanism divergence</h2>
-      <p class="finding-summary">Voynich and Tagalog achieve similar VMML values through fundamentally different internal mechanisms — confirmed by character permutation testing. This is the strongest evidence that VMML proximity alone is not sufficient to claim structural similarity.</p>
-      <div class="metric-inline">
-        <div class="mi-item">
-          <span class="mi-value">−22.0%</span>
-          <span class="mi-label">Voynich decay (CI95: [5.07, 5.82])</span>
-        </div>
-        <div class="mi-item">
-          <span class="mi-value">−12–14%</span>
-          <span class="mi-label">Tagalog decay (CI95: [4.77, 5.04])</span>
-        </div>
+      <p class="card-finding">A Beta-Binomial mixture model applied to 11 character-pair substitution ratios, with no prior knowledge of Currier's labels, independently selects two groups and predicts held-out folio labels at 89.2% accuracy. The distinction is not a codicological artifact — it persists within individual quires. The A/B label is a low-resolution projection of a three-layer generative structure: a boolean folio switch, a template system, and an independent gradient d/l dimension.</p>
+      <p class="card-source"><strong>Source:</strong> Parisel (2026). A Quantitative Confirmation of the Currier Language Distinction. <em>arXiv:2604.25979</em>.</p>
+      <div class="card-establishes">
+        <p class="establishes-line"><strong>What it establishes:</strong> The distinction is real and structural, not observational.</p>
+        <p class="establishes-line does-not"><strong>What it does not establish:</strong> What the two "languages" represent — two scribes, two registers, or something else.</p>
       </div>
-      <p class="finding-detail">The permutation test randomly shuffles characters within each corpus (n=50 trials, corpus-size matched at n=19,968 tokens) and measures the resulting VMML. A larger decay signals that more of the original VMML depended on specific character ordering — that is, on real internal structure. Voynich decays more than twice as much as Tagalog. The CI95 ranges do not overlap. Same VMML level, opposite structural mechanisms.</p>
     </div>
-  </div>
 
-  <!-- FINDING 5 -->
-  <div class="finding">
-    <div class="finding-meta">
-      <span class="finding-num">05</span>
-      <span class="finding-paper">Paper 8</span>
-    </div>
-    <div class="finding-body">
-      <h2>Focus-morphology density gradient hypothesis</h2>
-      <p class="finding-summary">A working hypothesis emerging from the Austronesian analysis: VMML elevation above the alphabetic ceiling may correlate with focus-morphology density rather than simple phylogenetic membership in the Philippine branch.</p>
-      <p class="finding-detail">The evidence: Tagalog (complex focus system, Noli) and Ilocano (provisionally, n=12,807) exceed the ceiling. Cebuano (NLLB corpus, likely code-switching bias) does not. Indonesian and Malay — Austronesian but without Philippine-type focus morphology — fall well below the ceiling (4.838 and 5.293 respectively). The hypothesis predicts that formal Cebuano, and Kapampangan and Hiligaynon, should exceed the ceiling if focus-morphology density is the causal variable. These tests are pending. This finding is explicitly flagged as a working hypothesis, not a confirmed result.</p>
-    </div>
-  </div>
-
-  <!-- FINDING 6 -->
-  <div class="finding">
-    <div class="finding-meta">
-      <span class="finding-num">06</span>
-      <span class="finding-paper">Paper 8</span>
-    </div>
-    <div class="finding-body">
-      <h2>The discriminant zone remains empty</h2>
-      <p class="finding-summary">After 63 systematic corpus tests across 35+ language families, no natural language simultaneously occupies the Voynich zone on all three metrics. The zone is not empty because we haven't looked — it is empty after exhaustive testing.</p>
-      <div class="metric-inline">
-        <div class="mi-item">
-          <span class="mi-value">63</span>
-          <span class="mi-label">Corpora tested</span>
-        </div>
-        <div class="mi-item">
-          <span class="mi-value">35+</span>
-          <span class="mi-label">Language families</span>
-        </div>
-        <div class="mi-item">
-          <span class="mi-value">0</span>
-          <span class="mi-label">Languages in Voynich zone</span>
-        </div>
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-blue">Established</span>
+        <h3>The Text Follows Statistical Laws of Natural Language</h3>
       </div>
-      <p class="finding-detail">VMML alone narrows the field to one candidate (Tagalog, Noli, full corpus). BC eliminates that candidate. CBMI provides further separation. The three-metric combination defines a zone that no tested natural language occupies. This is the operational definition of our central claim: Voynich belongs to a structural class not represented in the current comparative baseline. The claim is falsifiable — testing new corpora could fill the zone. It has not been filled in 63 attempts.</p>
+      <p class="card-finding">The Voynich text obeys Zipf's law, has entropy levels consistent with natural language, and shows type-token ratios within the range of known writing systems. These properties alone do not confirm it encodes a natural language, but they rule out simple random generation.</p>
+      <p class="card-source"><strong>Source:</strong> Multiple analyses from Stolfi (1997+), Landini (2001), and subsequent researchers.</p>
+      <div class="card-establishes">
+        <p class="establishes-line"><strong>What it establishes:</strong> The text is statistically language-like.</p>
+        <p class="establishes-line does-not"><strong>What it does not establish:</strong> Which language, or whether it encodes one at all.</p>
+      </div>
     </div>
   </div>
 
-  <!-- DOWNLOAD SECTION -->
-  <div class="download-section">
-    <h3>Source Preprints</h3>
-    <div class="download-grid">
-      <a href="/resources" class="download-card">
-        <span class="dl-label">Paper 7 · Zenodo</span>
-        <span class="dl-title">BPE Morpheme-Length Clustering Across 55 Writing System Corpora</span>
-        <span class="dl-meta">Silva, F. J. F. da. (2026) · DOI: 10.5281/zenodo.20386119 <span class="dl-arrow">↗</span></span>
-      </a>
-      <a href="/resources" class="download-card">
-        <span class="dl-label">Paper 8 · Zenodo</span>
-        <span class="dl-title">BPE VMML Cross-Text Instability in Tagalog</span>
-        <span class="dl-meta">Silva, F. J. F. da. (2026) · DOI: 10.5281/zenodo.20467972 <span class="dl-arrow">↗</span></span>
-      </a>
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">Section 2</span>
+      <h2>Historical &amp; Provenance Findings</h2>
+      <span class="section-label" style="margin-top:0.5rem;letter-spacing:0.14em;text-transform:none;font-size:0.85rem;color:#6a6660;">What documents and physical analysis reveal</span>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-green">Confirmed</span>
+        <h3>Medieval European Origin, 1404–1438</h3>
+      </div>
+      <p class="card-finding">Carbon-14 dating of four vellum samples places production between 1404 and 1438 (95% confidence interval). The ink and pigments are consistent with medieval European production. Modern forgery is definitively ruled out.</p>
+      <p class="card-source"><strong>Source:</strong> University of Arizona radiocarbon dating (2009). Reported in multiple peer-reviewed venues.</p>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-blue">Established</span>
+        <h3>Multiple Scribes Wrote the Manuscript</h3>
+      </div>
+      <p class="card-finding">Paleographic analysis identifies at least five distinct scribal hands, labelled by Lisa Fagin Davis (2020). The hands correlate imperfectly but significantly with Currier A and B sections.</p>
+      <p class="card-source"><strong>Source:</strong> Davis, L.F. (2020). Scribal hands in the Voynich Manuscript. <em>Manuscript Studies</em>.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">Section 3 — Contested</span>
+      <h2>Proposed Decipherment Hypotheses</h2>
+      <span class="section-label" style="margin-top:0.5rem;letter-spacing:0.14em;text-transform:none;font-size:0.85rem;color:#6a6660;">What has been proposed — none confirmed</span>
+    </div>
+
+    <div class="note-box contested">
+      The following hypotheses have been proposed by researchers. None have been independently confirmed. We present them because they represent methodologically serious attempts, not because we endorse their conclusions.
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-amber">Proposed</span>
+        <h3>14 Proposed Word Identifications</h3>
+      </div>
+      <p class="card-finding">By comparing Voynich illustrations with labeled medieval manuscripts, Stephen Bax (2014) proposed identifications for 14 words, including the word for Taurus (the constellation). Methodologically sound comparative approach.</p>
+      <p class="card-source"><strong>Source:</strong> Bax, S. (2014). A proposed partial decipherment of the Voynich script. Working paper.</p>
+      <p class="card-status"><strong>Status:</strong> Not independently replicated. Disputed but not refuted.</p>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-red">Retracted</span>
+        <h3 class="retracted">Proto-Romance Language Hypothesis</h3>
+      </div>
+      <p class="card-finding">Gerard Cheshire (2019) proposed the manuscript was written in proto-Romance. Published in <em>Romance Studies</em>.</p>
+      <p class="card-source"><strong>Source:</strong> Cheshire, G. (2019). <em>Romance Studies</em>. [RETRACTED]</p>
+      <p class="card-status"><strong>Status:</strong> Paper retracted by the journal. Claim rejected by comparative linguists.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">Section 4 — Our Research</span>
+      <h2>A Computational Perspective</h2>
+      <span class="section-label" style="margin-top:0.5rem;letter-spacing:0.14em;text-transform:none;font-size:0.85rem;color:#6a6660;">One approach among many</span>
+    </div>
+
+    <div class="note-box our-research">
+      The following findings come from this site's own research — a systematic typological comparison of the Voynich against 63 language corpora from 35+ families. We present them as one data point in a larger field, not as a resolution.
+    </div>
+
+    <!-- Card 8 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-muted">Preprint</span>
+        <h3>No Natural Language Matches the Full Structural Profile</h3>
+      </div>
+      <p class="card-finding">BPE VMML analysis across 63 corpora from 35+ language families found no corpus simultaneously occupying the Voynich discriminant zone on all three metrics (VMML, Boundary Concentration, CBMI). Tagalog (<em>Noli Me Tangere</em>) is the closest match on VMML alone but fails on BC and shows cross-text instability.</p>
+      <p class="card-source"><strong>Source:</strong> Silva (2026). Zenodo. DOI: <a href="https://doi.org/10.5281/zenodo.20386119" style="color:var(--gold);text-decoration:none;">10.5281/zenodo.20386119</a> and <a href="https://doi.org/10.5281/zenodo.20467972" style="color:var(--gold);text-decoration:none;">10.5281/zenodo.20467972</a></p>
+      <div class="card-establishes">
+        <p class="establishes-line"><strong>What it establishes:</strong> No tested natural language replicates the Voynich profile.</p>
+        <p class="establishes-line does-not"><strong>What it does not establish:</strong> What the Voynich is.</p>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-muted">Preprint</span>
+        <h3>Tagalog's Elevated VMML Is Text-Specific</h3>
+      </div>
+      <p class="card-finding">Full-corpus computation of <em>El filibusterismo</em> (Rizal, n=114,777 tokens, identical protocol) yields VMML=5.578 — below the alphabetic ceiling. Cross-text Δ=0.336 units. The supra-ceiling Tagalog value is not a general language property.</p>
+      <p class="card-source"><strong>Source:</strong> Silva (2026). DOI: <a href="https://doi.org/10.5281/zenodo.20467972" style="color:var(--gold);text-decoration:none;">10.5281/zenodo.20467972</a></p>
     </div>
   </div>
 
