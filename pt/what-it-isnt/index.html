@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Systematic elimination of Voynich Manuscript hypotheses — what the data rules out, and what remains open. Updated as new research is published.">
+  <meta property="og:title" content="O Que Não É · Voynich Lucidity">
+  <title>O Que Não É · Voynich Lucidity</title>
+  <style>
+    :root {
+      --black: #080806;
+      --white: #f0ede6;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.15);
+      --muted: #8e8a84;
+      --border: #1e1d1a;
+      --card-bg: #0f0f0d;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+
+    /* ── DROPDOWN NAV ── */
+    .nav-drop { position:relative; }
+    .nav-drop > a::after { content:' ▾'; font-size:0.6em; opacity:0.6; }
+    .nav-dropdown {
+      display:none; position:absolute; top:100%; left:50%;
+      transform:translateX(-50%); min-width:180px;
+      background:rgba(8,8,6,0.98); border:1px solid #1e1d1a;
+      padding:0.4rem 0; z-index:200;
+    }
+    .nav-dropdown a {
+      display:block; padding:0.5rem 1.2rem;
+      color:var(--muted); text-decoration:none;
+      font-size:0.72rem; letter-spacing:0.08em;
+      text-transform:uppercase; white-space:nowrap;
+      transition:color 0.2s, background 0.2s;
+    }
+    .nav-dropdown a:hover { color:var(--gold); background:rgba(201,168,76,0.06); }
+    .nav-drop:hover .nav-dropdown { display:block; }
+    .nav-start-btn {
+      padding:0.3rem 0.9rem; background:rgba(201,168,76,0.12);
+      border:1px solid rgba(201,168,76,0.4); color:var(--gold) !important;
+      border-radius:2px;
+    }
+    .nav-start-btn:hover { background:rgba(201,168,76,0.2) !important; }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(8,8,6,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .lang-switcher a {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.2rem 0.45rem;
+      border: 1px solid transparent;
+      transition: all 0.25s;
+    }
+    .lang-switcher a.active,
+    .lang-switcher a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 9rem 2rem 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.8rem;
+    }
+
+    .page-intro {
+      font-size: 1.05rem;
+      color: #b8b4ad;
+      max-width: 720px;
+      line-height: 1.75;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── ELIMINATION GRID ── */
+    .elim-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .elim-card {
+      background: var(--card-bg);
+      padding: 1.8rem;
+      position: relative;
+    }
+
+    .elim-card:hover {
+      background: #111110;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge.eliminated {
+      background: rgba(180, 40, 30, 0.15);
+      color: #c0392b;
+      border: 1px solid rgba(180, 40, 30, 0.35);
+    }
+
+    .badge.popular {
+      background: rgba(201, 168, 76, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+    }
+
+    .badge.preliminary {
+      background: rgba(201, 168, 76, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+    }
+
+    .badge.pending {
+      background: rgba(80, 80, 80, 0.2);
+      color: #6a6a68;
+      border: 1px solid #2a2a28;
+    }
+
+    .elim-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .elim-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .elim-card .evidence-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #404040;
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label span {
+      color: var(--gold);
+      margin-right: 0.5rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.7rem;
+      margin-top: 3.5rem;
+      line-height: 1.25;
+    }
+
+    .section-heading:first-of-type {
+      margin-top: 0;
+    }
+
+    .section-sub {
+      font-size: 0.88rem;
+      color: #7a7670;
+      max-width: 680px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* ── NOTE ── */
+    .note-box {
+      background: #0c0c0a;
+      border: 1px solid #2a2925;
+      padding: 1.5rem 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .note-box::before {
+      content: '↻';
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .page-note-box {
+      background: #0c0c0a;
+      border: 1px solid #2a2925;
+      border-left: 3px solid var(--gold);
+      padding: 1.2rem 1.8rem;
+      font-size: 0.88rem;
+      color: #9a9690;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .footer-logo span { color: var(--gold); }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 8rem 1.2rem 3rem; }
+      .content { padding: 3rem 1.2rem 4rem; }
+      .elim-grid { grid-template-columns: 1fr; }
+    }
+  
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:transparent;border:none;}
+    .hamburger span{width:22px;height:1px;background:var(--white,#f0ede6);display:block;transition:all 0.3s;}
+    .mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:rgba(8,8,6,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border,#1e1d1a);padding:1.2rem 2rem;z-index:99;flex-direction:column;gap:1rem;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{color:var(--muted,#8e8a84);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;}
+    .mobile-menu a:hover{color:var(--gold,#c9a84c);}
+    @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+  </style>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voynichlucidity.com/what-it-isnt/">
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BZWDDNCDP2');
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/start-here" class="nav-start-btn">★ Começar</a></li>
+    <li><a href="/the-manuscript">O Manuscrito</a></li>
+    <li><a href="/library">Biblioteca</a></li>
+    <li><a href="/what-it-isnt" class="active">O Que Não É</a></li>
+    <li class="nav-drop"><a href="/findings">Pesquisa</a>
+      <div class="nav-dropdown">
+        <a href="/findings">Descobertas</a>
+        <a href="/research">Estado da Pesquisa</a>
+        <a href="/methodology">Metodologia</a>
+        <a href="/debates">Debates</a>
+        <a href="/undeciphered">Scripts</a>
+      </div>
+    </li>
+    <li><a href="/curiosities">Curiosidades</a></li>
+    <li><a href="/media">Mídia</a></li>
+    <li class="nav-drop"><a href="/collaborate">Conectar</a>
+      <div class="nav-dropdown">
+        <a href="/collaborate">Colaborar</a>
+        <a href="/press">Imprensa</a>
+        <a href="/resources">Recursos</a>
+        <a href="/about">Sobre L.</a>
+      </div>
+    </li>
+  </ul>
+  <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="mobile-menu">
+    <a href="/start-here">★ Começar</a>
+    <a href="/the-manuscript">O Manuscrito</a>
+    <a href="/library">Biblioteca</a>
+    <a href="/what-it-isnt">O Que Não É</a>
+    <a href="/findings">Descobertas</a>
+    <a href="/research">Estado da Pesquisa</a>
+    <a href="/methodology">Metodologia</a>
+    <a href="/debates">Debates</a>
+    <a href="/undeciphered">Scripts</a>
+    <a href="/curiosities">Curiosidades</a>
+    <a href="/media">Mídia</a>
+    <a href="/collaborate">Colaborar</a>
+    <a href="/press">Imprensa</a>
+    <a href="/resources">Recursos</a>
+    <a href="/about">Sobre L.</a>
+  </div>
+  <div class="lang-switcher">
+    <a href="/what-it-isnt">EN</a>
+    <a href="/pt/what-it-isnt" class="active">PT</a>
+    <a href="/es/what-it-isnt">ES</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <span class="page-label">Eliminação Sistemática</span>
+  <h1>O Que Não É</h1>
+  <p class="page-intro">The fastest path to understanding the Voynich Manuscript is not finding what it is — it is eliminating what it cannot be. Every ruled-out hypothesis narrows the search space. This page is our growing map of eliminations — built from empirical data, updated as new research is published.</p>
+</div>
+
+<main class="content">
+
+  <div class="page-note-box">
+    This page documents what the evidence has ruled out — both popular speculation and scientific hypotheses. Every item here has been tested and found incompatible with what we know. The list grows as new research is published.
+  </div>
+
+  <!-- SECTION 1: POPULAR THEORIES -->
+
+  <h2 class="section-heading">What People Claim It Is</h2>
+  <p class="section-sub">These are theories seriously proposed and publicly circulated — some for decades — that have been examined and found incompatible with the physical, statistical, or historical evidence.</p>
+
+  <p class="section-label"><span>●</span> Popular Theories · 8 entries · Tested and found lacking</p>
+
+  <div class="elim-grid">
+
+    <div class="elim-card">
+      <span class="badge popular">Teoria Popular</span>
+      <h3>"An Extraterrestrial Language"</h3>
+      <p>Proposed by fringe theorists since the 1960s. No evidence of non-terrestrial origin has ever been identified. The vellum, ink, and pigments are entirely consistent with 15th-century European production. Carbon dating (2009, University of Arizona) places the vellum's production firmly in 1404–1438 — a range that fits standard medieval European manuscript production with no anomalies.</p>
+      <span class="evidence-tag">Carbon dating 2009 · UArizona · vellum 1404–1438</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Teoria Popular</span>
+      <h3>"A Medieval Witchcraft or Alchemy Manual"</h3>
+      <p>Popular in sensationalist media and documentary treatments. The manuscript predates most recognized witchcraft literature as a genre. No verified connection to any known esoteric tradition has been established. The illustrations — while unusual — do not match documented magical systems, grimoires, or alchemical iconography of the period when examined by specialists in those traditions.</p>
+      <span class="evidence-tag">Historical analysis · no esoteric tradition match</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Teoria Popular</span>
+      <h3>"A Copy or Cipher of Another Known Book"</h3>
+      <p>Proposed repeatedly — attributed to Roger Bacon's writings, various medieval herbals, and other known texts. No source text has been identified despite more than 100 years of active search by researchers with access to major manuscript collections. Structural analysis shows the text is not a simple substitution or transformation of any known language or document.</p>
+      <span class="evidence-tag">100+ years of search · no source identified</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Teoria Popular</span>
+      <h3>"Pure Random Noise (a Meaningless Hoax)"</h3>
+      <p>Schinner (2007) demonstrated that a Cardan grille mechanism could produce statistical properties similar to the Voynich text, supporting a hoax interpretation. However, Montemurro and Zanette (2013) found semantic clustering in the text — a pattern inconsistent with random generation. The statistical signature of meaning is present. Explaining how a hoaxer produced it without intending meaning remains unresolved and implausible.</p>
+      <span class="evidence-tag">Schinner 2007 · Montemurro &amp; Zanette 2013 · semantic clustering confirmed</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Teoria Popular</span>
+      <h3>"A Lost Natural Language from an Obscure Region"</h3>
+      <p>Proposed for dozens of languages over the decades — Arabic, Hebrew, Latin, Welsh, Nahuatl, Cherokee, and many others. None has produced a verifiable translation confirmed by independent review. Partial pattern matches have been announced repeatedly, but none have survived systematic scrutiny or produced a decipherment that allows prediction of new text.</p>
+      <span class="evidence-tag">Dozens of candidates · zero confirmed translations</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Teoria Popular</span>
+      <h3>"Glossolalia (Spiritual Babbling)"</h3>
+      <p>Proposed by those struck by the manuscript's language-like appearance combined with its apparent unreadability. This explanation doesn't account for the consistent grammatical structure found across folios, the Zipf distribution of word frequencies (characteristic of natural language), and the semantic clustering identified by computational analysis. Random spiritual babbling does not produce these statistical regularities.</p>
+      <span class="evidence-tag">Zipf distribution · grammatical consistency · semantic clustering</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Teoria Popular</span>
+      <h3>"A Personal Cipher for One Person's Private Notes"</h3>
+      <p>Plausible on its face and not falsifiable without the key. However, the consistent cross-folio grammar and vocabulary distribution across sections covering what appear to be different subjects (herbal, astronomical, biological, pharmaceutical) suggests a system intended for communication — or at minimum for re-reading across time — rather than pure privacy. A personal cipher produced over years would show more drift.</p>
+      <span class="evidence-tag">Cross-folio grammar consistency · vocabulary distribution analysis</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Teoria Popular</span>
+      <h3>"An Elaborate Renaissance Forgery"</h3>
+      <p>Proposed as a money-making scheme attributed to Wilfrid Voynich himself, who acquired and named the manuscript in 1912. Carbon dating (2009) places the vellum's production in 1404–1438 — roughly 500 years before Voynich found it. The forgery hypothesis is definitively ruled out by physical evidence: no forger in 1912 could have fabricated 15th-century vellum that passes radiocarbon dating.</p>
+      <span class="evidence-tag">Carbon dating 2009 · 1404–1438 · forgery hypothesis eliminated</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 2: SCIENTIFIC ELIMINATIONS -->
+
+  <h2 class="section-heading">What the Evidence Eliminates</h2>
+  <p class="section-sub">These are hypotheses that have been subjected to systematic quantitative testing. Elimination here means the hypothesis produces predictions inconsistent with the measured structural properties of the Voynich text.</p>
+
+  <p class="section-label"><span>●</span> Scientific Eliminations &amp; Open Questions · 18 entries · Last updated June 2026</p>
+
+  <div class="elim-grid">
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Random or Gibberish Text</h3>
+      <p>BPE structure survives character perturbation testing. When characters are randomly shuffled (n=50 trials, corpus-size matched), Voynich VMML drops 22% — a structured decay signature. Truly random text collapses by more than 60% under identical perturbation. The internal structure is real.</p>
+      <span class="evidence-tag">Paper 8 · permutation test · n=50</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Tagalog as base language</h3>
+      <p>Critical three-metric mismatch. While Tagalog (Noli Me Tangere, full corpus) enters the Voynich 95% CI for VMML, Boundary Concentration decisively diverges: Tagalog BC ≈ 0.20 (infix-dominated) vs Voynich 0.361 (edge-concentrated). The structural mechanisms are incompatible.</p>
+      <span class="evidence-tag">Papers 7 &amp; 8 · BC divergence = 0.161</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Tagalog VMML as a stable language property</h3>
+      <p>El filibusterismo (full corpus, same author as Noli) yields VMML = 5.578 — below the Alphabetic Ceiling. Cross-text variation Δ = 0.336 units. Supra-ceiling VMML in Tagalog is text-specific, not a property of the language. The Noli result does not generalise.</p>
+      <span class="evidence-tag">Paper 8 · Rizal cross-text instability</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Philippine languages broadly</h3>
+      <p>Cebuano (NLLB corpus): VMML = 5.609, below the Alphabetic Ceiling. No Philippine language tested simultaneously matches Voynich on VMML + BC + CBMI. VMML elevation, where it appears, is language- and text-specific, not a family-level pattern.</p>
+      <span class="evidence-tag">Paper 8 · multi-language Austronesian analysis</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Indonesian and Malay</h3>
+      <p>VMML values are well below the Alphabetic Ceiling: Indonesian 4.838, Malay 5.293. Both languages sit comfortably in the mid-range of natural language distribution. Neither approaches the Voynich zone on any of the three metrics.</p>
+      <span class="evidence-tag">Paper 7 · 55-corpus baseline</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Basque as high-VMML reference</h3>
+      <p>Basque (Euskara) is a canonical agglutinative language used as a control. VMML = 4.475 on natural text corpus — significantly below the Alphabetic Ceiling despite canonical agglutinative morphology. Confirms that agglutination alone does not produce high VMML; morphological architecture matters more than typological label.</p>
+      <span class="evidence-tag">Paper 7 · agglutinative control</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Schinner's stochastic hoax model (2007)</h3>
+      <p>Schinner proposed the Voynich Manuscript was generated by a stochastic process simulating language without encoding real content. Random EVA generation under Schinner's model fails to replicate the full 3-metric profile — particularly the BC + CBMI combination that accompanies Voynich's VMML.</p>
+      <span class="evidence-tag">Paper 7 · structural profile falsification</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Timm's self-citation mechanism (2020)</h3>
+      <p>Timm and Schindler proposed a word-stress positional model involving self-citation of previous tokens. The EBNF/MI trade-off irreconcilable with observed BPE structure: self-citation would produce distinct boundary concentration patterns inconsistent with Voynich's measured BC = 0.361.</p>
+      <span class="evidence-tag">Paper 7 · mechanism incompatibility</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Any of 63 tested natural language profiles</h3>
+      <p>The Voynich Discriminant Zone — defined by VMML + BC + CBMI simultaneously — is occupied by no natural language corpus from any of the 35+ families tested. Not because we stopped looking: we tested 63 corpora and none qualifies. The zone is empirically empty.</p>
+      <span class="evidence-tag">Papers 7 &amp; 8 · full 63-corpus baseline</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge preliminary">Preliminary</span>
+      <h3>Ilocano as candidate language</h3>
+      <p>Ilocano VMML = 5.785 provisionally exceeds the Alphabetic Ceiling, making it the only language besides Tagalog (Noli) to do so. However, BC = 0.248 — infix-dominated, incompatible with Voynich's 0.361. Additionally, n = 12,807 tokens sits near the stability threshold; result requires larger corpus confirmation.</p>
+      <span class="evidence-tag">Paper 8 · provisional · n near stability limit</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge pending">Pendente</span>
+      <h3>Cebuano (formal literary register)</h3>
+      <p>The NLLB Cebuano corpus contains substantial code-switching with English and Filipino, artificially suppressing VMML. Formal literary Cebuano — comparable to Rizal's novels for Tagalog — has not yet been tested. Result could move in either direction.</p>
+      <span class="evidence-tag">Corpus gap · register bias identified</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge pending">Pendente</span>
+      <h3>Kapampangan, Hiligaynon, Malagasy</h3>
+      <p>Untested Philippine-branch languages with complex focus-morphology (Kapampangan, Hiligaynon) and a remotely-derived Austronesian outlier (Malagasy). These would either confirm or refute the emerging hypothesis that VMML elevation tracks focus-morphology density rather than phylogenetic membership.</p>
+      <span class="evidence-tag">Untested · next phase</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge pending">Pendente</span>
+      <h3>Kapampangan</h3>
+      <p>Untested. Philippine-branch language with exceptionally complex focus-morphology. VMML unknown. High priority given the Tagalog and Ilocano results — Kapampangan's morphological architecture may test whether supra-ceiling VMML is tied to a specific focus-system subtype rather than the broader Philippine voice system.</p>
+      <span class="evidence-tag">Corpus acquisition pending · high priority</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge pending">Pendente</span>
+      <h3>Hiligaynon (Ilonggo)</h3>
+      <p>Untested. Approximately 9.3 million speakers. Philippine voice system with morphological architecture distinct from Tagalog and Cebuano. A result either above or below the Alphabetic Ceiling would directly test the focus-morphology density gradient hypothesis — whether VMML elevation is a structural gradient or a discrete threshold.</p>
+      <span class="evidence-tag">Corpus acquisition pending</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge pending">Pendente</span>
+      <h3>Malagasy</h3>
+      <p>Untested. Austronesian but geographically isolated — the language reached Madagascar via maritime migration, diverging from other Austronesian branches for over a millennium. VOS word order and distinct morphological system. A result here would test whether the pattern emerging from Philippine-branch languages is Philippine-specific or a broader Austronesian property.</p>
+      <span class="evidence-tag">Corpus acquisition pending · geographical outlier test</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge pending">Pendente</span>
+      <h3>Formal literary Cebuano</h3>
+      <p>The NLLB Cebuano corpus (social media, code-switching with English and Filipino) yields VMML = 5.609 — below the Alphabetic Ceiling. This is plausibly a register artifact. Formal literary Cebuano equivalent to the Rizal corpus used for Tagalog has not yet been tested. The result could move in either direction and is needed before Cebuano can be definitively characterized.</p>
+      <span class="evidence-tag">Register gap identified · literary corpus needed</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Voynichese as classical cipher of Latin or Greek</h3>
+      <p>If the Voynich text were a substitution cipher of Latin or Greek, BPE segmentation would recover the morphological density of the underlying language, placing VMML within the alphabetic zone (≤ 5.748 — the Alphabetic Ceiling derived from 55+ corpora). Voynich VMML = 5.918 is inconsistent with any tested alphabetic natural language. A monoalphabetic substitution cipher cannot produce this structural elevation.</p>
+      <span class="evidence-tag">Paper 7 · 55+ corpora · alphabetic ceiling falsification</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge eliminated">Descartado</span>
+      <h3>Finnish or Uralic languages as structural analogue</h3>
+      <p>Finnish (Wikipedia corpus) VMML ≈ 4.6–4.9 in preliminary tests — well below the Alphabetic Ceiling despite canonical agglutinative morphology. The high-VMML pattern is not explained by agglutination generally. Finnish's morphological complexity produces a distinct structural signature that does not approach the Voynich zone on any of the three discriminant metrics.</p>
+      <span class="evidence-tag">Preliminary · agglutination ≠ VMML elevation confirmed</span>
+    </div>
+
+  </div>
+
+  <div class="note-box">
+    This list grows with every paper published. Elimination requires meeting our evidence threshold: published preprint + adversarial review. Preliminary results are flagged and not counted as eliminations until confirmed. Last updated: June 2026.
+  </div>
+
+</main>
+
+<footer>
+  <p class="footer-logo">Voynich <span>Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clareza sobre certeza. Método sobre especulação.</p>
+</footer>
+
+
+<script>
+function shareVL() {
+  if (navigator.share) {
+    navigator.share({title: document.title, url: window.location.href});
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(()=>{
+      const btn = document.getElementById('shareBtn');
+      if(btn){ const orig=btn.textContent; btn.textContent='✓ Copied!'; setTimeout(()=>btn.textContent=orig,2000); }
+    });
+  }
+}
+</script>
+<div style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;display:flex;flex-direction:column;gap:0.5rem;">
+  <button id="shareBtn" onclick="shareVL()" title="Share this page"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">⬆</button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">↑</button>
+</div>
+</body>
+</html>

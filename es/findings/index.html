@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Published hypotheses and research findings about the Voynich Manuscript — from multiple independent research traditions. Structural, historical, and computational findings curated with sources.">
+  <meta property="og:title" content="Findings · Voynich Lucidity">
+  <title>Findings · Voynich Lucidity</title>
+  <style>
+    :root {
+      --black: #080806;
+      --white: #f0ede6;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.15);
+      --muted: #8e8a84;
+      --border: #1e1d1a;
+      --card-bg: #0f0f0d;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+
+    /* ── DROPDOWN NAV ── */
+    .nav-drop { position:relative; }
+    .nav-drop > a::after { content:' ▾'; font-size:0.6em; opacity:0.6; }
+    .nav-dropdown {
+      display:none; position:absolute; top:100%; left:50%;
+      transform:translateX(-50%); min-width:180px;
+      background:rgba(8,8,6,0.98); border:1px solid #1e1d1a;
+      padding:0.4rem 0; z-index:200;
+    }
+    .nav-dropdown a {
+      display:block; padding:0.5rem 1.2rem;
+      color:var(--muted); text-decoration:none;
+      font-size:0.72rem; letter-spacing:0.08em;
+      text-transform:uppercase; white-space:nowrap;
+      transition:color 0.2s, background 0.2s;
+    }
+    .nav-dropdown a:hover { color:var(--gold); background:rgba(201,168,76,0.06); }
+    .nav-drop:hover .nav-dropdown { display:block; }
+    .nav-start-btn {
+      padding:0.3rem 0.9rem; background:rgba(201,168,76,0.12);
+      border:1px solid rgba(201,168,76,0.4); color:var(--gold) !important;
+      border-radius:2px;
+    }
+    .nav-start-btn:hover { background:rgba(201,168,76,0.2) !important; }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(8,8,6,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .lang-switcher a {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.2rem 0.45rem;
+      border: 1px solid transparent;
+      transition: all 0.25s;
+    }
+    .lang-switcher a.active,
+    .lang-switcher a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 9rem 2rem 5rem;
+      max-width: 960px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.8rem;
+    }
+
+    .page-intro {
+      font-size: 1rem;
+      color: #b8b4ad;
+      max-width: 680px;
+      line-height: 1.75;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+    }
+
+    /* ── NOTE BOX ── */
+    .note-box {
+      background: #0d0c0a;
+      border-left: 3px solid var(--gold);
+      padding: 1.5rem 2rem;
+      margin-bottom: 4rem;
+      font-size: 0.92rem;
+      color: #c0bbb4;
+      line-height: 1.75;
+    }
+
+    .note-box.contested {
+      border-left-color: #888;
+      background: #0a0a09;
+    }
+
+    .note-box.our-research {
+      border-left-color: #555;
+      background: #0a0a09;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 5rem;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 2rem 2.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.6rem;
+      border-radius: 2px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 0.35rem;
+    }
+
+    .badge-green {
+      background: rgba(68,170,102,0.18);
+      color: #4aa866;
+      border: 1px solid rgba(68,170,102,0.35);
+    }
+
+    .badge-blue {
+      background: rgba(80,130,200,0.15);
+      color: #6aabe0;
+      border: 1px solid rgba(80,130,200,0.3);
+    }
+
+    .badge-amber {
+      background: rgba(201,168,76,0.12);
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+
+    .badge-red {
+      background: rgba(200,80,80,0.15);
+      color: #cc5555;
+      border: 1px solid rgba(200,80,80,0.3);
+    }
+
+    .badge-muted {
+      background: rgba(100,100,100,0.12);
+      color: #888;
+      border: 1px solid rgba(100,100,100,0.25);
+    }
+
+    .card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .card h3.retracted {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+
+    .card-finding {
+      font-size: 0.97rem;
+      color: #d0cbc3;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-source {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+      font-style: italic;
+    }
+
+    .card-source strong {
+      font-style: normal;
+      color: #9a9590;
+      font-weight: 600;
+    }
+
+    .card-establishes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #161614;
+    }
+
+    .establishes-line {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .establishes-line strong {
+      color: #9a9590;
+      font-weight: 600;
+    }
+
+    .establishes-line.does-not strong {
+      color: #7a7670;
+    }
+
+    .card-status {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-top: 0.8rem;
+      border-top: 1px solid #161614;
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .footer-logo span { color: var(--gold); }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 8rem 1.2rem 3rem; }
+      .content { padding: 3rem 1.2rem 4rem; }
+      .card { padding: 1.5rem; }
+      .card-header { flex-direction: column; gap: 0.5rem; }
+      .note-box { padding: 1.2rem 1.4rem; }
+    }
+  
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:transparent;border:none;}
+    .hamburger span{width:22px;height:1px;background:var(--white,#f0ede6);display:block;transition:all 0.3s;}
+    .mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:rgba(8,8,6,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border,#1e1d1a);padding:1.2rem 2rem;z-index:99;flex-direction:column;gap:1rem;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{color:var(--muted,#8e8a84);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;}
+    .mobile-menu a:hover{color:var(--gold,#c9a84c);}
+    @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+  </style>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voynichlucidity.com/findings/">
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BZWDDNCDP2');
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/start-here" class="nav-start-btn">★ Empezar</a></li>
+    <li><a href="/the-manuscript">El Manuscrito</a></li>
+    <li><a href="/library">Biblioteca</a></li>
+    <li><a href="/what-it-isnt">Lo Que No Es</a></li>
+    <li class="nav-drop"><a href="/findings" class="active">Investigación</a>
+      <div class="nav-dropdown">
+        <a href="/findings">Hallazgos</a>
+        <a href="/research">Estado de Investigación</a>
+        <a href="/methodology">Metodología</a>
+        <a href="/debates">Debates</a>
+        <a href="/undeciphered">Escrituras</a>
+      </div>
+    </li>
+    <li><a href="/curiosities">Curiosidades</a></li>
+    <li><a href="/media">Medios</a></li>
+    <li class="nav-drop"><a href="/collaborate">Conectar</a>
+      <div class="nav-dropdown">
+        <a href="/collaborate">Colaborar</a>
+        <a href="/press">Prensa</a>
+        <a href="/resources">Recursos</a>
+        <a href="/about">Sobre L.</a>
+      </div>
+    </li>
+  </ul>
+  <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="mobile-menu">
+    <a href="/start-here">★ Empezar</a>
+    <a href="/the-manuscript">El Manuscrito</a>
+    <a href="/library">Biblioteca</a>
+    <a href="/what-it-isnt">Lo Que No Es</a>
+    <a href="/findings">Hallazgos</a>
+    <a href="/research">Estado de Investigación</a>
+    <a href="/methodology">Metodología</a>
+    <a href="/debates">Debates</a>
+    <a href="/undeciphered">Escrituras</a>
+    <a href="/curiosities">Curiosidades</a>
+    <a href="/media">Medios</a>
+    <a href="/collaborate">Colaborar</a>
+    <a href="/press">Prensa</a>
+    <a href="/resources">Recursos</a>
+    <a href="/about">Sobre L.</a>
+  </div>
+  <div class="lang-switcher">
+    <a href="/findings">EN</a>
+    <a href="/pt/findings">PT</a>
+    <a href="/es/findings" class="active">ES</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <span class="page-label">Published Hypotheses &amp; Research</span>
+  <h1>What Researchers Have Found</h1>
+  <p class="page-intro">A curated overview of the strongest published findings about the Voynich Manuscript — from multiple independent research traditions. Our own computational analysis appears at the end as one perspective among several.</p>
+</div>
+
+<main class="content">
+
+  <div class="note-box">
+    This page presents findings from multiple research traditions, not a single theory. Voynich research is genuinely multi-disciplinary — paleography, cryptography, computational linguistics, and history all contribute. We present each finding with its source, its strength, and what it does and does not establish.
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">Section 1</span>
+      <h2>Structural &amp; Statistical Findings</h2>
+      <span class="section-label" style="margin-top:0.5rem;letter-spacing:0.14em;text-transform:none;font-size:0.85rem;color:#6a6660;">What the text itself reveals</span>
+    </div>
+
+    <!-- Card 1 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-green">Rigorous</span>
+        <h3>The Text Is Not Random</h3>
+      </div>
+      <p class="card-finding">Information-theoretic analysis shows word co-occurrence patterns consistent with meaningful semantic structure. High-entropy words appear where they would in meaningful text — a pattern that is very difficult to replicate with random or hoax generation.</p>
+      <p class="card-source"><strong>Source:</strong> Montemurro &amp; Zanette (2013). Keywords and Co-Occurrence Patterns in the Voynich Manuscript. <em>PLOS ONE</em>, 8(6), e66344.</p>
+      <div class="card-establishes">
+        <p class="establishes-line"><strong>What it establishes:</strong> The text has semantic-like structure.</p>
+        <p class="establishes-line does-not"><strong>What it does not establish:</strong> What the structure encodes.</p>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-green">Rigorous</span>
+        <h3>Two Distinct "Languages" Are Real (Currier A/B)</h3>
+      </div>
+      <p class="card-finding">A Beta-Binomial mixture model applied to 11 character-pair substitution ratios, with no prior knowledge of Currier's labels, independently selects two groups and predicts held-out folio labels at 89.2% accuracy. The distinction is not a codicological artifact — it persists within individual quires. The A/B label is a low-resolution projection of a three-layer generative structure: a boolean folio switch, a template system, and an independent gradient d/l dimension.</p>
+      <p class="card-source"><strong>Source:</strong> Parisel (2026). A Quantitative Confirmation of the Currier Language Distinction. <em>arXiv:2604.25979</em>.</p>
+      <div class="card-establishes">
+        <p class="establishes-line"><strong>What it establishes:</strong> The distinction is real and structural, not observational.</p>
+        <p class="establishes-line does-not"><strong>What it does not establish:</strong> What the two "languages" represent — two scribes, two registers, or something else.</p>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-blue">Established</span>
+        <h3>The Text Follows Statistical Laws of Natural Language</h3>
+      </div>
+      <p class="card-finding">The Voynich text obeys Zipf's law, has entropy levels consistent with natural language, and shows type-token ratios within the range of known writing systems. These properties alone do not confirm it encodes a natural language, but they rule out simple random generation.</p>
+      <p class="card-source"><strong>Source:</strong> Multiple analyses from Stolfi (1997+), Landini (2001), and subsequent researchers.</p>
+      <div class="card-establishes">
+        <p class="establishes-line"><strong>What it establishes:</strong> The text is statistically language-like.</p>
+        <p class="establishes-line does-not"><strong>What it does not establish:</strong> Which language, or whether it encodes one at all.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">Section 2</span>
+      <h2>Historical &amp; Provenance Findings</h2>
+      <span class="section-label" style="margin-top:0.5rem;letter-spacing:0.14em;text-transform:none;font-size:0.85rem;color:#6a6660;">What documents and physical analysis reveal</span>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-green">Confirmed</span>
+        <h3>Medieval European Origin, 1404–1438</h3>
+      </div>
+      <p class="card-finding">Carbon-14 dating of four vellum samples places production between 1404 and 1438 (95% confidence interval). The ink and pigments are consistent with medieval European production. Modern forgery is definitively ruled out.</p>
+      <p class="card-source"><strong>Source:</strong> University of Arizona radiocarbon dating (2009). Reported in multiple peer-reviewed venues.</p>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-blue">Established</span>
+        <h3>Multiple Scribes Wrote the Manuscript</h3>
+      </div>
+      <p class="card-finding">Paleographic analysis identifies at least five distinct scribal hands, labelled by Lisa Fagin Davis (2020). The hands correlate imperfectly but significantly with Currier A and B sections.</p>
+      <p class="card-source"><strong>Source:</strong> Davis, L.F. (2020). Scribal hands in the Voynich Manuscript. <em>Manuscript Studies</em>.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">Section 3 — Contested</span>
+      <h2>Proposed Decipherment Hypotheses</h2>
+      <span class="section-label" style="margin-top:0.5rem;letter-spacing:0.14em;text-transform:none;font-size:0.85rem;color:#6a6660;">What has been proposed — none confirmed</span>
+    </div>
+
+    <div class="note-box contested">
+      The following hypotheses have been proposed by researchers. None have been independently confirmed. We present them because they represent methodologically serious attempts, not because we endorse their conclusions.
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-amber">Proposed</span>
+        <h3>14 Proposed Word Identifications</h3>
+      </div>
+      <p class="card-finding">By comparing Voynich illustrations with labeled medieval manuscripts, Stephen Bax (2014) proposed identifications for 14 words, including the word for Taurus (the constellation). Methodologically sound comparative approach.</p>
+      <p class="card-source"><strong>Source:</strong> Bax, S. (2014). A proposed partial decipherment of the Voynich script. Working paper.</p>
+      <p class="card-status"><strong>Status:</strong> Not independently replicated. Disputed but not refuted.</p>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-red">Retracted</span>
+        <h3 class="retracted">Proto-Romance Language Hypothesis</h3>
+      </div>
+      <p class="card-finding">Gerard Cheshire (2019) proposed the manuscript was written in proto-Romance. Published in <em>Romance Studies</em>.</p>
+      <p class="card-source"><strong>Source:</strong> Cheshire, G. (2019). <em>Romance Studies</em>. [RETRACTED]</p>
+      <p class="card-status"><strong>Status:</strong> Paper retracted by the journal. Claim rejected by comparative linguists.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-label">Section 4 — Our Research</span>
+      <h2>A Computational Perspective</h2>
+      <span class="section-label" style="margin-top:0.5rem;letter-spacing:0.14em;text-transform:none;font-size:0.85rem;color:#6a6660;">One approach among many</span>
+    </div>
+
+    <div class="note-box our-research">
+      The following findings come from this site's own research — a systematic typological comparison of the Voynich against 63 language corpora from 35+ families. We present them as one data point in a larger field, not as a resolution.
+    </div>
+
+    <!-- Card 8 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-muted">Preprint</span>
+        <h3>No Natural Language Matches the Full Structural Profile</h3>
+      </div>
+      <p class="card-finding">BPE VMML analysis across 63 corpora from 35+ language families found no corpus simultaneously occupying the Voynich discriminant zone on all three metrics (VMML, Boundary Concentration, CBMI). Tagalog (<em>Noli Me Tangere</em>) is the closest match on VMML alone but fails on BC and shows cross-text instability.</p>
+      <p class="card-source"><strong>Source:</strong> Silva (2026). Zenodo. DOI: <a href="https://doi.org/10.5281/zenodo.20386119" style="color:var(--gold);text-decoration:none;">10.5281/zenodo.20386119</a> and <a href="https://doi.org/10.5281/zenodo.20467972" style="color:var(--gold);text-decoration:none;">10.5281/zenodo.20467972</a></p>
+      <div class="card-establishes">
+        <p class="establishes-line"><strong>What it establishes:</strong> No tested natural language replicates the Voynich profile.</p>
+        <p class="establishes-line does-not"><strong>What it does not establish:</strong> What the Voynich is.</p>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-muted">Preprint</span>
+        <h3>Tagalog's Elevated VMML Is Text-Specific</h3>
+      </div>
+      <p class="card-finding">Full-corpus computation of <em>El filibusterismo</em> (Rizal, n=114,777 tokens, identical protocol) yields VMML=5.578 — below the alphabetic ceiling. Cross-text Δ=0.336 units. The supra-ceiling Tagalog value is not a general language property.</p>
+      <p class="card-source"><strong>Source:</strong> Silva (2026). DOI: <a href="https://doi.org/10.5281/zenodo.20467972" style="color:var(--gold);text-decoration:none;">10.5281/zenodo.20467972</a></p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p class="footer-logo">Voynich <span>Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Claridad sobre certeza. Método sobre especulación.</p>
+</footer>
+
+
+<script>
+function shareVL() {
+  if (navigator.share) {
+    navigator.share({title: document.title, url: window.location.href});
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(()=>{
+      const btn = document.getElementById('shareBtn');
+      if(btn){ const orig=btn.textContent; btn.textContent='✓ Copied!'; setTimeout(()=>btn.textContent=orig,2000); }
+    });
+  }
+}
+</script>
+<div style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;display:flex;flex-direction:column;gap:0.5rem;">
+  <button id="shareBtn" onclick="shareVL()" title="Share this page"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">⬆</button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">↑</button>
+</div>
+</body>
+</html>

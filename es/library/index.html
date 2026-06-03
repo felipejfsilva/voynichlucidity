@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Curated bibliography on the Voynich Manuscript — organized by theme with critical assessments. Computational linguistics, codicology, cryptography, decipherment proposals, and history.">
+  <title>Biblioteca · Voynich Lucidity</title>
+  <style>
+    :root {
+      --black: #080806;
+      --white: #f0ede6;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.15);
+      --muted: #8e8a84;
+      --border: #1e1d1a;
+      --card-bg: #0f0f0d;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+
+    /* ── DROPDOWN NAV ── */
+    .nav-drop { position:relative; }
+    .nav-drop > a::after { content:' ▾'; font-size:0.6em; opacity:0.6; }
+    .nav-dropdown {
+      display:none; position:absolute; top:100%; left:50%;
+      transform:translateX(-50%); min-width:180px;
+      background:rgba(8,8,6,0.98); border:1px solid #1e1d1a;
+      padding:0.4rem 0; z-index:200;
+    }
+    .nav-dropdown a {
+      display:block; padding:0.5rem 1.2rem;
+      color:var(--muted); text-decoration:none;
+      font-size:0.72rem; letter-spacing:0.08em;
+      text-transform:uppercase; white-space:nowrap;
+      transition:color 0.2s, background 0.2s;
+    }
+    .nav-dropdown a:hover { color:var(--gold); background:rgba(201,168,76,0.06); }
+    .nav-drop:hover .nav-dropdown { display:block; }
+    .nav-start-btn {
+      padding:0.3rem 0.9rem; background:rgba(201,168,76,0.12);
+      border:1px solid rgba(201,168,76,0.4); color:var(--gold) !important;
+      border-radius:2px;
+    }
+    .nav-start-btn:hover { background:rgba(201,168,76,0.2) !important; }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(8,8,6,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .lang-switcher a {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.2rem 0.45rem;
+      border: 1px solid transparent;
+      transition: all 0.25s;
+    }
+    .lang-switcher a.active,
+    .lang-switcher a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 9rem 2rem 5rem;
+      max-width: 960px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.8rem;
+    }
+
+    .page-intro {
+      font-size: 1rem;
+      color: #b8b4ad;
+      max-width: 680px;
+      line-height: 1.75;
+    }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .legend-badge {
+      display: inline-block;
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+    }
+
+    .lb-rigorous {
+      background: rgba(40, 120, 60, 0.15);
+      color: #5aaa70;
+      border: 1px solid rgba(40, 120, 60, 0.3);
+    }
+
+    .lb-speculative {
+      background: rgba(201, 168, 76, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+    }
+
+    .lb-foundational {
+      background: rgba(80, 100, 160, 0.15);
+      color: #7090c8;
+      border: 1px solid rgba(80, 100, 160, 0.3);
+    }
+
+    .lb-retracted {
+      background: rgba(180, 40, 30, 0.12);
+      color: #c0392b;
+      border: 1px solid rgba(180, 40, 30, 0.3);
+    }
+
+    .lb-accessible {
+      background: rgba(80, 80, 80, 0.15);
+      color: #909090;
+      border: 1px solid #2a2a28;
+    }
+
+    .lb-useful {
+      background: rgba(100, 80, 140, 0.15);
+      color: #a080c8;
+      border: 1px solid rgba(100, 80, 140, 0.3);
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── BIBLIO SECTION ── */
+    .bib-section {
+      margin-bottom: 4rem;
+    }
+
+    .bib-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bib-section-header h2 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--white);
+    }
+
+    .bib-count {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── ENTRY ── */
+    .bib-entry {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #111110;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .bib-entry:last-child { border-bottom: none; }
+
+    .bib-ref {
+      font-size: 0.9rem;
+      color: #b8b4ad;
+      line-height: 1.65;
+    }
+
+    .bib-ref strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .bib-ref .bib-year {
+      color: var(--muted);
+    }
+
+    .bib-ref .bib-journal {
+      font-style: italic;
+      color: #909090;
+    }
+
+    .bib-ref .bib-doi {
+      font-size: 0.78rem;
+      color: var(--gold);
+      font-family: 'Courier New', monospace;
+      display: block;
+      margin-top: 0.3rem;
+      text-decoration: none;
+    }
+
+    .bib-ref .bib-doi:hover { text-decoration: underline; }
+
+    .bib-ref .bib-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: block;
+      margin-top: 0.3rem;
+      font-style: italic;
+    }
+
+    .bib-badge {
+      display: inline-block;
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.18rem 0.55rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── NOTE BOX ── */
+    .note-box {
+      background: #0c0c0a;
+      border: 1px solid #2a2925;
+      padding: 1.5rem 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-top: 2rem;
+    }
+
+    .note-box strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .footer-logo span { color: var(--gold); }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 8rem 1.2rem 3rem; }
+      .content { padding: 3rem 1.2rem 4rem; }
+      .bib-entry { grid-template-columns: 1fr; }
+    }
+  
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:transparent;border:none;}
+    .hamburger span{width:22px;height:1px;background:var(--white,#f0ede6);display:block;transition:all 0.3s;}
+    .mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:rgba(8,8,6,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border,#1e1d1a);padding:1.2rem 2rem;z-index:99;flex-direction:column;gap:1rem;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{color:var(--muted,#8e8a84);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;}
+    .mobile-menu a:hover{color:var(--gold,#c9a84c);}
+    @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+  </style>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BZWDDNCDP2');
+  </script>
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/start-here" class="nav-start-btn">★ Empezar</a></li>
+    <li><a href="/the-manuscript">El Manuscrito</a></li>
+    <li><a href="/library" class="active">Biblioteca</a></li>
+    <li><a href="/what-it-isnt">Lo Que No Es</a></li>
+    <li class="nav-drop"><a href="/findings">Investigación</a>
+      <div class="nav-dropdown">
+        <a href="/findings">Hallazgos</a>
+        <a href="/research">Estado de Investigación</a>
+        <a href="/methodology">Metodología</a>
+        <a href="/debates">Debates</a>
+        <a href="/undeciphered">Escrituras</a>
+      </div>
+    </li>
+    <li><a href="/curiosities">Curiosidades</a></li>
+    <li><a href="/media">Medios</a></li>
+    <li class="nav-drop"><a href="/collaborate">Conectar</a>
+      <div class="nav-dropdown">
+        <a href="/collaborate">Colaborar</a>
+        <a href="/press">Prensa</a>
+        <a href="/resources">Recursos</a>
+        <a href="/about">Sobre L.</a>
+      </div>
+    </li>
+  </ul>
+  <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="mobile-menu">
+    <a href="/start-here">★ Empezar</a>
+    <a href="/the-manuscript">El Manuscrito</a>
+    <a href="/library">Biblioteca</a>
+    <a href="/what-it-isnt">Lo Que No Es</a>
+    <a href="/findings">Hallazgos</a>
+    <a href="/research">Estado de Investigación</a>
+    <a href="/methodology">Metodología</a>
+    <a href="/debates">Debates</a>
+    <a href="/undeciphered">Escrituras</a>
+    <a href="/curiosities">Curiosidades</a>
+    <a href="/media">Medios</a>
+    <a href="/collaborate">Colaborar</a>
+    <a href="/press">Prensa</a>
+    <a href="/resources">Recursos</a>
+    <a href="/about">Sobre L.</a>
+  </div>
+  <div class="lang-switcher">
+    <a href="/library">EN</a>
+    <a href="/pt/library">PT</a>
+    <a href="/es/library" class="active">ES</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <span class="page-label">Curated Bibliography</span>
+  <h1>Biblioteca</h1>
+  <p class="page-intro">The most comprehensive curated bibliography on the Voynich Manuscript — organized by theme. Each entry includes a critical assessment: rigorous, speculative, foundational, or retracted. Updated as new research is published.</p>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-badge lb-rigorous">Rigorous</span> Peer-reviewed, methodologically sound</div>
+    <div class="legend-item"><span class="legend-badge lb-foundational">Foundational</span> Essential reference, historical significance</div>
+    <div class="legend-item"><span class="legend-badge lb-speculative">Speculative</span> Interesting but not peer-verified</div>
+    <div class="legend-item"><span class="legend-badge lb-accessible">Accessible</span> Popular audience, non-technical</div>
+    <div class="legend-item"><span class="legend-badge lb-useful">Useful</span> Practical tool or active resource</div>
+    <div class="legend-item"><span class="legend-badge lb-retracted">Retracted</span> Withdrawn from publication</div>
+  </div>
+</div>
+
+<main class="content">
+
+  <!-- SECTION 1: Computational Linguistics -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Computational Linguistics &amp; Statistics</h2>
+      <span class="bib-count">9 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Stolfi, J.</strong> <span class="bib-year">(1997–ongoing).</span> Voynich Manuscript statistics and structural analysis.
+        <em class="bib-journal">Personal research website.</em>
+        <span class="bib-note">The first systematic quantitative analysis of Voynich token statistics. Vocabulary size, hapax frequency, positional character distributions, and inter-word statistics. The foundational dataset for all subsequent computational work — Stolfi's tables are still cited in papers three decades later.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Montemurro, M. A., &amp; Zanette, D. H.</strong> <span class="bib-year">(2013).</span> Keywords and Co-Occurrence Patterns in the Voynich Manuscript: An Information-Theoretic Analysis.
+        <em class="bib-journal">PLOS ONE, 8(6), e66344.</em>
+        <a href="https://doi.org/10.1371/journal.pone.0066344" class="bib-doi" target="_blank" rel="noopener">DOI: 10.1371/journal.pone.0066344 ↗</a>
+        <span class="bib-note">Demonstrates that Voynichese shows information-theoretic properties inconsistent with random text and consistent with natural language structure — including section-specific keyword usage suggestive of semantic organisation. Confirms non-random semantic clustering; one of the most technically rigorous results in the field.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Rugg, G.</strong> <span class="bib-year">(2004).</span> An Elegant Hoax? A possible solution to the Voynich Manuscript.
+        <em class="bib-journal">Scientific American, 291(1), 104–109.</em>
+        <span class="bib-note">Demonstrates that a Cardan grille grid device could generate text with Voynich-like surface statistics. Methodologically sound as a proof-of-concept — but only shows such a device <em>could</em> produce similar output, not that it did. Subsequent computational work found the full VMML, Zipf, and semantic-clustering profile not fully replicable by Rugg's mechanism. Essential reading for understanding the hoax debate.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Bax, S.</strong> <span class="bib-year">(2014).</span> A proposed partial decipherment of the Voynich script.
+        <em class="bib-journal">Working paper, University of Bedfordshire.</em>
+        <span class="bib-note">Proposes 14 word identifications by matching Voynich illustrations to labeled images in other medieval manuscripts — including a proposed reading of the word for Taurus. The comparative-iconography method is legitimate in principle (it worked for Linear B), but depends on the unverified assumption that Voynich labels name their illustrations. Not independently replicated; not definitively refuted. Archived at stephenbax.net.</span>
+      </div>
+      <span class="bib-badge lb-speculative">Speculative</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Hauer, B., &amp; Kondrak, G.</strong> <span class="bib-year">(2017).</span> Decoding Anagrammed Texts Written in an Unknown Language and Script.
+        <em class="bib-journal">Transactions of the Association for Computational Linguistics (TACL).</em>
+        <span class="bib-note">Applies unsupervised decipherment methods to the possibility that Voynich words are anagrams of natural language words. Finds weak signal consistent with some Semitic languages at token level. Methodologically transparent about limitations.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Parisel, C.</strong> <span class="bib-year">(2026).</span> A Quantitative Confirmation of the Currier Language Distinction.
+        <em class="bib-journal">arXiv:2604.25979.</em>
+        <span class="bib-note">Beta-binomial mixture model applied to the Currier A/B distinction. Achieves 89.2% classification accuracy on folio assignment. Strong independent confirmation of the two-dialect hypothesis originally proposed by Currier (1976). Most rigorous statistical treatment of the A/B question to date.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Silva, F. J. F. da.</strong> <span class="bib-year">(2026).</span> BPE Morpheme-Length Clustering Across 55 Writing System Corpora (Paper 7).
+        <em class="bib-journal">Zenodo.</em>
+        <a href="https://doi.org/10.5281/zenodo.20386119" class="bib-doi" target="_blank" rel="noopener">DOI: 10.5281/zenodo.20386119 ↗</a>
+        <span class="bib-note">First systematic application of BPE VMML to typological classification of the Voynich Manuscript. Establishes the Alphabetic Ceiling, the 55-corpus comparative baseline, and the Voynich Discriminant Zone.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Silva, F. J. F. da.</strong> <span class="bib-year">(2026).</span> BPE VMML Cross-Text Instability in Tagalog and the Limits of Single-Corpus Typological Inference (Paper 8).
+        <em class="bib-journal">Zenodo.</em>
+        <a href="https://doi.org/10.5281/zenodo.20467972" class="bib-doi" target="_blank" rel="noopener">DOI: 10.5281/zenodo.20467972 ↗</a>
+        <span class="bib-note">Adversarial self-test of Paper 7's nearest-language candidate. Demonstrates cross-text VMML instability in Tagalog (Δ=0.336 units, Rizal corpus pair), introduces permutation testing, and expands the Austronesian comparison to 8 languages.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 2: Codicology -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Codicology &amp; Paleography</h2>
+      <span class="bib-count">3 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Davis, L. F.</strong> <span class="bib-year">(2020).</span> Scribal hands in the Voynich Manuscript: a new assessment.
+        <em class="bib-journal">Manuscript Studies, 5(1).</em>
+        <span class="bib-note">Identifies multiple distinct scribal hands through systematic paleographic analysis of letter formation and pen-angle patterns. Provides independent evidence for the multi-scribe hypothesis and correlates scribe boundaries with Currier A/B language sections.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Zandbergen, R.</strong> <span class="bib-year">(ongoing).</span> The Voynich Manuscript — comprehensive reference site.
+        <em class="bib-journal">voynich.nu.</em>
+        <span class="bib-note">The single most complete reference resource on the manuscript's history, provenance, physical description, transcription systems, and research bibliography. Maintained with scholarly rigour and updated continuously. Essential reading before publishing any new claims.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Kennedy, G., &amp; Churchill, R.</strong> <span class="bib-year">(2004).</span> The Voynich Manuscript.
+        <em class="bib-journal">Inner Traditions, Rochester VT.</em>
+        <span class="bib-note">Popular-audience survey of the manuscript's history and major theories. Useful introduction for general readers; does not advance new research claims.</span>
+      </div>
+      <span class="bib-badge lb-accessible">Accessible</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 3: Cryptography -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Cryptography &amp; Cipher Hypotheses</h2>
+      <span class="bib-count">3 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Currier, P.</strong> <span class="bib-year">(1976).</span> New Research on the Voynich Manuscript: Proceedings of a Seminar.
+        <em class="bib-journal">NSA Technical Report (declassified).</em>
+        <span class="bib-note">First systematic identification of two distinct statistical populations within Voynich text, now known as Currier A and Currier B. The A/B distinction is one of the most reliably reproduced findings in all Voynich research. This document is the starting point for all subsequent statistical work.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Schinner, A.</strong> <span class="bib-year">(2007).</span> The Voynich manuscript: Evidence of the hoax hypothesis.
+        <em class="bib-journal">Cryptologia, 31(2), 95–107.</em>
+        <span class="bib-note">Proposes a stochastic generation mechanism that could produce Voynich-like statistical properties without encoding real language. Methodologically rigorous within its scope. Our work tests and partially refutes this model: random EVA generation under Schinner's process does not replicate the full VMML + BC + CBMI profile.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Timm, T., &amp; Schindler, K.-U.</strong> <span class="bib-year">(2020).</span> A Voynich-manuscript positional word-stress model.
+        <em class="bib-journal">arXiv:2004.11218.</em>
+        <span class="bib-note">Proposes a self-citation mechanism based on positional word-stress patterns to explain Voynich's statistical structure. Interesting hypothesis but the EBNF/MI trade-off is irreconcilable with the observed Boundary Concentration profile. Tested and refuted in Paper 7.</span>
+      </div>
+      <span class="bib-badge lb-speculative">Speculative</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 4: Decipherment Proposals -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Decipherment Proposals (with critical assessment)</h2>
+      <span class="bib-count">2 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Cheshire, G.</strong> <span class="bib-year">(2019).</span> Linguistic Missing Links: Rosetta Stone for the Voynich Manuscript.
+        <em class="bib-journal">Romance Studies — subsequently retracted.</em>
+        <span class="bib-note">Claimed the manuscript is written in proto-Romance language with Latin-based cipher. The journal retracted the paper following expert criticism of the methodology, linguistic claims, and failure to provide reproducible decipherment. Listed here for transparency and as a case study in insufficient peer review.</span>
+      </div>
+      <span class="bib-badge lb-retracted">Retracted</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Naibbe (attributed).</strong> <span class="bib-year">(2025).</span> Claims of Voynich Manuscript decipherment.
+        <em class="bib-journal">Media coverage, various outlets.</em>
+        <span class="bib-note">Multiple media cycles in 2025 reported "Voynich decoded" claims attributed to this source. Tested and refuted in our Paper 3: the proposed decipherment does not reproduce consistent transliterations, contains unfalsifiable interpretive leaps, and is structurally incompatible with BPE analysis. No peer-reviewed preprint was produced.</span>
+      </div>
+      <span class="bib-badge lb-speculative">Speculative</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 5: History & Provenance -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>History &amp; Provenance</h2>
+      <span class="bib-count">2 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Voynich, W. M.</strong> <span class="bib-year">(1921).</span> A Preliminary Sketch of the History of the Roger Bacon Cipher Manuscript.
+        <em class="bib-journal">Transactions of the College of Physicians of Philadelphia, 43.</em>
+        <span class="bib-note">Voynich's own account of acquiring the manuscript and his hypothesis attributing it to Roger Bacon. A primary historical document. The Roger Bacon attribution is now considered unsupported, but this text remains essential for understanding the early provenance chain.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Zandbergen, R., &amp; Boser, R.</strong> <span class="bib-year">(ongoing).</span> Voynich Manuscript provenance chain research.
+        <em class="bib-journal">voynich.nu — provenance section.</em>
+        <span class="bib-note">The most complete reconstruction of the manuscript's documented ownership history, tracing it from the Holy Roman Emperor Rudolf II through Georg Baresch, Johannes Marcus Marci, Athanasius Kircher, and the Collegium Romanum to Wilfrid Voynich. Indispensable for any work touching on origin or dating.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 6: Software & Digital Tools -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Software &amp; Digital Tools</h2>
+      <span class="bib-count">4 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Zandbergen, R., &amp; Landini, G.</strong> <span class="bib-year">(1998).</span> EVA (European Voynich Alphabet). Transcription standard enabling computational analysis.
+        <em class="bib-journal">Available at voynich.nu.</em>
+        <span class="bib-note">The standard ASCII-compatible notation system for Voynich glyphs — the precondition for all computational research. Before EVA, each research group used incompatible transcription conventions, making cross-team comparison nearly impossible. EVA assigns short alphabetic codes to each glyph, enabling shared datasets, statistical analysis, and reproducible results. Still the dominant system for computational Voynich research more than 25 years after publication.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Takahashi, T.</strong> <span class="bib-year">(1998).</span> IVTFF (Interlinear Voynich Transliteration File Format). Standard for aligned multi-hand transcriptions.
+        <em class="bib-journal">Transcription format specification.</em>
+        <span class="bib-note">The file format that allows multiple independent transcriptions of the same Voynich folio to be stored in alignment — enabling inter-transcriber agreement statistics and multi-hand comparison. Essential infrastructure for any serious corpus work; IVTFF files are the primary data format used by the Voynich.nu community and most published computational studies.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>DG97EEB.</strong> <span class="bib-year">(2026).</span> Voynich Whispers Archive Search Engine.
+        <em class="bib-journal">voynich-whispers-archive.lovable.app</em>
+        <a href="https://voynich-whispers-archive.lovable.app" class="bib-doi" target="_blank" rel="noopener">voynich-whispers-archive.lovable.app ↗</a>
+        <span class="bib-note">Searchable database of Voynich Mailing List and forum discussions spanning decades of community research. Useful for tracing the provenance of specific claims, finding prior art for proposed hypotheses, and recovering discussions that predate modern indexing. An underused research tool — many "new" claims have been raised and addressed before.</span>
+      </div>
+      <span class="bib-badge lb-useful">Useful</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Pelling, N.</strong> Cipher Mysteries blog.
+        <em class="bib-journal">ciphermysteries.com</em>
+        <a href="https://ciphermysteries.com" class="bib-doi" target="_blank" rel="noopener">ciphermysteries.com ↗</a>
+        <span class="bib-note">Active research blog maintained by Nick Pelling, author of <em>The Curse of the Voynich</em> (2006). Tracks current decipherment claims, media coverage, and new papers with critical commentary. One of the longest-running independent Voynich blogs; useful for monitoring what claims are circulating and what the community response has been. Pelling is skeptical and methodologically careful by blog standards.</span>
+      </div>
+      <span class="bib-badge lb-useful">Useful</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 7: Cryptography & Cipher Analysis (1970s–2010s) -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Cryptography &amp; Cipher Analysis (1970s–2010s)</h2>
+      <span class="bib-count">5 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Currier, P. H.</strong> <span class="bib-year">(1976).</span> New Research on the Voynich Manuscript: Proceedings of a Seminar — NSA Classification System and the A/B Distinction.
+        <em class="bib-journal">NSA Technical Report (declassified 2002).</em>
+        <span class="bib-note">The original paper introducing the A/B language distinction using NSA cryptanalytic methods. Currier identified two statistically distinct text populations (later named Currier A and Currier B) based on character-frequency profiles. This finding has been independently confirmed in every quantitative study since, including Parisel (2026) at 89.2% classification accuracy. The foundational observation of all computational Voynich research.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>D'Imperio, M. E.</strong> <span class="bib-year">(1978).</span> The Voynich Manuscript: An Elegant Enigma.
+        <em class="bib-journal">NSA/CSS, Fort George G. Meade. (Declassified; reprinted Aegean Park Press, 1980.)</em>
+        <span class="bib-note">The most comprehensive single-author survey of the Voynich Manuscript produced in the twentieth century. Covers codicology, transcription history, statistical analysis, cryptanalytic approaches, and all then-known provenance evidence. Written by a senior NSA cryptanalyst. Methodologically rigorous throughout. Essential reading for any serious researcher — almost every subsequent study builds on or reacts to D'Imperio's framework.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Rugg, G.</strong> <span class="bib-year">(2004).</span> The Cardan grille hypothesis: Can gibberish look like language?
+        <em class="bib-journal">Cryptologia, 28(4), 329–340.</em>
+        <span class="bib-note">The peer-reviewed version of Rugg's Scientific American demonstration. Shows that a Cardan grille table-lookup device could generate tokens with surface statistics resembling Voynich text. Important as a proof-of-concept for sophisticated gibberish, but the mechanism does not reproduce the full Zipfian profile, the VMML cluster, nor the semantic keyword distributions established by Montemurro &amp; Zanette (2013).</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Schinner, A.</strong> <span class="bib-year">(2007).</span> The Voynich manuscript: Evidence of the hoax hypothesis.
+        <em class="bib-journal">Cryptologia, 31(2), 95–107.</em>
+        <span class="bib-note">Proposes a stochastic text-generation model in which an author selects tokens from memory via a cascading random process — producing Voynichese-like rank-frequency curves without encoding meaningful content. Methodologically transparent and mathematically sound within its scope. Refuted in our RESON Paper 7: the full BPE VMML + boundary-concentration profile is not reproducible by random EVA generation under Schinner's process.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Timm, T., &amp; Schindler, K.-U.</strong> <span class="bib-year">(2020).</span> A Voynich-manuscript positional word-stress model.
+        <em class="bib-journal">arXiv:2004.11218.</em>
+        <span class="bib-note">Introduces a self-referential positional stress mechanism to explain Voynich's unusual word-internal character distributions. Technically interesting but the proposed EBNF trade-off is irreconcilable with the observed Boundary Concentration Morpheme Index (BCMI) profile. Tested and refuted in RESON Paper 7. Cited here for completeness; important to read to understand why positional models alone are insufficient.</span>
+      </div>
+      <span class="bib-badge lb-speculative">Speculative</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 8: Linguistic & Computational Analysis (1990s–2020s) -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Linguistic &amp; Computational Analysis (1990s–2020s)</h2>
+      <span class="bib-count">7 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Stolfi, J.</strong> <span class="bib-year">(1997–2005).</span> Multiple statistical analyses of the Voynich Manuscript.
+        <em class="bib-journal">Personal research website. voynich.net/stolfi.</em>
+        <span class="bib-note">Stolfi independently compiled EVA-based corpus statistics including vocabulary size, hapax legomenon frequency, positional character distributions, word-length histograms, and inter-word co-occurrence tables. These datasets remain the most-cited computational resource in the field. Remarkably, his 1997–2005 tables are still quoted directly in peer-reviewed papers published in the 2020s — a tribute to both their quality and the field's slow pace of data production.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Landini, G.</strong> <span class="bib-year">(2001).</span> Evidence of linguistic structure in the Voynich manuscript using spectral analysis.
+        <em class="bib-journal">Cryptologia, 25(4), 275–295.</em>
+        <span class="bib-note">Applies spectral analysis (Fourier decomposition of text sequences) to Voynich character distributions. Finds regularities inconsistent with purely random text and broadly consistent with structured natural language. An important early technical contribution predating the keyword work of Montemurro &amp; Zanette and reinforcing the case against pure randomness.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Reddy, S., &amp; Knight, K.</strong> <span class="bib-year">(2011).</span> What we know about the Voynich manuscript.
+        <em class="bib-journal">Proceedings of the ACL Workshop on Language Technology for Cultural Heritage, Social Sciences, and Humanities (LaTeCH), pp. 78–86.</em>
+        <span class="bib-note">A rigorous survey of what can and cannot be concluded from computational analysis, distinguishing confirmed facts from contested claims. Particularly useful for its honest accounting of what statistical analyses do and do not prove about language encoding. One of the clearest-headed papers in the field; recommended as an antidote to overconfident interpretations.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Amancio, D. R., Altmann, E. G., Rybski, D., Oliveira, O. N., &amp; Costa, L. F.</strong> <span class="bib-year">(2013).</span> Probing the statistical properties of unknown texts: Application to the Voynich manuscript.
+        <em class="bib-journal">PLOS ONE, 8(7), e67310.</em>
+        <a href="https://doi.org/10.1371/journal.pone.0067310" class="bib-doi" target="_blank" rel="noopener">DOI: 10.1371/journal.pone.0067310 ↗</a>
+        <span class="bib-note">Applies complex-network analysis (word co-occurrence graphs) and Zipf-law fitting to the Voynich corpus. Finds that the manuscript's network topology resembles natural language more closely than random or artificial text. Complements Montemurro &amp; Zanette's keyword analysis using an independent methodology. Both studies converge on the same conclusion: structure is present and consistent with language.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Montemurro, M. A., &amp; Zanette, D. H.</strong> <span class="bib-year">(2013).</span> Keywords and Co-Occurrence Patterns in the Voynich Manuscript: An Information-Theoretic Analysis.
+        <em class="bib-journal">PLOS ONE, 8(6), e66344.</em>
+        <a href="https://doi.org/10.1371/journal.pone.0066344" class="bib-doi" target="_blank" rel="noopener">DOI: 10.1371/journal.pone.0066344 ↗</a>
+        <span class="bib-note">Demonstrates section-specific keyword distributions using mutual-information measures — showing that different manuscript sections use statistically distinct vocabulary subsets in patterns inconsistent with random text but consistent with topically organised prose. One of the most technically rigorous and widely cited results in all Voynich research. Listed in both legacy and thematic sections for prominence.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Hauer, B., &amp; Kondrak, G.</strong> <span class="bib-year">(2016).</span> Decoding Anagrammed Texts Written in an Unknown Language and Script.
+        <em class="bib-journal">Transactions of the Association for Computational Linguistics (TACL), 4, 75–86.</em>
+        <a href="https://doi.org/10.1162/tacl_a_00084" class="bib-doi" target="_blank" rel="noopener">DOI: 10.1162/tacl_a_00084 ↗</a>
+        <span class="bib-note">Applies unsupervised decipherment algorithms — developed for real unknown-language scenarios — to test whether Voynich words are anagrams of tokens in known languages. Finds weak but non-trivial signal most consistent with some Semitic languages at the type level. The paper is more valuable as a rigorous negative result and methodological template than as a positive identification claim.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Bowern, C., &amp; Lindsey, K.</strong> <span class="bib-year">(2021).</span> Statistical Approaches to the Language of the Voynich Manuscript.
+        <em class="bib-journal">Language Documentation &amp; Conservation, 15, 415–449.</em>
+        <span class="bib-note">Applies typological-linguistic methodology — including cross-linguistic structural comparison — to assess what class of natural language the Voynich script's patterns most resemble. Finds phonotactic and morphological constraints most consistent with an agglutinative or polysynthetic language. Rigorously documents limitations and null results. Important for grounding computational findings in formal linguistics.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 9: Codicology & Material Analysis (2000s–2020s) -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Codicology &amp; Material Analysis (2000s–2020s)</h2>
+      <span class="bib-count">4 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Shailor, B. A.</strong> <span class="bib-year">(2004).</span> The Voynich Manuscript: A Catalogue Entry.
+        <em class="bib-journal">Beinecke Rare Book &amp; Manuscript Biblioteca, Yale University. MS 408.</em>
+        <span class="bib-note">The official catalogue description of Beinecke MS 408 as a physical object — quire structure, folio count, binding, vellum quality, pigment description, and condition notes. The authoritative codicological baseline for all physical analysis. Essential before making any claim about material composition, dating, or production.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Clemens, R.</strong> <span class="bib-year">(2016).</span> Introduction. In <em>The Voynich Manuscript</em>.
+        <em class="bib-journal">Yale University Press, New Haven.</em>
+        <span class="bib-note">The scholarly introduction to the Yale facsimile — the most physically accurate published reproduction of the manuscript. Clemens provides codicological context, summarises the radiocarbon dating (1404–1438 CE), reviews provenance, and frames the state of research at publication. The facsimile itself is the essential visual reference for any comparative illustration work.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Davis, L. F.</strong> <span class="bib-year">(2020).</span> Scribal hands in the Voynich Manuscript: a new assessment.
+        <em class="bib-journal">Manuscript Studies, 5(1), 1–26.</em>
+        <span class="bib-note">Systematic paleographic analysis of letter formation, pen-angle, and stroke consistency across folios. Identifies multiple distinct scribal hands and correlates scribe boundaries with the Currier A/B language distinction — providing independent, non-statistical evidence that the two-language hypothesis reflects real production structure rather than statistical noise. One of the most methodologically careful papers in recent codicological work.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Velinska, E.</strong> <span class="bib-year">(2010–2020).</span> Herbal illustrations: comparative iconographic study of Voynich plant images.
+        <em class="bib-journal">Personal research blog and academic presentations.</em>
+        <span class="bib-note">Sustained comparative study matching Voynich plant illustrations against medieval European and Ottoman herbals using visual pattern analysis. Identifies credible iconographic parallels in 15th-century Central European botanical manuscripts. The method is legitimate — comparative iconography underpinned Linear B decipherment — but conclusions depend on the unverified assumption that illustrations depict real plants. Published informally; not yet peer-reviewed at article level.</span>
+      </div>
+      <span class="bib-badge lb-speculative">Speculative</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 10: Historical & Provenance Research -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Historical &amp; Provenance Research</h2>
+      <span class="bib-count">4 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Marci, J. M.</strong> <span class="bib-year">(1665).</span> Letter to Athanasius Kircher (primary source).
+        <em class="bib-journal">Transcribed and translated in multiple sources; digitised at Beinecke Biblioteca.</em>
+        <span class="bib-note">The earliest surviving document directly mentioning the Voynich Manuscript. Marcus Marci sends the manuscript to Jesuit polymath Kircher with the account that Rudolf II paid 600 ducats for it and that it was attributed (uncertainly) to Roger Bacon. The letter establishes the provenance chain from Rudolf II and is the primary historical anchor for all subsequent ownership reconstruction. The Roger Bacon attribution in the letter is considered unreliable by modern scholars.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Zandbergen, R.</strong> <span class="bib-year">(2004–2026).</span> The Voynich Manuscript — comprehensive historical and bibliographic reference.
+        <em class="bib-journal">voynich.nu (continuously updated).</em>
+        <a href="https://www.voynich.nu" class="bib-doi" target="_blank" rel="noopener">voynich.nu ↗</a>
+        <span class="bib-note">The most complete single reference on Voynich provenance, physical description, transcription systems, and research history. Updated continuously as new evidence emerges. Zandbergen's provenance section is the authoritative reconstruction of ownership from Rudolf II through Baresch, Marci, Kircher, the Collegium Romanum, and Voynich himself. Indispensable before publishing any historical claim.</span>
+      </div>
+      <span class="bib-badge lb-foundational">Foundational</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Kennedy, G., &amp; Churchill, R.</strong> <span class="bib-year">(2004).</span> The Voynich Manuscript.
+        <em class="bib-journal">Inner Traditions, Rochester, VT.</em>
+        <span class="bib-note">A thorough popular-audience book covering the manuscript's history and major theories up to 2004. Well-researched for its genre; useful as a narrative introduction that situates the manuscript within Renaissance intellectual culture. Does not advance new research claims but synthesises the state of knowledge at the time accessibly.</span>
+      </div>
+      <span class="bib-badge lb-accessible">Accessible</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Prinke, R. T., &amp; Zandbergen, R.</strong> <span class="bib-year">(2016).</span> The provenance of the Voynich Manuscript: New evidence and open questions.
+        <em class="bib-journal">Conference presentation, Cipher Mysteries Symposium.</em>
+        <span class="bib-note">Presents documentary evidence situating the manuscript's likely origin in Central Europe and tightens the known provenance chain. Particularly important for the discussion of the Jacobus Horčický de Tepenec ownership mark and the manuscript's likely route from Rudolf II's court. Not yet published in a peer-reviewed venue, but the underlying primary-source research is solid and well-documented.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 11: Proposed Decipherments (Significant Attempts) -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Proposed Decipherments — Significant Attempts</h2>
+      <span class="bib-count">4 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Tucker, A. O., &amp; Talbert, R. H.</strong> <span class="bib-year">(2013).</span> A Preliminary Analysis of the Botany, Zoology, and Mineralogy of the Voynich Manuscript.
+        <em class="bib-journal">HerbalGram: The Journal of the American Botanical Council, 100, 70–85.</em>
+        <span class="bib-note">Proposes that Voynich illustrations depict New World species — including Mexican plants not found in European herbals — and concludes the manuscript is a colonial-era Mexican pharmacopoeia. The botanical identifications have been contested by other botanists; the New World hypothesis conflicts with the radiocarbon date (1404–1438 CE, predating European contact with the Americas). Significant because of its serious botanical methodology, even if the conclusions remain disputed.</span>
+      </div>
+      <span class="bib-badge lb-speculative">Speculative</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Bax, S.</strong> <span class="bib-year">(2014).</span> A proposed partial decipherment of the Voynich script.
+        <em class="bib-journal">Working paper. University of Bedfordshire. Archived at stephenbax.net.</em>
+        <span class="bib-note">Proposes 14 specific word identifications by matching Voynich illustrations to labeled images in contemporaneous manuscripts — inferring that illustrated labels name their depicted object. The comparative-iconography method is legitimate in principle (it contributed to Linear B). However, the proposed readings have not been independently extended to a consistent decipherment, and the core assumption that labels name illustrations remains unverified. Not refuted; not confirmed.</span>
+      </div>
+      <span class="bib-badge lb-speculative">Speculative</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Cheshire, G.</strong> <span class="bib-year">(2019).</span> Linguistic Missing Links: The Rosetta Stone for the Voynich Manuscript. [RETRACTED]
+        <em class="bib-journal">Romance Studies — retracted by the journal following expert review.</em>
+        <span class="bib-note">Claimed the manuscript is written in proto-Romance language using a Latin-based cipher. The journal retracted the paper following expert criticism documenting failures of linguistic methodology, fabrication of grammatical forms, and untestable interpretation. Listed here for transparency: it received widespread media coverage and continues to circulate online despite retraction. A useful case study in how media amplification bypasses peer review.</span>
+      </div>
+      <span class="bib-badge lb-retracted">Retracted</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Gibbs, N.</strong> <span class="bib-year">(2017).</span> The Voynich manuscript: The solution.
+        <em class="bib-journal">Times Literary Supplement, September 2017.</em>
+        <span class="bib-note">Proposes the manuscript is a ladies' health guide encoded in an abbreviated Latin cipher using standard medieval abbreviation conventions. The TLS piece generated significant media attention. Expert response was mixed — the abbreviation hypothesis is not new, and the proposed reading was not extended to a full consistent decipherment. The "solution" label in the headline was not supported by the evidence presented; the article itself is more cautious than its title suggests.</span>
+      </div>
+      <span class="bib-badge lb-speculative">Speculative</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 12: Astronomy & Calendrical Studies -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Astronomy &amp; Calendrical Studies</h2>
+      <span class="bib-count">3 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Etz, D. V.</strong> <span class="bib-year">(2000).</span> A new look at the statistical analysis of the Voynich manuscript.
+        <em class="bib-journal">Cryptologia, 24(1), 1–16.</em>
+        <span class="bib-note">Revisits early statistical analyses with updated methods, critically examining claims about entropy and character entropy made in prior work. Particularly focused on the astronomical section's distinct statistical profile versus the herbal and pharmaceutical sections. Raises methodological concerns about conflating section-level statistics that subsequent researchers have largely addressed by treating sections separately.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Zandbergen, R., &amp; Prinke, R. T.</strong> <span class="bib-year">(2017).</span> The Voynich manuscript's astronomical section: evidence and interpretation.
+        <em class="bib-journal">Voynich.nu research note and conference presentation.</em>
+        <a href="https://www.voynich.nu" class="bib-doi" target="_blank" rel="noopener">voynich.nu ↗</a>
+        <span class="bib-note">Systematic analysis of the astronomical/zodiac folios: calendar structure, month-name labels, nymph figures, and their relationship to 15th-century European astronomical manuscripts. Identifies credible parallels with German astronomical calendars of the early 1400s consistent with the radiocarbon date. The month-name labels are among the few Voynich elements with plausible identifications accepted across the research community.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Janick, J., &amp; Tucker, A. O.</strong> <span class="bib-year">(2018).</span> Unraveling the Voynich Codex.
+        <em class="bib-journal">Springer, Cham. (Book-length study.)</em>
+        <span class="bib-note">Book-length expansion of Tucker &amp; Talbert (2013), extending the New World botanical hypothesis across all manuscript sections including astronomical and balneological material. The authors correlate astronomical imagery with Aztec calendrical systems. The hypothesis remains contested: the radiocarbon dating (1404–1438 CE) is the primary obstacle, and no botanical or astronomical expert consensus has emerged supporting the New World identification. Important as the most fully developed alternative origin hypothesis.</span>
+      </div>
+      <span class="bib-badge lb-speculative">Speculative</span>
+    </div>
+
+  </div>
+
+  <!-- SECTION 13: Recent (2020–2026) -->
+  <div class="bib-section">
+    <div class="bib-section-header">
+      <h2>Recent Research (2020–2026)</h2>
+      <span class="bib-count">3 entries</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Parisel, C.</strong> <span class="bib-year">(2026).</span> A Quantitative Confirmation of the Currier Language Distinction.
+        <em class="bib-journal">arXiv:2604.25979.</em>
+        <a href="https://arxiv.org/abs/2604.25979" class="bib-doi" target="_blank" rel="noopener">arXiv:2604.25979 ↗</a>
+        <span class="bib-note">Beta-binomial mixture model applied to the Currier A/B distinction achieves 89.2% folio-classification accuracy. The most statistically rigorous independent confirmation of Currier's 1976 observation. The paper also characterises the within-class variation structure, providing a baseline for future multi-dialect hypotheses. Essential reference for any 2026-onward computational Voynich work.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Silva, F. J. F. da.</strong> <span class="bib-year">(2026).</span> BPE Morpheme-Length Clustering Across 55 Writing System Corpora (RESON Paper 7).
+        <em class="bib-journal">Zenodo.</em>
+        <a href="https://doi.org/10.5281/zenodo.20386119" class="bib-doi" target="_blank" rel="noopener">DOI: 10.5281/zenodo.20386119 ↗</a>
+        <span class="bib-note">First systematic application of BPE VMML typological classification to the Voynich Manuscript across a 55-corpus comparative baseline spanning alphabets, syllabaries, abjads, abugidas, and logographic systems. Establishes the Alphabetic Ceiling, the Voynich Discriminant Zone, and the Intermediate Structural Regime (ISR) classification. Includes blind validation against Rohonc Codex, Rongorongo, Linear A, and Indus script.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+    <div class="bib-entry">
+      <div class="bib-ref">
+        <strong>Silva, F. J. F. da.</strong> <span class="bib-year">(2026).</span> BPE VMML Cross-Text Instability in Tagalog and the Limits of Single-Corpus Typological Inference (RESON Paper 8).
+        <em class="bib-journal">Zenodo.</em>
+        <a href="https://doi.org/10.5281/zenodo.20467972" class="bib-doi" target="_blank" rel="noopener">DOI: 10.5281/zenodo.20467972 ↗</a>
+        <span class="bib-note">Adversarial self-test of Paper 7's nearest Austronesian candidate. Demonstrates cross-text VMML instability in Tagalog (Δ=0.336 units, Rizal corpus pair), introduces permutation testing for significance assessment, and expands the Austronesian comparison to 8 languages. Methodologically important as the first published quantification of BPE VMML variance as a function of corpus selection in Voynich typological research.</span>
+      </div>
+      <span class="bib-badge lb-rigorous">Rigorous</span>
+    </div>
+
+  </div>
+
+  <!-- NOTE -->
+  <div class="note-box">
+    <strong>On critical assessments.</strong> The labels Rigorous, Foundational, Speculative, Accessible, Useful, and Retracted are editorial judgments by the Voynich Lucidity team, based on peer-review status, methodological transparency, reproducibility, and community reception. They are not verdicts — they are reading guides. We encourage all readers to consult primary sources and form independent judgments. If you believe an assessment is incorrect, write to us: <a href="mailto:contact@voynichlucidity.com" style="color:var(--gold);">contact@voynichlucidity.com</a>.
+  </div>
+
+</main>
+
+<footer>
+  <p class="footer-logo">Voynich <span>Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Claridad sobre certeza. Método sobre especulación.</p>
+</footer>
+
+
+<script>
+function shareVL() {
+  if (navigator.share) {
+    navigator.share({title: document.title, url: window.location.href});
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(()=>{
+      const btn = document.getElementById('shareBtn');
+      if(btn){ const orig=btn.textContent; btn.textContent='✓ Copied!'; setTimeout(()=>btn.textContent=orig,2000); }
+    });
+  }
+}
+</script>
+<div style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;display:flex;flex-direction:column;gap:0.5rem;">
+  <button id="shareBtn" onclick="shareVL()" title="Share this page"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">⬆</button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">↑</button>
+</div>
+</body>
+</html>

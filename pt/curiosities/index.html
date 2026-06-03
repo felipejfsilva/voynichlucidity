@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curiosities · Voynich Lucidity</title>
+  <meta name="description" content="Twenty verified fascinating facts about the Voynich Manuscript — surprising, documented, and written for the curious general reader." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080806;
+      color: #c8c4bc;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    a { color: #c9a84c; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 7rem 2.5rem 3.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .page-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      border: 1px solid #c9a84c;
+      padding: 0.2rem 0.55rem;
+      margin-bottom: 1.2rem;
+    }
+    .page-header h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: normal;
+      color: #f0ede6;
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .page-header p.intro {
+      font-size: 1rem;
+      color: #9a9690;
+      max-width: 640px;
+      line-height: 1.8;
+    }
+
+    /* GRID */
+    .cards-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem 6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* CARD */
+    .card {
+      background: #0e0e0b;
+      border: 1px solid #1e1d1a;
+      padding: 1.8rem;
+      position: relative;
+      transition: border-color 0.25s;
+    }
+    .card:hover {
+      border-color: #3a3630;
+    }
+    .card-num {
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      color: #1e1d1a;
+      position: absolute;
+      top: 1rem;
+      right: 1.4rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .card-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      margin-bottom: 0.9rem;
+    }
+    .card h2 {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: normal;
+      color: #f0ede6;
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+    .card p {
+      font-size: 0.88rem;
+      color: #9a9690;
+      line-height: 1.75;
+    }
+    .card .note {
+      margin-top: 0.9rem;
+      font-size: 0.78rem;
+      color: #5a5852;
+      border-left: 2px solid #2a2a26;
+      padding-left: 0.7rem;
+      font-style: italic;
+    }
+
+    /* DIVIDER */
+    .divider {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 2.5rem;
+      border-top: 1px solid #1e1d1a;
+    }
+  
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:transparent;border:none;}
+    .hamburger span{width:22px;height:1px;background:var(--white,#f0ede6);display:block;transition:all 0.3s;}
+    .mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:rgba(8,8,6,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border,#1e1d1a);padding:1.2rem 2rem;z-index:99;flex-direction:column;gap:1rem;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{color:var(--muted,#8e8a84);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;}
+    .mobile-menu a:hover{color:var(--gold,#c9a84c);}
+    @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+  </style>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voynichlucidity.com/curiosities/">
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BZWDDNCDP2');
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,6,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1e1d1a;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;">
+  <a href="/" style="font-family:Georgia,serif;font-size:1rem;letter-spacing:0.08em;color:#f0ede6;text-decoration:none;">Voynich <span style="color:#c9a84c;">Lucidity</span></a>
+  <ul style="display:flex;gap:1.8rem;list-style:none;">
+    <li><a href="/the-manuscript" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">O Manuscrito</a></li>
+    <li><a href="/research" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Pesquisa</a></li>
+    <li><a href="/library" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Biblioteca</a></li>
+    <li><a href="/what-it-isnt" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">O Que Não É</a></li>
+    <li><a href="/findings" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Descobertas</a></li>
+    <li><a href="/curiosities" style="color:#c9a84c;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Curiosidades</a></li>
+    <li><a href="/media" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Mídia</a></li>
+    <li><a href="/collaborate" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Colaborar</a></li>
+    <li><a href="/resources" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Recursos</a></li>
+  </ul>
+  <div style="display:flex;gap:0.5rem;">
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#c9a84c;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid #c9a84c;">EN</a>
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a7670;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid transparent;">PT</a>
+    <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a7670;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid transparent;">ES</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <span class="page-label">Verified Facts</span>
+  <h1>Curiosidades</h1>
+  <p class="intro">Twenty documented facts about the Voynich Manuscript — strange, verified, and stranger for being true. No speculation. No "could be." These are things we actually know.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- CARDS -->
+<div class="cards-grid">
+
+  <div class="card">
+    <span class="card-num">01</span>
+    <span class="card-tag">Material Science</span>
+    <h2>The ink is genuine medieval — confirmed by X-ray fluorescence</h2>
+    <p>X-ray fluorescence (XRF) analysis of the manuscript's ink composition revealed iron-gall and copper-based pigments consistent with 15th-century European production. No modern synthetic compounds were found. The result rules out any 19th- or 20th-century forgery of the writing itself.</p>
+    <div class="note">Verified by McCrone Associates, 2009. Cited in the Beinecke Biblioteca's official carbon dating report.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">02</span>
+    <span class="card-tag">History & Provenance</span>
+    <h2>Rudolf II paid 600 gold ducats for it — roughly $150,000 today</h2>
+    <p>Emperor Rudolf II of Bohemia reportedly purchased the manuscript for 600 gold ducats, according to a letter written by Johannes Marcus Marci to Athanasius Kircher in 1665. Rudolf was an obsessive collector of curiosities, automata, and esoteric objects. The price suggests he believed it was the genuine work of Roger Bacon.</p>
+    <div class="note">Marci's 1665 letter is one of the few solid provenance documents. The Bacon attribution is now considered almost certainly false.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">03</span>
+    <span class="card-tag">Dating</span>
+    <h2>Carbon dating placed the vellum between 1404 and 1438</h2>
+    <p>Radiocarbon dating performed in 2009 at the University of Arizona established that the parchment was made between approximately 1404 and 1438, with 95% confidence. This makes the manuscript early 15th century — older than many had assumed, and definitively pre-Columbian.</p>
+    <div class="note">Dating the vellum doesn't date the writing. Scribes occasionally wrote on aged parchment. But recycled vellum this old would be unusual and costly.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">04</span>
+    <span class="card-tag">Cold War & Cryptography</span>
+    <h2>NSA cryptanalysts worked on it — and failed</h2>
+    <p>During and after World War II, some of the world's best codebreakers — including analysts at the NSA — attempted to crack the Voynich script. Declassified NSA documents released in 2016 confirm internal studies were conducted, all inconclusive. William Friedman, who broke the Japanese "Purple" cipher, called it "the most mysterious manuscript in the world."</p>
+    <div class="note">Friedman's personal annotated copy of a Voynich monograph is held at the George C. Marshall Foundation Biblioteca.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">05</span>
+    <span class="card-tag">Decipherment History</span>
+    <h2>It has been "deciphered" over 50 times — none verified</h2>
+    <p>By conservative count, the Voynich Manuscript has been "solved" more than fifty times since the early 20th century. Proposed languages include Hebrew, Arabic, Latin, Nahuatl, Ukrainian, proto-Romance, and invented ciphers. Not one decipherment has produced a coherent, independently translatable text verified by linguists outside the proposer's circle.</p>
+    <div class="note">A rigorous decipherment would need to produce novel testable translations, not retrofitted readings. None has done so.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">06</span>
+    <span class="card-tag">Scribal Analysis</span>
+    <h2>There are no visible corrections or erasures in the text</h2>
+    <p>Unlike virtually every manuscript of similar length, the Voynich text shows almost no crossing-out, overwriting, or erasure. Scholars have proposed three explanations: the scribe copied from a pre-composed text and was extremely skilled; the text was produced using some mechanical or systematic method; or the absence of corrections is itself a signal that the text is not composed the way natural language is.</p>
+    <div class="note">Some minor corrections do exist but are extremely rare relative to text volume. The absence is statistically anomalous.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">07</span>
+    <span class="card-tag">Botany</span>
+    <h2>The plants don't match any known species — despite looking almost real</h2>
+    <p>The "herbal" section depicts what appear to be medicinal plants. They have roots, stems, leaves, and flowers that closely resemble real botanical structures — but don't correspond to any identified species. Botanists have proposed they are composites, invented species, or highly stylized versions of real plants. No systematic botanical identification has succeeded across the full herbal section.</p>
+    <div class="note">A handful of plants have proposed identifications (sunflower, pepper plant) but these remain contested and the majority are unidentified.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">08</span>
+    <span class="card-tag">Astronomy</span>
+    <h2>The astronomical section may depict a supernova — possibly SN 1054</h2>
+    <p>One diagram in the astronomical section shows a starburst pattern that some researchers have proposed could represent the Crab Nebula supernova (SN 1054), which was visible from Earth and recorded by Chinese astronomers. The identification is intriguing but unverified — the manuscript's date range makes it temporally plausible only if the illustration was copied from an older source.</p>
+    <div class="note">This remains speculative. The manuscript's vellum dates to 1404–1438, too late to record the 1054 event directly.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">09</span>
+    <span class="card-tag">Cultural Reach</span>
+    <h2>The manuscript has a Wikipedia article in over 40 languages</h2>
+    <p>The Voynich Manuscript has dedicated Wikipedia entries in more than 40 languages, including Esperanto, Basque, and Swahili. It is one of the most internationally documented mysteries in the history of written artefacts. The English article alone runs to over 15,000 words and has been cited in academic publications.</p>
+    <div class="note">This breadth of documentation is unusual for a single manuscript and reflects its unique status as a genuinely unsolved puzzle with broad public appeal.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">10</span>
+    <span class="card-tag">Human Interest</span>
+    <h2>Wilfrid Voynich's wife wrote one of the Victorian era's bestselling novels</h2>
+    <p>Ethel Lilian Voynich — wife of Wilfrid Voynich, who bought the manuscript in 1912 — was the author of <em>The Gadfly</em> (1897), a political adventure novel that became a massive bestseller, especially in Russia and China, where it sold tens of millions of copies in the 20th century. The couple's lives were themselves stranger than most fiction.</p>
+    <div class="note">The Gadfly remained one of the most-read novels in China from the 1950s through the 1980s — a remarkable fate for a Victorian Irish-American author.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">11</span>
+    <span class="card-tag">Open Access</span>
+    <h2>The Beinecke Biblioteca has digitized every page at full resolution — freely available</h2>
+    <p>Yale University's Beinecke Rare Book and Manuscript Biblioteca digitized the complete manuscript in high resolution and made all images freely available online. Every folio, every detail, every stain and fold is publicly accessible. This has democratized research and enabled computational analysis that would have been impossible with physical access alone.</p>
+    <div class="note">The digitization was completed in 2004. The images are available at the Beinecke Digital Collections without any login or fee.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">12</span>
+    <span class="card-tag">Survival</span>
+    <h2>It survived the suppression of the Jesuits, two world wars, and the digitization era — still unread</h2>
+    <p>The manuscript passed through the Jesuit College at Mondragone, was hidden during the 18th-century suppression of the Society of Jesus, survived both world wars while stored in European collections, was sold privately in 1912, donated to Yale in 1969, and digitized in 2004. Through all of it, not a single line has been translated. It has outlasted every attempt to understand it.</p>
+    <div class="note">Voynich purchased it from Villa Mondragone in Frascati, Italy. The donation to Yale was made by Hans P. Kraus, who had failed to sell it.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">13</span>
+    <span class="card-tag">Transcription Systems</span>
+    <h2>"EVA" stands for European Voynich Alphabet — and it made modern research possible</h2>
+    <p>Before 1998, every Voynich researcher used a different notation for the manuscript's unknown characters. Comparing results across teams was nearly impossible. Gabriel Landini and René Zandbergen created EVA — the European Voynich Alphabet — as a standardized ASCII-compatible transcription system that could be processed by computers and shared across institutions.</p>
+    <p style="margin-top:0.6rem;">EVA assigns a short alphabetic code to each Voynich glyph, enabling researchers worldwide to work on the same dataset. Without it, computational studies like entropy analysis, Zipf distributions, and BPE clustering would have been far harder to coordinate.</p>
+    <div class="note">Landini, G., &amp; Zandbergen, R. (1998). EVA transcription standard. Available at voynich.nu. Still the dominant system for computational Voynich research.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">14</span>
+    <span class="card-tag">Statistical Linguistics</span>
+    <h2>The text follows Zipf's Law — the statistical hallmark of all natural languages</h2>
+    <p>Zipf's Law states that in any natural language, the most common word appears roughly twice as often as the second most common, three times as often as the third, and so on — producing a characteristic power-law distribution. A 2014 analysis confirmed that Voynichese obeys this law with high fidelity.</p>
+    <p style="margin-top:0.6rem;">This finding is significant because pure random text does not follow Zipf's Law. It rules out gibberish or purely stochastic generation and is one of the strongest statistical arguments that the manuscript encodes something structured — whether a language, a cipher, or a highly systematic invented system.</p>
+    <div class="note">The Zipf compliance of Voynichese has been replicated by multiple independent teams since Stolfi's early analysis. It is one of the most robust findings in the field.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">15</span>
+    <span class="card-tag">History & Provenance</span>
+    <h2>The Biblioteca of Congress rejected it — Yale said yes</h2>
+    <p>Hans Peter Kraus, the rare book dealer who bought the manuscript from Anne Nill (Voynich's secretary) for $24,500 in 1961, spent years trying to sell it for $160,000. When he failed to find a buyer, he tried to donate it to the Biblioteca of Congress. They declined — citing lack of budget to acquire it properly and insufficient expertise to study it.</p>
+    <p style="margin-top:0.6rem;">Yale University's Beinecke Rare Book and Manuscript Biblioteca accepted the donation in 1969. It has been there ever since, catalogued as MS 408. The Biblioteca of Congress's refusal is now one of the more quietly famous decisions in the history of American rare books.</p>
+    <div class="note">Kraus's asking price of $160,000 in 1961 would be approximately $1.7 million today. No private buyer materialized at any price.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">16</span>
+    <span class="card-tag">Hoax Hypothesis</span>
+    <h2>A 2003 experiment showed a medieval grid device could fake the statistics — but didn't prove a hoax</h2>
+    <p>Gordon Rugg, a cognitive scientist at Keele University, demonstrated in 2003 that a Cardan grille — a card with cut-out holes slid over a grid of syllables — could generate text with statistical properties resembling Voynich's. The experiment reignited the hoax debate and received wide press coverage.</p>
+    <p style="margin-top:0.6rem;">However, Rugg's demonstration only showed that such a device could produce superficially similar text — not that it did, or that the full statistical profile of the manuscript (including its semantic clustering, Zipf compliance, and boundary concentration patterns) can be replicated this way. Subsequent computational tests found the match incomplete.</p>
+    <div class="note">Rugg, G. (2004). An Elegant Hoax? Scientific American, 291(1), 104–109. The hoax hypothesis remains unproven — and unrefuted.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">17</span>
+    <span class="card-tag">Cultural Reach</span>
+    <h2>It has inspired novels, films, and video games — but its most famous "connection" is a denial</h2>
+    <p>The Voynich Manuscript has inspired at least three published novels, two feature films, a graphic novel series, and multiple video game puzzles. Writers and filmmakers are drawn to its combination of visual strangeness and complete opacity — a mystery with no solution to spoil.</p>
+    <p style="margin-top:0.6rem;">The most cited fictional connection is Umberto Eco's <em>The Name of the Rose</em> (1980), which features an encrypted medieval manuscript. Eco, however, explicitly denied the Voynich was his inspiration — he cited other sources. The association persists anyway, which is itself something of a Voynich phenomenon: things attach to it regardless of evidence.</p>
+    <div class="note">Eco's denial is documented in interviews. The manuscript is frequently misattributed as a direct source for the novel. The actual Voynich-as-inspiration remains unverified for any major literary work.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">18</span>
+    <span class="card-tag">Computational Linguistics</span>
+    <h2>Words cluster by topic across sections — exactly as they would in a real text</h2>
+    <p>Marcelo Montemurro and Damián Zanette (2013) applied information-theoretic analysis to the Voynich text and found that high-entropy "keyword" words — the kind that carry topical meaning in natural language — are distributed across sections in ways consistent with semantic organisation. The herbal section has different keywords from the astronomical section, which differs from the biological section.</p>
+    <p style="margin-top:0.6rem;">This pattern is extremely difficult to produce by chance or by simple mechanical text generation. It implies that whatever the manuscript encodes, it is not random — and it is organized around content, not just form. This is one of the most technically rigorous results in Voynich research.</p>
+    <div class="note">Montemurro, M. A., &amp; Zanette, D. H. (2013). PLOS ONE, 8(6), e66344. DOI: 10.1371/journal.pone.0066344</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">19</span>
+    <span class="card-tag">Iconography</span>
+    <h2>The bathing women section is the most studied — and the least understood</h2>
+    <p>The "Biological" section of the manuscript — sometimes called the balneological section — depicts dozens of nude female figures bathing in interconnected pools and tubes rendered in green ink. It is the most photographed and most cited section in popular coverage of the manuscript, and the most resistant to interpretation.</p>
+    <p style="margin-top:0.6rem;">Leading hypotheses include medical illustrations of circulatory or reproductive systems, alchemical diagrams representing transformation processes, a medieval spa or therapeutic bathing manual, and purely symbolic cosmological imagery. No hypothesis has been adopted by more than a small number of researchers, and none has connected the imagery to any known illustrated tradition.</p>
+    <div class="note">The bathing section occupies folios 75r–84v. The green pigment used for the pools has been confirmed as consistent with 15th-century copper-based colorants.</div>
+  </div>
+
+  <div class="card">
+    <span class="card-num">20</span>
+    <span class="card-tag">Decipherment History</span>
+    <h2>A linguist claimed to read 14 words in 2014 — by matching illustrations to labeled medieval manuscripts</h2>
+    <p>Stephen Bax, a professor of applied linguistics at the University of Bedfordshire, published a working paper in 2014 proposing the identification of 14 specific words in the Voynich text. His method was comparative iconography: finding illustrations in the manuscript that closely resembled labeled images in other medieval manuscripts (stars, plants, constellations) and then reading the Voynich labels against the known names.</p>
+    <p style="margin-top:0.6rem;">Among his proposed identifications was the word for Taurus, matched to the constellation diagram. The method is legitimate in principle — it is how Linear B was partially cracked — but requires that the labels actually name the illustrated objects, which is an assumption for Voynich. His proposal has not been independently replicated, but has also not been definitively refuted.</p>
+    <div class="note">Bax, S. (2014). A proposed partial decipherment of the Voynich script. Working paper, University of Bedfordshire. Available online. Bax died in 2017; his work is archived at stephenbax.net.</div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #1e1d1a;padding:3rem 2rem;text-align:center;color:#7a7670;font-size:0.8rem;">
+  <p style="font-family:Georgia,serif;font-size:1rem;color:#f0ede6;margin-bottom:0.6rem;">Voynich <span style="color:#c9a84c;">Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com" style="color:#c9a84c;text-decoration:none;">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clareza sobre certeza. Método sobre especulação.</p>
+</footer>
+
+
+<script>
+function shareVL() {
+  if (navigator.share) {
+    navigator.share({title: document.title, url: window.location.href});
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(()=>{
+      const btn = document.getElementById('shareBtn');
+      if(btn){ const orig=btn.textContent; btn.textContent='✓ Copied!'; setTimeout(()=>btn.textContent=orig,2000); }
+    });
+  }
+}
+</script>
+<div style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;display:flex;flex-direction:column;gap:0.5rem;">
+  <button id="shareBtn" onclick="shareVL()" title="Share this page"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">⬆</button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">↑</button>
+</div>
+</body>
+</html>

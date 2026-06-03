@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Voynich Manuscript — what it is, how it was found, and its 600-year journey to Yale's Beinecke Biblioteca.">
+  <title>El Manuscrito · Voynich Lucidity</title>
+  <style>
+    :root {
+      --black: #080806;
+      --white: #f0ede6;
+      --gold: #c9a84c;
+      --muted: #8e8a84;
+      --border: #1e1d1a;
+      --card-bg: #0f0f0d;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* NAV */
+
+    /* ── DROPDOWN NAV ── */
+    .nav-drop { position:relative; }
+    .nav-drop > a::after { content:' ▾'; font-size:0.6em; opacity:0.6; }
+    .nav-dropdown {
+      display:none; position:absolute; top:100%; left:50%;
+      transform:translateX(-50%); min-width:180px;
+      background:rgba(8,8,6,0.98); border:1px solid #1e1d1a;
+      padding:0.4rem 0; z-index:200;
+    }
+    .nav-dropdown a {
+      display:block; padding:0.5rem 1.2rem;
+      color:var(--muted); text-decoration:none;
+      font-size:0.72rem; letter-spacing:0.08em;
+      text-transform:uppercase; white-space:nowrap;
+      transition:color 0.2s, background 0.2s;
+    }
+    .nav-dropdown a:hover { color:var(--gold); background:rgba(201,168,76,0.06); }
+    .nav-drop:hover .nav-dropdown { display:block; }
+    .nav-start-btn {
+      padding:0.3rem 0.9rem; background:rgba(201,168,76,0.12);
+      border:1px solid rgba(201,168,76,0.4); color:var(--gold) !important;
+      border-radius:2px;
+    }
+    .nav-start-btn:hover { background:rgba(201,168,76,0.2) !important; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(8,8,6,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem; display: flex;
+      align-items: center; justify-content: space-between; height: 58px;
+    }
+    .nav-logo { font-family: var(--font-serif); font-size: 1rem; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .lang-switcher { display: flex; gap: 0.5rem; }
+    .lang-switcher a { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 0.2rem 0.45rem; border: 1px solid transparent; transition: all 0.25s; }
+    .lang-switcher a.active, .lang-switcher a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* PAGE HERO */
+    .page-hero {
+      position: relative; min-height: 70vh;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 0 0 5rem;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('/assets/images/ms-folio-50r.jpg');
+      background-size: cover; background-position: center top;
+      opacity: 0.25; filter: sepia(0.3);
+      animation: slowZoom 25s ease-in-out infinite alternate;
+    }
+    @keyframes slowZoom { from { transform: scale(1); } to { transform: scale(1.06); } }
+    .page-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(8,8,6,0.3) 0%, rgba(8,8,6,0.98) 100%);
+    }
+    .page-hero-content {
+      position: relative; z-index: 2;
+      max-width: 900px; margin: 0 auto; padding: 0 2rem;
+    }
+    .breadcrumb { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 400; line-height: 1.1; margin-bottom: 1.2rem; }
+    .page-hero p { color: var(--muted); font-size: 1.05rem; max-width: 600px; font-style: italic; }
+
+    /* FACTS BAR */
+    .facts-bar {
+      background: var(--card-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 2rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+    }
+    .fact { text-align: center; }
+    .fact-value { font-family: var(--font-serif); font-size: 1.6rem; color: var(--gold); display: block; }
+    .fact-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+    /* CONTENT */
+    .content { max-width: 820px; margin: 0 auto; padding: 5rem 2rem; }
+    .content h2 { font-family: var(--font-serif); font-size: 1.9rem; font-weight: 400; margin: 3.5rem 0 1rem; color: var(--white); }
+    .content h2:first-child { margin-top: 0; }
+    .content p { color: #b8b4ae; margin-bottom: 1.2rem; line-height: 1.8; }
+    .content p strong { color: var(--white); font-weight: 500; }
+    .label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; display: block; }
+
+    /* FOLIO GALLERY */
+    .gallery { max-width: 1100px; margin: 0 auto; padding: 0 2rem 5rem; }
+    .gallery-title { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .gallery-sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 2rem; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .gallery-item { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--card-bg); cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.15); transition: transform 0.6s ease, filter 0.4s ease; }
+    .gallery-item:hover img { transform: scale(1.04); filter: sepia(0); }
+    .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(8,8,6,0.92)); padding: 1.5rem 1rem 0.8rem; }
+    .gallery-caption span { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+    .gallery-caption p { font-size: 0.8rem; color: var(--muted); margin: 0; }
+
+    /* TIMELINE */
+    .timeline-wrap { background: var(--card-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 5rem 2rem; }
+    .timeline { max-width: 820px; margin: 0 auto; }
+    .timeline-header { margin-bottom: 3rem; }
+    .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 2rem; margin-bottom: 0; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: 108px; top: 0.6rem; bottom: -2rem; width: 1px; background: var(--border); }
+    .timeline-item:last-child::before { display: none; }
+    .timeline-year { font-family: var(--font-serif); font-size: 1.1rem; color: var(--gold); text-align: right; padding-top: 0.2rem; position: relative; }
+    .timeline-year::after { content: ''; position: absolute; right: -1.4rem; top: 0.55rem; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+    .timeline-body { padding-bottom: 2.5rem; }
+    .timeline-body h4 { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.3rem; color: var(--white); }
+    .timeline-body p { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
+
+    /* LOCATION */
+    .location-wrap { max-width: 820px; margin: 0 auto; padding: 5rem 2rem; }
+    .location-box { border: 1px solid var(--border); background: var(--card-bg); padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .location-box h3 { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.8rem; grid-column: 1 / -1; }
+    .location-detail h4 { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .location-detail p { font-size: 0.88rem; color: var(--muted); }
+
+    /* DIVIDER */
+    hr { border: none; border-top: 1px solid var(--border); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--muted); font-size: 0.8rem; }
+    .footer-logo { font-family: var(--font-serif); font-size: 1rem; color: var(--white); margin-bottom: 0.6rem; letter-spacing: 0.06em; }
+    .footer-logo span { color: var(--gold); }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .facts-bar { gap: 1.5rem; }
+      .timeline-item { grid-template-columns: 80px 1fr; gap: 1rem; }
+      .location-box { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:transparent;border:none;}
+    .hamburger span{width:22px;height:1px;background:var(--white,#f0ede6);display:block;transition:all 0.3s;}
+    .mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:rgba(8,8,6,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border,#1e1d1a);padding:1.2rem 2rem;z-index:99;flex-direction:column;gap:1rem;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{color:var(--muted,#8e8a84);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;}
+    .mobile-menu a:hover{color:var(--gold,#c9a84c);}
+    @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+  </style>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BZWDDNCDP2');
+  </script>
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/start-here" class="nav-start-btn">★ Empezar</a></li>
+    <li><a href="/the-manuscript" class="active">El Manuscrito</a></li>
+    <li><a href="/library">Biblioteca</a></li>
+    <li><a href="/what-it-isnt">Lo Que No Es</a></li>
+    <li class="nav-drop"><a href="/findings">Investigación</a>
+      <div class="nav-dropdown">
+        <a href="/findings">Hallazgos</a>
+        <a href="/research">Estado de Investigación</a>
+        <a href="/methodology">Metodología</a>
+        <a href="/debates">Debates</a>
+        <a href="/undeciphered">Escrituras</a>
+      </div>
+    </li>
+    <li><a href="/curiosities">Curiosidades</a></li>
+    <li><a href="/media">Medios</a></li>
+    <li class="nav-drop"><a href="/collaborate">Conectar</a>
+      <div class="nav-dropdown">
+        <a href="/collaborate">Colaborar</a>
+        <a href="/press">Prensa</a>
+        <a href="/resources">Recursos</a>
+        <a href="/about">Sobre L.</a>
+      </div>
+    </li>
+  </ul>
+  <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="mobile-menu">
+    <a href="/start-here">★ Empezar</a>
+    <a href="/the-manuscript">El Manuscrito</a>
+    <a href="/library">Biblioteca</a>
+    <a href="/what-it-isnt">Lo Que No Es</a>
+    <a href="/findings">Hallazgos</a>
+    <a href="/research">Estado de Investigación</a>
+    <a href="/methodology">Metodología</a>
+    <a href="/debates">Debates</a>
+    <a href="/undeciphered">Escrituras</a>
+    <a href="/curiosities">Curiosidades</a>
+    <a href="/media">Medios</a>
+    <a href="/collaborate">Colaborar</a>
+    <a href="/press">Prensa</a>
+    <a href="/resources">Recursos</a>
+    <a href="/about">Sobre L.</a>
+  </div>
+  <div class="lang-switcher">
+    <a href="/the-manuscript">EN</a>
+    <a href="/pt/the-manuscript">PT</a>
+    <a href="/es/the-manuscript" class="active">ES</a>
+  </div>
+</nav>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="breadcrumb"><a href="/">Voynich Lucidity</a> · El Manuscrito</p>
+      <h1>El Manuscrito</h1>
+      <p>Qué es, cómo fue encontrado, and its six-century journey to the present day.</p>
+    </div>
+  </div>
+
+  <!-- FACTS BAR -->
+  <div class="facts-bar">
+    <div class="fact">
+      <span class="fact-value">~1404–1438</span>
+      <span class="fact-label">Vellum dating (carbon-14)</span>
+    </div>
+    <div class="fact">
+      <span class="fact-value">240</span>
+      <span class="fact-label">Pages (surviving)</span>
+    </div>
+    <div class="fact">
+      <span class="fact-value">~170,000</span>
+      <span class="fact-label">Characters</span>
+    </div>
+    <div class="fact">
+      <span class="fact-value">~37,000</span>
+      <span class="fact-label">Word tokens</span>
+    </div>
+    <div class="fact">
+      <span class="fact-value">MS 408</span>
+      <span class="fact-label">Beinecke shelfmark</span>
+    </div>
+  </div>
+
+  <!-- WHAT IT IS -->
+  <div class="content">
+    <span class="label">What It Is</span>
+    <h2>An Unread Book</h2>
+    <p>The Voynich Manuscript is a handwritten codex of approximately 240 vellum pages, written in an unknown script using an unidentified language — or a system of symbols whose meaning has not been established after more than a century of modern scholarly analysis.</p>
+    <p>Its vellum has been carbon-dated to the early 15th century (<strong>1404–1438</strong>, 95% confidence), placing its creation in late medieval Europe. The ink and pigments are consistent with the period. The manuscript appears to be an original composition, not a copy.</p>
+    <p>The text is written from left to right, with clear word boundaries and consistent letter-to-letter spacing. It is divided into sections by content — botanical illustrations, astronomical diagrams, biological figures, pharmaceutical recipes, and dense text-only pages — suggesting a structured, purposeful document rather than a random or decorative work.</p>
+    <p>Despite sustained analysis by cryptographers, linguists, computer scientists, and historians — including teams with access to modern AI and computational tools — <strong>no confirmed decipherment has been achieved</strong>. The script has no established equivalent in any known writing system.</p>
+
+    <h2>Physical Description</h2>
+    <p>The manuscript measures approximately <strong>23.5 × 16.2 cm</strong> and contains 240 surviving pages (originally more — some folios are missing or cut). It is written on vellum (calfskin) of consistent quality throughout, bound in a contemporary style consistent with early 15th-century European bookmaking.</p>
+    <p>The illustrations are painted in a limited palette — primarily green, brown, blue, and red — using pigments available in medieval Europe. They depict: <strong>botanical subjects</strong> (unidentified plants, some resembling real species but none confirmed); <strong>astronomical diagrams</strong> (circular charts with stars and symbols); <strong>biological figures</strong> (nude female figures in pools connected by tubes); <strong>cosmological diagrams</strong>; and <strong>pharmaceutical imagery</strong> (vessels and containers).</p>
+    <p>The text accompanying these images has been analysed using every available computational method. It exhibits Zipf's law, entropy levels consistent with natural language, and a consistent grammar-like structure — but no cipher key, no bilingual key, and no confirmed translation has ever been produced.</p>
+
+    <h2>How It Was Found</h2>
+    <p>The modern history of the manuscript begins in <strong>1912</strong>, when Polish-American antiquarian book dealer <strong>Wilfrid Voynich</strong> purchased it from the Jesuit College at the Villa Mondragone in Frascati, Italy. The college was discreetly selling assets to fund its activities, and Voynich recognized the manuscript as unusual among a collection of discarded books.</p>
+    <p>Voynich identified a letter inside the manuscript from <strong>Johannes Marcus Marci</strong> to Athanasius Kircher, dated <strong>1666</strong>, which stated that the manuscript had been purchased by Holy Roman Emperor <strong>Rudolf II</strong> for 600 gold ducats — a princely sum suggesting it was believed to be significant. This letter, still preserved with the manuscript, provides the earliest documented provenance.</p>
+    <p>Voynich spent the rest of his life attempting — and failing — to decipher it. He shared photographs with scholars worldwide, none of whom succeeded. After his death in 1930, the manuscript passed to his wife Ethel Voynich (author of <em>The Gadfly</em>), and subsequently to bookseller H.P. Kraus, who donated it to <strong>Yale University</strong> in 1969.</p>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <p class="label">Selected Folios</p>
+    <h2 class="gallery-title">Dentro del Manuscrito</h2>
+    <p class="gallery-sub">All images are in the public domain. Source: Beinecke Rare Book & Manuscript Biblioteca, Yale University.</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="/assets/images/folio-f78r-biological.jpg" alt="Voynich Manuscript folio - botanical" loading="lazy">
+        <div class="gallery-caption">
+          <span>Botanical Section</span>
+          <p>Unidentified plant illustration with accompanying text</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/folio-f67r-astronomical.jpg" alt="Voynich Manuscript f1r" loading="lazy">
+        <div class="gallery-caption">
+          <span>Folio f1r</span>
+          <p>First page of the manuscript — heavily studied</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/folio-f71r-zodiac.jpg" style="filter:sepia(0.8) hue-rotate(200deg) brightness(0.7)" alt="Voynich Manuscript f67r astronomical" loading="lazy">
+        <div class="gallery-caption">
+          <span>Folio f67r · Astronomical</span>
+          <p>Circular diagram with celestial symbols</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/folio-f69r-astronomical.jpg" alt="Voynich Manuscript f78r biological" loading="lazy">
+        <div class="gallery-caption">
+          <span>Folio f78r · Biological</span>
+          <p>Female figures in connected pools — purpose unknown</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/folio-f73r-zodiac.jpg" style="filter:sepia(0.6) hue-rotate(310deg) brightness(0.8)" alt="Voynich Manuscript f70v zodiac" loading="lazy">
+        <div class="gallery-caption">
+          <span>Folio f70v · Zodiac</span>
+          <p>Circular zodiac diagram with female figures and stars</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/folio-f79r-biological2.jpg" style="filter:sepia(0.9) hue-rotate(260deg) brightness(0.6)" alt="Voynich Manuscript f86v cosmological" loading="lazy">
+        <div class="gallery-caption">
+          <span>Folio f86v · Cosmological</span>
+          <p>The large fold-out cosmological map — one of the most complex pages</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-1r.jpg" style="filter:sepia(0.7) hue-rotate(30deg) brightness(0.75)" alt="Voynich Manuscript f88r pharmaceutical" loading="lazy">
+        <div class="gallery-caption">
+          <span>Folio f88r · Pharmaceutical</span>
+          <p>Vessels and containers — possibly a recipe or formulary section</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-5r.jpg" style="filter:sepia(0.4) hue-rotate(80deg)" alt="Voynich Manuscript f40r botanical" loading="lazy">
+        <div class="gallery-caption">
+          <span>Folio f40r · Botanical</span>
+          <p>Dense botanical illustration with elaborate root system</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-8r.jpg" style="filter:sepia(0.3) brightness(0.8)" alt="Voynich Manuscript f103r text" loading="lazy">
+        <div class="gallery-caption">
+          <span>Folio f103r · Text Section</span>
+          <p>Pure text page — no illustrations. Dense, consistent script throughout</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-13r.jpg" style="filter:sepia(0.8) hue-rotate(200deg) brightness(0.7)" alt="Voynich Manuscript f67r sun moon" loading="lazy">
+        <div class="gallery-caption">
+          <span>Folio f67r · Sun & Moon</span>
+          <p>Astronomical diagram featuring solar and lunar imagery</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-18r.jpg" style="filter:sepia(0.5) hue-rotate(150deg) brightness(0.85)" alt="Voynich Manuscript f79r biological" loading="lazy">
+        <div class="gallery-caption">
+          <span>Folio f79r · Biological</span>
+          <p>Biological section — among the most studied for decipherment clues</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-3r.jpg" alt="Folio 3r" loading="lazy">
+        <div class="gallery-caption"><span>Folio 3r · Botanical</span><p>Elaborate root systems, unidentified species</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-7r.jpg" alt="Folio 7r" loading="lazy">
+        <div class="gallery-caption"><span>Folio 7r · Botanical</span><p>Cross-section illustrations with surrounding text</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-10r.jpg" alt="Folio 10r" loading="lazy">
+        <div class="gallery-caption"><span>Folio 10r · Botanical</span><p>Dense plant illustration with marginal annotations</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-15r.jpg" alt="Folio 15r" loading="lazy">
+        <div class="gallery-caption"><span>Folio 15r · Botanical</span><p>Distinctive floral structure, no known equivalent</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-22r.jpg" alt="Folio 22r" loading="lazy">
+        <div class="gallery-caption"><span>Folio 22r · Botanical</span><p>Multi-root plant with surrounding script</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-28r.jpg" alt="Folio 28r" loading="lazy">
+        <div class="gallery-caption"><span>Folio 28r · Botanical</span><p>Circular illustration pattern, dense labeling</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-35r.jpg" alt="Folio 35r" loading="lazy">
+        <div class="gallery-caption"><span>Folio 35r · Botanical</span><p>Layered plant structure with text flow</p></div>
+      </div>
+      <div class="gallery-item">
+        <img src="/assets/images/ms-folio-43r.jpg" alt="Folio 43r" loading="lazy">
+        <div class="gallery-caption"><span>Folio 43r · Botanical</span><p>Branching root system, annotated throughout</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-wrap">
+    <div class="timeline">
+      <div class="timeline-header">
+        <span class="label">Provenance</span>
+        <h2 style="font-family:var(--font-serif);font-size:1.9rem;font-weight:400;margin-bottom:0.5rem;">Seis Siglos de Propietarios</h2>
+        <p style="color:var(--muted);font-size:0.95rem;max-width:520px;">From its creation in early 15th-century Europe to the reading room at Yale — every known hand that held this manuscript.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">c. 1404</div>
+        <div class="timeline-body">
+          <h4>Creation</h4>
+          <p>Carbon-14 dating of the vellum places its manufacture between 1404 and 1438. The identity of the author — or authors — remains unknown. The language, script, and purpose remain unresolved.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">c. 1550</div>
+        <div class="timeline-body">
+          <h4>Jakub Hořčický (Sinapius)</h4>
+          <p>The manuscript appears to have been in the possession of Jakub Hořčický, physician to Holy Roman Emperor Rudolf II. He may have been the conduit through which it entered the Imperial court.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">c. 1600</div>
+        <div class="timeline-body">
+          <h4>Emperor Rudolf II of Prague</h4>
+          <p>The 1666 Marci letter states that Rudolf II purchased the manuscript for 600 gold ducats, believing it to be the work of Roger Bacon. Rudolf II was a passionate collector of natural curiosities and occult objects.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">c. 1620</div>
+        <div class="timeline-body">
+          <h4>Jacobus de Tepenecz</h4>
+          <p>A faint inscription identifies de Tepenecz — chief pharmacist to Rudolf II — as an owner. His signature, revealed under ultraviolet light, was long unnoticed.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1665</div>
+        <div class="timeline-body">
+          <h4>Georg Baresch & Johannes Marcus Marci</h4>
+          <p>Prague alchemist Georg Baresch owned the manuscript and sent copies to Jesuit scholar Athanasius Kircher, seeking decipherment. After Baresch's death, it passed to his friend Marci.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1666</div>
+        <div class="timeline-body">
+          <h4>Athanasius Kircher</h4>
+          <p>Marci sent the manuscript to Rome with a letter to Kircher — the famous "Marci letter" still preserved today. Kircher attempted decipherment and failed. The manuscript entered the Jesuit archives.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1666–1912</div>
+        <div class="timeline-body">
+          <h4>Jesuit Archives · Rome</h4>
+          <p>The manuscript remained in Jesuit possession for nearly 250 years, mostly at the Collegio Romano. When the Italian state suppressed the Jesuits, books were moved — including eventually to Villa Mondragone in Frascati.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1912</div>
+        <div class="timeline-body">
+          <h4>Wilfrid Voynich</h4>
+          <p>Polish-American antiquarian Wilfrid Voynich purchased the manuscript from the Jesuits at Villa Mondragone. He spent 18 years attempting to decipher it and publicise its existence. He died without success in 1930.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1930–1961</div>
+        <div class="timeline-body">
+          <h4>Ethel Voynich & Anne Nill</h4>
+          <p>After Wilfrid's death, the manuscript passed to his wife Ethel (author of <em>The Gadfly</em>), and then to his bookshop assistant Anne Nill. Both attempted to sell it without success.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1961</div>
+        <div class="timeline-body">
+          <h4>H.P. Kraus</h4>
+          <p>Rare book dealer Hans P. Kraus purchased the manuscript from Anne Nill for $24,500. He attempted to sell it for $160,000 — a figure that found no buyer.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1969</div>
+        <div class="timeline-body">
+          <h4>Yale University · Beinecke Biblioteca</h4>
+          <p>Unable to sell, Kraus donated the manuscript to Yale's Beinecke Rare Book & Manuscript Biblioteca, where it remains today as <strong>MS 408</strong>. Fully digitised and publicly accessible online.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2009</div>
+        <div class="timeline-body">
+          <h4>Carbon-14 Dating</h4>
+          <p>A study by the University of Arizona radiocarbon-dated four vellum samples to 1404–1438 (95% confidence). This definitively ruled out post-Renaissance forgery and placed its creation in the early 15th century.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">Today</div>
+        <div class="timeline-body">
+          <h4>Still Undeciphered</h4>
+          <p>The manuscript has resisted every decipherment attempt — classical cryptanalysis, computational linguistics, neural networks, and dozens of published "solutions" that did not withstand peer scrutiny. The search continues.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CURRENT LOCATION -->
+  <div class="location-wrap">
+    <span class="label">Ubicación Actual</span>
+    <div class="location-box">
+      <h3>Beinecke Rare Book & Manuscript Biblioteca, Yale University</h3>
+      <div class="location-detail">
+        <h4>Shelfmark</h4>
+        <p>MS 408</p>
+      </div>
+      <div class="location-detail">
+        <h4>Location</h4>
+        <p>New Haven, Connecticut, USA</p>
+      </div>
+      <div class="location-detail">
+        <h4>Digital Access</h4>
+        <p><a href="https://beinecke.library.yale.edu/collections/highlights/voynich-manuscript" target="_blank" style="color:var(--gold);">Beinecke Digital Collections</a></p>
+      </div>
+      <div class="location-detail">
+        <h4>Physical Access</h4>
+        <p>Reading room access for researchers by appointment</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-logo">Voynich <span>Lucidity</span></p>
+    <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a></p>
+    <p style="margin-top:0.8rem;">
+      <a href="https://doi.org/10.5281/zenodo.20386119" target="_blank">Paper 7</a> ·
+      <a href="https://doi.org/10.5281/zenodo.20467972" target="_blank">Paper 8</a>
+    </p>
+    <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Claridad sobre certeza. Método sobre especulación.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.timeline-item, .gallery-item, .location-detail').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+      observer.observe(el);
+    });
+  </script>
+
+<script>
+function shareVL() {
+  if (navigator.share) {
+    navigator.share({title: document.title, url: window.location.href});
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(()=>{
+      const btn = document.getElementById('shareBtn');
+      if(btn){ const orig=btn.textContent; btn.textContent='✓ Copied!'; setTimeout(()=>btn.textContent=orig,2000); }
+    });
+  }
+}
+</script>
+<div style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;display:flex;flex-direction:column;gap:0.5rem;">
+  <button id="shareBtn" onclick="shareVL()" title="Share this page"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">⬆</button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">↑</button>
+</div>
+</body>
+</html>
