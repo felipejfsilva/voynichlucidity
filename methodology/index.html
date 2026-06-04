@@ -610,6 +610,23 @@
 </div>
 
 <!-- FOOTER -->
+
+<div style="border-top:1px solid #1e1d1a;padding:1.2rem 2rem;text-align:center;background:#0a0a08;" id="feedbackBar">
+  <span style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#5a5852;margin-right:1rem;">Was this page useful?</span>
+  <button onclick="sendFeedback('yes',this.parentElement)" style="background:transparent;border:1px solid #1e1d1a;color:#8e8a84;padding:0.25rem 0.8rem;cursor:pointer;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;margin:0 0.3rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'" onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#8e8a84'">↑ Yes</button>
+  <button onclick="sendFeedback('no',this.parentElement)" style="background:transparent;border:1px solid #1e1d1a;color:#8e8a84;padding:0.25rem 0.8rem;cursor:pointer;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;margin:0 0.3rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#1e1d1a';this.style.color='#555'" onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#8e8a84'">↓ No</button>
+</div>
+<script>
+function sendFeedback(v, bar){
+  bar.innerHTML = '<span style="font-size:0.75rem;color:#8e8a84;letter-spacing:0.08em;">' + (v==='yes' ? '✓ Thank you.' : 'Thanks — we'll keep improving.') + '</span>';
+  if(window.gtag) gtag('event','page_feedback',{value:v,page:window.location.pathname});
+  localStorage.setItem('feedback_'+window.location.pathname, v);
+}
+// Hide if already voted
+if(localStorage.getItem('feedback_'+window.location.pathname)){
+  document.getElementById('feedbackBar') && (document.getElementById('feedbackBar').style.display='none');
+}
+</script>
 <footer>
   <p style="font-family:Georgia,serif;font-size:1rem;color:#f0ede6;margin-bottom:0.6rem;">Voynich <span style="color:#c9a84c;">Lucidity</span></p>
   <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com" style="color:#c9a84c;">contact@voynichlucidity.com</a></p>
