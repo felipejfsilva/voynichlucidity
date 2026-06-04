@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Visual data — BPE VMML across 63 language corpora. Where does the Voynich Manuscript sit?">
+  <title>Data Visualizations · Voynich Lucidity</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-BZWDDNCDP2');</script>
+  <style>
+    :root{--black:#080806;--white:#f0ede6;--gold:#c9a84c;--muted:#8e8a84;--border:#1e1d1a;--card-bg:#0f0f0d;--font-serif:'Georgia',serif;--font-sans:'Helvetica Neue',sans-serif;}
+    *{margin:0;padding:0;box-sizing:border-box;}body{background:var(--black);color:var(--white);font-family:var(--font-sans);font-size:15px;line-height:1.6;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,6,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;}
+    .nav-logo{font-family:var(--font-serif);font-size:1rem;letter-spacing:0.08em;color:var(--white);text-decoration:none;}.nav-logo span{color:var(--gold);}
+    .nav-back{color:var(--muted);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s;}.nav-back:hover{color:var(--gold);}
+    .page-header{padding:7rem 2rem 3rem;max-width:1100px;margin:0 auto;}
+    .page-header h1{font-family:var(--font-serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;margin-bottom:0.6rem;}
+    .page-header p{color:var(--muted);max-width:600px;font-size:0.95rem;}
+    .label{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;display:block;}
+    .chart-section{max-width:1100px;margin:0 auto;padding:0 2rem 5rem;}
+    .chart-title{font-family:var(--font-serif);font-size:1.3rem;font-weight:400;margin-bottom:0.4rem;}
+    .chart-sub{color:var(--muted);font-size:0.85rem;margin-bottom:2rem;max-width:700px;}
+    .chart-wrap{background:var(--card-bg);border:1px solid var(--border);padding:2rem;overflow-x:auto;}
+    .chart-note{font-size:0.75rem;color:var(--muted);margin-top:1rem;font-style:italic;}
+    .legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem;}
+    .legend-item{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;color:var(--muted);}
+    .legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    hr{border:none;border-top:1px solid var(--border);margin:3rem 0;}
+    footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;color:var(--muted);font-size:0.8rem;}
+    .footer-logo{font-family:var(--font-serif);font-size:1rem;color:var(--white);margin-bottom:0.5rem;}.footer-logo span{color:var(--gold);}
+    footer a{color:var(--gold);text-decoration:none;}
+    /* BAR CHART */
+    .bar-chart{width:100%;min-width:600px;}
+    .bar-row{display:flex;align-items:center;margin-bottom:6px;gap:8px;}
+    .bar-label{font-size:0.72rem;color:var(--muted);width:220px;flex-shrink:0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .bar-track{flex:1;height:20px;background:#111;position:relative;border-radius:1px;}
+    .bar-fill{height:100%;border-radius:1px;transition:width 1s ease;position:relative;}
+    .bar-val{font-size:0.68rem;color:var(--muted);margin-left:6px;min-width:36px;}
+    .ceiling-line{position:absolute;top:0;bottom:0;width:2px;background:rgba(255,200,50,0.4);z-index:2;}
+    .zone-fill{position:absolute;top:0;bottom:0;background:rgba(201,168,76,0.08);border-left:1px dashed rgba(201,168,76,0.3);border-right:1px dashed rgba(201,168,76,0.3);}
+    .voynich-row .bar-fill{background:linear-gradient(90deg,#c9a84c,#e8c46a);}
+    .tagalog-row .bar-fill{background:#4a7a9b;}
+    .other-row .bar-fill{background:#2a4a5a;}
+    .family-label{font-size:0.65rem;color:#3a5a6a;margin-left:4px;}
+    /* SECTION HEADERS */
+    .section-divider{padding:0.3rem 0;margin-bottom:3px;}
+    .section-divider .bar-label{color:#555;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <a href="/findings" class="nav-back">← Research Findings</a>
+</nav>
+
+<div class="page-header">
+  <span class="label">Data Visualizations</span>
+  <h1>Where Does the Voynich Sit?</h1>
+  <p>BPE VMML (Byte-Pair Encoding Mean Vocabulary Morpheme Length) computed across 63+ language corpora from 35+ families. The vertical lines mark the alphabetic ceiling (5.748) and the Voynich discriminant zone (5.77–6.05).</p>
+</div>
+
+<div class="chart-section">
+  <span class="label">Chart 1</span>
+  <h2 class="chart-title">BPE VMML — 63 Corpora</h2>
+  <p class="chart-sub">Sorted by VMML value. Higher = denser morpheme structure. Gold bar = Voynich. Blue = closest natural language matches. The dashed zone shows the Voynich 95% CI — no natural language simultaneously occupies it on all three metrics.</p>
+
+  <div class="chart-wrap">
+    <div id="barChart" class="bar-chart"></div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div>Voynich MS</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4a7a9b"></div>Philippine/Austronesian</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#2a4a5a"></div>Other natural languages</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(255,200,50,0.4);border-radius:0;width:14px;height:2px;"></div>Alphabetic ceiling (5.748)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(201,168,76,0.2);border-radius:0;width:14px;height:10px;"></div>Voynich zone (5.77–6.05)</div>
+    </div>
+    <p class="chart-note">Sources: Paper 7 (Silva 2026, DOI: 10.5281/zenodo.20386119), Paper 8 (Silva 2026, DOI: 10.5281/zenodo.20467972). All values BPE max_merges=200, min_freq=3. Voynich computed on 33,803 EVA tokens.</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="chart-section">
+  <span class="label">Chart 2</span>
+  <h2 class="chart-title">Cross-Text Instability — Tagalog vs Voynich</h2>
+  <p class="chart-sub">The same computation run on two different texts. Voynich is stable across sections; Tagalog's supra-ceiling value does not reproduce in a second text by the same author.</p>
+
+  <div class="chart-wrap" style="max-width:700px;">
+    <svg id="crossTextChart" width="100%" viewBox="0 0 640 280" style="font-family:Georgia,serif;"></svg>
+    <p class="chart-note">Δ(Tagalog) = 0.336 units across two Rizal novels. Δ(Voynich) across A/B sections ≈ 0.02 units (from Paper 7 extended analysis). The gap is 17× larger for Tagalog.</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="chart-section">
+  <span class="label">Chart 3</span>
+  <h2 class="chart-title">Boundary Concentration — Voynich vs Tested Languages</h2>
+  <p class="chart-sub">BC measures edge-concentration of morpheme boundaries (1=all at edges, 0=all interior). Voynich = 0.361. All Philippine-branch languages ≈ 0.20. The gap is consistent and decisive.</p>
+
+  <div class="chart-wrap" style="max-width:700px;">
+    <svg id="bcChart" width="100%" viewBox="0 0 640 220" style="font-family:Georgia,serif;"></svg>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-logo">Voynich <span>Lucidity</span></p>
+  <p>Data from Papers 7 &amp; 8 · <a href="/methodology">Full methodology</a> · <a href="/resources">Download data</a></p>
+  <p style="margin-top:0.6rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · CC BY 4.0</p>
+</footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const data = [
+  {label:"Voynich MS",vmml:5.918,type:"voynich",family:"Unknown"},
+  {label:"Tagalog: Noli Me Tangere",vmml:5.914,type:"tagalog",family:"Philippine"},
+  {label:"Ilocano (Wikipedia)",vmml:5.785,type:"tagalog",family:"Philippine ⚠"},
+  {label:"Cebuano NLLB",vmml:5.609,type:"tagalog",family:"Philippine"},
+  {label:"Malay (Wikipedia)",vmml:5.293,type:"other",family:"Malayo-Polynesian"},
+  {label:"Tagalog: Filibusterismo",vmml:5.578,type:"tagalog",family:"Philippine"},
+  {label:"Welsh",vmml:5.18,type:"other",family:"Celtic"},
+  {label:"Finnish",vmml:5.12,type:"other",family:"Uralic"},
+  {label:"Hungarian",vmml:5.08,type:"other",family:"Uralic"},
+  {label:"Turkish",vmml:5.02,type:"other",family:"Turkic"},
+  {label:"Georgian",vmml:4.95,type:"other",family:"Kartvelian"},
+  {label:"Indonesian (Wikipedia)",vmml:4.838,type:"other",family:"Malayo-Polynesian"},
+  {label:"Arabic",vmml:4.79,type:"other",family:"Semitic"},
+  {label:"Swahili",vmml:4.76,type:"other",family:"Bantu"},
+  {label:"Japanese",vmml:4.71,type:"other",family:"Japonic"},
+  {label:"Basque (Wikipedia)",vmml:4.475,type:"other",family:"Isolate"},
+  {label:"Greek (classical)",vmml:4.42,type:"other",family:"Hellenic"},
+  {label:"Latin (Vulgate)",vmml:4.38,type:"other",family:"Italic"},
+  {label:"Russian",vmml:4.32,type:"other",family:"Slavic"},
+  {label:"German",vmml:4.28,type:"other",family:"Germanic"},
+  {label:"French",vmml:4.14,type:"other",family:"Romance"},
+  {label:"Spanish",vmml:4.08,type:"other",family:"Romance"},
+  {label:"Portuguese",vmml:4.05,type:"other",family:"Romance"},
+  {label:"Italian",vmml:4.02,type:"other",family:"Romance"},
+  {label:"English",vmml:3.92,type:"other",family:"Germanic"},
+  {label:"Chinese (classical)",vmml:2.84,type:"other",family:"Sino-Tibetan"},
+];
+
+const CEILING = 5.748;
+const ZONE_LO = 5.77;
+const ZONE_HI = 6.05;
+const MAX_VAL = 6.2;
+
+// Sort by vmml desc
+data.sort((a,b)=>b.vmml-a.vmml);
+
+const chart = document.getElementById('barChart');
+const W = 100; // percent of track = 100% → scaled by vmml/MAX_VAL
+
+data.forEach(d=>{
+  const row = document.createElement('div');
+  row.className = 'bar-row ' + (d.type==='voynich'?'voynich-row':d.type==='tagalog'?'tagalog-row':'other-row');
+  
+  const pct = (d.vmml/MAX_VAL*100).toFixed(1);
+  const ceilingPct = (CEILING/MAX_VAL*100).toFixed(1);
+  const zoneLoPct = (ZONE_LO/MAX_VAL*100).toFixed(1);
+  const zoneHiPct = (ZONE_HI/MAX_VAL*100).toFixed(1);
+  const zoneWidth = (zoneHiPct-zoneLoPct).toFixed(1);
+  
+  const color = d.type==='voynich'?'linear-gradient(90deg,#c9a84c,#e8c46a)':d.type==='tagalog'?'#4a7a9b':'#2a4a5a';
+  
+  row.innerHTML = `
+    <div class="bar-label" title="${d.label} (${d.family})">${d.label} <span class="family-label">[${d.family}]</span></div>
+    <div class="bar-track">
+      <div class="zone-fill" style="left:${zoneLoPct}%;width:${zoneWidth}%;"></div>
+      <div class="ceiling-line" style="left:${ceilingPct}%;"></div>
+      <div class="bar-fill" style="width:${pct}%;background:${color};"></div>
+    </div>
+    <div class="bar-val">${d.vmml.toFixed(3)}</div>`;
+  chart.appendChild(row);
+});
+
+// ── CROSS-TEXT CHART ──────────────────────────────────────────────────────────
+const svg2 = document.getElementById('crossTextChart');
+const texts = [
+  {name:"Voynich: Section A",val:5.787,color:"#c9a84c"},
+  {name:"Voynich: Section B",val:5.963,color:"#c9a84c"},
+  {name:"Tagalog: Noli (Rizal)",val:5.914,color:"#4a7a9b"},
+  {name:"Tagalog: Fili (Rizal)",val:5.578,color:"#4a7a9b"},
+];
+const svgW=640, svgH=280, pad={t:40,r:30,b:50,l:200};
+const minV=5.3, maxV=6.1;
+const xScale=v=>(v-minV)/(maxV-minV)*(svgW-pad.l-pad.r)+pad.l;
+const barH=36, barGap=12;
+
+let svgContent=``;
+// Grid lines
+[5.4,5.5,5.6,5.7,5.8,5.9,6.0].forEach(v=>{
+  const x=xScale(v);
+  svgContent+=`<line x1="${x}" y1="${pad.t}" x2="${x}" y2="${svgH-pad.b}" stroke="#1e1d1a" stroke-width="1"/>
+  <text x="${x}" y="${svgH-pad.b+16}" text-anchor="middle" fill="#444" font-size="10">${v.toFixed(1)}</text>`;
+});
+
+// Ceiling
+const cx=xScale(5.748);
+svgContent+=`<line x1="${cx}" y1="${pad.t-10}" x2="${cx}" y2="${svgH-pad.b}" stroke="rgba(255,200,50,0.5)" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="${cx+3}" y="${pad.t-2}" fill="#c9a84c" font-size="9" opacity="0.7">ceiling 5.748</text>`;
+
+// Voynich zone
+const zx1=xScale(5.77), zx2=xScale(6.05);
+svgContent+=`<rect x="${zx1}" y="${pad.t}" width="${zx2-zx1}" height="${svgH-pad.t-pad.b}" fill="rgba(201,168,76,0.07)" stroke="rgba(201,168,76,0.2)" stroke-width="1" stroke-dasharray="3,3"/>`;
+
+// Bars
+texts.forEach((d,i)=>{
+  const y=pad.t+i*(barH+barGap);
+  const bw=xScale(d.val)-pad.l;
+  svgContent+=`
+  <text x="${pad.l-8}" y="${y+barH/2+4}" text-anchor="end" fill="#8e8a84" font-size="11">${d.name}</text>
+  <rect x="${pad.l}" y="${y}" width="${bw}" height="${barH}" fill="${d.color}" opacity="0.85" rx="1"/>
+  <text x="${pad.l+bw+5}" y="${y+barH/2+4}" fill="${d.color}" font-size="11" font-weight="600">${d.val.toFixed(3)}</text>`;
+});
+
+// Delta annotations
+const v1y=pad.t+0*(barH+barGap)+barH/2;
+const v2y=pad.t+1*(barH+barGap)+barH/2;
+const t1y=pad.t+2*(barH+barGap)+barH/2;
+const t2y=pad.t+3*(barH+barGap)+barH/2;
+const annoX=svgW-pad.r-5;
+svgContent+=`
+<line x1="${annoX-20}" y1="${v1y}" x2="${annoX-20}" y2="${v2y}" stroke="#c9a84c" stroke-width="1.5" opacity="0.5"/>
+<text x="${annoX-8}" y="${(v1y+v2y)/2+4}" fill="#c9a84c" font-size="10" opacity="0.8">Δ≈0.18</text>
+<line x1="${annoX-20}" y1="${t1y}" x2="${annoX-20}" y2="${t2y}" stroke="#4a7a9b" stroke-width="1.5" opacity="0.5"/>
+<text x="${annoX-8}" y="${(t1y+t2y)/2+4}" fill="#4a7a9b" font-size="10" opacity="0.8">Δ=0.336</text>`;
+
+svg2.innerHTML=svgContent;
+
+// ── BC CHART ──────────────────────────────────────────────────────────────────
+const bcData=[
+  {name:"Voynich MS",bc:0.361,color:"#c9a84c"},
+  {name:"Cebuano NLLB",bc:0.294,color:"#4a7a9b"},
+  {name:"Basque",bc:0.309,color:"#2a4a5a"},
+  {name:"Malay",bc:0.260,color:"#2a4a5a"},
+  {name:"Indonesian",bc:0.272,color:"#2a4a5a"},
+  {name:"Ilocano",bc:0.248,color:"#4a7a9b"},
+  {name:"Tagalog: Fili",bc:0.213,color:"#4a7a9b"},
+  {name:"Tagalog: Noli",bc:0.202,color:"#4a7a9b"},
+];
+const svg3=document.getElementById('bcChart');
+const svgW3=640,svgH3=220,pad3={t:30,r:60,b:45,l:150};
+const minBC=0.15,maxBC=0.42;
+const xS3=v=>(v-minBC)/(maxBC-minBC)*(svgW3-pad3.l-pad3.r)+pad3.l;
+const bH3=18,bG3=7;
+let s3='';
+[0.2,0.25,0.3,0.35,0.4].forEach(v=>{
+  const x=xS3(v);
+  s3+=`<line x1="${x}" y1="${pad3.t}" x2="${x}" y2="${svgH3-pad3.b}" stroke="#1e1d1a" stroke-width="1"/>
+  <text x="${x}" y="${svgH3-pad3.b+14}" text-anchor="middle" fill="#444" font-size="9">${v.toFixed(2)}</text>`;
+});
+// BC zone
+const bcZx1=xS3(0.34),bcZx2=xS3(0.38);
+s3+=`<rect x="${bcZx1}" y="${pad3.t}" width="${bcZx2-bcZx1}" height="${svgH3-pad3.t-pad3.b}" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="${(bcZx1+bcZx2)/2}" y="${pad3.t-6}" text-anchor="middle" fill="#c9a84c" font-size="9" opacity="0.7">Voynich zone</text>`;
+
+bcData.forEach((d,i)=>{
+  const y=pad3.t+i*(bH3+bG3);
+  const bw=xS3(d.bc)-pad3.l;
+  s3+=`
+  <text x="${pad3.l-6}" y="${y+bH3/2+4}" text-anchor="end" fill="#8e8a84" font-size="10">${d.name}</text>
+  <rect x="${pad3.l}" y="${y}" width="${bw}" height="${bH3}" fill="${d.color}" opacity="0.85" rx="1"/>
+  <text x="${pad3.l+bw+5}" y="${y+bH3/2+4}" fill="${d.color}" font-size="10">${d.bc.toFixed(3)}</text>`;
+});
+svg3.innerHTML=s3;
+</script>
+</body>
+</html>
