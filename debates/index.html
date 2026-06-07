@@ -114,6 +114,23 @@
       width:48px; height:1px; background:var(--gold); margin:2rem 0;
     }
 
+    /* ── FOLIO STRIP ── */
+    .folio-strip {
+      width:100%; height:260px; overflow:hidden;
+      border-bottom:1px solid var(--border);
+      position:relative;
+    }
+    .folio-strip img {
+      width:100%; height:100%; object-fit:cover;
+      object-position:center 30%;
+      filter:sepia(0.4) brightness(0.65) contrast(1.1);
+    }
+    .folio-strip-label {
+      position:absolute; bottom:1rem; right:1.5rem;
+      font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase;
+      color:rgba(240,237,230,0.35);
+    }
+
     /* ── CONTENT ── */
     .content-wrap {
       max-width:860px; margin:0 auto; padding:4rem 2rem 6rem;
@@ -288,6 +305,12 @@
     <div class="gold-rule"></div>
     <p class="page-hero-sub">The questions where serious researchers genuinely disagree. No false consensus.</p>
   </div>
+</div>
+
+<!-- FOLIO STRIP -->
+<div class="folio-strip">
+  <img src="/assets/images/ms-folio-55r.jpg" alt="Voynich Manuscript folio 55r — text section, Beinecke MS 408" loading="lazy">
+  <span class="folio-strip-label">MS 408 · f55r · Yale Beinecke · Public domain</span>
 </div>
 
 <!-- CONTENT -->
