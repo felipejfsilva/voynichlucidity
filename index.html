@@ -141,12 +141,50 @@
       color:rgba(240,237,230,0.55); font-style:italic;
       opacity:0; animation:fadeUp 1s ease 1s forwards;
     }
-    .hero-line {
-      width:1px; height:60px;
-      background:linear-gradient(to bottom, var(--gold), transparent);
-      margin:3rem auto 0;
-      opacity:0; animation:fadeIn 1s ease 1.5s forwards;
+    .hero-cta {
+      display:inline-flex; align-items:center; gap:0.6rem;
+      margin-top:2rem; padding:0.75rem 2rem;
+      border:1px solid rgba(201,168,76,0.6); color:var(--gold);
+      text-decoration:none; font-size:0.78rem; letter-spacing:0.16em;
+      text-transform:uppercase; font-family:var(--font-sans);
+      background:rgba(201,168,76,0.08); backdrop-filter:blur(4px);
+      transition:background 0.3s, border-color 0.3s;
+      opacity:0; animation:fadeUp 1s ease 1.3s forwards;
     }
+    .hero-cta:hover { background:rgba(201,168,76,0.18); border-color:rgba(201,168,76,0.9); }
+    .hero-stats {
+      display:flex; gap:2rem; justify-content:center; flex-wrap:wrap;
+      margin-top:1.8rem; font-size:0.68rem; letter-spacing:0.14em;
+      text-transform:uppercase; color:rgba(240,237,230,0.35);
+      opacity:0; animation:fadeUp 1s ease 1.6s forwards;
+    }
+    .hero-stats span { white-space:nowrap; }
+    .hero-stats span b { color:rgba(201,168,76,0.6); font-weight:400; }
+    .hero-scroll {
+      position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:0.4rem;
+      opacity:0; animation:fadeIn 1s ease 2s forwards; z-index:2;
+    }
+    .hero-scroll span { font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(240,237,230,0.3); }
+    .hero-scroll-arrow {
+      width:1px; height:32px;
+      background:linear-gradient(to bottom, rgba(201,168,76,0.5), transparent);
+      animation:scrollPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:0.3;transform:scaleY(0.7)} 50%{opacity:1;transform:scaleY(1)} }
+    .hero-line {
+      display:none;
+    }
+    .latest-strip {
+      background:#060605; border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+      padding:0.75rem 2rem; text-align:center;
+      font-size:0.7rem; letter-spacing:0.1em; color:var(--muted);
+    }
+    .latest-strip a { color:var(--gold); text-decoration:none; }
+    .latest-strip a:hover { text-decoration:underline; }
+    .latest-dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--gold); margin-right:0.5rem; animation:pulse 2s ease infinite; vertical-align:middle; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
     @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
@@ -365,8 +403,28 @@
     <p class="hero-eyebrow">c. 1404–1438 · 240 pages · Unknown language · Beinecke MS 408</p>
     <h1>The manuscript<br>no one has read.</h1>
     <p class="hero-sub">600 years. Still waiting.</p>
+    <a href="/start-here" class="hero-cta">★ Start Here — What You Need to Know</a>
+    <div class="hero-stats">
+      <span><b>240</b> pages</span>
+      <span><b>0</b> translations</span>
+      <span><b>6</b> centuries of attempts</span>
+      <span><b>1</b> mystery</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Explore</span>
+    <div class="hero-scroll-arrow"></div>
   </div>
   <div class="hero-line"></div>
+</div>
+
+<!-- LATEST ACTIVITY -->
+<div class="latest-strip">
+  <span class="latest-dot"></span>
+  <strong style="color:rgba(240,237,230,0.5);font-weight:400;">Latest:</strong>
+  &nbsp;<a href="https://doi.org/10.5281/zenodo.20467972" target="_blank">Paper 8 published on Zenodo</a>
+  &nbsp;·&nbsp; <a href="/findings">BPE analysis: 63 corpora, 35 language families</a>
+  &nbsp;·&nbsp; <a href="/collaborate">Researchers welcome</a>
 </div>
 
 <!-- INTRO -->
