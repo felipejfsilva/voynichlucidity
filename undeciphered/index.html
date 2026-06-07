@@ -138,6 +138,59 @@
       font-size:clamp(1.4rem,2.8vw,2rem); color:var(--white);
     }
 
+    /* ── SCRIPT VISUAL COMPARISON ── */
+    .script-compare {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-bottom: 5rem;
+    }
+    .script-compare-item {
+      background: var(--card-bg);
+      overflow: hidden;
+    }
+    .script-compare-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.28) brightness(0.78) contrast(1.08);
+      transition: filter 0.4s;
+    }
+    .script-compare-item:hover img {
+      filter: sepia(0.1) brightness(0.88) contrast(1.05);
+    }
+    .script-compare-caption {
+      padding: 0.9rem 1.1rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .script-compare-name {
+      font-family: var(--font-serif);
+      font-size: 0.92rem;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+    .script-compare-meta {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .script-compare-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.15rem 0.4rem;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 640px) {
+      .script-compare { grid-template-columns: 1fr; }
+    }
+
     /* ── COMPARISON TABLE ── */
     .table-wrap {
       overflow-x:auto; margin-bottom:5rem;
@@ -433,6 +486,34 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- VISUAL SCRIPT COMPARISON -->
+  <div class="script-compare">
+    <div class="script-compare-item">
+      <img src="/assets/images/linear-a-tablet.jpg" alt="Linear A inscription, Chania Archaeological Museum, Crete">
+      <div class="script-compare-caption">
+        <p class="script-compare-name">Linear A</p>
+        <p class="script-compare-meta">c. 1800–1450 BCE · Minoan Crete<br>~1,500 signs surviving · Syllabary (probable)</p>
+        <span class="script-compare-tag">Undeciphered</span>
+      </div>
+    </div>
+    <div class="script-compare-item">
+      <img src="/assets/images/folio-f41r.jpg" alt="Voynich Manuscript folio f41r — botanical section, Beinecke MS 408">
+      <div class="script-compare-caption">
+        <p class="script-compare-name">Voynich Manuscript</p>
+        <p class="script-compare-meta">1404–1438 CE · Yale MS 408<br>~37,000 tokens · Script type unknown</p>
+        <span class="script-compare-tag">Undeciphered · VMML 5.918</span>
+      </div>
+    </div>
+    <div class="script-compare-item">
+      <img src="/assets/images/indus-seals.jpg" alt="Indus Valley Civilization seals with undeciphered script, c. 2600–1900 BCE">
+      <div class="script-compare-caption">
+        <p class="script-compare-name">Indus Script</p>
+        <p class="script-compare-meta">c. 2600–1900 BCE · Harappan Civilization<br>~4,000 inscriptions · Logographic (debated)</p>
+        <span class="script-compare-tag">Undeciphered</span>
+      </div>
+    </div>
   </div>
 
   <!-- STRUCTURALLY UNUSUAL -->
