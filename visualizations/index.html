@@ -181,6 +181,31 @@
 </div>
 
 
+<hr>
+
+<!-- ── CHART 8 ── -->
+<div class="chart-section">
+  <span class="label">Chart 8</span>
+  <h2 class="chart-title">EVA Functional Units — Positional Constraints</h2>
+  <p class="chart-sub">22 functional units (single glyphs + digraphs + trigraphs) ranked by frequency. Bold labels = multi-character units. Color = positional role. Hard constraints: <em>y</em> is never initial; <em>qo</em> and <em>sh</em> are never final. No natural language or cipher text replicates this exact positional rigidity across all units simultaneously.</p>
+
+  <div class="chart-wrap" style="padding:0;">
+    <img src="/assets/charts/eva-units.svg" alt="EVA functional units frequency chart. 22 units including digraphs ch, sh, ai, ee, qo and trigraphs cth, ckh. Color-coded by positional role: INITIAL, FINAL, MEDIAL, etc." class="svg-embed" loading="lazy">
+    <div style="padding:1.2rem 2rem 1.6rem;">
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div>Initial only</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#b8863a"></div>Initial/Medial</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#5a9a6a"></div>Final only</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#4a7a8a"></div>Medial/Final</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#5a6a9a"></div>Medial only</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7a5a9a"></div>Flexible</div>
+      </div>
+      <p class="chart-note">Source: Paper 2 functional unit analysis (eva_functional_units.json). H_unit = 4.12 bits · 22 effective units · Positional roles are hard constraints verified across the full 37,025-token corpus.</p>
+    </div>
+  </div>
+</div>
+
+
 <div style="border-top:1px solid #1e1d1a;padding:1.2rem 2rem;text-align:center;background:#0a0a08;" id="feedbackBar">
   <span style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#5a5852;margin-right:1rem;">Was this page useful?</span>
   <button onclick="sendFeedback('yes',this.parentElement)" style="background:transparent;border:1px solid #1e1d1a;color:#8e8a84;padding:0.25rem 0.8rem;cursor:pointer;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;margin:0 0.3rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'" onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#8e8a84'">↑ Yes</button>
