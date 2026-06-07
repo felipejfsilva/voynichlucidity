@@ -108,9 +108,9 @@
     <li><a href="/pt/what-it-isnt">O Que Não É</a></li>
     <li><a href="/pt/findings">Nossa Pesquisa</a></li>
     <li><a href="/pt/curiosities">Curiosidades</a></li>
-    <li><a href="/pt/media">Mídia</a></li>
-    <li><a href="/pt/collaborate">Colaborar</a></li>
-    <li><a href="/pt/resources">Recursos</a></li>
+    <li><a href="/media">Mídia</a></li>
+    <li><a href="/collaborate">Colaborar</a></li>
+    <li><a href="/resources">Recursos</a></li>
   </ul>
   <div class="lang-switcher">
     <a href="/">🇺🇸 EN</a>
@@ -227,8 +227,8 @@
     <a href="/pt/library" class="nav-card"><p class="nav-card-num">Biblioteca</p><h3>Tudo Publicado</h3><p>A bibliografia curada mais completa sobre o Voynich — organizada por tema, com notas críticas.</p><span class="nav-card-arrow">Navegar →</span></a>
     <a href="/pt/what-it-isnt" class="nav-card"><p class="nav-card-num">O Que Não É</p><h3>Hipóteses Descartadas</h3><p>Um mapa crescente do que as evidências já eliminaram.</p><span class="nav-card-arrow">Ver lista →</span></a>
     <a href="/pt/curiosities" class="nav-card"><p class="nav-card-num">Curiosidades</p><h3>Fatos Surpreendentes</h3><p>A NSA tentou. Criptógrafos da WWII também. E 50+ pessoas que disseram ter decifrado.</p><span class="nav-card-arrow">Descobrir →</span></a>
-    <a href="/pt/media" class="nav-card"><p class="nav-card-num">Mídia</p><h3>O Que Estão Dizendo</h3><p>Cobertura curada — avaliada como rigorosa, equilibrada ou sensacionalista.</p><span class="nav-card-arrow">Ver →</span></a>
-    <a href="/pt/collaborate" class="nav-card"><p class="nav-card-num">Colaborar</p><h3>Junte-se à Pesquisa</h3><p>Buscamos contribuidores de corpora, especialistas linguísticos e parceiros institucionais.</p><span class="nav-card-arrow">Contato →</span></a>
+    <a href="/media" class="nav-card"><p class="nav-card-num">Mídia</p><h3>O Que Estão Dizendo</h3><p>Cobertura curada — avaliada como rigorosa, equilibrada ou sensacionalista.</p><span class="nav-card-arrow">Ver →</span></a>
+    <a href="/collaborate" class="nav-card"><p class="nav-card-num">Colaborar</p><h3>Junte-se à Pesquisa</h3><p>Buscamos contribuidores de corpora, especialistas linguísticos e parceiros institucionais.</p><span class="nav-card-arrow">Contato →</span></a>
   </div>
 </div>
 
@@ -255,5 +255,6 @@
   const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.style.opacity='1';el.target.style.transform='translateY(0)';}});},{threshold:0.08});
   document.querySelectorAll('.folio,.nav-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.7s ease, transform 0.7s ease';obs.observe(el);});
 </script>
+<script src="/assets/js/lang-nav.js"></script>
 </body>
 </html>
