@@ -343,6 +343,9 @@
     .mobile-menu a{color:var(--muted,#8e8a84);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;}
     .mobile-menu a:hover{color:var(--gold,#c9a84c);}
     @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+    .chart-embed{margin:2rem 0;border:1px solid #1e1d1a;background:#080806;overflow:hidden;}
+    .chart-embed img{width:100%;display:block;}
+    .chart-embed-cap{padding:0.6rem 1rem;font-size:0.72rem;color:#5a5852;font-style:italic;border-top:1px solid #1e1d1a;background:#0a0a08;}
   </style>
 </head>
 <body>
@@ -442,6 +445,11 @@
   </div>
 
   <p>These parameters were fixed before any corpus analysis began. They were not adjusted post-hoc to optimize results for any individual language or for the Voynich Manuscript.</p>
+
+  <div class="chart-embed">
+    <img src="/assets/charts/bpe-process.svg" alt="BPE process diagram — 4 steps from EVA corpus to VMML 5.918" loading="lazy">
+    <div class="chart-embed-cap">Fig. 4 — BPE process applied to the Voynich EVA corpus. Four stages: raw corpus → character pair counting → iterative merging (200×) → subword vocabulary → VMML computed as frequency-weighted mean segment length. Result: 5.918 (95% CI [5.77–6.05]).</div>
+  </div>
 
   <p>The <strong>alphabetic ceiling (5.748)</strong> was derived from the highest-VMML alphabetic corpus in the Paper 7 comparison set: Friedrich Nietzsche, <em>Also sprach Zarathustra</em> (German), n = 82,802 tokens. This ceiling was established before the Austronesian expansion in Paper 8 and is used as a reference marker, not a threshold with independent statistical derivation.</p>
 

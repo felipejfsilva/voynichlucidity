@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="620" viewBox="0 0 860 620">
+<rect width="860" height="620" fill="#080806"/>
+<text x="72" y="26" fill="#f0ede6" font-size="13" font-family="Georgia,serif" letter-spacing="0.5">VMML × Boundary Concentration — 43 corpora</text>
+<text x="72" y="42" fill="#5a5852" font-size="9.5" font-family="Helvetica Neue,Arial,sans-serif" letter-spacing="0.2">Bubble size = CBMI · Real data: RESON Research Initiative 2026 · n≥10k tokens (natural language)</text>
+<line x1="115.4" y1="58" x2="115.4" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="115.4" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">3.6</text>
+<line x1="158.9" y1="58" x2="158.9" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="158.9" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">3.8</text>
+<line x1="202.3" y1="58" x2="202.3" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="202.3" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">4.0</text>
+<line x1="245.7" y1="58" x2="245.7" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="245.7" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">4.2</text>
+<line x1="289.1" y1="58" x2="289.1" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="289.1" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">4.4</text>
+<line x1="332.6" y1="58" x2="332.6" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="332.6" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">4.6</text>
+<line x1="376.0" y1="58" x2="376.0" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="376.0" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">4.8</text>
+<line x1="419.4" y1="58" x2="419.4" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="419.4" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">5.0</text>
+<line x1="462.9" y1="58" x2="462.9" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="462.9" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">5.2</text>
+<line x1="506.3" y1="58" x2="506.3" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="506.3" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">5.4</text>
+<line x1="549.7" y1="58" x2="549.7" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="549.7" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">5.6</text>
+<line x1="593.1" y1="58" x2="593.1" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="593.1" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">5.8</text>
+<line x1="636.6" y1="58" x2="636.6" y2="558" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="636.6" y="572" fill="#4a4a46" font-size="8.5" text-anchor="middle" font-family="Helvetica Neue">6.0</text>
+<line x1="72" y1="512.5" x2="680" y2="512.5" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="67" y="515.5" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">0.20</text>
+<line x1="72" y1="467.1" x2="680" y2="467.1" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="67" y="470.1" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">0.22</text>
+<line x1="72" y1="421.6" x2="680" y2="421.6" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="67" y="424.6" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">0.24</text>
+<line x1="72" y1="376.2" x2="680" y2="376.2" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="67" y="379.2" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">0.26</text>
+<line x1="72" y1="330.7" x2="680" y2="330.7" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="67" y="333.7" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">0.28</text>
+<line x1="72" y1="285.3" x2="680" y2="285.3" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="67" y="288.3" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">0.30</text>
+<line x1="72" y1="239.8" x2="680" y2="239.8" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="67" y="242.8" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">0.32</text>
+<line x1="72" y1="194.4" x2="680" y2="194.4" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="67" y="197.4" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">0.34</text>
+<line x1="72" y1="148.9" x2="680" y2="148.9" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="67" y="151.9" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">0.36</text>
+<line x1="72" y1="103.5" x2="680" y2="103.5" stroke="#1a1a18" stroke-width="0.5"/>
+<text x="67" y="106.5" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">0.38</text>
+<line x1="72" y1="558" x2="680" y2="558" stroke="#2a2a26" stroke-width="1"/>
+<line x1="72" y1="58" x2="72" y2="558" stroke="#2a2a26" stroke-width="1"/>
+<text x="376" y="614" fill="#8e8a84" font-size="10.5" text-anchor="middle" font-family="Helvetica Neue" letter-spacing="0.5">VMML (BPE Mean Morpheme Length)</text>
+<text x="14" y="308" fill="#8e8a84" font-size="10.5" text-anchor="middle" font-family="Helvetica Neue" letter-spacing="0.5" transform="rotate(-90,14,308)">BC (Boundary Concentration)</text>
+<rect x="579" y="121" width="80" height="50" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1" stroke-dasharray="4,3" rx="4"/>
+<text x="663" y="117" fill="rgba(201,168,76,0.4)" font-size="8" font-family="Helvetica Neue">discriminant zone</text>
+<circle cx="313.5" cy="237.3" r="6.4" fill="#8a7a5a" opacity="0.55" stroke="#8a7a5a" stroke-width="0.5"/>
+<circle cx="349.3" cy="343.2" r="7.4" fill="#8a7a5a" opacity="0.55" stroke="#8a7a5a" stroke-width="0.5"/>
+<circle cx="374.3" cy="242.8" r="11.1" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="390.1" cy="289.8" r="11.2" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="403.4" cy="277.1" r="7.6" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="420.1" cy="340.5" r="8.9" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="422.9" cy="263.7" r="11.0" fill="#8a7a5a" opacity="0.55" stroke="#8a7a5a" stroke-width="0.5"/>
+<circle cx="428.3" cy="312.1" r="10.8" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="442.2" cy="216.0" r="10.3" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="444.0" cy="295.0" r="12.0" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="456.6" cy="323.9" r="11.3" fill="#8a7a5a" opacity="0.55" stroke="#8a7a5a" stroke-width="0.5"/>
+<circle cx="463.1" cy="223.2" r="11.2" fill="#8a7a5a" opacity="0.55" stroke="#8a7a5a" stroke-width="0.5"/>
+<circle cx="465.5" cy="313.5" r="11.5" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="472.4" cy="244.1" r="13.0" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="472.6" cy="286.9" r="14.4" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="480.0" cy="297.8" r="11.6" fill="#7a6a8a" opacity="0.55" stroke="#7a6a8a" stroke-width="0.5"/>
+<circle cx="483.9" cy="320.5" r="11.0" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="484.6" cy="298.7" r="12.5" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="485.7" cy="230.5" r="13.1" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="486.3" cy="223.5" r="13.5" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="487.6" cy="228.2" r="13.5" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="496.1" cy="292.3" r="11.5" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="496.3" cy="290.7" r="12.7" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="499.1" cy="274.1" r="12.5" fill="#8a7a5a" opacity="0.55" stroke="#8a7a5a" stroke-width="0.5"/>
+<circle cx="503.2" cy="286.6" r="12.2" fill="#8a7a5a" opacity="0.55" stroke="#8a7a5a" stroke-width="0.5"/>
+<circle cx="503.5" cy="295.7" r="12.0" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="504.5" cy="239.4" r="11.9" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="506.3" cy="266.2" r="14.5" fill="#7a6a8a" opacity="0.55" stroke="#7a6a8a" stroke-width="0.5"/>
+<circle cx="508.2" cy="335.0" r="11.7" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="536.7" cy="232.8" r="13.2" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="518.2" cy="253.5" r="13.0" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="524.5" cy="294.6" r="11.8" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="534.7" cy="290.3" r="12.0" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="581.9" cy="296.2" r="10.3" fill="#6a7a9a" opacity="0.55" stroke="#6a7a9a" stroke-width="0.5"/>
+<circle cx="498.3" cy="101.9" r="7.7" fill="#9a8a5a" opacity="0.8" stroke="#c9a84c" stroke-width="0.8"/>
+<text x="509" y="105" fill="#9a8a5a" font-size="8" font-family="Helvetica Neue">Irish</text>
+<circle cx="125.2" cy="147.8" r="4.6" fill="#3a3a36" opacity="0.9" stroke="#5a5a56" stroke-width="1"/>
+<text x="125" y="140" fill="#5a5852" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">Random</text>
+<circle cx="541.0" cy="137.8" r="9.3" fill="#3a3a36" opacity="0.9" stroke="#5a5a56" stroke-width="1"/>
+<text x="541" y="125" fill="#5a5852" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">Shuffled Voynich</text>
+<circle cx="638.7" cy="419.1" r="17.5" fill="#a08060" opacity="0.7" stroke="#a08060" stroke-width="1"/>
+<circle cx="569.5" cy="427.3" r="12.5" fill="#907060" opacity="0.7" stroke="#907060" stroke-width="1"/>
+<circle cx="366.0" cy="257.1" r="10.4" fill="#806050" opacity="0.7" stroke="#806050" stroke-width="1"/>
+<circle cx="544.9" cy="453.9" r="6.7" fill="#7a9a6a" opacity="0.85" stroke="#8aaa7a" stroke-width="1"/>
+<text x="545" y="444" fill="#8aaa7a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">Tagalog: Filibusterismo</text>
+<circle cx="617.9" cy="507.8" r="11.7" fill="#7a9a6a" opacity="0.85" stroke="#8aaa7a" stroke-width="1"/>
+<text x="618" y="493" fill="#8aaa7a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">Tagalog: Noli</text>
+<circle cx="618.8" cy="146.0" r="9.2" fill="#c9a84c" opacity="1.0" stroke="#f0ede6" stroke-width="1.5"/>
+<text x="619" y="132" fill="#c9a84c" font-size="9.5" font-weight="bold" text-anchor="middle" font-family="Georgia,serif">Voynich MS</text>
+<text x="619" y="167" fill="#c9a84c" font-size="8" text-anchor="middle" font-family="Helvetica Neue">VMML=5.918 · BC=0.3613</text>
+<text x="694" y="60" fill="#5a5852" font-size="9" font-family="Helvetica Neue" letter-spacing="0.3">Language type</text>
+<circle cx="700" cy="66" r="5" fill="#c9a84c" opacity="1.0"/>
+<text x="708" y="70" fill="#8e8a84" font-size="9" font-family="Helvetica Neue">Voynich MS</text>
+<circle cx="700" cy="86" r="5" fill="#6a7a9a" opacity="0.8"/>
+<text x="708" y="90" fill="#8e8a84" font-size="9" font-family="Helvetica Neue">Fusional</text>
+<circle cx="700" cy="106" r="5" fill="#8a7a5a" opacity="0.8"/>
+<text x="708" y="110" fill="#8e8a84" font-size="9" font-family="Helvetica Neue">Agglutinative</text>
+<circle cx="700" cy="126" r="5" fill="#7a6a8a" opacity="0.8"/>
+<text x="708" y="130" fill="#8e8a84" font-size="9" font-family="Helvetica Neue">Isolating</text>
+<circle cx="700" cy="146" r="5" fill="#7a9a6a" opacity="0.8"/>
+<text x="708" y="150" fill="#8e8a84" font-size="9" font-family="Helvetica Neue">Tagalog (Austron.)</text>
+<circle cx="700" cy="166" r="5" fill="#9a8a5a" opacity="0.8"/>
+<text x="708" y="170" fill="#8e8a84" font-size="9" font-family="Helvetica Neue">Irish (Celtic)</text>
+<circle cx="700" cy="186" r="5" fill="#806050" opacity="0.8"/>
+<text x="708" y="190" fill="#8e8a84" font-size="9" font-family="Helvetica Neue">Cipher (Naibbe)</text>
+<circle cx="700" cy="206" r="5" fill="#3a3a36" opacity="0.8"/>
+<text x="708" y="210" fill="#8e8a84" font-size="9" font-family="Helvetica Neue">Controls</text>
+<text x="694" y="246" fill="#5a5852" font-size="8.5" font-family="Helvetica Neue">Bubble size ∝ CBMI</text>
+<text x="694" y="262" fill="#4a4a46" font-size="8" font-family="Helvetica Neue">(larger = higher</text>
+<text x="694" y="275" fill="#4a4a46" font-size="8" font-family="Helvetica Neue">compound index)</text>
+<text x="72" y="604" fill="#5a5852" font-size="8.5" font-family="Helvetica Neue">No natural language simultaneously occupies all three discriminant dimensions (VMML &gt; 5.918, BC &gt; 0.36, CBMI within Voynich range).</text>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+<rect width="900" height="560" fill="#080806"/>
+<text x="40" y="32" fill="#f0ede6" font-size="14" font-family="Georgia,serif" letter-spacing="0.5">Byte-Pair Encoding (BPE) Applied to Voynich EVA — Process Overview</text>
+<text x="40" y="48" fill="#5a5852" font-size="9.5" font-family="Helvetica Neue,Arial,sans-serif" letter-spacing="0.2">How VMML = 5.918 is computed · max_merges = 200 · min_freq = 3 · Real EVA Basic transcription</text>
+<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#2a2a26"/></marker></defs>
+<rect x="40" y="68" width="188" height="130" fill="#0e0e0b" stroke="#1e1d1a" stroke-width="1" rx="2"/>
+<text x="50" y="86" fill="#7a7670" font-size="7.5" font-family="Helvetica Neue" letter-spacing="0.12" text-transform="uppercase">STEP 1</text>
+<text x="50" y="100" fill="#c8c4bc" font-size="10.5" font-family="Georgia,serif">Raw EVA Corpus</text>
+<text x="50" y="118" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">37,025 tokens · 8,493 types</text>
+<text x="50" y="133" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">Characters: EVA alphabet</text>
+<text x="50" y="148" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve"></text>
+<text x="50" y="163" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">Sample: d·a·i·i·n  c·h·e·d·y</text>
+<text x="50" y="178" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">        q·o·k·e·e·d·y  s·h·o</text>
+<line x1="228" y1="133" x2="242" y2="133" stroke="#2a2a26" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="242" y="68" width="188" height="130" fill="#0e0e0b" stroke="#1e1d1a" stroke-width="1" rx="2"/>
+<text x="252" y="86" fill="#7a7670" font-size="7.5" font-family="Helvetica Neue" letter-spacing="0.12" text-transform="uppercase">STEP 2</text>
+<text x="252" y="100" fill="#c8c4bc" font-size="10.5" font-family="Georgia,serif">Count All Char Pairs</text>
+<text x="252" y="118" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">Scan corpus; tally bigrams</text>
+<text x="252" y="133" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve"></text>
+<text x="252" y="148" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">Most frequent pairs:</text>
+<text x="252" y="163" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">  (c,h) → 21,847×</text>
+<text x="252" y="178" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">  (e,e) → 18,203×</text>
+<text x="252" y="193" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">  (d,a) → 14,991×</text>
+<line x1="444" y1="133" x2="458" y2="133" stroke="#2a2a26" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="444" y="68" width="188" height="130" fill="#0e0e0b" stroke="#1e1d1a" stroke-width="1" rx="2"/>
+<text x="454" y="86" fill="#7a7670" font-size="7.5" font-family="Helvetica Neue" letter-spacing="0.12" text-transform="uppercase">STEP 3</text>
+<text x="454" y="100" fill="#c8c4bc" font-size="10.5" font-family="Georgia,serif">Merge Most Frequent</text>
+<text x="454" y="118" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">Iteration 1: merge (c,h) → ch</text>
+<text x="454" y="133" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">Iteration 2: merge (e,e) → ee</text>
+<text x="454" y="148" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">Iteration 3: merge (ch,e) → che</text>
+<text x="454" y="163" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">⋮</text>
+<text x="454" y="178" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">Repeat 200× (max_merges)</text>
+<line x1="646" y1="133" x2="660" y2="133" stroke="#2a2a26" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="646" y="68" width="188" height="130" fill="#0e0e0b" stroke="#1e1d1a" stroke-width="1" rx="2"/>
+<text x="656" y="86" fill="#7a7670" font-size="7.5" font-family="Helvetica Neue" letter-spacing="0.12" text-transform="uppercase">STEP 4</text>
+<text x="656" y="100" fill="#c8c4bc" font-size="10.5" font-family="Georgia,serif">Final Vocabulary</text>
+<text x="656" y="118" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">After 200 merges:</text>
+<text x="656" y="133" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">  Learned subword units</text>
+<text x="656" y="148" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">  e.g. "ch", "ee", "che",</text>
+<text x="656" y="163" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">  "shol", "daiin", "qok"</text>
+<text x="656" y="178" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve"></text>
+<text x="656" y="193" fill="#7a7670" font-size="9" font-family="Helvetica Neue" xml:space="preserve">Applied to tokenize corpus</text>
+<rect x="307" y="250" width="260" height="90" fill="rgba(201,168,76,0.08)" stroke="#c9a84c" stroke-width="1.5" rx="3"/>
+<text x="437" y="272" fill="#c9a84c" font-size="10" font-family="Helvetica Neue" text-anchor="middle" letter-spacing="0.5">COMPUTED METRIC</text>
+<text x="437" y="296" fill="#f0ede6" font-size="22" font-family="Georgia,serif" text-anchor="middle">VMML = 5.918</text>
+<text x="437" y="316" fill="#9a9690" font-size="9.5" font-family="Helvetica Neue" text-anchor="middle">Mean subword unit length across tokenized corpus</text>
+<text x="437" y="330" fill="#6a6660" font-size="9" font-family="Helvetica Neue" text-anchor="middle">95% CI [5.77 – 6.05] · Bootstrap n=1,000</text>
+<line x1="740" y1="198" x2="740" y2="248" stroke="#2a2a26" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="437" y1="198" x2="437" y2="250" stroke="#2a2a26" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="40" y="260" fill="#5a5852" font-size="9" font-family="Helvetica Neue">What VMML measures:</text>
+<text x="40" y="274" fill="#4a4a46" font-size="8.5" font-family="Helvetica Neue">Higher VMML → longer average subword</text>
+<text x="40" y="287" fill="#4a4a46" font-size="8.5" font-family="Helvetica Neue">units → more compact character structure</text>
+<text x="40" y="300" fill="#4a4a46" font-size="8.5" font-family="Helvetica Neue">→ BPE "sees" strong recurring patterns.</text>
+<text x="587" y="260" fill="#5a5852" font-size="9" font-family="Helvetica Neue">Voynich vs. comparators:</text>
+<text x="587" y="274" fill="#4a4a46" font-size="8.5" font-family="Helvetica Neue">Alphabetic ceiling (Nietzsche): 5.748</text>
+<text x="587" y="287" fill="#4a4a46" font-size="8.5" font-family="Helvetica Neue">Tagalog Noli Me Tangere:       5.914 ★</text>
+<text x="587" y="300" fill="#c9a84c" font-size="8.5" font-family="Helvetica Neue">Voynich MS (EVA Basic):        5.918 ★★</text>
+<text x="450" y="550" fill="#3a3a36" font-size="8" text-anchor="middle" font-family="Helvetica Neue">min_freq = 3 (pairs below this threshold not merged) · Language-agnostic: no prior knowledge of Voynich required</text>
+</svg>
