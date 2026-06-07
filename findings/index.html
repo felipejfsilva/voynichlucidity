@@ -370,6 +370,11 @@
     .mobile-menu a{color:var(--muted,#8e8a84);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;}
     .mobile-menu a:hover{color:var(--gold,#c9a84c);}
     @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+
+    /* ── DATA CHARTS ── */
+    .chart-block { margin:2rem 0 0.5rem; border:1px solid var(--border); background:#080806; overflow:hidden; }
+    .chart-block img { width:100%; display:block; }
+    .chart-caption { border-top:1px solid var(--border); padding:0.65rem 1.1rem; font-size:0.72rem; letter-spacing:0.06em; color:var(--muted); font-style:italic; background:#0a0a08; }
   </style>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://voynichlucidity.com/findings/">
@@ -503,6 +508,11 @@
         <p class="establishes-line"><strong>What it establishes:</strong> The text is statistically language-like.</p>
         <p class="establishes-line does-not"><strong>What it does not establish:</strong> Which language, or whether it encodes one at all.</p>
       </div>
+
+      <div class="chart-block" style="margin-top:1.5rem;">
+        <img src="/assets/charts/zipf-chart.svg" alt="Voynich word frequency Zipf plot — log-log scale, alpha=0.916, R²=0.930" loading="lazy">
+        <div class="chart-caption">Fig. 1 — Word frequency vs. rank (log-log). Voynich EVA, n=5,000 tokens. Fitted Zipf α=0.916 (R²=0.930). Dashed lines: ideal α=1.0 and fitted curve. Top words labeled. Consistent with natural language.</div>
+      </div>
     </div>
   </div>
 
@@ -604,6 +614,11 @@
       </div>
       <p class="card-finding">Full-corpus computation of <em>El filibusterismo</em> (Rizal, n=114,777 tokens, identical protocol) yields VMML=5.578 — below the alphabetic ceiling. Cross-text Δ=0.336 units. The supra-ceiling Tagalog value is not a general language property.</p>
       <p class="card-source"><strong>Source:</strong> Silva (2026). DOI: <a href="https://doi.org/10.5281/zenodo.20467972" style="color:var(--gold);text-decoration:none;">10.5281/zenodo.20467972</a></p>
+    </div>
+
+    <div class="chart-block">
+      <img src="/assets/charts/vmml-chart.svg" alt="VMML bar chart — Voynich vs 41 natural language corpora, BPE Mean Morpheme Length" loading="lazy">
+      <div class="chart-caption">Fig. 2 — BPE VMML across 42 corpora (41 natural languages + Voynich). Sorted ascending. Voynich (gold, ★★) at 5.918 with 95% CI [5.77–6.05]. Colors by morphological type. ★ Tagalog <em>Noli Me Tangere</em> is the nearest natural-language match at 5.914 — within Voynich CI, but text-specific (cross-text Δ=0.336). Source: RESON Research Initiative, 2026.</div>
     </div>
   </div>
 
