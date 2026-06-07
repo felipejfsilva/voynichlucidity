@@ -112,6 +112,20 @@
       font-style: italic;
     }
 
+    /* CARD IMAGE */
+    .card-img {
+      width: calc(100% + 3.6rem);
+      margin: -1.8rem -1.8rem 1.4rem;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.35) brightness(0.82) contrast(1.05);
+      transition: filter 0.4s;
+    }
+    .card:hover .card-img {
+      filter: sepia(0.15) brightness(0.9) contrast(1.05);
+    }
+
     /* DIVIDER */
     .divider {
       max-width: 900px;
@@ -186,6 +200,7 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/rudolf-ii.jpg" alt="Portrait of Emperor Rudolf II, c. 1580" class="card-img">
     <span class="card-num">02</span>
     <span class="card-tag">History & Provenance</span>
     <h2>Rudolf II paid 600 gold ducats for it — roughly $150,000 today</h2>
@@ -226,6 +241,7 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/folio-f41r.jpg" alt="Voynich Manuscript folio f41r — botanical section" class="card-img">
     <span class="card-num">07</span>
     <span class="card-tag">Botany</span>
     <h2>The plants don't match any known species — despite looking almost real</h2>
@@ -234,6 +250,7 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/folio-f67r-astronomical.jpg" alt="Voynich Manuscript folio f67r — astronomical section" class="card-img">
     <span class="card-num">08</span>
     <span class="card-tag">Astronomy</span>
     <h2>The astronomical section may depict a supernova — possibly SN 1054</h2>
@@ -328,6 +345,7 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/folio-f78r-biological.jpg" alt="Voynich Manuscript folio f78r — biological/balneological section" class="card-img">
     <span class="card-num">19</span>
     <span class="card-tag">Iconography</span>
     <h2>The bathing women section is the most studied — and the least understood</h2>

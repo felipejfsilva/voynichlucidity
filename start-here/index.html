@@ -344,6 +344,31 @@
     }
     .path-card:hover .path-arrow { opacity: 1; transform: translateX(0); }
 
+    /* ── SECTION IMAGES ── */
+    .section-img-wrap {
+      margin: 1.8rem 0 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .section-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      filter: sepia(0.3) brightness(0.8) contrast(1.05);
+      transition: filter 0.5s;
+    }
+    .section-img:hover { filter: sepia(0.1) brightness(0.88) contrast(1.05); }
+    .section-img-caption {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      padding: 0.55rem 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-style: italic;
+    }
+
     /* ── CLOSING PULL-QUOTE ── */
     .closing {
       max-width: 800px;
@@ -499,6 +524,11 @@
       it so hard to leave alone.
     </p>
   </div>
+
+  <div class="section-img-wrap">
+    <img src="/assets/images/folio-f1r.jpg" alt="Voynich Manuscript folio f1r — the first page of MS 408" class="section-img">
+    <div class="section-img-caption">Voynich Manuscript, folio f1r — Yale University's Beinecke Rare Book & Manuscript Library, MS 408. Public domain.</div>
+  </div>
 </div>
 
 <!-- SECTION 2: WHY HAS NO ONE CRACKED IT -->
@@ -567,6 +597,11 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="section-img-wrap">
+    <img src="/assets/images/rosetta-stone.jpg" alt="The Rosetta Stone — British Museum" class="section-img">
+    <div class="section-img-caption">The Rosetta Stone, 196 BC — the key that unlocked Egyptian hieroglyphics. The Voynich has no equivalent. British Museum. © Trustees of the British Museum (CC BY-NC-SA 4.0).</div>
   </div>
 </div>
 
