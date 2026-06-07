@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="480" viewBox="0 0 860 480">
+<rect width="860" height="480" fill="#080806"/>
+<text x="60" y="26" fill="#f0ede6" font-size="13.5" font-family="Georgia,serif" letter-spacing="0.5">EVA Character Frequency Distribution — Voynich MS</text>
+<text x="60" y="42" fill="#5a5852" font-size="9.5" font-family="Helvetica Neue,Arial,sans-serif" letter-spacing="0.2">22 EVA glyphs · n = 191,545 characters · 37,025 tokens · Color = positional role · Source: Paper 2 character analysis</text>
+<line x1="60" y1="348.6" x2="830" y2="348.6" stroke="#1e1d1a" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text x="55" y="351.6" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">2%</text>
+<line x1="60" y1="297.1" x2="830" y2="297.1" stroke="#1e1d1a" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text x="55" y="300.1" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">4%</text>
+<line x1="60" y1="245.7" x2="830" y2="245.7" stroke="#1e1d1a" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text x="55" y="248.7" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">6%</text>
+<line x1="60" y1="194.3" x2="830" y2="194.3" stroke="#1e1d1a" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text x="55" y="197.3" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">8%</text>
+<line x1="60" y1="142.9" x2="830" y2="142.9" stroke="#1e1d1a" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text x="55" y="145.9" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">10%</text>
+<line x1="60" y1="91.4" x2="830" y2="91.4" stroke="#1e1d1a" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text x="55" y="94.4" fill="#4a4a46" font-size="8.5" text-anchor="end" font-family="Helvetica Neue">12%</text>
+<line x1="60" y1="58" x2="60" y2="400" stroke="#2a2a26" stroke-width="1"/>
+<line x1="60" y1="400" x2="830" y2="400" stroke="#2a2a26" stroke-width="1"/>
+<rect x="64.9" y="58.0" width="25.2" height="342.0" fill="#9a8a5a" opacity="0.85"/>
+<text x="77.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">o</text>
+<text x="77.5" y="54.0" fill="#9a8a5a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">13.3%</text>
+<rect x="99.9" y="130.5" width="25.2" height="269.5" fill="#6a7a9a" opacity="0.85"/>
+<text x="112.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">e</text>
+<text x="112.5" y="126.5" fill="#6a7a9a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">10.5%</text>
+<rect x="134.9" y="160.3" width="25.2" height="239.7" fill="#6a7a9a" opacity="0.85"/>
+<text x="147.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">h</text>
+<text x="147.5" y="156.3" fill="#6a7a9a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">9.3%</text>
+<rect x="169.9" y="162.9" width="25.2" height="237.1" fill="#6a9a7a" opacity="0.85"/>
+<text x="182.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">y</text>
+<text x="182.5" y="158.9" fill="#6a9a7a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">9.2%</text>
+<rect x="204.9" y="208.2" width="25.2" height="191.8" fill="#6a7a9a" opacity="0.85"/>
+<text x="217.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">a</text>
+<text x="217.5" y="204.2" fill="#6a7a9a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">7.5%</text>
+<rect x="239.9" y="221.3" width="25.2" height="178.7" fill="#9a8a5a" opacity="0.85"/>
+<text x="252.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">c</text>
+<text x="252.5" y="217.3" fill="#9a8a5a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">7.0%</text>
+<rect x="274.9" y="225.9" width="25.2" height="174.1" fill="#6a7a9a" opacity="0.85"/>
+<text x="287.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">d</text>
+<text x="287.5" y="221.9" fill="#6a7a9a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">6.8%</text>
+<rect x="309.9" y="242.6" width="25.2" height="157.4" fill="#6a7a9a" opacity="0.85"/>
+<text x="322.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">i</text>
+<text x="322.5" y="238.6" fill="#6a7a9a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">6.1%</text>
+<rect x="344.9" y="253.2" width="25.2" height="146.8" fill="#6a7a9a" opacity="0.85"/>
+<text x="357.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">k</text>
+<text x="357.5" y="249.2" fill="#6a7a9a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">5.7%</text>
+<rect x="379.9" y="258.8" width="25.2" height="141.2" fill="#6a7a9a" opacity="0.85"/>
+<text x="392.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">l</text>
+<text x="392.5" y="254.8" fill="#6a7a9a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">5.5%</text>
+<rect x="414.9" y="300.0" width="25.2" height="100.0" fill="#6a9a7a" opacity="0.85"/>
+<text x="427.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">r</text>
+<text x="427.5" y="296.0" fill="#6a9a7a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">3.9%</text>
+<rect x="449.9" y="300.7" width="25.2" height="99.3" fill="#9a8a5a" opacity="0.85"/>
+<text x="462.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">s</text>
+<text x="462.5" y="296.7" fill="#9a8a5a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">3.9%</text>
+<rect x="484.9" y="306.7" width="25.2" height="93.3" fill="#6a7a9a" opacity="0.85"/>
+<text x="497.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">t</text>
+<text x="497.5" y="302.7" fill="#6a7a9a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">3.6%</text>
+<rect x="519.9" y="317.5" width="25.2" height="82.5" fill="#6a9a7a" opacity="0.85"/>
+<text x="532.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">n</text>
+<text x="532.5" y="313.5" fill="#6a9a7a" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">3.2%</text>
+<rect x="554.9" y="327.2" width="25.2" height="72.8" fill="#c9a84c" opacity="0.85"/>
+<text x="567.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">q</text>
+<text x="567.5" y="323.2" fill="#c9a84c" font-size="7.5" text-anchor="middle" font-family="Helvetica Neue">2.8%</text>
+<rect x="589.9" y="378.1" width="25.2" height="21.9" fill="#6a7a9a" opacity="0.85"/>
+<text x="602.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">p</text>
+<rect x="624.9" y="385.1" width="25.2" height="14.9" fill="#6a9a7a" opacity="0.85"/>
+<text x="637.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">m</text>
+<rect x="659.9" y="393.3" width="25.2" height="6.7" fill="#6a7a9a" opacity="0.85"/>
+<text x="672.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">f</text>
+<rect x="694.9" y="398.7" width="25.2" height="1.3" fill="#6a9a7a" opacity="0.85"/>
+<text x="707.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">g</text>
+<rect x="729.9" y="399.5" width="25.2" height="0.5" fill="#6a7a9a" opacity="0.85"/>
+<text x="742.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">x</text>
+<rect x="764.9" y="400.0" width="25.2" height="0.0" fill="#6a7a9a" opacity="0.85"/>
+<text x="777.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">v</text>
+<rect x="799.9" y="400.0" width="25.2" height="0.0" fill="#6a7a9a" opacity="0.85"/>
+<text x="812.5" y="414" fill="#c8c4bc" font-size="12" font-family="Georgia,serif" text-anchor="middle">z</text>
+<text x="80" y="310" fill="#5a5852" font-size="8.5" font-family="Helvetica Neue" letter-spacing="0.3">Positional role:</text>
+<rect x="80" y="318" width="9" height="9" fill="#c9a84c" opacity="0.85"/>
+<text x="92" y="327" fill="#7a7670" font-size="8.5" font-family="Helvetica Neue">INITIAL</text>
+<rect x="186" y="318" width="9" height="9" fill="#6a9a7a" opacity="0.85"/>
+<text x="198" y="327" fill="#7a7670" font-size="8.5" font-family="Helvetica Neue">FINAL</text>
+<rect x="292" y="318" width="9" height="9" fill="#6a7a9a" opacity="0.85"/>
+<text x="304" y="327" fill="#7a7670" font-size="8.5" font-family="Helvetica Neue">MEDIAL</text>
+<rect x="398" y="318" width="9" height="9" fill="#9a8a5a" opacity="0.85"/>
+<text x="410" y="327" fill="#7a7670" font-size="8.5" font-family="Helvetica Neue">INIT-MED</text>
+<rect x="504" y="318" width="9" height="9" fill="#4a4a46" opacity="0.85"/>
+<text x="516" y="327" fill="#7a7670" font-size="8.5" font-family="Helvetica Neue">RARE</text>
+<text x="830" y="458" fill="#4a4a46" font-size="8" text-anchor="end" font-family="Helvetica Neue">o = most frequent (13.3%) · y = 4th most frequent but exclusively final-position · n_chars = 191,545</text>
+<text x="14" y="229" fill="#7a7670" font-size="10" text-anchor="middle" transform="rotate(-90,14,229)" font-family="Helvetica Neue">% of corpus</text>
+</svg>

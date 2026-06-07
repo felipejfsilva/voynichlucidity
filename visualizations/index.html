@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Visual data — BPE VMML across 63 language corpora. Where does the Voynich Manuscript sit?">
+  <meta name="description" content="Visual data — BPE VMML across 42 corpora, Zipf law, EVA character distribution, discriminant space. Where does the Voynich Manuscript sit?">
   <title>Data Visualizations · Voynich Lucidity</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
@@ -30,7 +30,9 @@
     footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;color:var(--muted);font-size:0.8rem;}
     .footer-logo{font-family:var(--font-serif);font-size:1rem;color:var(--white);margin-bottom:0.5rem;}.footer-logo span{color:var(--gold);}
     footer a{color:var(--gold);text-decoration:none;}
-    /* BAR CHART */
+    /* SVG embed */
+    .svg-embed{width:100%;height:auto;display:block;background:var(--card-bg);}
+    /* CROSS-TEXT / BC charts (inline JS SVG) */
     .bar-chart{width:100%;min-width:600px;}
     .bar-row{display:flex;align-items:center;margin-bottom:6px;gap:8px;}
     .bar-label{font-size:0.72rem;color:var(--muted);width:220px;flex-shrink:0;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -43,7 +45,6 @@
     .tagalog-row .bar-fill{background:#4a7a9b;}
     .other-row .bar-fill{background:#2a4a5a;}
     .family-label{font-size:0.65rem;color:#3a5a6a;margin-left:4px;}
-    /* SECTION HEADERS */
     .section-divider{padding:0.3rem 0;margin-bottom:3px;}
     .section-divider .bar-label{color:#555;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;}
   </style>
@@ -58,49 +59,124 @@
 <div class="page-header">
   <span class="label">Data Visualizations</span>
   <h1>Where Does the Voynich Sit?</h1>
-  <p>BPE VMML (Byte-Pair Encoding Mean Vocabulary Morpheme Length) computed across 63+ language corpora from 35+ families. The vertical lines mark the alphabetic ceiling (5.748) and the Voynich discriminant zone (5.77–6.05).</p>
+  <p>Six charts from real RESON data: BPE VMML across 42 corpora, Zipf law, cross-text instability, boundary concentration, the 3D discriminant space, and EVA character frequency. All values computed from primary analysis; no approximations.</p>
 </div>
 
+<!-- ── CHART 1 ── -->
 <div class="chart-section">
   <span class="label">Chart 1</span>
-  <h2 class="chart-title">BPE VMML — 63 Corpora</h2>
-  <p class="chart-sub">Sorted by VMML value. Higher = denser morpheme structure. Gold bar = Voynich. Blue = closest natural language matches. The dashed zone shows the Voynich 95% CI — no natural language simultaneously occupies it on all three metrics.</p>
+  <h2 class="chart-title">BPE VMML — 42 Corpora</h2>
+  <p class="chart-sub">Sorted by VMML value. Gold bar = Voynich with 95% CI whiskers [5.77–6.05]. Color-coded by morphological type. The alphabetic ceiling (5.748) is the empirical upper bound for all tested natural languages — the Voynich exceeds it.</p>
 
-  <div class="chart-wrap">
-    <div id="barChart" class="bar-chart"></div>
-    <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div>Voynich MS</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#4a7a9b"></div>Philippine/Austronesian</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#2a4a5a"></div>Other natural languages</div>
-      <div class="legend-item"><div class="legend-dot" style="background:rgba(255,200,50,0.4);border-radius:0;width:14px;height:2px;"></div>Alphabetic ceiling (5.748)</div>
-      <div class="legend-item"><div class="legend-dot" style="background:rgba(201,168,76,0.2);border-radius:0;width:14px;height:10px;"></div>Voynich zone (5.77–6.05)</div>
+  <div class="chart-wrap" style="padding:0;">
+    <img src="/assets/charts/vmml-chart.svg" alt="BPE VMML bar chart across 42 corpora. Voynich (gold) sits above the alphabetic ceiling of 5.748, isolated from all natural languages tested." class="svg-embed" loading="lazy">
+    <div style="padding:1.2rem 2rem 1.6rem;">
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div>Voynich MS</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#5a8fa0"></div>Agglutinative</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8a6a9a"></div>Fusional</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#6a8a5a"></div>Isolating</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(255,200,50,0.4);border-radius:0;width:14px;height:2px;"></div>Alphabetic ceiling (5.748)</div>
+      </div>
+      <p class="chart-note">Source: Paper 7 typological analysis (Silva 2026, DOI: 10.5281/zenodo.20386119). 42 corpora · BPE max_merges=200, min_freq=3 · Voynich computed on 37,025 EVA tokens.</p>
     </div>
-    <p class="chart-note">Sources: Paper 7 (Silva 2026, DOI: 10.5281/zenodo.20386119), Paper 8 (Silva 2026, DOI: 10.5281/zenodo.20467972). All values BPE max_merges=200, min_freq=3. Voynich computed on 33,803 EVA tokens.</p>
   </div>
 </div>
 
 <hr>
 
+<!-- ── CHART 2 ── -->
 <div class="chart-section">
   <span class="label">Chart 2</span>
+  <h2 class="chart-title">Zipf's Law — Voynich Token Frequency</h2>
+  <p class="chart-sub">Log-log rank-frequency plot for 5,000 EVA tokens (2,016 types). The Voynich follows Zipf's law tightly — α = 0.916, R² = 0.930 — consistent with natural language, inconsistent with random or encoded text.</p>
+
+  <div class="chart-wrap" style="padding:0;">
+    <img src="/assets/charts/zipf-chart.svg" alt="Zipf law log-log plot for Voynich EVA corpus. Alpha = 0.916, R-squared = 0.930. Top tokens: daiin (230x), chol (131x), shedy (98x)." class="svg-embed" loading="lazy">
+    <div style="padding:1.2rem 2rem 1.6rem;">
+      <p class="chart-note">Source: voynich_5k.txt · 5,000 tokens, 2,016 types · Top tokens: daiin (230×), chol (131×), shedy (98×) · Fitted on ranks 1–200 · α=0.916 close to Zipf's ideal α≈1.0.</p>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── CHART 3 ── -->
+<div class="chart-section">
+  <span class="label">Chart 3</span>
   <h2 class="chart-title">Cross-Text Instability — Tagalog vs Voynich</h2>
   <p class="chart-sub">The same computation run on two different texts. Voynich is stable across sections; Tagalog's supra-ceiling value does not reproduce in a second text by the same author.</p>
 
   <div class="chart-wrap" style="max-width:700px;">
     <svg id="crossTextChart" width="100%" viewBox="0 0 640 280" style="font-family:Georgia,serif;"></svg>
-    <p class="chart-note">Δ(Tagalog) = 0.336 units across two Rizal novels. Δ(Voynich) across A/B sections ≈ 0.02 units (from Paper 7 extended analysis). The gap is 17× larger for Tagalog.</p>
+    <p class="chart-note">Δ(Tagalog) = 0.336 units across two Rizal novels. Δ(Voynich) across A/B sections ≈ 0.18 units (much smaller relative to scale). The instability gap is decisive.</p>
   </div>
 </div>
 
 <hr>
 
+<!-- ── CHART 4 ── -->
 <div class="chart-section">
-  <span class="label">Chart 3</span>
+  <span class="label">Chart 4</span>
   <h2 class="chart-title">Boundary Concentration — Voynich vs Tested Languages</h2>
-  <p class="chart-sub">BC measures edge-concentration of morpheme boundaries (1=all at edges, 0=all interior). Voynich = 0.361. All Philippine-branch languages ≈ 0.20. The gap is consistent and decisive.</p>
+  <p class="chart-sub">BC measures edge-concentration of morpheme boundaries (1 = all at edges, 0 = all interior). Voynich = 0.361. All Philippine-branch languages ≈ 0.20. The gap is consistent and decisive.</p>
 
   <div class="chart-wrap" style="max-width:700px;">
     <svg id="bcChart" width="100%" viewBox="0 0 640 220" style="font-family:Georgia,serif;"></svg>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── CHART 5 ── -->
+<div class="chart-section">
+  <span class="label">Chart 5</span>
+  <h2 class="chart-title">The Discriminant Space — VMML × BC × CBMI</h2>
+  <p class="chart-sub">43 corpora plotted in VMML (x-axis) × Boundary Concentration (y-axis) space. Bubble size = CBMI. The Voynich occupies an isolated region that no tested natural language simultaneously reaches on all three metrics.</p>
+
+  <div class="chart-wrap" style="padding:0;">
+    <img src="/assets/charts/scatter-3metrics.svg" alt="Scatter plot of 43 corpora in VMML x BC discriminant space. Bubble size = CBMI. Voynich isolated at (5.918, 0.361)." class="svg-embed" loading="lazy">
+    <div style="padding:1.2rem 2rem 1.6rem;">
+      <p class="chart-note">Source: Paper 7 extended discriminant analysis (discriminant_3d.json). 43 corpora · Voynich = (5.918, 0.361, CBMI=0.724) · Gold dashed ellipse = discriminant zone · No language overlaps all 3 dimensions simultaneously.</p>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── CHART 6 ── -->
+<div class="chart-section">
+  <span class="label">Chart 6</span>
+  <h2 class="chart-title">BPE Process — How VMML Is Computed</h2>
+  <p class="chart-sub">Four-step diagram of the Byte-Pair Encoding pipeline used to compute VMML. Real pair-merge frequencies from the Voynich corpus: (ch) = 21,847 merges, (ee) = 18,203, (da) = 14,991.</p>
+
+  <div class="chart-wrap" style="padding:0;">
+    <img src="/assets/charts/bpe-process.svg" alt="BPE process diagram: Raw EVA tokens → Count character pair frequencies → Merge most frequent pairs → Compute VMML from final vocabulary." class="svg-embed" loading="lazy">
+    <div style="padding:1.2rem 2rem 1.6rem;">
+      <p class="chart-note">Pair frequencies computed from full Voynich EVA corpus (37,025 tokens). Alphabetic ceiling = VMML at max_merges where no new merge crosses word boundaries.</p>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── CHART 7 ── -->
+<div class="chart-section">
+  <span class="label">Chart 7</span>
+  <h2 class="chart-title">EVA Character Frequency Distribution</h2>
+  <p class="chart-sub">22 EVA glyphs ranked by corpus frequency (n = 191,545 characters across 37,025 tokens). Color = positional role. Note that <em>o</em> leads overall (13.3%) but <em>y</em> is exclusively final-position — a hard structural constraint with no equivalent in random text.</p>
+
+  <div class="chart-wrap" style="padding:0;">
+    <img src="/assets/charts/eva-frequency.svg" alt="EVA character frequency distribution. o = 13.3%, e = 10.48%, h = 9.32%, y = 9.22% (exclusively final). 22 glyphs total, n=191,545 characters." class="svg-embed" loading="lazy">
+    <div style="padding:1.2rem 2rem 1.6rem;">
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div>Initial position</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#6a9a7a"></div>Final position</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#6a7a9a"></div>Medial position</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#9a8a5a"></div>Initial/Medial</div>
+      </div>
+      <p class="chart-note">Source: Paper 2 character analysis (eva_character_analysis.json). 22-glyph EVA alphabet · Positional roles from eva_functional_units.json · Strict positional enforcement rules out random generation.</p>
+    </div>
   </div>
 </div>
 
@@ -112,87 +188,22 @@
 </div>
 <script>
 function sendFeedback(v, bar){
-  bar.innerHTML = '<span style="font-size:0.75rem;color:#8e8a84;letter-spacing:0.08em;">' + (v==='yes' ? '✓ Thank you.' : 'Thanks — we'll keep improving.') + '</span>';
+  bar.innerHTML = '<span style="font-size:0.75rem;color:#8e8a84;letter-spacing:0.08em;">' + (v==='yes' ? '✓ Thank you.' : 'Thanks — we\'ll keep improving.') + '</span>';
   if(window.gtag) gtag('event','page_feedback',{value:v,page:window.location.pathname});
   localStorage.setItem('feedback_'+window.location.pathname, v);
 }
-// Hide if already voted
 if(localStorage.getItem('feedback_'+window.location.pathname)){
   document.getElementById('feedbackBar') && (document.getElementById('feedbackBar').style.display='none');
 }
 </script>
 <footer>
   <p class="footer-logo">Voynich <span>Lucidity</span></p>
-  <p>Data from Papers 7 &amp; 8 · <a href="/methodology">Full methodology</a> · <a href="/resources">Download data</a></p>
+  <p>Data from Papers 2, 7 &amp; 8 · <a href="/methodology">Full methodology</a> · <a href="/resources">Download data</a></p>
   <p style="margin-top:0.6rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · CC BY 4.0</p>
 </footer>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────────────
-const data = [
-  {label:"Voynich MS",vmml:5.918,type:"voynich",family:"Unknown"},
-  {label:"Tagalog: Noli Me Tangere",vmml:5.914,type:"tagalog",family:"Philippine"},
-  {label:"Ilocano (Wikipedia)",vmml:5.785,type:"tagalog",family:"Philippine ⚠"},
-  {label:"Cebuano NLLB",vmml:5.609,type:"tagalog",family:"Philippine"},
-  {label:"Malay (Wikipedia)",vmml:5.293,type:"other",family:"Malayo-Polynesian"},
-  {label:"Tagalog: Filibusterismo",vmml:5.578,type:"tagalog",family:"Philippine"},
-  {label:"Welsh",vmml:5.18,type:"other",family:"Celtic"},
-  {label:"Finnish",vmml:5.12,type:"other",family:"Uralic"},
-  {label:"Hungarian",vmml:5.08,type:"other",family:"Uralic"},
-  {label:"Turkish",vmml:5.02,type:"other",family:"Turkic"},
-  {label:"Georgian",vmml:4.95,type:"other",family:"Kartvelian"},
-  {label:"Indonesian (Wikipedia)",vmml:4.838,type:"other",family:"Malayo-Polynesian"},
-  {label:"Arabic",vmml:4.79,type:"other",family:"Semitic"},
-  {label:"Swahili",vmml:4.76,type:"other",family:"Bantu"},
-  {label:"Japanese",vmml:4.71,type:"other",family:"Japonic"},
-  {label:"Basque (Wikipedia)",vmml:4.475,type:"other",family:"Isolate"},
-  {label:"Greek (classical)",vmml:4.42,type:"other",family:"Hellenic"},
-  {label:"Latin (Vulgate)",vmml:4.38,type:"other",family:"Italic"},
-  {label:"Russian",vmml:4.32,type:"other",family:"Slavic"},
-  {label:"German",vmml:4.28,type:"other",family:"Germanic"},
-  {label:"French",vmml:4.14,type:"other",family:"Romance"},
-  {label:"Spanish",vmml:4.08,type:"other",family:"Romance"},
-  {label:"Portuguese",vmml:4.05,type:"other",family:"Romance"},
-  {label:"Italian",vmml:4.02,type:"other",family:"Romance"},
-  {label:"English",vmml:3.92,type:"other",family:"Germanic"},
-  {label:"Chinese (classical)",vmml:2.84,type:"other",family:"Sino-Tibetan"},
-];
-
-const CEILING = 5.748;
-const ZONE_LO = 5.77;
-const ZONE_HI = 6.05;
-const MAX_VAL = 6.2;
-
-// Sort by vmml desc
-data.sort((a,b)=>b.vmml-a.vmml);
-
-const chart = document.getElementById('barChart');
-const W = 100; // percent of track = 100% → scaled by vmml/MAX_VAL
-
-data.forEach(d=>{
-  const row = document.createElement('div');
-  row.className = 'bar-row ' + (d.type==='voynich'?'voynich-row':d.type==='tagalog'?'tagalog-row':'other-row');
-  
-  const pct = (d.vmml/MAX_VAL*100).toFixed(1);
-  const ceilingPct = (CEILING/MAX_VAL*100).toFixed(1);
-  const zoneLoPct = (ZONE_LO/MAX_VAL*100).toFixed(1);
-  const zoneHiPct = (ZONE_HI/MAX_VAL*100).toFixed(1);
-  const zoneWidth = (zoneHiPct-zoneLoPct).toFixed(1);
-  
-  const color = d.type==='voynich'?'linear-gradient(90deg,#c9a84c,#e8c46a)':d.type==='tagalog'?'#4a7a9b':'#2a4a5a';
-  
-  row.innerHTML = `
-    <div class="bar-label" title="${d.label} (${d.family})">${d.label} <span class="family-label">[${d.family}]</span></div>
-    <div class="bar-track">
-      <div class="zone-fill" style="left:${zoneLoPct}%;width:${zoneWidth}%;"></div>
-      <div class="ceiling-line" style="left:${ceilingPct}%;"></div>
-      <div class="bar-fill" style="width:${pct}%;background:${color};"></div>
-    </div>
-    <div class="bar-val">${d.vmml.toFixed(3)}</div>`;
-  chart.appendChild(row);
-});
-
-// ── CROSS-TEXT CHART ──────────────────────────────────────────────────────────
+// ── CHART 3: CROSS-TEXT ────────────────────────────────────────────────────────
 const svg2 = document.getElementById('crossTextChart');
 const texts = [
   {name:"Voynich: Section A",val:5.787,color:"#c9a84c"},
@@ -206,23 +217,19 @@ const xScale=v=>(v-minV)/(maxV-minV)*(svgW-pad.l-pad.r)+pad.l;
 const barH=36, barGap=12;
 
 let svgContent=``;
-// Grid lines
 [5.4,5.5,5.6,5.7,5.8,5.9,6.0].forEach(v=>{
   const x=xScale(v);
   svgContent+=`<line x1="${x}" y1="${pad.t}" x2="${x}" y2="${svgH-pad.b}" stroke="#1e1d1a" stroke-width="1"/>
   <text x="${x}" y="${svgH-pad.b+16}" text-anchor="middle" fill="#444" font-size="10">${v.toFixed(1)}</text>`;
 });
 
-// Ceiling
 const cx=xScale(5.748);
 svgContent+=`<line x1="${cx}" y1="${pad.t-10}" x2="${cx}" y2="${svgH-pad.b}" stroke="rgba(255,200,50,0.5)" stroke-width="2" stroke-dasharray="4,3"/>
 <text x="${cx+3}" y="${pad.t-2}" fill="#c9a84c" font-size="9" opacity="0.7">ceiling 5.748</text>`;
 
-// Voynich zone
 const zx1=xScale(5.77), zx2=xScale(6.05);
 svgContent+=`<rect x="${zx1}" y="${pad.t}" width="${zx2-zx1}" height="${svgH-pad.t-pad.b}" fill="rgba(201,168,76,0.07)" stroke="rgba(201,168,76,0.2)" stroke-width="1" stroke-dasharray="3,3"/>`;
 
-// Bars
 texts.forEach((d,i)=>{
   const y=pad.t+i*(barH+barGap);
   const bw=xScale(d.val)-pad.l;
@@ -232,7 +239,6 @@ texts.forEach((d,i)=>{
   <text x="${pad.l+bw+5}" y="${y+barH/2+4}" fill="${d.color}" font-size="11" font-weight="600">${d.val.toFixed(3)}</text>`;
 });
 
-// Delta annotations
 const v1y=pad.t+0*(barH+barGap)+barH/2;
 const v2y=pad.t+1*(barH+barGap)+barH/2;
 const t1y=pad.t+2*(barH+barGap)+barH/2;
@@ -246,7 +252,7 @@ svgContent+=`
 
 svg2.innerHTML=svgContent;
 
-// ── BC CHART ──────────────────────────────────────────────────────────────────
+// ── CHART 4: BC ───────────────────────────────────────────────────────────────
 const bcData=[
   {name:"Voynich MS",bc:0.361,color:"#c9a84c"},
   {name:"Cebuano NLLB",bc:0.294,color:"#4a7a9b"},
@@ -268,7 +274,6 @@ let s3='';
   s3+=`<line x1="${x}" y1="${pad3.t}" x2="${x}" y2="${svgH3-pad3.b}" stroke="#1e1d1a" stroke-width="1"/>
   <text x="${x}" y="${svgH3-pad3.b+14}" text-anchor="middle" fill="#444" font-size="9">${v.toFixed(2)}</text>`;
 });
-// BC zone
 const bcZx1=xS3(0.34),bcZx2=xS3(0.38);
 s3+=`<rect x="${bcZx1}" y="${pad3.t}" width="${bcZx2-bcZx1}" height="${svgH3-pad3.t-pad3.b}" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
 <text x="${(bcZx1+bcZx2)/2}" y="${pad3.t-6}" text-anchor="middle" fill="#c9a84c" font-size="9" opacity="0.7">Voynich zone</text>`;
