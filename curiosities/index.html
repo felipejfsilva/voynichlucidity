@@ -51,11 +51,67 @@
       line-height: 1.8;
     }
 
+    /* FOLIO GALLERY STRIP */
+    .gallery-strip {
+      overflow-x: auto;
+      white-space: nowrap;
+      border-top: 1px solid #1e1d1a;
+      border-bottom: 1px solid #1e1d1a;
+      padding: 0.8rem 0;
+      background: #06060400;
+      scrollbar-width: thin;
+      scrollbar-color: #2a2a26 #080806;
+    }
+    .gallery-strip::-webkit-scrollbar { height: 4px; }
+    .gallery-strip::-webkit-scrollbar-track { background: #080806; }
+    .gallery-strip::-webkit-scrollbar-thumb { background: #2a2a26; }
+    .gallery-strip-inner {
+      display: inline-flex;
+      gap: 0.4rem;
+      padding: 0 2.5rem;
+    }
+    .gallery-thumb {
+      width: 130px;
+      height: 170px;
+      object-fit: cover;
+      object-position: center top;
+      filter: sepia(0.4) brightness(0.75) contrast(1.05);
+      transition: filter 0.3s, transform 0.3s;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: inline-block;
+    }
+    .gallery-thumb:hover {
+      filter: sepia(0.15) brightness(0.95) contrast(1.05);
+      transform: scale(1.03);
+      position: relative;
+      z-index: 2;
+    }
+    .gallery-caption {
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a3a36;
+      text-align: center;
+      padding: 0.3rem 0 0;
+      max-width: 130px;
+      white-space: normal;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: -0.1rem;
+    }
+    .gallery-item {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: top;
+    }
+
     /* GRID */
     .cards-grid {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 2.5rem 6rem;
+      padding: 3rem 2.5rem 6rem;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1.5rem;
@@ -116,7 +172,7 @@
     .card-img {
       width: calc(100% + 3.6rem);
       margin: -1.8rem -1.8rem 1.4rem;
-      height: 180px;
+      height: 190px;
       object-fit: cover;
       display: block;
       filter: sepia(0.35) brightness(0.82) contrast(1.05);
@@ -126,6 +182,93 @@
       filter: sepia(0.15) brightness(0.9) contrast(1.05);
     }
 
+    /* WIDE CARD */
+    .card-wide {
+      grid-column: 1 / -1;
+    }
+
+    /* VIDEO CARDS */
+    .video-card {
+      background: #0e0e0b;
+      border: 1px solid #1e1d1a;
+      overflow: hidden;
+      transition: border-color 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .video-card:hover { border-color: #3a3630; }
+    .video-thumb {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      filter: sepia(0.3) brightness(0.75);
+      transition: filter 0.3s;
+    }
+    .video-card:hover .video-thumb { filter: sepia(0.1) brightness(0.9); }
+    .video-body { padding: 1.4rem; flex: 1; }
+    .video-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .video-title {
+      font-family: Georgia, serif;
+      font-size: 0.98rem;
+      font-weight: normal;
+      color: #f0ede6;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
+    }
+    .video-desc {
+      font-size: 0.82rem;
+      color: #7a7670;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .btn-watch {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: #c9a84c;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-watch:hover {
+      background: rgba(201,168,76,0.08);
+      border-color: #c9a84c;
+      text-decoration: none;
+    }
+
+    /* SECTION TITLE */
+    .section-label-row {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 2.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .section-label-row h2 {
+      font-family: Georgia, serif;
+      font-size: 1.4rem;
+      font-weight: normal;
+      color: #f0ede6;
+    }
+    .section-label-row .tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.15rem 0.5rem;
+    }
+
     /* DIVIDER */
     .divider {
       max-width: 900px;
@@ -133,7 +276,7 @@
       padding: 0 2.5rem;
       border-top: 1px solid #1e1d1a;
     }
-  
+
     .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:transparent;border:none;}
     .hamburger span{width:22px;height:1px;background:var(--white,#f0ede6);display:block;transition:all 0.3s;}
     .mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:rgba(8,8,6,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border,#1e1d1a);padding:1.2rem 2rem;z-index:99;flex-direction:column;gap:1rem;}
@@ -141,6 +284,7 @@
     .mobile-menu a{color:var(--muted,#8e8a84);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;}
     .mobile-menu a:hover{color:var(--gold,#c9a84c);}
     @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+    @media(max-width:680px){.cards-grid{grid-template-columns:1fr;}}
   </style>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://voynichlucidity.com/curiosities/">
@@ -181,7 +325,7 @@
 <!-- NAV -->
 <nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,6,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1e1d1a;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:58px;">
   <a href="/" style="font-family:Georgia,serif;font-size:1rem;letter-spacing:0.08em;color:#f0ede6;text-decoration:none;">Voynich <span style="color:#c9a84c;">Lucidity</span></a>
-  <ul style="display:flex;gap:1.8rem;list-style:none;">
+  <ul style="display:flex;gap:1.8rem;list-style:none;" class="nav-links">
     <li><a href="/the-manuscript" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">The Manuscript</a></li>
     <li><a href="/research" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Research</a></li>
     <li><a href="/library" style="color:#7a7670;text-decoration:none;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;">Library</a></li>
@@ -197,6 +341,20 @@
     <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a7670;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid transparent;">🇧🇷 PT</a>
     <a href="#" style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#7a7670;text-decoration:none;padding:0.2rem 0.45rem;border:1px solid transparent;">🇪🇸 ES</a>
   </div>
+  <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="mobile-menu">
+    <a href="/the-manuscript">The Manuscript</a>
+    <a href="/research">Research</a>
+    <a href="/library">Library</a>
+    <a href="/what-it-isnt">What It Isn't</a>
+    <a href="/findings">Findings</a>
+    <a href="/curiosities">Curiosities</a>
+    <a href="/media">Media</a>
+    <a href="/collaborate">Collaborate</a>
+    <a href="/resources">Resources</a>
+  </div>
 </nav>
 
 <!-- PAGE HEADER -->
@@ -206,12 +364,140 @@
   <p class="intro">Twenty documented facts about the Voynich Manuscript — strange, verified, and stranger for being true. No speculation. No "could be." These are things we actually know.</p>
 </div>
 
-<div class="divider"></div>
+<!-- FOLIO GALLERY STRIP -->
+<div class="gallery-strip" title="Scroll to browse manuscript folios · All images public domain · Beinecke MS 408">
+  <div class="gallery-strip-inner">
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-1r.jpg"  class="gallery-thumb" alt="f.1r" loading="lazy">
+      <span class="gallery-caption">f.1r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-2r.jpg"  class="gallery-thumb" alt="f.2r" loading="lazy">
+      <span class="gallery-caption">f.2r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-3r.jpg"  class="gallery-thumb" alt="f.3r" loading="lazy">
+      <span class="gallery-caption">f.3r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-5r.jpg"  class="gallery-thumb" alt="f.5r" loading="lazy">
+      <span class="gallery-caption">f.5r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-7r.jpg"  class="gallery-thumb" alt="f.7r" loading="lazy">
+      <span class="gallery-caption">f.7r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-8r.jpg"  class="gallery-thumb" alt="f.8r" loading="lazy">
+      <span class="gallery-caption">f.8r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-10r.jpg" class="gallery-thumb" alt="f.10r" loading="lazy">
+      <span class="gallery-caption">f.10r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-13r.jpg" class="gallery-thumb" alt="f.13r" loading="lazy">
+      <span class="gallery-caption">f.13r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-15r.jpg" class="gallery-thumb" alt="f.15r" loading="lazy">
+      <span class="gallery-caption">f.15r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-18r.jpg" class="gallery-thumb" alt="f.18r" loading="lazy">
+      <span class="gallery-caption">f.18r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-22r.jpg" class="gallery-thumb" alt="f.22r" loading="lazy">
+      <span class="gallery-caption">f.22r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-24r.jpg" class="gallery-thumb" alt="f.24r" loading="lazy">
+      <span class="gallery-caption">f.24r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-28r.jpg" class="gallery-thumb" alt="f.28r" loading="lazy">
+      <span class="gallery-caption">f.28r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-30r.jpg" class="gallery-thumb" alt="f.30r" loading="lazy">
+      <span class="gallery-caption">f.30r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-35r.jpg" class="gallery-thumb" alt="f.35r" loading="lazy">
+      <span class="gallery-caption">f.35r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-38r.jpg" class="gallery-thumb" alt="f.38r" loading="lazy">
+      <span class="gallery-caption">f.38r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-43r.jpg" class="gallery-thumb" alt="f.43r" loading="lazy">
+      <span class="gallery-caption">f.43r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-44r.jpg" class="gallery-thumb" alt="f.44r" loading="lazy">
+      <span class="gallery-caption">f.44r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-48r.jpg" class="gallery-thumb" alt="f.48r" loading="lazy">
+      <span class="gallery-caption">f.48r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/folio-f50r.jpg"   class="gallery-thumb" alt="f.50r" loading="lazy">
+      <span class="gallery-caption">f.50r · Pharma</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-55r.jpg" class="gallery-thumb" alt="f.55r" loading="lazy">
+      <span class="gallery-caption">f.55r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/ms-folio-57r.jpg" class="gallery-thumb" alt="f.57r" loading="lazy">
+      <span class="gallery-caption">f.57r · Herbal</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/folio-f67r-astronomical.jpg" class="gallery-thumb" alt="f.67r" loading="lazy">
+      <span class="gallery-caption">f.67r · Astro</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/folio-f69r-astronomical.jpg" class="gallery-thumb" alt="f.69r" loading="lazy">
+      <span class="gallery-caption">f.69r · Astro</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/folio-f71r-zodiac.jpg" class="gallery-thumb" alt="f.71r" loading="lazy">
+      <span class="gallery-caption">f.71r · Zodiac</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/folio-f73r-zodiac.jpg" class="gallery-thumb" alt="f.73r" loading="lazy">
+      <span class="gallery-caption">f.73r · Zodiac</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/folio-f78r-biological.jpg" class="gallery-thumb" alt="f.78r" loading="lazy">
+      <span class="gallery-caption">f.78r · Biological</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/folio-f79r-biological2.jpg" class="gallery-thumb" alt="f.79r" loading="lazy">
+      <span class="gallery-caption">f.79r · Biological</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/folio-f84r-pharma2.jpg" class="gallery-thumb" alt="f.84r" loading="lazy">
+      <span class="gallery-caption">f.84r · Pharma</span>
+    </div>
+    <div class="gallery-item">
+      <img src="/assets/images/folio-f85r-pharma3.jpg" class="gallery-thumb" alt="f.85r" loading="lazy">
+      <span class="gallery-caption">f.85r · Pharma</span>
+    </div>
+  </div>
+</div>
+<div style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:#2e2e2a;text-align:right;padding:0.35rem 2.5rem 0.6rem;border-bottom:1px solid #0f0f0d;">
+  All folios · Beinecke MS 408 · Public domain · Yale University · ← scroll →
+</div>
 
 <!-- CARDS -->
 <div class="cards-grid">
 
   <div class="card">
+    <img src="/assets/images/ms-folio-1r.jpg" alt="Voynich Manuscript folio f.1r — first page of the herbal section" class="card-img">
     <span class="card-num">01</span>
     <span class="card-tag">Material Science</span>
     <h2>The ink is genuine medieval — confirmed by X-ray fluorescence</h2>
@@ -222,13 +508,14 @@
   <div class="card">
     <img src="/assets/images/rudolf-ii.jpg" alt="Portrait of Emperor Rudolf II, c. 1580" class="card-img">
     <span class="card-num">02</span>
-    <span class="card-tag">History & Provenance</span>
+    <span class="card-tag">History &amp; Provenance</span>
     <h2>Rudolf II paid 600 gold ducats for it — roughly $150,000 today</h2>
     <p>Emperor Rudolf II of Bohemia reportedly purchased the manuscript for 600 gold ducats, according to a letter written by Johannes Marcus Marci to Athanasius Kircher in 1665. Rudolf was an obsessive collector of curiosities, automata, and esoteric objects. The price suggests he believed it was the genuine work of Roger Bacon.</p>
     <div class="note">Marci's 1665 letter is one of the few solid provenance documents. The Bacon attribution is now considered almost certainly false.</div>
   </div>
 
   <div class="card">
+    <img src="/assets/images/ms-folio-3r.jpg" alt="Voynich Manuscript folio f.3r — botanical section, medieval vellum texture" class="card-img">
     <span class="card-num">03</span>
     <span class="card-tag">Dating</span>
     <h2>Carbon dating placed the vellum between 1404 and 1438</h2>
@@ -237,14 +524,16 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/ms-folio-22r.jpg" alt="Voynich Manuscript folio f.22r — dense text passage, herbal section" class="card-img">
     <span class="card-num">04</span>
-    <span class="card-tag">Cold War & Cryptography</span>
+    <span class="card-tag">Cold War &amp; Cryptography</span>
     <h2>NSA cryptanalysts worked on it — and failed</h2>
     <p>During and after World War II, some of the world's best codebreakers — including analysts at the NSA — attempted to crack the Voynich script. Declassified NSA documents released in 2016 confirm internal studies were conducted, all inconclusive. William Friedman, who broke the Japanese "Purple" cipher, called it "the most mysterious manuscript in the world."</p>
     <div class="note">Friedman's personal annotated copy of a Voynich monograph is held at the George C. Marshall Foundation Library.</div>
   </div>
 
   <div class="card">
+    <img src="/assets/images/ms-folio-35r.jpg" alt="Voynich Manuscript folio f.35r — herbal section" class="card-img">
     <span class="card-num">05</span>
     <span class="card-tag">Decipherment History</span>
     <h2>It has been "deciphered" over 50 times — none verified</h2>
@@ -253,6 +542,7 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/ms-folio-13r.jpg" alt="Voynich Manuscript folio f.13r — herbal section, no visible corrections" class="card-img">
     <span class="card-num">06</span>
     <span class="card-tag">Scribal Analysis</span>
     <h2>There are no visible corrections or erasures in the text</h2>
@@ -279,6 +569,7 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/cosmological-86v.jpg" alt="Voynich Manuscript cosmological diagram folio 86v" class="card-img">
     <span class="card-num">09</span>
     <span class="card-tag">Cultural Reach</span>
     <h2>The manuscript has a Wikipedia article in over 40 languages</h2>
@@ -287,6 +578,7 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/ms-folio-7r.jpg" alt="Voynich Manuscript folio f.7r — botanical herbal section" class="card-img">
     <span class="card-num">10</span>
     <span class="card-tag">Human Interest</span>
     <h2>Wilfrid Voynich's wife wrote one of the Victorian era's bestselling novels</h2>
@@ -295,14 +587,16 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/folio-f50r.jpg" alt="Voynich Manuscript folio f.50r — pharmaceutical section" class="card-img">
     <span class="card-num">11</span>
     <span class="card-tag">Open Access</span>
     <h2>The Beinecke Library has digitized every page at full resolution — freely available</h2>
     <p>Yale University's Beinecke Rare Book and Manuscript Library digitized the complete manuscript in high resolution and made all images freely available online. Every folio, every detail, every stain and fold is publicly accessible. This has democratized research and enabled computational analysis that would have been impossible with physical access alone.</p>
-    <div class="note">The digitization was completed in 2004. The images are available at the Beinecke Digital Collections without any login or fee.</div>
+    <div class="note">The digitization was completed in 2004. Images are available at the Beinecke Digital Collections without any login or fee. <a href="https://beinecke.library.yale.edu/collections/highlights/voynich-manuscript" target="_blank" rel="noopener" style="color:#c9a84c;">Explore at Yale →</a></div>
   </div>
 
   <div class="card">
+    <img src="/assets/images/hero-bg.jpg" alt="Voynich Manuscript — full folio view" class="card-img" style="object-position:center 20%;">
     <span class="card-num">12</span>
     <span class="card-tag">Survival</span>
     <h2>It survived the suppression of the Jesuits, two world wars, and the digitization era — still unread</h2>
@@ -311,15 +605,17 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/ms-folio-48r.jpg" alt="Voynich Manuscript folio f.48r — dense text herbal section" class="card-img">
     <span class="card-num">13</span>
     <span class="card-tag">Transcription Systems</span>
     <h2>"EVA" stands for European Voynich Alphabet — and it made modern research possible</h2>
     <p>Before 1998, every Voynich researcher used a different notation for the manuscript's unknown characters. Comparing results across teams was nearly impossible. Gabriel Landini and René Zandbergen created EVA — the European Voynich Alphabet — as a standardized ASCII-compatible transcription system that could be processed by computers and shared across institutions.</p>
     <p style="margin-top:0.6rem;">EVA assigns a short alphabetic code to each Voynich glyph, enabling researchers worldwide to work on the same dataset. Without it, computational studies like entropy analysis, Zipf distributions, and BPE clustering would have been far harder to coordinate.</p>
-    <div class="note">Landini, G., &amp; Zandbergen, R. (1998). EVA transcription standard. Available at voynich.nu. Still the dominant system for computational Voynich research.</div>
+    <div class="note">Landini, G., &amp; Zandbergen, R. (1998). EVA transcription standard. Available at <a href="https://www.voynich.nu/transcr.html" target="_blank" rel="noopener" style="color:#c9a84c;">voynich.nu</a>. Still the dominant system for computational Voynich research.</div>
   </div>
 
   <div class="card">
+    <img src="/assets/images/ms-folio-30r.jpg" alt="Voynich Manuscript folio f.30r — text-dense herbal section" class="card-img">
     <span class="card-num">14</span>
     <span class="card-tag">Statistical Linguistics</span>
     <h2>The text follows Zipf's Law — the statistical hallmark of all natural languages</h2>
@@ -329,8 +625,9 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/ms-folio-44r.jpg" alt="Voynich Manuscript folio f.44r — herbal section" class="card-img">
     <span class="card-num">15</span>
-    <span class="card-tag">History & Provenance</span>
+    <span class="card-tag">History &amp; Provenance</span>
     <h2>The Library of Congress rejected it — Yale said yes</h2>
     <p>Hans Peter Kraus, the rare book dealer who bought the manuscript from Anne Nill (Voynich's secretary) for $24,500 in 1961, spent years trying to sell it for $160,000. When he failed to find a buyer, he tried to donate it to the Library of Congress. They declined — citing lack of budget to acquire it properly and insufficient expertise to study it.</p>
     <p style="margin-top:0.6rem;">Yale University's Beinecke Rare Book and Manuscript Library accepted the donation in 1969. It has been there ever since, catalogued as MS 408. The Library of Congress's refusal is now one of the more quietly famous decisions in the history of American rare books.</p>
@@ -338,29 +635,32 @@
   </div>
 
   <div class="card">
+    <img src="/assets/images/ms-folio-57r.jpg" alt="Voynich Manuscript folio f.57r — herbal section" class="card-img">
     <span class="card-num">16</span>
     <span class="card-tag">Hoax Hypothesis</span>
     <h2>A 2003 experiment showed a medieval grid device could fake the statistics — but didn't prove a hoax</h2>
     <p>Gordon Rugg, a cognitive scientist at Keele University, demonstrated in 2003 that a Cardan grille — a card with cut-out holes slid over a grid of syllables — could generate text with statistical properties resembling Voynich's. The experiment reignited the hoax debate and received wide press coverage.</p>
-    <p style="margin-top:0.6rem;">However, Rugg's demonstration only showed that such a device could produce superficially similar text — not that it did, or that the full statistical profile of the manuscript (including its semantic clustering, Zipf compliance, and boundary concentration patterns) can be replicated this way. Subsequent computational tests found the match incomplete.</p>
+    <p style="margin-top:0.6rem;">However, Rugg's demonstration only showed that such a device could produce superficially similar text — not that it did, or that the full statistical profile of the manuscript can be replicated this way. Subsequent computational tests found the match incomplete.</p>
     <div class="note">Rugg, G. (2004). An Elegant Hoax? Scientific American, 291(1), 104–109. The hoax hypothesis remains unproven — and unrefuted.</div>
   </div>
 
   <div class="card">
+    <img src="/assets/images/ms-folio-55r.jpg" alt="Voynich Manuscript folio f.55r — herbal section" class="card-img">
     <span class="card-num">17</span>
     <span class="card-tag">Cultural Reach</span>
     <h2>It has inspired novels, films, and video games — but its most famous "connection" is a denial</h2>
     <p>The Voynich Manuscript has inspired at least three published novels, two feature films, a graphic novel series, and multiple video game puzzles. Writers and filmmakers are drawn to its combination of visual strangeness and complete opacity — a mystery with no solution to spoil.</p>
-    <p style="margin-top:0.6rem;">The most cited fictional connection is Umberto Eco's <em>The Name of the Rose</em> (1980), which features an encrypted medieval manuscript. Eco, however, explicitly denied the Voynich was his inspiration — he cited other sources. The association persists anyway, which is itself something of a Voynich phenomenon: things attach to it regardless of evidence.</p>
+    <p style="margin-top:0.6rem;">The most cited fictional connection is Umberto Eco's <em>The Name of the Rose</em> (1980), which features an encrypted medieval manuscript. Eco, however, explicitly denied the Voynich was his inspiration — he cited other sources. The association persists anyway, which is itself something of a Voynich phenomenon.</p>
     <div class="note">Eco's denial is documented in interviews. The manuscript is frequently misattributed as a direct source for the novel. The actual Voynich-as-inspiration remains unverified for any major literary work.</div>
   </div>
 
   <div class="card">
+    <img src="/assets/images/folio-f67r-astronomical2.jpg" alt="Voynich Manuscript folio f67r detail — astronomical diagram" class="card-img">
     <span class="card-num">18</span>
     <span class="card-tag">Computational Linguistics</span>
     <h2>Words cluster by topic across sections — exactly as they would in a real text</h2>
-    <p>Marcelo Montemurro and Damián Zanette (2013) applied information-theoretic analysis to the Voynich text and found that high-entropy "keyword" words — the kind that carry topical meaning in natural language — are distributed across sections in ways consistent with semantic organisation. The herbal section has different keywords from the astronomical section, which differs from the biological section.</p>
-    <p style="margin-top:0.6rem;">This pattern is extremely difficult to produce by chance or by simple mechanical text generation. It implies that whatever the manuscript encodes, it is not random — and it is organized around content, not just form. This is one of the most technically rigorous results in Voynich research.</p>
+    <p>Marcelo Montemurro and Damián Zanette (2013) applied information-theoretic analysis to the Voynich text and found that high-entropy "keyword" words — the kind that carry topical meaning in natural language — are distributed across sections in ways consistent with semantic organisation. The herbal section has different keywords from the astronomical section.</p>
+    <p style="margin-top:0.6rem;">This pattern is extremely difficult to produce by chance or by simple mechanical text generation. It implies that whatever the manuscript encodes, it is organized around content, not just form. This is one of the most technically rigorous results in Voynich research.</p>
     <div class="note">Montemurro, M. A., &amp; Zanette, D. H. (2013). PLOS ONE, 8(6), e66344. DOI: 10.1371/journal.pone.0066344</div>
   </div>
 
@@ -370,23 +670,106 @@
     <span class="card-tag">Iconography</span>
     <h2>The bathing women section is the most studied — and the least understood</h2>
     <p>The "Biological" section of the manuscript — sometimes called the balneological section — depicts dozens of nude female figures bathing in interconnected pools and tubes rendered in green ink. It is the most photographed and most cited section in popular coverage of the manuscript, and the most resistant to interpretation.</p>
-    <p style="margin-top:0.6rem;">Leading hypotheses include medical illustrations of circulatory or reproductive systems, alchemical diagrams representing transformation processes, a medieval spa or therapeutic bathing manual, and purely symbolic cosmological imagery. No hypothesis has been adopted by more than a small number of researchers, and none has connected the imagery to any known illustrated tradition.</p>
+    <p style="margin-top:0.6rem;">Leading hypotheses include medical illustrations of circulatory or reproductive systems, alchemical diagrams representing transformation processes, a medieval spa or therapeutic bathing manual, and purely symbolic cosmological imagery. No hypothesis has been adopted by more than a small number of researchers.</p>
     <div class="note">The bathing section occupies folios 75r–84v. The green pigment used for the pools has been confirmed as consistent with 15th-century copper-based colorants.</div>
   </div>
 
   <div class="card">
+    <img src="/assets/images/folio-f73r-zodiac.jpg" alt="Voynich Manuscript folio f73r — zodiac section" class="card-img">
     <span class="card-num">20</span>
     <span class="card-tag">Decipherment History</span>
     <h2>A linguist claimed to read 14 words in 2014 — by matching illustrations to labeled medieval manuscripts</h2>
     <p>Stephen Bax, a professor of applied linguistics at the University of Bedfordshire, published a working paper in 2014 proposing the identification of 14 specific words in the Voynich text. His method was comparative iconography: finding illustrations in the manuscript that closely resembled labeled images in other medieval manuscripts (stars, plants, constellations) and then reading the Voynich labels against the known names.</p>
-    <p style="margin-top:0.6rem;">Among his proposed identifications was the word for Taurus, matched to the constellation diagram. The method is legitimate in principle — it is how Linear B was partially cracked — but requires that the labels actually name the illustrated objects, which is an assumption for Voynich. His proposal has not been independently replicated, but has also not been definitively refuted.</p>
-    <div class="note">Bax, S. (2014). A proposed partial decipherment of the Voynich script. Working paper, University of Bedfordshire. Available online. Bax died in 2017; his work is archived at stephenbax.net.</div>
+    <p style="margin-top:0.6rem;">Among his proposed identifications was the word for Taurus, matched to the constellation diagram. The method is legitimate in principle — it is how Linear B was partially cracked — but requires that the labels actually name the illustrated objects, which is an assumption for Voynich.</p>
+    <div class="note">Bax, S. (2014). A proposed partial decipherment of the Voynich script. University of Bedfordshire. Bax died in 2017; his work is archived at <a href="https://stephenbax.net" target="_blank" rel="noopener" style="color:#c9a84c;">stephenbax.net</a>.</div>
   </div>
 
 </div>
 
-<!-- FOOTER -->
+<!-- WATCH & EXPLORE SECTION -->
+<div style="border-top:1px solid #1e1d1a;background:#06060400;">
+  <div class="section-label-row">
+    <h2>Watch &amp; Explore</h2>
+    <span class="tag">Videos &amp; Resources</span>
+  </div>
 
+  <div class="cards-grid" style="padding-top:2rem;padding-bottom:4rem;">
+
+    <div class="video-card">
+      <img src="/assets/images/folio-f67r-astronomical.jpg" alt="Voynich astronomical section" class="video-thumb">
+      <div class="video-body">
+        <span class="video-tag">▶ Documentary</span>
+        <div class="video-title">The Voynich Code — National Geographic</div>
+        <div class="video-desc">One of the most thorough filmed investigations of the manuscript. Covers provenance, carbon dating, cryptographic attempts, and the full range of hypotheses. ~45 minutes. Freely available on YouTube.</div>
+        <a href="https://www.youtube.com/results?search_query=voynich+manuscript+national+geographic+documentary" target="_blank" rel="noopener" class="btn-watch">▶ Watch on YouTube →</a>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <img src="/assets/images/ms-folio-22r.jpg" alt="Voynich dense text folio" class="video-thumb">
+      <div class="video-body">
+        <span class="video-tag">▶ Academic Lecture</span>
+        <div class="video-title">René Zandbergen — The State of Voynich Research</div>
+        <div class="video-desc">Zandbergen, maintainer of voynich.nu and co-creator of the EVA transcription system, presents a comprehensive overview of what has and hasn't been established. Dense, rigorous, essential viewing for anyone going deeper.</div>
+        <a href="https://www.youtube.com/results?search_query=René+Zandbergen+voynich+manuscript+lecture" target="_blank" rel="noopener" class="btn-watch">▶ Search YouTube →</a>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <img src="/assets/images/folio-f71r-zodiac.jpg" alt="Voynich zodiac section" class="video-thumb">
+      <div class="video-body">
+        <span class="video-tag">▶ Short Documentary</span>
+        <div class="video-title">Undeciphered — PBS Eons</div>
+        <div class="video-desc">A shorter, accessible treatment focused on the manuscript's physical history and the most credible decipherment attempts. Good starting point for newcomers before diving into primary sources.</div>
+        <a href="https://www.youtube.com/results?search_query=voynich+manuscript+PBS+undeciphered" target="_blank" rel="noopener" class="btn-watch">▶ Search YouTube →</a>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <img src="/assets/images/folio-f79r-biological2.jpg" alt="Voynich biological section" class="video-thumb">
+      <div class="video-body">
+        <span class="video-tag">▶ Deep Dive</span>
+        <div class="video-title">Ciphers &amp; Codes — the Voynich Cryptographic History</div>
+        <div class="video-desc">Covers William Friedman's NSA-era analysis, the Currier A/B discovery, and the major failed decryption attempts from WWII to present. Recommended for anyone interested in the cryptographic angle.</div>
+        <a href="https://www.youtube.com/results?search_query=voynich+manuscript+cryptography+cipher+history" target="_blank" rel="noopener" class="btn-watch">▶ Search YouTube →</a>
+      </div>
+    </div>
+
+    <!-- Wide card: external resources -->
+    <div class="card card-wide" style="padding:2rem 2.5rem;">
+      <h2 style="font-family:Georgia,serif;font-size:1.1rem;font-weight:normal;color:#f0ede6;margin-bottom:1.2rem;">Essential External Resources</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;">
+        <div>
+          <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;">Primary Archive</div>
+          <a href="https://beinecke.library.yale.edu/collections/highlights/voynich-manuscript" target="_blank" rel="noopener" style="color:#f0ede6;font-size:0.88rem;line-height:1.5;display:block;">Beinecke Digital Collections — Yale<br><span style="color:#5a5852;font-size:0.78rem;">All 240 pages, full resolution, free</span></a>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;">Reference Site</div>
+          <a href="https://www.voynich.nu" target="_blank" rel="noopener" style="color:#f0ede6;font-size:0.88rem;line-height:1.5;display:block;">voynich.nu — René Zandbergen<br><span style="color:#5a5852;font-size:0.78rem;">Most comprehensive maintained reference</span></a>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;">Community Forum</div>
+          <a href="https://www.voynich.ninja" target="_blank" rel="noopener" style="color:#f0ede6;font-size:0.88rem;line-height:1.5;display:block;">voynich.ninja — Research Community<br><span style="color:#5a5852;font-size:0.78rem;">Active forum, peer critique, latest threads</span></a>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;">Our Research</div>
+          <a href="/resources" style="color:#f0ede6;font-size:0.88rem;line-height:1.5;display:block;">VoynichLucidity — Papers &amp; Data<br><span style="color:#5a5852;font-size:0.78rem;">Download preprints, datasets, cite</span></a>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;">Key Paper</div>
+          <a href="https://doi.org/10.1371/journal.pone.0066344" target="_blank" rel="noopener" style="color:#f0ede6;font-size:0.88rem;line-height:1.5;display:block;">Montemurro &amp; Zanette (2013), PLOS ONE<br><span style="color:#5a5852;font-size:0.78rem;">Semantic clustering — open access</span></a>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:0.4rem;">Key Paper</div>
+          <a href="https://arxiv.org/abs/2604.25979" target="_blank" rel="noopener" style="color:#f0ede6;font-size:0.88rem;line-height:1.5;display:block;">Parisel (2026), arXiv:2604.25979<br><span style="color:#5a5852;font-size:0.78rem;">Currier A/B quantitative confirmation</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
 <div style="border-top:1px solid #1e1d1a;padding:1.2rem 2rem;text-align:center;background:#0a0a08;" id="feedbackBar">
   <span style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#5a5852;margin-right:1rem;">Was this page useful?</span>
   <button onclick="sendFeedback('yes',this.parentElement)" style="background:transparent;border:1px solid #1e1d1a;color:#8e8a84;padding:0.25rem 0.8rem;cursor:pointer;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;margin:0 0.3rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'" onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#8e8a84'">↑ Yes</button>
@@ -394,11 +777,10 @@
 </div>
 <script>
 function sendFeedback(v, bar){
-  bar.innerHTML = '<span style="font-size:0.75rem;color:#8e8a84;letter-spacing:0.08em;">' + (v==='yes' ? '✓ Thank you.' : 'Thanks — we'll keep improving.') + '</span>';
+  bar.innerHTML = '<span style="font-size:0.75rem;color:#8e8a84;letter-spacing:0.08em;">' + (v==='yes' ? '✓ Thank you.' : 'Thanks — we\'ll keep improving.') + '</span>';
   if(window.gtag) gtag('event','page_feedback',{value:v,page:window.location.pathname});
   localStorage.setItem('feedback_'+window.location.pathname, v);
 }
-// Hide if already voted
 if(localStorage.getItem('feedback_'+window.location.pathname)){
   document.getElementById('feedbackBar') && (document.getElementById('feedbackBar').style.display='none');
 }
@@ -408,7 +790,6 @@ if(localStorage.getItem('feedback_'+window.location.pathname)){
   <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com" style="color:#c9a84c;text-decoration:none;">contact@voynichlucidity.com</a></p>
   <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
 </footer>
-
 
 <script>
 function shareVL() {
