@@ -35,7 +35,7 @@
   <p>We applied BPE VMML (Byte-Pair Encoding Mean Vocabulary Morpheme Length) — a metric measuring the average structural complexity of word-internal segmentation — to 63+ corpora from 35+ language families. The goal: determine where the Voynich Manuscript sits in the typological space of known writing systems.</p>
 
   <h2>Key Metric: BPE VMML</h2>
-  <p>BPE VMML measures the mean length of morpheme-like segments produced by unsupervised Byte-Pair Encoding. Higher values indicate denser morpheme structure. An "alphabetic ceiling" of 5.748 was derived empirically (Nietzsche, <em>Also sprach Zarathustra</em>, n=82,802 tokens, Paper 7 v2.1). The Voynich Manuscript: <strong class="gold">VMML = 5.918</strong>, Boundary Concentration (BC) = 0.361.</p>
+  <p>BPE VMML measures the mean length of morpheme-like segments produced by unsupervised Byte-Pair Encoding. Higher values indicate denser morpheme structure. An "alphabetic ceiling" of 5.748 was derived empirically (Nietzsche, <em>Also sprach Zarathustra</em>, n=82,802 tokens, Paper 7 v2.3). The Voynich Manuscript: <strong class="gold">VMML = 5.918</strong>, Boundary Concentration (BC) = 0.361.</p>
 
   <h2>Selected Results — Austronesian Expansion</h2>
   <table>
@@ -53,6 +53,9 @@
   <h2>Key Finding — Paper 8</h2>
   <p><strong>Tagalog cross-text instability:</strong> Full-corpus computation of <em>El filibusterismo</em> (n=114,777, identical protocol) yields VMML = 5.578 — below the alphabetic ceiling. Cross-text Δ = 0.336 units (Noli 5.914 − Filibusterismo 5.578), larger than the Voynich discriminant zone width (0.28 units). Supra-ceiling Tagalog VMML is text-specific, not a language property.</p>
   <p><strong>Character permutation test:</strong> Corpus-size matched character shuffle (n=50 iterations, all corpora at n=19,968) shows Voynich drops 22.0% (CI95: [5.07, 5.82]) vs Tagalog 12–14% (CI95: [4.77, 5.04]). CI95 ranges do not overlap. Despite similar VMML, Voynich and Tagalog reach it through structurally different mechanisms.</p>
+
+  <h2>Key Finding — Paper 7 v2.3 (§5.9)</h2>
+  <p><strong>CBMI as primary Currier A/B discriminant:</strong> Per-folio reanalysis (Gaskell &amp; Bowern 2022 corpus, 36,361 tokens) shows Cross-Boundary Mutual Information is the strongest structural separator between Currier A and B folios. CBMI<sub>A</sub> = 1.97 bits vs CBMI<sub>B</sub> = 1.51 bits; Cohen's <em>d</em> = −1.01 (large effect); permutation <em>p</em> &lt; 0.001 (n = 10,000 shuffles, Bonferroni-corrected). Survives within-quire control: pooled n<sub>A</sub> = 46, n<sub>B</sub> = 33; permutation <em>p</em> = 0.0008; Fisher combined within-quire <em>p</em> = 0.001. Fisher full-corpus: χ²(6) = 40.66, <em>p</em> &lt; 0.000002. All three metrics (BC, BPE-ratio, CBMI) show A &gt; B direction. Finding is orthogonal to Parisel (2026) vowel-selection model.</p>
 
   <h2>What It Isn't (summary)</h2>
   <p>No tested corpus from any of 35+ language families simultaneously occupies the Voynich discriminant zone (VMML, BC, CBMI). Tagalog is the closest match on VMML — but fails BC decisively and shows cross-text VMML instability. No known natural language replicates the Voynich structural profile.</p>
