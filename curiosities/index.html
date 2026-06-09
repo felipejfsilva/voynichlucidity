@@ -285,6 +285,76 @@
     .mobile-menu a:hover{color:var(--gold,#c9a84c);}
     @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
     @media(max-width:680px){.cards-grid{grid-template-columns:1fr;}}
+
+    /* LIGHTBOX */
+    #lb-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(4,4,3,0.93);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      backdrop-filter: blur(6px);
+      cursor: zoom-out;
+    }
+    #lb-overlay.open { display: flex; }
+    #lb-img {
+      max-width: min(92vw, 780px);
+      max-height: 78vh;
+      object-fit: contain;
+      filter: sepia(0.15) brightness(0.95) contrast(1.05);
+      display: block;
+      box-shadow: 0 0 60px rgba(0,0,0,0.8);
+    }
+    #lb-caption {
+      margin-top: 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      text-align: center;
+    }
+    #lb-sub {
+      margin-top: 0.3rem;
+      font-size: 0.68rem;
+      color: #3a3a36;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    #lb-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.5rem;
+      background: transparent;
+      border: 1px solid #2a2a26;
+      color: #7a7670;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: border-color 0.2s, color 0.2s;
+      z-index: 1001;
+    }
+    #lb-close:hover { border-color: #c9a84c; color: #c9a84c; }
+    #lb-nav {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+    .lb-btn {
+      background: transparent;
+      border: 1px solid #2a2a26;
+      color: #7a7670;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lb-btn:hover { border-color: #c9a84c; color: #c9a84c; }
   </style>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://voynichlucidity.com/curiosities/">
@@ -365,126 +435,126 @@
 </div>
 
 <!-- FOLIO GALLERY STRIP -->
-<div class="gallery-strip" title="Scroll to browse manuscript folios · All images public domain · Beinecke MS 408">
+<div class="gallery-strip" title="Scroll to browse manuscript folios · Click to enlarge · All images public domain · Beinecke MS 408">
   <div class="gallery-strip-inner">
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-1r.jpg"  class="gallery-thumb" alt="f.1r" loading="lazy">
+      <img src="/assets/images/ms-folio-1r.jpg"  class="gallery-thumb" alt="f.1r" loading="lazy" onclick="openLB(this,'f.1r · Herbal Section')">
       <span class="gallery-caption">f.1r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-2r.jpg"  class="gallery-thumb" alt="f.2r" loading="lazy">
+      <img src="/assets/images/ms-folio-2r.jpg"  class="gallery-thumb" alt="f.2r" loading="lazy" onclick="openLB(this,'f.2r · Herbal Section')">
       <span class="gallery-caption">f.2r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-3r.jpg"  class="gallery-thumb" alt="f.3r" loading="lazy">
+      <img src="/assets/images/ms-folio-3r.jpg"  class="gallery-thumb" alt="f.3r" loading="lazy" onclick="openLB(this,'f.3r · Herbal Section')">
       <span class="gallery-caption">f.3r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-5r.jpg"  class="gallery-thumb" alt="f.5r" loading="lazy">
+      <img src="/assets/images/ms-folio-5r.jpg"  class="gallery-thumb" alt="f.5r" loading="lazy" onclick="openLB(this,'f.5r · Herbal Section')">
       <span class="gallery-caption">f.5r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-7r.jpg"  class="gallery-thumb" alt="f.7r" loading="lazy">
+      <img src="/assets/images/ms-folio-7r.jpg"  class="gallery-thumb" alt="f.7r" loading="lazy" onclick="openLB(this,'f.7r · Herbal Section')">
       <span class="gallery-caption">f.7r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-8r.jpg"  class="gallery-thumb" alt="f.8r" loading="lazy">
+      <img src="/assets/images/ms-folio-8r.jpg"  class="gallery-thumb" alt="f.8r" loading="lazy" onclick="openLB(this,'f.8r · Herbal Section')">
       <span class="gallery-caption">f.8r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-10r.jpg" class="gallery-thumb" alt="f.10r" loading="lazy">
+      <img src="/assets/images/ms-folio-10r.jpg" class="gallery-thumb" alt="f.10r" loading="lazy" onclick="openLB(this,'f.10r · Herbal Section')">
       <span class="gallery-caption">f.10r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-13r.jpg" class="gallery-thumb" alt="f.13r" loading="lazy">
+      <img src="/assets/images/ms-folio-13r.jpg" class="gallery-thumb" alt="f.13r" loading="lazy" onclick="openLB(this,'f.13r · Herbal Section')">
       <span class="gallery-caption">f.13r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-15r.jpg" class="gallery-thumb" alt="f.15r" loading="lazy">
+      <img src="/assets/images/ms-folio-15r.jpg" class="gallery-thumb" alt="f.15r" loading="lazy" onclick="openLB(this,'f.15r · Herbal Section')">
       <span class="gallery-caption">f.15r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-18r.jpg" class="gallery-thumb" alt="f.18r" loading="lazy">
+      <img src="/assets/images/ms-folio-18r.jpg" class="gallery-thumb" alt="f.18r" loading="lazy" onclick="openLB(this,'f.18r · Herbal Section')">
       <span class="gallery-caption">f.18r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-22r.jpg" class="gallery-thumb" alt="f.22r" loading="lazy">
+      <img src="/assets/images/ms-folio-22r.jpg" class="gallery-thumb" alt="f.22r" loading="lazy" onclick="openLB(this,'f.22r · Herbal Section')">
       <span class="gallery-caption">f.22r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-24r.jpg" class="gallery-thumb" alt="f.24r" loading="lazy">
+      <img src="/assets/images/ms-folio-24r.jpg" class="gallery-thumb" alt="f.24r" loading="lazy" onclick="openLB(this,'f.24r · Herbal Section')">
       <span class="gallery-caption">f.24r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-28r.jpg" class="gallery-thumb" alt="f.28r" loading="lazy">
+      <img src="/assets/images/ms-folio-28r.jpg" class="gallery-thumb" alt="f.28r" loading="lazy" onclick="openLB(this,'f.28r · Herbal Section')">
       <span class="gallery-caption">f.28r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-30r.jpg" class="gallery-thumb" alt="f.30r" loading="lazy">
+      <img src="/assets/images/ms-folio-30r.jpg" class="gallery-thumb" alt="f.30r" loading="lazy" onclick="openLB(this,'f.30r · Herbal Section')">
       <span class="gallery-caption">f.30r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-35r.jpg" class="gallery-thumb" alt="f.35r" loading="lazy">
+      <img src="/assets/images/ms-folio-35r.jpg" class="gallery-thumb" alt="f.35r" loading="lazy" onclick="openLB(this,'f.35r · Herbal Section')">
       <span class="gallery-caption">f.35r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-38r.jpg" class="gallery-thumb" alt="f.38r" loading="lazy">
+      <img src="/assets/images/ms-folio-38r.jpg" class="gallery-thumb" alt="f.38r" loading="lazy" onclick="openLB(this,'f.38r · Herbal Section')">
       <span class="gallery-caption">f.38r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-43r.jpg" class="gallery-thumb" alt="f.43r" loading="lazy">
+      <img src="/assets/images/ms-folio-43r.jpg" class="gallery-thumb" alt="f.43r" loading="lazy" onclick="openLB(this,'f.43r · Herbal Section')">
       <span class="gallery-caption">f.43r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-44r.jpg" class="gallery-thumb" alt="f.44r" loading="lazy">
+      <img src="/assets/images/ms-folio-44r.jpg" class="gallery-thumb" alt="f.44r" loading="lazy" onclick="openLB(this,'f.44r · Herbal Section')">
       <span class="gallery-caption">f.44r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-48r.jpg" class="gallery-thumb" alt="f.48r" loading="lazy">
+      <img src="/assets/images/ms-folio-48r.jpg" class="gallery-thumb" alt="f.48r" loading="lazy" onclick="openLB(this,'f.48r · Herbal Section')">
       <span class="gallery-caption">f.48r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/folio-f50r.jpg"   class="gallery-thumb" alt="f.50r" loading="lazy">
+      <img src="/assets/images/folio-f50r.jpg"   class="gallery-thumb" alt="f.50r" loading="lazy" onclick="openLB(this,'f.50r · Pharmaceutical Section')">
       <span class="gallery-caption">f.50r · Pharma</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-55r.jpg" class="gallery-thumb" alt="f.55r" loading="lazy">
+      <img src="/assets/images/ms-folio-55r.jpg" class="gallery-thumb" alt="f.55r" loading="lazy" onclick="openLB(this,'f.55r · Herbal Section')">
       <span class="gallery-caption">f.55r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/ms-folio-57r.jpg" class="gallery-thumb" alt="f.57r" loading="lazy">
+      <img src="/assets/images/ms-folio-57r.jpg" class="gallery-thumb" alt="f.57r" loading="lazy" onclick="openLB(this,'f.57r · Herbal Section')">
       <span class="gallery-caption">f.57r · Herbal</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/folio-f67r-astronomical.jpg" class="gallery-thumb" alt="f.67r" loading="lazy">
+      <img src="/assets/images/folio-f67r-astronomical.jpg" class="gallery-thumb" alt="f.67r" loading="lazy" onclick="openLB(this,'f.67r · Astronomical Section')">
       <span class="gallery-caption">f.67r · Astro</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/folio-f69r-astronomical.jpg" class="gallery-thumb" alt="f.69r" loading="lazy">
+      <img src="/assets/images/folio-f69r-astronomical.jpg" class="gallery-thumb" alt="f.69r" loading="lazy" onclick="openLB(this,'f.69r · Astronomical Section')">
       <span class="gallery-caption">f.69r · Astro</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/folio-f71r-zodiac.jpg" class="gallery-thumb" alt="f.71r" loading="lazy">
+      <img src="/assets/images/folio-f71r-zodiac.jpg" class="gallery-thumb" alt="f.71r" loading="lazy" onclick="openLB(this,'f.71r · Zodiac Section')">
       <span class="gallery-caption">f.71r · Zodiac</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/folio-f73r-zodiac.jpg" class="gallery-thumb" alt="f.73r" loading="lazy">
+      <img src="/assets/images/folio-f73r-zodiac.jpg" class="gallery-thumb" alt="f.73r" loading="lazy" onclick="openLB(this,'f.73r · Zodiac Section')">
       <span class="gallery-caption">f.73r · Zodiac</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/folio-f78r-biological.jpg" class="gallery-thumb" alt="f.78r" loading="lazy">
+      <img src="/assets/images/folio-f78r-biological.jpg" class="gallery-thumb" alt="f.78r" loading="lazy" onclick="openLB(this,'f.78r · Biological Section')">
       <span class="gallery-caption">f.78r · Biological</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/folio-f79r-biological2.jpg" class="gallery-thumb" alt="f.79r" loading="lazy">
+      <img src="/assets/images/folio-f79r-biological2.jpg" class="gallery-thumb" alt="f.79r" loading="lazy" onclick="openLB(this,'f.79r · Biological Section')">
       <span class="gallery-caption">f.79r · Biological</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/folio-f84r-pharma2.jpg" class="gallery-thumb" alt="f.84r" loading="lazy">
+      <img src="/assets/images/folio-f84r-pharma2.jpg" class="gallery-thumb" alt="f.84r" loading="lazy" onclick="openLB(this,'f.84r · Pharmaceutical Section')">
       <span class="gallery-caption">f.84r · Pharma</span>
     </div>
     <div class="gallery-item">
-      <img src="/assets/images/folio-f85r-pharma3.jpg" class="gallery-thumb" alt="f.85r" loading="lazy">
+      <img src="/assets/images/folio-f85r-pharma3.jpg" class="gallery-thumb" alt="f.85r" loading="lazy" onclick="openLB(this,'f.85r · Pharmaceutical Section')">
       <span class="gallery-caption">f.85r · Pharma</span>
     </div>
   </div>
@@ -569,7 +639,7 @@
   </div>
 
   <div class="card">
-    <img src="/assets/images/cosmological-86v.jpg" alt="Voynich Manuscript cosmological diagram folio 86v" class="card-img">
+    <img src="/assets/images/folio-f67r-astronomical2.jpg" alt="Voynich Manuscript folio f.67r — astronomical section with circular diagrams" class="card-img">
     <span class="card-num">09</span>
     <span class="card-tag">Cultural Reach</span>
     <h2>The manuscript has a Wikipedia article in over 40 languages</h2>
@@ -814,5 +884,66 @@ function shareVL() {
     onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">↑</button>
 </div>
 <script src="/assets/js/lang-nav.js"></script>
+
+<!-- LIGHTBOX -->
+<div id="lb-overlay" onclick="closeLB(event)">
+  <button id="lb-close" onclick="closeLB(null)" title="Close (Esc)">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-caption"></div>
+  <div id="lb-sub">Beinecke MS 408 · Public domain · Yale University · Click anywhere to close</div>
+  <div id="lb-nav">
+    <button class="lb-btn" onclick="lbStep(-1);event.stopPropagation()">← prev</button>
+    <button class="lb-btn" onclick="lbStep(1);event.stopPropagation()">next →</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var thumbs = [];
+  var captions = [];
+  var currentIdx = 0;
+
+  // Collect all gallery thumbs after DOM loads
+  document.addEventListener('DOMContentLoaded', function(){
+    var imgs = document.querySelectorAll('.gallery-thumb');
+    imgs.forEach(function(img, i){
+      thumbs.push(img.src);
+      // caption from onclick string or alt
+      var onc = img.getAttribute('onclick') || '';
+      var m = onc.match(/'([^']+)'/g);
+      captions.push(m && m[1] ? m[1].replace(/'/g,'') : img.alt);
+    });
+  });
+
+  window.openLB = function(el, caption){
+    currentIdx = thumbs.indexOf(el.src);
+    document.getElementById('lb-img').src = el.src;
+    document.getElementById('lb-caption').textContent = caption || el.alt;
+    document.getElementById('lb-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeLB = function(e){
+    if(e && e.target !== document.getElementById('lb-overlay') && e.target !== document.getElementById('lb-close')) return;
+    document.getElementById('lb-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  window.lbStep = function(dir){
+    if(!thumbs.length) return;
+    currentIdx = (currentIdx + dir + thumbs.length) % thumbs.length;
+    document.getElementById('lb-img').src = thumbs[currentIdx];
+    document.getElementById('lb-caption').textContent = captions[currentIdx];
+  };
+
+  document.addEventListener('keydown', function(e){
+    var ov = document.getElementById('lb-overlay');
+    if(!ov.classList.contains('open')) return;
+    if(e.key === 'Escape') { ov.classList.remove('open'); document.body.style.overflow = ''; }
+    if(e.key === 'ArrowLeft')  lbStep(-1);
+    if(e.key === 'ArrowRight') lbStep(1);
+  });
+})();
+</script>
 </body>
 </html>
