@@ -201,6 +201,20 @@
     }
     .intro-strip strong { color:var(--white); font-weight:400; }
 
+    /* ── ORIGINAL RESEARCH BAND ── */
+    .adds { background:#080806; border-bottom:1px solid var(--border); padding:5rem 2rem; }
+    .adds-inner { max-width:1100px; margin:0 auto; }
+    .adds-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:0.5rem; }
+    .adds-card { border:1px solid var(--border); background:var(--card-bg); padding:1.7rem 1.5rem; transition:border-color 0.3s; }
+    .adds-card:hover { border-color:rgba(201,168,76,0.5); }
+    .adds-stat { font-family:var(--font-serif); font-size:2rem; color:var(--gold); line-height:1; margin-bottom:0.7rem; }
+    .adds-card h3 { font-family:var(--font-serif); font-size:1.05rem; font-weight:400; margin-bottom:0.5rem; color:var(--white); }
+    .adds-card p { font-size:0.84rem; color:var(--muted); line-height:1.6; }
+    .adds-cta { margin-top:2.4rem; display:flex; gap:1rem; flex-wrap:wrap; }
+    .adds-btn { padding:0.7rem 1.4rem; border:1px solid rgba(201,168,76,0.4); color:var(--gold); text-decoration:none; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; background:rgba(201,168,76,0.06); transition:background 0.3s, border-color 0.3s; }
+    .adds-btn:hover { background:rgba(201,168,76,0.16); border-color:rgba(201,168,76,0.8); }
+    @media (max-width:760px){ .adds-grid{ grid-template-columns:1fr; } }
+
     /* ── SECTIONS NAV ── */
     .explore { padding:5rem 2rem; max-width:1200px; margin:0 auto; }
     .section-label { font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; display:block; }
@@ -433,9 +447,39 @@
     Sometime in the early 15th century, someone sat down and filled 240 pages of vellum
     with text and illustrations unlike anything seen before or since.
     <strong>The language is unknown. The script has no parallel. The plants don't exist. The stars don't match.</strong>
-    Six centuries of scholars, cryptographers, and linguists have tried — and failed — to read it.
-    This is where we bring everything together.
+    Six centuries of scholars, cryptographers, and linguists have tried, and failed, to read it.
+    Here you can read the full record, and the original, reproducible analysis we have added to it.
   </p>
+</div>
+
+<!-- WHAT THIS SITE ADDS -->
+<div class="adds">
+  <div class="adds-inner">
+    <span class="section-label">Original Research</span>
+    <h2 class="section-h2">What you won't find anywhere else</h2>
+    <p class="section-sub">Beyond the history and the bibliography, this site reports first-hand computational analysis of the manuscript's text, measured on fixed, reproducible metrics and published openly.</p>
+    <div class="adds-grid">
+      <div class="adds-card">
+        <p class="adds-stat">ISR</p>
+        <h3>An intermediate regime</h3>
+        <p>Measured across 70+ writing systems, the Voynich lands in a real gap: far more organized than random gibberish, yet not quite matching a natural language.</p>
+      </div>
+      <div class="adds-card">
+        <p class="adds-stat">d = &minus;1.01</p>
+        <h3>Two hands, by the numbers</h3>
+        <p>The Currier A and B "dialects" separate at d = &minus;1.01 (p &lt; 0.001) on character-level structure: a measurable difference, not an impression.</p>
+      </div>
+      <div class="adds-card">
+        <p class="adds-stat">100%</p>
+        <h3>Reproducible by design</h3>
+        <p>Every result is deterministic and re-runnable byte for byte. Code, data, and papers are published openly on Zenodo, not merely asserted.</p>
+      </div>
+    </div>
+    <div class="adds-cta">
+      <a href="/findings" class="adds-btn">See the findings &rarr;</a>
+      <a href="/methodology" class="adds-btn">How we measure &rarr;</a>
+    </div>
+  </div>
 </div>
 
 <!-- FOLIO GALLERY -->
