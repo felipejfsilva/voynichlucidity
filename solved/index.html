@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="No. As of 2026 the Voynich Manuscript has not been solved. Every famous claim, Cheshire, Gibbs, Rugg, Bax, AI, and exactly why each failed the same basic test.">
+  <meta property="og:title" content="Has the Voynich Manuscript Been Solved?">
+  <title>Has the Voynich Manuscript Been Solved? (2026) · Voynich Lucidity</title>
+  <style>
+    :root {
+      --black: #080806;
+      --white: #f0ede6;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.15);
+      --muted: #8e8a84;
+      --border: #1e1d1a;
+      --card-bg: #0f0f0d;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+
+    /* ── DROPDOWN NAV ── */
+    .nav-drop { position:relative; }
+    .nav-drop > a::after { content:' ▾'; font-size:0.6em; opacity:0.6; }
+    .nav-dropdown {
+      display:none; position:absolute; top:100%; left:50%;
+      transform:translateX(-50%); min-width:180px;
+      background:rgba(8,8,6,0.98); border:1px solid #1e1d1a;
+      padding:0.4rem 0; z-index:200;
+    }
+    .nav-dropdown a {
+      display:block; padding:0.5rem 1.2rem;
+      color:var(--muted); text-decoration:none;
+      font-size:0.72rem; letter-spacing:0.08em;
+      text-transform:uppercase; white-space:nowrap;
+      transition:color 0.2s, background 0.2s;
+    }
+    .nav-dropdown a:hover { color:var(--gold); background:rgba(201,168,76,0.06); }
+    .nav-drop:hover .nav-dropdown { display:block; }
+    .nav-start-btn {
+      padding:0.3rem 0.9rem; background:rgba(201,168,76,0.12);
+      border:1px solid rgba(201,168,76,0.4); color:var(--gold) !important;
+      border-radius:2px;
+    }
+    .nav-start-btn:hover { background:rgba(201,168,76,0.2) !important; }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(8,8,6,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .lang-switcher a {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.2rem 0.45rem;
+      border: 1px solid transparent;
+      transition: all 0.25s;
+    }
+    .lang-switcher a.active,
+    .lang-switcher a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 9rem 2rem 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.8rem;
+    }
+
+    .page-intro {
+      font-size: 1.05rem;
+      color: #b8b4ad;
+      max-width: 720px;
+      line-height: 1.75;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── ELIMINATION GRID ── */
+    .elim-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .elim-card {
+      background: var(--card-bg);
+      padding: 1.8rem;
+      position: relative;
+    }
+
+    .elim-card:hover {
+      background: #111110;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge.eliminated {
+      background: rgba(180, 40, 30, 0.15);
+      color: #c0392b;
+      border: 1px solid rgba(180, 40, 30, 0.35);
+    }
+
+    .badge.popular {
+      background: rgba(201, 168, 76, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+    }
+
+    .badge.preliminary {
+      background: rgba(201, 168, 76, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+    }
+
+    .badge.pending {
+      background: rgba(80, 80, 80, 0.2);
+      color: #6a6a68;
+      border: 1px solid #2a2a28;
+    }
+
+    .elim-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .elim-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .elim-card .evidence-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #404040;
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label span {
+      color: var(--gold);
+      margin-right: 0.5rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.7rem;
+      margin-top: 3.5rem;
+      line-height: 1.25;
+    }
+
+    .section-heading:first-of-type {
+      margin-top: 0;
+    }
+
+    .section-sub {
+      font-size: 0.88rem;
+      color: #7a7670;
+      max-width: 680px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* ── NOTE ── */
+    .note-box {
+      background: #0c0c0a;
+      border: 1px solid #2a2925;
+      padding: 1.5rem 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .note-box::before {
+      content: '↻';
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .page-note-box {
+      background: #0c0c0a;
+      border: 1px solid #2a2925;
+      border-left: 3px solid var(--gold);
+      padding: 1.2rem 1.8rem;
+      font-size: 0.88rem;
+      color: #9a9690;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .footer-logo span { color: var(--gold); }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 8rem 1.2rem 3rem; }
+      .content { padding: 3rem 1.2rem 4rem; }
+      .elim-grid { grid-template-columns: 1fr; }
+    }
+  
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:transparent;border:none;}
+    .hamburger span{width:22px;height:1px;background:var(--white,#f0ede6);display:block;transition:all 0.3s;}
+    .mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:rgba(8,8,6,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border,#1e1d1a);padding:1.2rem 2rem;z-index:99;flex-direction:column;gap:1rem;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{color:var(--muted,#8e8a84);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;}
+    .mobile-menu a:hover{color:var(--gold,#c9a84c);}
+    @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+    .folio-strip{width:100%;height:240px;overflow:hidden;border-bottom:1px solid var(--border,#1e1d1a);position:relative;}
+    .folio-strip img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:sepia(0.4) brightness(0.62) contrast(1.1);}
+    .folio-strip-label{position:absolute;bottom:0.9rem;right:1.5rem;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,237,230,0.3);}
+  </style>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://voynichlucidity.com/what-it-isnt/">
+  <meta property="og:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://voynichlucidity.com/assets/images/hero-bg.jpg">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZWDDNCDP2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BZWDDNCDP2');
+  </script>
+  <link rel="canonical" href="https://voynichlucidity.com/solved/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Has the Voynich Manuscript been solved?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. As of 2026, no proposed solution has produced a verifiable, repeatable translation that independent scholars can confirm. Every famous claim fails at least one basic test: producing coherent extended text, being repeatable by others, and reading pages the author never used."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Did AI decode the Voynich Manuscript?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Recurring headlines since 2018 claim a neural network or chatbot decoded the manuscript, but none has produced verifiable, repeatable text that holds up on pages the model never saw."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do we actually know about the Voynich text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The text follows Zipf's law and has entropy in the range of real languages, splits into two statistically distinct hands (Currier A and B), and on reproducible structural metrics sits in an intermediate regime: more organized than random gibberish, yet not a clean match to any known language."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Voynich <span>Lucidity</span></a>
+  <ul class="nav-links">
+    <li><a href="/start-here" class="nav-start-btn">★ Start Here</a></li>
+    <li><a href="/the-manuscript">The Manuscript</a></li>
+    <li><a href="/library">Library</a></li>
+    <li><a href="/what-it-isnt" class="active">What It Isn't</a></li>
+    <li class="nav-drop"><a href="/findings">Research</a>
+      <div class="nav-dropdown">
+        <a href="/findings">Findings</a>
+        <a href="/visualizations">Data Visualizations</a>
+        <a href="/research">State of Research</a>
+        <a href="/methodology">Methodology</a>
+        <a href="/debates">Open Debates</a>
+        <a href="/undeciphered">Undeciphered Scripts</a>
+      </div>
+    </li>
+    <li><a href="/curiosities">Curiosities</a></li>
+    <li><a href="/media">Media</a></li>
+    <li class="nav-drop"><a href="/collaborate">Connect</a>
+      <div class="nav-dropdown">
+        <a href="/collaborate">Collaborate</a>
+        <a href="/press">Press Kit</a>
+        <a href="/resources">Resources</a>
+        <a href="/about">About L.</a>
+      </div>
+    </li>
+  </ul>
+  <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="mobile-menu">
+    <a href="/start-here">★ Start Here</a>
+    <a href="/the-manuscript">The Manuscript</a>
+    <a href="/library">Library</a>
+    <a href="/what-it-isnt">What It Isn't</a>
+    <a href="/findings">Findings</a>
+        <a href="/visualizations">Data Visualizations</a>
+    <a href="/research">State of Research</a>
+    <a href="/methodology">Methodology</a>
+    <a href="/debates">Open Debates</a>
+    <a href="/undeciphered">Undeciphered Scripts</a>
+    <a href="/curiosities">Curiosities</a>
+    <a href="/media">Media</a>
+    <a href="/collaborate">Collaborate</a>
+    <a href="/press">Press Kit</a>
+    <a href="/resources">Resources</a>
+    <a href="/about">About L.</a>
+  </div>
+  <div class="lang-switcher">
+    <a href="/" class="active">🇺🇸 EN</a>
+    <a href="/pt">🇧🇷 PT</a>
+    <a href="/es">🇪🇸 ES</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <span class="page-label">The Short Answer</span>
+  <h1>Has the Voynich Manuscript Been Solved?</h1>
+  <p class="page-intro">No. As of 2026, no proposed solution has produced a verifiable, repeatable translation that independent scholars can confirm. Dozens of people have announced they cracked it. Every claim has failed the same basic test. Here is each one, and exactly why.</p>
+</div>
+
+<div class="folio-strip">
+  <img src="/assets/images/ms-folio-13r.jpg" alt="Voynich Manuscript folio 13r, Beinecke MS 408, Yale" loading="lazy">
+  <span class="folio-strip-label">MS 408 · f13r · Yale Beinecke · Public domain</span>
+</div>
+
+<main class="content">
+
+  <div class="page-note-box">
+    Short version: a real solution has to do three things. Read coherent, extended text (not a handful of words). Be repeatable, so other people applying the same key get the same reading. And work on pages the author never used. So far, every announced solution fails at least one of these, and most fail all three.
+  </div>
+
+  <h2 class="section-heading">The claims that made headlines</h2>
+  <p class="section-sub">These are the solutions that reached the press and the public. Each was examined by specialists and found wanting.</p>
+
+  <p class="section-label"><span>●</span> Claimed Solutions · examined and unconfirmed</p>
+
+  <div class="elim-grid">
+
+    <div class="elim-card">
+      <span class="badge popular">Claimed Solution</span>
+      <h3>Gerard Cheshire's "Proto-Romance" (2019)</h3>
+      <p>An academic announced the text was a lost "proto-Romance" language and could be read. The reaction was immediate: linguists pointed out that "proto-Romance" as described is not a recognized language, and that the translation stitched together cherry-picked words from several Romance languages with no consistent grammar. The University of Bristol publicly distanced itself from the paper, and long-time researchers published point-by-point refutations.</p>
+      <span class="evidence-tag">Bristol distanced itself · no consistent grammar · refuted 2019</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Claimed Solution</span>
+      <h3>Nicholas Gibbs's "Medieval Health Manual" (2017)</h3>
+      <p>In the Times Literary Supplement, Gibbs argued the text was Latin abbreviations describing a women's health manual. Specialists noted that the proposed expansions did not produce coherent Latin, and that much of the reading recycled ideas already considered and set aside. No readable passage followed.</p>
+      <span class="evidence-tag">TLS 2017 · no coherent Latin produced</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Claimed Solution</span>
+      <h3>Gordon Rugg's "Elaborate Hoax" (2004)</h3>
+      <p>Rugg showed that a Cardan grille, a simple table-and-template trick, can generate text with some Voynich-like statistics, suggesting it could be meaningless. This is a mechanism, not a reading: it shows a hoax is possible, not that the manuscript is one. Later work (Montemurro and Zanette, 2013) found word-clustering patterns consistent with genuine information content, which simple grille gibberish does not reproduce.</p>
+      <span class="evidence-tag">a mechanism, not a translation · countered by Montemurro &amp; Zanette 2013</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Claimed Solution</span>
+      <h3>Stephen Bax's Partial Decipherment (2014)</h3>
+      <p>A linguist proposed tentative sound-values for a handful of words, mostly plant and star names read as proper nouns. The work was careful and provisional, but it covered only about ten words and was never extended into readable running text. A short, unverified word list is not a solution.</p>
+      <span class="evidence-tag">~10 words · never extended to running text</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Claimed Solution</span>
+      <h3>"It Is Actually Turkish / Hebrew / Nahuatl"</h3>
+      <p>Every few years someone announces the manuscript is a known language in disguise: Turkish, Hebrew, Manchu, and more. They share a pattern. They fit a few words, declare success, and never produce a coherent, checkable translation of a full page. None has been accepted by Voynich scholars.</p>
+      <span class="evidence-tag">recurring · fits fragments, never a full page</span>
+    </div>
+
+    <div class="elim-card">
+      <span class="badge popular">Claimed Solution</span>
+      <h3>"AI Cracked the Voynich" Headlines</h3>
+      <p>Since 2018, recurring stories claim a neural network or a chatbot decoded the manuscript. On inspection they produce no verifiable text. A model can always output something, but nothing repeatable, coherent, and checkable against unseen pages has ever appeared. Pattern-matching is not reading.</p>
+      <span class="evidence-tag">no verifiable output · not repeatable</span>
+    </div>
+
+  </div>
+
+  <h2 class="section-heading">Why every solution fails the same test</h2>
+  <p class="section-sub">A genuine decipherment is not a feeling that the words look right. It has to survive three demands.</p>
+
+  <div class="elim-grid">
+    <div class="elim-card">
+      <span class="badge popular">Test 1</span>
+      <h3>Coherent, extended text</h3>
+      <p>It must read as connected language across paragraphs and pages, not a scattered list of nouns. Most claims stop at a few words.</p>
+    </div>
+    <div class="elim-card">
+      <span class="badge popular">Test 2</span>
+      <h3>Repeatable by others</h3>
+      <p>Independent scholars applying the same key must arrive at the same reading. Claims that only the author can reproduce are not science.</p>
+    </div>
+    <div class="elim-card">
+      <span class="badge popular">Test 3</span>
+      <h3>Predicts unseen pages</h3>
+      <p>A real key should read folios the author never used to build it. None of the proposed solutions has passed this.</p>
+    </div>
+  </div>
+
+  <h2 class="section-heading">What we actually know</h2>
+  <p class="section-sub">The honest state of the question is not a translation. It is a set of measurements that any researcher can reproduce.</p>
+
+  <div class="page-note-box">
+    The text follows Zipf's law and has entropy in the range of real languages. It splits into two statistically distinct hands, the Currier A and B sections, which differ measurably. And on fixed, reproducible structural metrics, the manuscript sits in an intermediate regime: more organized than random gibberish, yet not a clean match to any known language. That gap, not any claimed reading, is the real puzzle.
+  </div>
+
+  <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="/findings" style="padding:0.7rem 1.4rem;border:1px solid rgba(201,168,76,0.4);color:#c9a84c;text-decoration:none;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;background:rgba(201,168,76,0.06);">See our findings &rarr;</a>
+    <a href="/methodology" style="padding:0.7rem 1.4rem;border:1px solid rgba(201,168,76,0.4);color:#c9a84c;text-decoration:none;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;background:rgba(201,168,76,0.06);">How we measure &rarr;</a>
+    <a href="/what-it-isnt" style="padding:0.7rem 1.4rem;border:1px solid rgba(201,168,76,0.4);color:#c9a84c;text-decoration:none;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;background:rgba(201,168,76,0.06);">What it isn't &rarr;</a>
+  </div>
+
+</main>
+
+
+<div style="border-top:1px solid #1e1d1a;padding:1.2rem 2rem;text-align:center;background:#0a0a08;" id="feedbackBar">
+  <span style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:#5a5852;margin-right:1rem;">Was this page useful?</span>
+  <button onclick="sendFeedback('yes',this.parentElement)" style="background:transparent;border:1px solid #1e1d1a;color:#8e8a84;padding:0.25rem 0.8rem;cursor:pointer;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;margin:0 0.3rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'" onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#8e8a84'">↑ Yes</button>
+  <button onclick="sendFeedback('no',this.parentElement)" style="background:transparent;border:1px solid #1e1d1a;color:#8e8a84;padding:0.25rem 0.8rem;cursor:pointer;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;margin:0 0.3rem;transition:all 0.2s;" onmouseover="this.style.borderColor='#1e1d1a';this.style.color='#555'" onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#8e8a84'">↓ No</button>
+</div>
+<script>
+function sendFeedback(v, bar){
+  bar.innerHTML = '<span style="font-size:0.75rem;color:#8e8a84;letter-spacing:0.08em;">' + (v==='yes' ? '✓ Thank you.' : 'Thanks — we'll keep improving.') + '</span>';
+  if(window.gtag) gtag('event','page_feedback',{value:v,page:window.location.pathname});
+  localStorage.setItem('feedback_'+window.location.pathname, v);
+}
+// Hide if already voted
+if(localStorage.getItem('feedback_'+window.location.pathname)){
+  document.getElementById('feedbackBar') && (document.getElementById('feedbackBar').style.display='none');
+}
+</script>
+<footer>
+  <p class="footer-logo">Voynich <span>Lucidity</span></p>
+  <p>Independent typological research · <a href="mailto:contact@voynichlucidity.com">contact@voynichlucidity.com</a></p>
+  <p style="margin-top:0.8rem;font-size:0.72rem;color:#3a3a38;">© 2026 Voynich Lucidity · Clarity over certainty. Method over speculation.</p>
+</footer>
+
+
+<script>
+function shareVL() {
+  if (navigator.share) {
+    navigator.share({title: document.title, url: window.location.href});
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(()=>{
+      const btn = document.getElementById('shareBtn');
+      if(btn){ const orig=btn.textContent; btn.textContent='✓ Copied!'; setTimeout(()=>btn.textContent=orig,2000); }
+    });
+  }
+}
+</script>
+<div style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;display:flex;flex-direction:column;gap:0.5rem;">
+  <button id="shareBtn" onclick="shareVL()" title="Share this page"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">⬆</button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"
+    style="background:rgba(8,8,6,0.9);border:1px solid #1e1d1a;color:#7a7670;width:40px;height:40px;cursor:pointer;font-size:1rem;transition:all 0.2s;backdrop-filter:blur(8px);"
+    onmouseover="this.style.borderColor='#c9a84c';this.style.color='#c9a84c'"
+    onmouseout="this.style.borderColor='#1e1d1a';this.style.color='#7a7670'">↑</button>
+</div>
+<script src="/assets/js/lang-nav.js"></script>
+</body>
+</html>
