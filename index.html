@@ -336,6 +336,25 @@
     .mobile-menu a{color:var(--muted,#8e8a84);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;}
     .mobile-menu a:hover{color:var(--gold,#c9a84c);}
     @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}}
+
+    /* ── REVEAL ON SCROLL ── */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1);}
+    .reveal.in{opacity:1;transform:none;}
+    @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+    /* ── ISR SPECTRUM (home) ── */
+    .spectrum-section{background:#080806;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5.5rem 2rem;}
+    .spectrum-inner{max-width:880px;margin:0 auto;text-align:center;}
+    .spectrum-h2{font-family:var(--font-serif);font-size:clamp(1.7rem,3vw,2.4rem);font-weight:400;margin:.4rem 0 .6rem;}
+    .spectrum-lead{color:var(--muted);max-width:620px;margin:0 auto;font-size:.95rem;}
+    .spectrum-bar{position:relative;height:8px;border-radius:6px;margin:3.4rem auto 0;max-width:760px;background:linear-gradient(90deg,#7a2e2e 0%,#b08a2e 50%,#3f6f3a 100%);}
+    .spectrum-marker{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:2px;height:28px;background:var(--white);}
+    .spectrum-marker::after{content:"VOYNICH SITS HERE";position:absolute;top:32px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:.6rem;letter-spacing:.18em;color:var(--gold);}
+    .spectrum-ends{display:flex;justify-content:space-between;max-width:760px;margin:3.4rem auto 0;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+    .spectrum-caption{max-width:660px;margin:2.6rem auto 0;color:var(--muted);font-size:.95rem;line-height:1.8;}
+    .spectrum-caption strong{color:var(--white);font-weight:400;}
+    .spectrum-cta{margin-top:2rem;}
+    .spectrum-cta a{color:var(--gold);text-decoration:none;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.4);padding-bottom:2px;}
   </style>
 </head>
 <body>
@@ -418,6 +437,7 @@
     <h1>The manuscript<br>no one has read.</h1>
     <p class="hero-sub">600 years. Still waiting.</p>
     <a href="/start-here" class="hero-cta">★ Start Here — What You Need to Know</a>
+    <a href="/explore" class="hero-cta" style="margin-left:0.7rem;animation-delay:1.5s;">Experience it →</a>
     <div class="hero-stats">
       <span><b>240</b> pages</span>
       <span><b>0</b> translations</span>
@@ -481,6 +501,19 @@
       <a href="/findings" class="adds-btn">See the findings &rarr;</a>
       <a href="/methodology" class="adds-btn">How we measure &rarr;</a>
     </div>
+  </div>
+</div>
+
+<!-- ISR SPECTRUM -->
+<div class="spectrum-section">
+  <div class="spectrum-inner">
+    <span class="section-label">Where It Sits</span>
+    <h2 class="spectrum-h2">Not gibberish. Not quite a language.</h2>
+    <p class="spectrum-lead">Measured across 70+ writing systems on fixed, reproducible metrics, the Voynich lands in a real gap.</p>
+    <div class="spectrum-bar"><span class="spectrum-marker"></span></div>
+    <div class="spectrum-ends"><span>Random gibberish</span><span>Natural language</span></div>
+    <p class="spectrum-caption">It is more organized than random noise, yet more rigidly patterned than any natural language we measured. That gap, an <strong>Intermediate Structural Regime</strong>, is the real puzzle: not a hidden message waiting to be unlocked, but a structure too organized to be noise and too rigid to be an ordinary language.</p>
+    <p class="spectrum-cta"><a href="/explore">Experience the full story &rarr;</a></p>
   </div>
 </div>
 
@@ -712,12 +745,21 @@
     document.getElementById('mobileMenu').classList.toggle('open');
   }
 
-  // Intersection observer for scroll animations
-  // Fade-in on load
+  // Reveal major sections on scroll
+  (function(){
+    var blocks = document.querySelectorAll('.intro-strip, .adds, .spectrum-section, .explore, .poll-wrap, .research-blurb');
+    if (!('IntersectionObserver' in window)) { blocks.forEach(function(b){ b.classList.add('in'); }); return; }
+    blocks.forEach(function(b){ b.classList.add('reveal'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    blocks.forEach(function(b){ io.observe(b); });
+  })();
+  // Subtle stagger for folio/nav cards
   document.querySelectorAll('.folio, .nav-card').forEach((el, i) => {
     el.style.opacity = '0';
     el.style.transition = 'opacity 0.5s ease';
-    setTimeout(() => { el.style.opacity = '1'; }, 80 + i * 50);
+    setTimeout(() => { el.style.opacity = '1'; }, 120 + i * 45);
   });
 </script>
 
